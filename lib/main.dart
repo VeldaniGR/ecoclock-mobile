@@ -34,7 +34,7 @@ class EcoClockApp extends StatelessWidget {
           elevation: 0,
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(12),
-            side: BorderSide(color: Colors.white10),
+            side: const BorderSide(color: Colors.white10),
           ),
         ),
         inputDecorationTheme: InputDecorationTheme(
