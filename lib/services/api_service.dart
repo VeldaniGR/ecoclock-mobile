@@ -24,7 +24,7 @@ class EcoClockApi {
   // Configuración
   // ──────────────────────────────────────────────────────────────
   /// URL base de la API (cambiar para desarrollo local)
-  static const String baseUrl = 'https://api.ecoclock.org';
+  static const String baseUrl = 'https://TU_NGROK_URL.ngrok-free.app';
 
   /// Clave de SharedPreferences para el token JWT
   static const String _tokenKey = 'ecoclock_jwt';
