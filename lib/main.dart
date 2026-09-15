@@ -29,7 +29,7 @@ class EcoClockApp extends StatelessWidget {
           centerTitle: true,
           elevation: 0,
         ),
-        cardTheme: CardThemeData(
+        cardTheme: CardTheme(
           color: const Color(0xFF161B22),
           elevation: 0,
           shape: RoundedRectangleBorder(

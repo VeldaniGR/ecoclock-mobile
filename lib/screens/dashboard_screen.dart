@@ -1,6 +1,5 @@
 // Dashboard principal con tabs: Inicio, Tarea, Créditos
 
-import 'dart:convert';
 import 'package:flutter/material.dart';
 import '../../models/api_models.dart';
 import '../../services/api_service.dart';
@@ -123,8 +122,6 @@ class _DashboardScreenState extends State<DashboardScreen>
 
   @override
   Widget build(BuildContext context) {
-    final theme = Theme.of(context);
-
     return Scaffold(
       appBar: AppBar(
         title: const Text('Eco\'clock Network'),
@@ -168,6 +165,8 @@ class _DashboardScreenState extends State<DashboardScreen>
   // ──────────────────────────────────────────────────────────────
 
   Widget _buildHomeTab() {
+    final theme = Theme.of(context);
+
     if (_loadingUser) {
       return const Center(child: CircularProgressIndicator());
     }
@@ -256,6 +255,8 @@ class _DashboardScreenState extends State<DashboardScreen>
   // ──────────────────────────────────────────────────────────────
 
   Widget _buildTaskTab() {
+    final theme = Theme.of(context);
+
     if (_loadingTask) {
       return const Center(child: CircularProgressIndicator());
     }
@@ -380,6 +381,7 @@ class _DashboardScreenState extends State<DashboardScreen>
     required String message,
     required VoidCallback onRetry,
   }) {
+    final theme = Theme.of(context);
     return Center(
       child: Padding(
         padding: const EdgeInsets.all(24),
@@ -391,7 +393,7 @@ class _DashboardScreenState extends State<DashboardScreen>
             Text(
               message,
               textAlign: TextAlign.center,
-              style: Theme.of(context).textTheme.bodyLarge,
+              style: theme.textTheme.bodyLarge,
             ),
             const SizedBox(height: 24),
             FilledButton.icon(
@@ -410,6 +412,8 @@ class _DashboardScreenState extends State<DashboardScreen>
   // ──────────────────────────────────────────────────────────────
 
   Widget _buildCreditsTab() {
+    final theme = Theme.of(context);
+
     if (_loadingCredits) {
       return const Center(child: CircularProgressIndicator());
     }
