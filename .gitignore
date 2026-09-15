@@ -1,0 +1,62 @@
+# Flutter/Dart/Pub
+**/dart_tool/
+**/.dart_tool/
+**/build/
+**/.packages
+**/.flutter-plugins
+**/.flutter-plugins-dependencies
+**/pubspec.lock
+**/generated_plugin_registrant.dart
+
+# Android
+**/android/app/debug/
+**/android/app/profile/
+**/android/app/release/
+**/android/local.properties
+**/android/gradle.properties
+**/android/gradlew
+**/android/gradlew.bat
+**/android/gradle/
+
+# iOS
+**/ios/Flutter/
+**/ios/Pods/
+**/ios/.symlinks/
+**/ios/Podfile.lock
+**/ios/Runner.xcworkspace/
+**/ios/Flutter/Generated.xcconfig
+**/ios/Flutter/flutter_export_environment.sh
+
+# macOS
+**/macos/Flutter/
+**/macos/Pods/
+**/macos/.symlinks/
+**/macos/Podfile.lock
+
+# Linux
+**/linux/Flutter/
+**/linux/build/
+
+# Windows
+**/windows/Flutter/
+**/windows/build/
+**/windows/runner/
+
+# IDE
+.idea/
+.vscode/
+*.swp
+*.swo
+*~
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Coverage
+coverage/
+*.lcov
+
+# Pub cache
+.dart_tool/
+.pub-cache/
