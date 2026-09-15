@@ -33,7 +33,7 @@ jobs:
           cache: true
 
       - name: Generate platform folders (android/ios)
-        run: flutter create --platforms=android,ios .
+        run: flutter create --platforms=android,ios --project-name ecoclock_mobile .
 
       - name: Install dependencies
         run: flutter pub get
@@ -68,7 +68,7 @@ jobs:
           cache: true
 
       - name: Generate platform folders (android/ios)
-        run: flutter create --platforms=android,ios .
+        run: flutter create --platforms=android,ios --project-name ecoclock_mobile .
 
       - name: Install dependencies
         run: flutter pub get
