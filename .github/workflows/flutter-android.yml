@@ -35,6 +35,20 @@ jobs:
       - name: Generate platform folders (android/ios)
         run: flutter create --platforms=android,ios --project-name ecoclock_mobile .
 
+      - name: Fix generated test (uses EcoClockApp not MyApp)
+        run: |
+          cat > test/widget_test.dart <<'EOF'
+          import 'package:flutter_test/flutter_test.dart';
+          import 'package:ecoclock_mobile/main.dart';
+
+          void main() {
+            testWidgets('App loads without crashing', (WidgetTester tester) async {
+              await tester.pumpWidget(const EcoClockApp());
+              expect(find.text('Eco\'clock Network'), findsOneWidget);
+            });
+          }
+          EOF
+
       - name: Install dependencies
         run: flutter pub get
 
@@ -69,6 +83,20 @@ jobs:
 
       - name: Generate platform folders (android/ios)
         run: flutter create --platforms=android,ios --project-name ecoclock_mobile .
+
+      - name: Fix generated test (uses EcoClockApp not MyApp)
+        run: |
+          cat > test/widget_test.dart <<'EOF'
+          import 'package:flutter_test/flutter_test.dart';
+          import 'package:ecoclock_mobile/main.dart';
+
+          void main() {
+            testWidgets('App loads without crashing', (WidgetTester tester) async {
+              await tester.pumpWidget(const EcoClockApp());
+              expect(find.text('Eco\'clock Network'), findsOneWidget);
+            });
+          }
+          EOF
 
       - name: Install dependencies
         run: flutter pub get
