@@ -1,7 +1,10 @@
 // Pantalla de autenticación (Login / Registro)
 
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
+import 'package:google_fonts/google_fonts.dart';
 import '../../services/api_service.dart';
+import '../main.dart'; // Para EcoClockThemeExtension
 
 class AuthScreen extends StatefulWidget {
   final EcoClockApi api;
@@ -62,9 +65,30 @@ class _AuthScreenState extends State<AuthScreen> {
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
+    final ecoTheme = EcoClockThemeExtension.of(context);
+    final colorScheme = theme.colorScheme;
 
     return Scaffold(
-      appBar: AppBar(title: const Text('Eco\'clock Network')),
+      appBar: AppBar(
+        title: Text(
+          'Eco\'clock Network',
+          style: GoogleFonts.fraunces(
+            fontWeight: FontWeight.w700,
+            fontSize: 20,
+            color: colorScheme.onSurface,
+          ),
+        ),
+        leading: Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: SvgPicture.asset(
+            'assets/logo.svg',
+            colorFilter: ColorFilter.mode(
+              ecoTheme.accent,
+              BlendMode.srcIn,
+            ),
+          ),
+        ),
+      ),
       body: SafeArea(
         child: Center(
           child: SingleChildScrollView(
@@ -72,15 +96,25 @@ class _AuthScreenState extends State<AuthScreen> {
             child: Column(
               mainAxisSize: MainAxisSize.min,
               children: [
-                // Logo
-                const Icon(Icons.eco, size: 80, color: Colors.tealAccent),
+                // Logo con tipografía Fraunces
+                SvgPicture.asset(
+                  'assets/logo.svg',
+                  width: 80,
+                  height: 80,
+                  colorFilter: ColorFilter.mode(
+                    ecoTheme.accent,
+                    BlendMode.srcIn,
+                  ),
+                ),
                 const SizedBox(height: 24),
 
                 // Título
                 Text(
                   _isLogin ? 'Iniciar sesión' : 'Crear cuenta',
-                  style: theme.textTheme.headlineSmall?.copyWith(
+                  style: GoogleFonts.fraunces(
                     fontWeight: FontWeight.w600,
+                    fontSize: 28,
+                    color: colorScheme.onSurface,
                   ),
                 ),
                 const SizedBox(height: 8),
@@ -88,8 +122,9 @@ class _AuthScreenState extends State<AuthScreen> {
                   _isLogin
                       ? 'Accede a tu cuenta de donación de cómputo'
                       : 'Únete a la red de monitorización ambiental',
-                  style: theme.textTheme.bodyMedium?.copyWith(
-                    color: theme.colorScheme.onSurfaceVariant,
+                  style: GoogleFonts.workSans(
+                    color: colorScheme.onSurfaceVariant,
+                    fontSize: 16,
                   ),
                   textAlign: TextAlign.center,
                 ),
@@ -98,29 +133,35 @@ class _AuthScreenState extends State<AuthScreen> {
                 // Campo Email
                 TextField(
                   controller: _emailController,
-                  decoration: const InputDecoration(
+                  decoration: InputDecoration(
                     labelText: 'Email',
-                    prefixIcon: Icon(Icons.email_outlined),
-                    border: OutlineInputBorder(),
+                    prefixIcon: Icon(
+                      Icons.email_outlined,
+                      color: colorScheme.onSurfaceVariant,
+                    ),
                   ),
                   keyboardType: TextInputType.emailAddress,
                   textInputAction: TextInputAction.next,
                   enabled: !_loading,
+                  style: GoogleFonts.workSans(color: colorScheme.onSurface),
                 ),
                 const SizedBox(height: 16),
 
                 // Campo Contraseña
                 TextField(
                   controller: _passwordController,
-                  decoration: const InputDecoration(
+                  decoration: InputDecoration(
                     labelText: 'Contraseña',
-                    prefixIcon: Icon(Icons.lock_outline),
-                    border: OutlineInputBorder(),
+                    prefixIcon: Icon(
+                      Icons.lock_outline,
+                      color: colorScheme.onSurfaceVariant,
+                    ),
                   ),
                   obscureText: true,
                   textInputAction: TextInputAction.done,
                   enabled: !_loading,
                   onSubmitted: (_) => _submit(),
+                  style: GoogleFonts.workSans(color: colorScheme.onSurface),
                 ),
 
                 // Error
@@ -130,12 +171,14 @@ class _AuthScreenState extends State<AuthScreen> {
                     width: double.infinity,
                     padding: const EdgeInsets.all(12),
                     decoration: BoxDecoration(
-                      color: theme.colorScheme.errorContainer,
-                      borderRadius: BorderRadius.circular(8),
+                      color: colorScheme.errorContainer,
+                      borderRadius: BorderRadius.circular(14),
                     ),
                     child: Text(
                       _error!,
-                      style: TextStyle(color: theme.colorScheme.onErrorContainer),
+                      style: GoogleFonts.workSans(
+                        color: colorScheme.onErrorContainer,
+                      ),
                       textAlign: TextAlign.center,
                     ),
                   ),
@@ -153,9 +196,18 @@ class _AuthScreenState extends State<AuthScreen> {
                         ? const SizedBox(
                             width: 20,
                             height: 20,
-                            child: CircularProgressIndicator(strokeWidth: 2),
+                            child: CircularProgressIndicator(
+                              strokeWidth: 2,
+                              valueColor: AlwaysStoppedAnimation<Color>(Color(0xFF241206)),
+                            ),
                           )
-                        : Text(_isLogin ? 'Entrar' : 'Registrarse'),
+                        : Text(
+                            _isLogin ? 'Entrar' : 'Registrarse',
+                            style: GoogleFonts.workSans(
+                              fontSize: 16,
+                              fontWeight: FontWeight.w600,
+                            ),
+                          ),
                   ),
                 ),
 
@@ -170,6 +222,9 @@ class _AuthScreenState extends State<AuthScreen> {
                     _isLogin
                         ? '¿No tienes cuenta? Regístrate'
                         : '¿Ya tienes cuenta? Inicia sesión',
+                    style: GoogleFonts.workSans(
+                      fontWeight: FontWeight.w500,
+                    ),
                   ),
                 ),
               ],

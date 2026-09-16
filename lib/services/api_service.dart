@@ -23,8 +23,9 @@ class EcoClockApi {
   // ──────────────────────────────────────────────────────────────
   // Configuración
   // ──────────────────────────────────────────────────────────────
-  /// URL base de la API (cambiar para desarrollo local)
-  static const String baseUrl = 'https://TU_NGROK_URL.ngrok-free.app';
+  /// URL base de la API (ngrok tunnel a localhost:8000)
+  /// Generado con: ngrok http 8000
+  static const String baseUrl = 'https://barometer-ceramics-shore.ngrok-free.dev';
 
   /// Clave de SharedPreferences para el token JWT
   static const String _tokenKey = 'ecoclock_jwt';
