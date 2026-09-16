@@ -389,7 +389,7 @@ class EcoClockApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       theme: lightTheme,
       darkTheme: darkTheme,
-      themeMode: ThemeMode.system, // Respeta la preferencia del sistema
+      themeMode: ThemeMode.dark, // Forzar tema oscuro por defecto
       home: const AuthGate(),
     );
   }
