@@ -25,11 +25,11 @@ flutter:
   assets:
     - assets/logo.svg
     - assets/logo_apk_neon.png
-    
+
 #Configuración del icono de launcher (Android + iOS)
 flutter_launcher_icons:
   android: true
   ios: true
   image_path: "assets/logo_apk_neon.png"
-  adaptive_icon_backround: "#000000"
+  adaptive_icon_background: "#000000"
   adaptive_icon_foreground: "assets/logo_apk_neon.png"
