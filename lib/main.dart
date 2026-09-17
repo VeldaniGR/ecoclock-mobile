@@ -82,7 +82,7 @@ final ThemeData lightTheme = ThemeData(
       ),
     ),
   ),
-  extensions: <ThemeExtension<dynamic>>[
+  extensions: const <ThemeExtension<dynamic>>[
     EcoClockThemeExtension.light,
   ],
 );
@@ -158,7 +158,7 @@ final ThemeData darkTheme = ThemeData(
       ),
     ),
   ),
-  extensions: <ThemeExtension<dynamic>>[
+  extensions: const <ThemeExtension<dynamic>>[
     EcoClockThemeExtension.dark,
   ],
 );
@@ -234,7 +234,7 @@ final ThemeData duskTheme = ThemeData(
       ),
     ),
   ),
-  extensions: <ThemeExtension<dynamic>>[
+  extensions: const <ThemeExtension<dynamic>>[
     EcoClockThemeExtension.dusk,
   ],
 );
