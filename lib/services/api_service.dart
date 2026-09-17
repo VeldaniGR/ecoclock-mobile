@@ -59,6 +59,7 @@ class EcoClockApi {
   /// Headers HTTP comunes (incluye Authorization si hay token)
   Map<String, String> get _headers => {
         'Content-Type': 'application/json',
+        'ngrok-skip-browser-warning': 'true',
         if (_token != null) 'Authorization': 'Bearer $_token',
       };
 
@@ -103,7 +104,10 @@ class EcoClockApi {
   }) async {
     final response = await http.post(
       Uri.parse('$baseUrl/auth/register'),
-      headers: {'Content-Type': 'application/json'},
+      headers: {
+        'Content-Type': 'application/json'
+        'ngrok-skip-browser-warning': 'true',
+      },
       body: jsonEncode({'email': email, 'password': password}),
     );
     final data = _handleResponse(response);
@@ -119,7 +123,10 @@ class EcoClockApi {
   }) async {
     final response = await http.post(
       Uri.parse('$baseUrl/auth/login'),
-      headers: {'Content-Type': 'application/json'},
+      headers: {
+        'Content-Type': 'application/json'
+        'ngrok-skip-browser-warning': 'true',
+        },
       body: jsonEncode({'email': email, 'password': password}),
     );
     final data = _handleResponse(response);
