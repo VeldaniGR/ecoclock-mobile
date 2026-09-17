@@ -60,3 +60,8 @@ coverage/
 # Pub cache
 .dart_tool/
 .pub-cache/
+# Generated platform folders 
+/android/
+/ios/
+/.metadata
+*.iml
