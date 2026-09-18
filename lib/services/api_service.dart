@@ -106,8 +106,7 @@ class EcoClockApi {
       Uri.parse('$baseUrl/auth/register'),
       headers: {
         'Content-Type': 'application/json'
-        'ngrok-skip-browser-warning': 'true'
-      },
+        'ngrok-skip-browser-warning': 'true'},
       body: jsonEncode({'email': email, 'password': password}),
     );
     final data = _handleResponse(response);
@@ -125,8 +124,7 @@ class EcoClockApi {
       Uri.parse('$baseUrl/auth/login'),
       headers: {
         'Content-Type': 'application/json'
-        'ngrok-skip-browser-warning': 'true'
-        },
+        'ngrok-skip-browser-warning': 'true'},
       body: jsonEncode({'email': email, 'password': password}),
     );
     final data = _handleResponse(response);
