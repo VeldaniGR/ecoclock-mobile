@@ -22,7 +22,7 @@ class UserResponse {
         email: json['email'] as String,
         username: json['username'] as String,
       );
-}
+
 
   Map<String, dynamic> toJson() => {
         'id': id,

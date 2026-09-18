@@ -206,13 +206,7 @@ class _AuthScreenState extends State<AuthScreen> {
                   contentPadding: EdgeInsets.zero,
                   activeColor: ecoTheme.accent,
                 ),
-                  obscureText: true,
-                  textInputAction: TextInputAction.done,
-                  enabled: !_loading,
-                  onSubmitted: (_) => _submit(),
-                  style: GoogleFonts.workSans(color: colorScheme.onSurface),
-                ),
-
+              
                 // Error
                 if (_error != null) ...[
                   const SizedBox(height: 16),
@@ -282,5 +276,5 @@ class _AuthScreenState extends State<AuthScreen> {
         ),
       ),
     );
-  }
+  };
 }
