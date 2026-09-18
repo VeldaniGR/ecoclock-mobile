@@ -49,6 +49,20 @@ jobs:
           }
           EOF
 
+      - name: Ensure INTERNET permission in AndroidManifest
+        run: |
+          MANIFEST="android/app/src/main/AndroidManifest.xml"
+          # Añadir INTERNET si no existe
+          if ! grep -q 'android.permission.INTERNET' "$MANIFEST"; then
+            sed -i '/<manifest/a\ <uses-permission android:name="android.permission.INTERNET"/>' "$MANIFEST"
+          fi
+          # Añadir ACCESS_NETWORK_STATE si no existe
+          if ! grep -q 'android.permission.ACCESS_NETWORK_STATE' "$MANIFEST"; then
+            sed -i '/<uses-permission android:name="android.permission.INTERNET"\/>/a\ <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>' "$MANIFEST"
+          fi
+          echo "=== AndroidManifest.xml (permisos) ==="
+          grep -A5 -E 'uses-permission|package=' "$MANIFEST" || true
+
       - name: Install dependencies
         run: flutter pub get
 
@@ -100,6 +114,20 @@ jobs:
             });
           }
           EOF
+
+      - name: Ensure INTERNET permission in AndroidManifest
+        run: |
+          MANIFEST="android/app/src/main/AndroidManifest.xml"
+          # Añadir INTERNET si no existe
+          if ! grep -q 'android.permission.INTERNET' "$MANIFEST"; then
+            sed -i '/<manifest/a\ <uses-permission android:name="android.permission.INTERNET"/>' "$MANIFEST"
+          fi
+          # Añadir ACCESS_NETWORK_STATE si no existe
+          if ! grep -q 'android.permission.ACCESS_NETWORK_STATE' "$MANIFEST"; then
+            sed -i '/<uses-permission android:name="android.permission.INTERNET"\/>/a\ <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>' "$MANIFEST"
+          fi
+          echo "=== AndroidManifest.xml (permisos) ==="
+          grep -A5 -E 'uses-permission|package=' "$MANIFEST" || true
 
       - name: Install dependencies
         run: flutter pub get
