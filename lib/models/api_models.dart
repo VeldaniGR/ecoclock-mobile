@@ -35,24 +35,35 @@ class TaskNextResponse {
   final int taskId;
   final String taskType;
   final Map<String, dynamic> payload;
+  final String status;
 
   TaskNextResponse({
     required this.taskId,
     required this.taskType,
     required this.payload,
+    required this.status,
   });
 
-  factory TaskNextResponse.fromJson(Map<String, dynamic> json) =>
-      TaskNextResponse(
-        taskId: json['task_id'] as int,
-        taskType: json['task_type'] as String,
-        payload: Map<String, dynamic>.from(json['payload'] as Map),
-      );
+  factory TaskNextResponse.fromJson(Map<String, dynamic> json) {
+    final payload = Map<String, dynamic>.from(json['payload'] as Map? ?? {});
+    // El servidor usa "id" y "name"; el tipo real suele ir en payload.type
+    final taskType = (payload['type'] as String?) ??
+        (json['name'] as String?) ??
+        'unknown';
+
+    return TaskNextResponse(
+      taskId: json['id'] as int,
+      taskType: taskType,
+      payload: payload,
+      status: json['status'] as String? ?? 'unknown',
+    );
+  }
 
   Map<String, dynamic> toJson() => {
-        'task_id': taskId,
+        'id': taskId,
         'task_type': taskType,
         'payload': payload,
+        'status': status,
       };
 }
 
