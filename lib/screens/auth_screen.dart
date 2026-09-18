@@ -22,10 +22,10 @@ class AuthScreen extends StatefulWidget {
 
 class _AuthScreenState extends State<AuthScreen> {
   final _emailController = TextEditingController();
-  final _usernameController = TextEditingController();   // ← NUEVO
+  final _usernameController = TextEditingController();
   final _passwordController = TextEditingController();
   bool _isLogin = true;
-  bool _keepSession = true;                             // ← NUEVO
+  bool _keepSession = true;
   String? _error;
   bool _loading = false;
 
@@ -102,7 +102,6 @@ class _AuthScreenState extends State<AuthScreen> {
             child: Column(
               mainAxisSize: MainAxisSize.min,
               children: [
-                // Logo con tipografía Fraunces
                 SvgPicture.asset(
                   'assets/logo.svg',
                   width: 80,
@@ -114,7 +113,6 @@ class _AuthScreenState extends State<AuthScreen> {
                 ),
                 const SizedBox(height: 24),
 
-                // Título
                 Text(
                   _isLogin ? 'Iniciar sesión' : 'Crear cuenta',
                   style: GoogleFonts.fraunces(
@@ -136,7 +134,7 @@ class _AuthScreenState extends State<AuthScreen> {
                 ),
                 const SizedBox(height: 32),
 
-                // Campo Username (siempre visible)
+                // Username (siempre)
                 TextField(
                   controller: _usernameController,
                   decoration: InputDecoration(
@@ -152,7 +150,7 @@ class _AuthScreenState extends State<AuthScreen> {
                 ),
                 const SizedBox(height: 16),
 
-                // Campo Email (solo en registro)
+                // Email (solo en registro)
                 if (!_isLogin) ...[
                   TextField(
                     controller: _emailController,
@@ -171,7 +169,7 @@ class _AuthScreenState extends State<AuthScreen> {
                   const SizedBox(height: 16),
                 ],
 
-                // Campo Contraseña
+                // Contraseña
                 TextField(
                   controller: _passwordController,
                   decoration: InputDecoration(
@@ -189,7 +187,7 @@ class _AuthScreenState extends State<AuthScreen> {
                 ),
                 const SizedBox(height: 12),
 
-                // Checkbox "Mantener sesión abierta"
+                // Checkbox mantener sesión
                 CheckboxListTile(
                   value: _keepSession,
                   onChanged: _loading
@@ -206,7 +204,7 @@ class _AuthScreenState extends State<AuthScreen> {
                   contentPadding: EdgeInsets.zero,
                   activeColor: ecoTheme.accent,
                 ),
-              
+
                 // Error
                 if (_error != null) ...[
                   const SizedBox(height: 16),
@@ -241,7 +239,8 @@ class _AuthScreenState extends State<AuthScreen> {
                             height: 20,
                             child: CircularProgressIndicator(
                               strokeWidth: 2,
-                              valueColor: AlwaysStoppedAnimation<Color>(Color(0xFF241206)),
+                              valueColor: AlwaysStoppedAnimation<Color>(
+                                  Color(0xFF241206)),
                             ),
                           )
                         : Text(
@@ -276,5 +275,5 @@ class _AuthScreenState extends State<AuthScreen> {
         ),
       ),
     );
-  };
+  }
 }

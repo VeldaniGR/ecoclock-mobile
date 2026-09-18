@@ -23,11 +23,10 @@ class UserResponse {
         username: json['username'] as String,
       );
 
-
   Map<String, dynamic> toJson() => {
         'id': id,
         'email': email,
-        'created_at': createdAt,
+        'username': username,
       };
 }
 
