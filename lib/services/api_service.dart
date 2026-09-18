@@ -170,7 +170,7 @@ class EcoClockApi {
   Future<UserResponse> getMe() async {
     await _loadToken();
     final response = await http.get(
-      Uri.parse('$baseUrl/me'),
+      Uri.parse('$baseUrl/auth/me'),
       headers: _headers,
     );
     final data = _handleResponse(response);
@@ -217,7 +217,7 @@ class EcoClockApi {
   Future<CreditsSummary> getCredits() async {
     await _loadToken();
     final response = await http.get(
-      Uri.parse('$baseUrl/credits/me'),
+      Uri.parse('$baseUrl/me/credits'),
       headers: _headers,
     );
     final data = _handleResponse(response);
