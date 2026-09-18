@@ -9,19 +9,20 @@
 class UserResponse {
   final int id;
   final String email;
-  final String createdAt;
+  final String username;
 
   UserResponse({
     required this.id,
     required this.email,
-    required this.createdAt,
+    required this.username,
   });
 
   factory UserResponse.fromJson(Map<String, dynamic> json) => UserResponse(
         id: json['id'] as int,
         email: json['email'] as String,
-        createdAt: json['created_at'] as String,
+        username: json['username'] as String,
       );
+}
 
   Map<String, dynamic> toJson() => {
         'id': id,

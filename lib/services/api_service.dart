@@ -95,41 +95,67 @@ class EcoClockApi {
   // ──────────────────────────────────────────────────────────────
   // Autenticación
   // ──────────────────────────────────────────────────────────────
-
-  /// Registra un nuevo usuario
-  /// POST /auth/register
+  /// Registra un nuevo usuario y hace login automático
+  /// POST /auth/register  →  luego POST /auth/login
   Future<UserResponse> register({
     required String email,
+    required String username,
     required String password,
+    bool keepSession = true,
   }) async {
-    final response = await http.post(
+    // 1. Registrar (el servidor NO devuelve token)
+    final regResponse = await http.post(
       Uri.parse('$baseUrl/auth/register'),
       headers: {
         'Content-Type': 'application/json',
-        'ngrok-skip-browser-warning': 'true'},
-      body: jsonEncode({'email': email, 'password': password}),
+        'ngrok-skip-browser-warning': 'true',
+      },
+      body: jsonEncode({
+        'email': email,
+        'username': username,
+        'password': password,
+      }),
     );
-    final data = _handleResponse(response);
-    await _saveToken(data['access_token'] as String);
-    return UserResponse.fromJson(data['user'] as Map<String, dynamic>);
+    _handleResponse(regResponse); // lanza si falla
+
+    // 2. Login automático para obtener el JWT
+    return login(
+      username: username,
+      password: password,
+      keepSession: keepSession,
+    );
   }
 
   /// Inicia sesión
-  /// POST /auth/login
+  /// POST /auth/login  (usa username, no email)
   Future<UserResponse> login({
-    required String email,
+    required String username,
     required String password,
+    bool keepSession = true,
   }) async {
     final response = await http.post(
       Uri.parse('$baseUrl/auth/login'),
       headers: {
         'Content-Type': 'application/json',
-        'ngrok-skip-browser-warning': 'true'},
-      body: jsonEncode({'email': email, 'password': password}),
+        'ngrok-skip-browser-warning': 'true',
+      },
+      body: jsonEncode({
+        'username': username,
+        'password': password,
+      }),
     );
     final data = _handleResponse(response);
-    await _saveToken(data['access_token'] as String);
-    return UserResponse.fromJson(data['user'] as Map<String, dynamic>);
+
+    final token = data['access_token'] as String;
+    if (keepSession) {
+      await _saveToken(token);
+    } else {
+      // Solo en memoria para esta sesión
+      _token = token;
+    }
+
+    // El login solo devuelve token; pedimos /me para el usuario
+    return getMe();
   }
 
   /// Cierra sesión (elimina token local)

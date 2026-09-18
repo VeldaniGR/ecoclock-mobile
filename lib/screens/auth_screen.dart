@@ -22,8 +22,10 @@ class AuthScreen extends StatefulWidget {
 
 class _AuthScreenState extends State<AuthScreen> {
   final _emailController = TextEditingController();
+  final _usernameController = TextEditingController();   // ← NUEVO
   final _passwordController = TextEditingController();
   bool _isLogin = true;
+  bool _keepSession = true;                             // ← NUEVO
   String? _error;
   bool _loading = false;
 
@@ -36,13 +38,16 @@ class _AuthScreenState extends State<AuthScreen> {
     try {
       if (_isLogin) {
         await widget.api.login(
-          email: _emailController.text.trim(),
+          username: _usernameController.text.trim(),
           password: _passwordController.text,
+          keepSession: _keepSession,
         );
       } else {
         await widget.api.register(
           email: _emailController.text.trim(),
+          username: _usernameController.text.trim(),
           password: _passwordController.text,
+          keepSession: _keepSession,
         );
       }
       widget.onSuccess();
@@ -58,6 +63,7 @@ class _AuthScreenState extends State<AuthScreen> {
   @override
   void dispose() {
     _emailController.dispose();
+    _usernameController.dispose();
     _passwordController.dispose();
     super.dispose();
   }
@@ -130,22 +136,40 @@ class _AuthScreenState extends State<AuthScreen> {
                 ),
                 const SizedBox(height: 32),
 
-                // Campo Email
+                // Campo Username (siempre visible)
                 TextField(
-                  controller: _emailController,
+                  controller: _usernameController,
                   decoration: InputDecoration(
-                    labelText: 'Email',
+                    labelText: 'Usuario',
                     prefixIcon: Icon(
-                      Icons.email_outlined,
+                      Icons.person_outline,
                       color: colorScheme.onSurfaceVariant,
                     ),
                   ),
-                  keyboardType: TextInputType.emailAddress,
                   textInputAction: TextInputAction.next,
                   enabled: !_loading,
                   style: GoogleFonts.workSans(color: colorScheme.onSurface),
                 ),
                 const SizedBox(height: 16),
+
+                // Campo Email (solo en registro)
+                if (!_isLogin) ...[
+                  TextField(
+                    controller: _emailController,
+                    decoration: InputDecoration(
+                      labelText: 'Email',
+                      prefixIcon: Icon(
+                        Icons.email_outlined,
+                        color: colorScheme.onSurfaceVariant,
+                      ),
+                    ),
+                    keyboardType: TextInputType.emailAddress,
+                    textInputAction: TextInputAction.next,
+                    enabled: !_loading,
+                    style: GoogleFonts.workSans(color: colorScheme.onSurface),
+                  ),
+                  const SizedBox(height: 16),
+                ],
 
                 // Campo Contraseña
                 TextField(
@@ -157,6 +181,31 @@ class _AuthScreenState extends State<AuthScreen> {
                       color: colorScheme.onSurfaceVariant,
                     ),
                   ),
+                  obscureText: true,
+                  textInputAction: TextInputAction.done,
+                  enabled: !_loading,
+                  onSubmitted: (_) => _submit(),
+                  style: GoogleFonts.workSans(color: colorScheme.onSurface),
+                ),
+                const SizedBox(height: 12),
+
+                // Checkbox "Mantener sesión abierta"
+                CheckboxListTile(
+                  value: _keepSession,
+                  onChanged: _loading
+                      ? null
+                      : (v) => setState(() => _keepSession = v ?? true),
+                  title: Text(
+                    'Mantener sesión abierta',
+                    style: GoogleFonts.workSans(
+                      fontSize: 14,
+                      color: colorScheme.onSurface,
+                    ),
+                  ),
+                  controlAffinity: ListTileControlAffinity.leading,
+                  contentPadding: EdgeInsets.zero,
+                  activeColor: ecoTheme.accent,
+                ),
                   obscureText: true,
                   textInputAction: TextInputAction.done,
                   enabled: !_loading,
