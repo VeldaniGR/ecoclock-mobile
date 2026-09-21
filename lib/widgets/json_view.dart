@@ -32,7 +32,7 @@ class JsonView extends StatelessWidget {
       constraints: const BoxConstraints(maxHeight: 300),
       padding: const EdgeInsets.all(12),
       decoration: BoxDecoration(
-        color: theme.colorScheme.surfaceContainerHighest.withOpacity(0.5),
+        color: theme.colorScheme.surfaceContainerHighest.withValues(alpha: 0.5),
         borderRadius: BorderRadius.circular(8),
         border: Border.all(color: theme.colorScheme.outlineVariant),
       ),

@@ -338,7 +338,7 @@ class _DashboardScreenState extends State<DashboardScreen>
           Container(
             padding: const EdgeInsets.all(12),
             decoration: BoxDecoration(
-              color: theme.colorScheme.secondaryContainer.withOpacity(0.5),
+              color: theme.colorScheme.secondaryContainer.withValues(alpha: 0.5),
               borderRadius: BorderRadius.circular(8),
             ),
             child: Row(
@@ -498,14 +498,14 @@ class _DashboardScreenState extends State<DashboardScreen>
                 itemCount: recent.length,
                 separatorBuilder: (_, __) => const Divider(height: 1),
                 itemBuilder: (context, index) {
-                  final entry = recent[index] as Map<String, dynamic>;
+                  final entry = recent[index];
                   final amount = entry['amount'] as int? ?? 0;
                   final taskType = entry['task_type'] as String? ?? 'tarea';
                   final createdAt = entry['created_at'] as String? ?? '';
 
                   return ListTile(
                     leading: CircleAvatar(
-                      backgroundColor: Colors.amber.withOpacity(0.2),
+                      backgroundColor: Colors.amber.withValues(alpha: 0.2),
                       child: const Icon(Icons.star, color: Colors.amber, size: 20),
                     ),
                     title: Text(
