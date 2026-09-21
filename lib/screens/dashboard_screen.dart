@@ -499,20 +499,21 @@ class _DashboardScreenState extends State<DashboardScreen>
                 separatorBuilder: (_, __) => const Divider(height: 1),
                 itemBuilder: (context, index) {
                   final entry = recent[index];
-                  final amount = entry['amount'] as int? ?? 0;
-                  final taskType = entry['task_type'] as String? ?? 'tarea';
-                  final createdAt = entry['created_at'] as String? ?? '';
+                  final amountNum = entry['amount'];
+                  final amount = (amountNum is num) ? amountNum.toDouble() : 0.0;
+                  final taskId = entry['task_id']?.toString() ?? '—';
+                  final grantedAt = entry['granted_at']?.toString() ?? '';
 
                   return ListTile(
                     leading: CircleAvatar(
-                      backgroundColor: Colors.amber.withValues(alpha: 0.2),
+                      backgroundColor: Colors.amber.withOpacity(0.2),
                       child: const Icon(Icons.star, color: Colors.amber, size: 20),
                     ),
                     title: Text(
-                      '$amount créditos · $taskType',
+                      '${amount.toStringAsFixed(amount == amount.roundToDouble() ? 0 : 1)} créditos · tarea #$taskId',
                       style: theme.textTheme.titleMedium,
                     ),
-                    subtitle: Text(createdAt),
+                    subtitle: Text(grantedAt),
                     trailing: const Icon(Icons.chevron_right),
                   );
                 },

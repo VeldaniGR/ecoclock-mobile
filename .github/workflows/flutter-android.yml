@@ -63,6 +63,13 @@ jobs:
           echo "=== AndroidManifest.xml (permisos) ==="
           grep -A5 -E 'uses-permission|package=' "$MANIFEST" || true
 
+      - name: Set launcher app name to Eco'clock
+        run: |
+          MANIFEST="android/app/src/main/AndroidManifest.xml"
+          sed -i 's/android:label="[^"]*"/android:label="Eco'\''clock"/' "$MANIFEST"
+          echo "=== android:label ==="
+          grep -o 'android:label="[^"]*"' "$MANIFEST" || true
+
       - name: Install dependencies
         run: flutter pub get
 
@@ -128,6 +135,13 @@ jobs:
           fi
           echo "=== AndroidManifest.xml (permisos) ==="
           grep -A5 -E 'uses-permission|package=' "$MANIFEST" || true
+
+      - name: Set launcher app name to Eco'clock
+        run: |
+          MANIFEST="android/app/src/main/AndroidManifest.xml"
+          sed -i 's/android:label="[^"]*"/android:label="Eco'\''clock"/' "$MANIFEST"
+          echo "=== android:label ==="
+          grep -o 'android:label="[^"]*"' "$MANIFEST" || true
 
       - name: Install dependencies
         run: flutter pub get
