@@ -23,7 +23,6 @@ class _DashboardScreenState extends State<DashboardScreen>
     with SingleTickerProviderStateMixin {
   late final TabController _tabController;
 
-  // Estado de datos
   UserResponse? _user;
   CreditsSummary? _credits;
   TaskNextResponse? _currentTask;
@@ -88,7 +87,6 @@ class _DashboardScreenState extends State<DashboardScreen>
   Future<void> _submitDummyTask() async {
     if (_currentTask == null) return;
 
-    // Resultado simulado — aquí iría el cómputo real (NDVI, etc.)
     final dummyOutput = {
       'result': 'completed_from_mobile',
       'processed_at': DateTime.now().toIso8601String(),
@@ -108,7 +106,7 @@ class _DashboardScreenState extends State<DashboardScreen>
           backgroundColor: Colors.green,
         ),
       );
-      await _loadAll(); // Refresca créditos y pide siguiente tarea
+      await _loadAll();
     } on ApiException catch (e) {
       if (!mounted) return;
       ScaffoldMessenger.of(context).showSnackBar(
@@ -171,81 +169,79 @@ class _DashboardScreenState extends State<DashboardScreen>
       return const Center(child: CircularProgressIndicator());
     }
 
-    return Padding(
-      padding: const EdgeInsets.all(24),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          // Bienvenida
-          Text(
-            'Bienvenido, ${_user?.email ?? 'usuario'}',
-            style: theme.textTheme.headlineSmall?.copyWith(
-              fontWeight: FontWeight.w600,
-            ),
-          ),
-          const SizedBox(height: 8),
-          Text(
-            'ID de usuario: ${_user?.id ?? '?'}',
-            style: theme.textTheme.bodyMedium?.copyWith(
-              color: theme.colorScheme.onSurfaceVariant,
-            ),
-          ),
-          const SizedBox(height: 24),
-
-          // Descripción
-          Card(
-            child: Padding(
-              padding: const EdgeInsets.all(16),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Row(
-                    children: [
-                      Icon(Icons.info_outline,
-                          color: theme.colorScheme.primary),
-                      const SizedBox(width: 8),
-                      Text('Sobre esta app',
-                          style: theme.textTheme.titleMedium),
-                    ],
-                  ),
-                  const SizedBox(height: 12),
-                  const Text(
-                    'Eco\'clock Network te permite donar capacidad de cómputo '
-                    'ociosa de tu dispositivo para procesar datos ambientales '
-                    '(deforestación, arrecifes de coral, biodiversidad).',
-                  ),
-                  const SizedBox(height: 8),
-                  const Text(
-                    'Cada tarea completada genera créditos BOINC — '
-                    'sin valor monetario, pero con valor simbólico '
-                    'de contribución al planeta.',
-                  ),
-                ],
+    return SafeArea(
+      top: false,
+      child: Padding(
+        padding: const EdgeInsets.all(24),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Text(
+              'Bienvenido, ${_user?.email ?? 'usuario'}',
+              style: theme.textTheme.headlineSmall?.copyWith(
+                fontWeight: FontWeight.w600,
               ),
             ),
-          ),
-          const SizedBox(height: 24),
-
-          // Acciones rápidas
-          Text('Acciones rápidas', style: theme.textTheme.titleMedium),
-          const SizedBox(height: 12),
-          Wrap(
-            spacing: 12,
-            runSpacing: 12,
-            children: [
-              FilledButton.icon(
-                icon: const Icon(Icons.refresh),
-                label: const Text('Refrescar todo'),
-                onPressed: _loadAll,
+            const SizedBox(height: 8),
+            Text(
+              'ID de usuario: ${_user?.id ?? '?'}',
+              style: theme.textTheme.bodyMedium?.copyWith(
+                color: theme.colorScheme.onSurfaceVariant,
               ),
-              OutlinedButton.icon(
-                icon: const Icon(Icons.task_alt),
-                label: const Text('Pedir tarea'),
-                onPressed: _loadTask,
+            ),
+            const SizedBox(height: 24),
+            Card(
+              child: Padding(
+                padding: const EdgeInsets.all(16),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Row(
+                      children: [
+                        Icon(Icons.info_outline,
+                            color: theme.colorScheme.primary),
+                        const SizedBox(width: 8),
+                        Text('Sobre esta app',
+                            style: theme.textTheme.titleMedium),
+                      ],
+                    ),
+                    const SizedBox(height: 12),
+                    const Text(
+                      'Eco\'clock Network te permite donar capacidad de cómputo '
+                      'ociosa de tu dispositivo para procesar datos ambientales '
+                      '(deforestación, arrecifes de coral, biodiversidad).',
+                    ),
+                    const SizedBox(height: 8),
+                    const Text(
+                      'Cada tarea completada genera créditos Eco\'clock — '
+                      'sin valor monetario, pero con valor simbólico '
+                      'de contribución al planeta.',
+                    ),
+                  ],
+                ),
               ),
-            ],
-          ),
-        ],
+            ),
+            const SizedBox(height: 24),
+            Text('Acciones rápidas', style: theme.textTheme.titleMedium),
+            const SizedBox(height: 12),
+            Wrap(
+              spacing: 12,
+              runSpacing: 12,
+              children: [
+                FilledButton.icon(
+                  icon: const Icon(Icons.refresh),
+                  label: const Text('Refrescar todo'),
+                  onPressed: _loadAll,
+                ),
+                OutlinedButton.icon(
+                  icon: const Icon(Icons.task_alt),
+                  label: const Text('Pedir tarea'),
+                  onPressed: _loadTask,
+                ),
+              ],
+            ),
+          ],
+        ),
       ),
     );
   }
@@ -281,96 +277,95 @@ class _DashboardScreenState extends State<DashboardScreen>
 
     final task = _currentTask!;
 
-    return Padding(
-      padding: const EdgeInsets.all(24),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          // Header de la tarea
-          Row(
-            children: [
-              Expanded(
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(
-                      'Nueva tarea: ${task.taskType}',
-                      style: theme.textTheme.titleLarge?.copyWith(
-                        fontWeight: FontWeight.w600,
+    return SafeArea(
+      top: false,
+      child: Padding(
+        padding: const EdgeInsets.all(24),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Row(
+              children: [
+                Expanded(
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        'Nueva tarea: ${task.taskType}',
+                        style: theme.textTheme.titleLarge?.copyWith(
+                          fontWeight: FontWeight.w600,
+                        ),
                       ),
-                    ),
-                    const SizedBox(height: 4),
-                    Text(
-                      'ID: ${task.taskId}',
-                      style: theme.textTheme.bodyMedium?.copyWith(
-                        color: theme.colorScheme.onSurfaceVariant,
+                      const SizedBox(height: 4),
+                      Text(
+                        'ID: ${task.taskId}',
+                        style: theme.textTheme.bodyMedium?.copyWith(
+                          color: theme.colorScheme.onSurfaceVariant,
+                        ),
                       ),
-                    ),
-                  ],
-                ),
-              ),
-              Container(
-                padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
-                decoration: BoxDecoration(
-                  color: theme.colorScheme.primaryContainer,
-                  borderRadius: BorderRadius.circular(16),
-                ),
-                child: Text(
-                  task.taskType.toUpperCase(),
-                  style: theme.textTheme.labelLarge?.copyWith(
-                    color: theme.colorScheme.onPrimaryContainer,
-                    fontWeight: FontWeight.w600,
+                    ],
                   ),
                 ),
-              ),
-            ],
-          ),
-          const SizedBox(height: 24),
-
-          // Payload
-          const Text('Datos de la tarea (payload):',
-              style: TextStyle(fontWeight: FontWeight.bold)),
-          const SizedBox(height: 8),
-          JsonView(json: task.payload),
-          const SizedBox(height: 24),
-
-          // Nota
-          Container(
-            padding: const EdgeInsets.all(12),
-            decoration: BoxDecoration(
-              color: theme.colorScheme.secondaryContainer.withValues(alpha: 0.5),
-              borderRadius: BorderRadius.circular(8),
-            ),
-            child: Row(
-              children: [
-                Icon(Icons.info_outline,
-                    size: 20, color: theme.colorScheme.onSecondaryContainer),
-                const SizedBox(width: 8),
-                Expanded(
+                Container(
+                  padding:
+                      const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
+                  decoration: BoxDecoration(
+                    color: theme.colorScheme.primaryContainer,
+                    borderRadius: BorderRadius.circular(16),
+                  ),
                   child: Text(
-                    'En la versión beta, el cómputo se simula. '
-                    'La versión final procesará los datos localmente.',
-                    style: TextStyle(
-                        color: theme.colorScheme.onSecondaryContainer),
+                    task.taskType.toUpperCase(),
+                    style: theme.textTheme.labelLarge?.copyWith(
+                      color: theme.colorScheme.onPrimaryContainer,
+                      fontWeight: FontWeight.w600,
+                    ),
                   ),
                 ),
               ],
             ),
-          ),
-
-          const Spacer(),
-
-          // Botón enviar
-          SizedBox(
-            width: double.infinity,
-            height: 48,
-            child: FilledButton.icon(
-              icon: const Icon(Icons.send),
-              label: const Text('Completar y enviar (simulado)'),
-              onPressed: _submitDummyTask,
+            const SizedBox(height: 24),
+            const Text(
+              'Datos de la tarea (payload):',
+              style: TextStyle(fontWeight: FontWeight.bold),
             ),
-          ),
-        ],
+            const SizedBox(height: 8),
+            JsonView(json: task.payload),
+            const SizedBox(height: 24),
+            Container(
+              padding: const EdgeInsets.all(12),
+              decoration: BoxDecoration(
+                color:
+                    theme.colorScheme.secondaryContainer.withValues(alpha: 0.5),
+                borderRadius: BorderRadius.circular(8),
+              ),
+              child: Row(
+                children: [
+                  Icon(Icons.info_outline,
+                      size: 20, color: theme.colorScheme.onSecondaryContainer),
+                  const SizedBox(width: 8),
+                  Expanded(
+                    child: Text(
+                      'En la versión beta, el cómputo se simula. '
+                      'La versión final procesará los datos localmente.',
+                      style: TextStyle(
+                          color: theme.colorScheme.onSecondaryContainer),
+                    ),
+                  ),
+                ],
+              ),
+            ),
+            const SizedBox(height: 16),
+            SizedBox(
+              width: double.infinity,
+              height: 48,
+              child: FilledButton.icon(
+                icon: const Icon(Icons.send),
+                label: const Text('Completar y enviar (simulado)'),
+                onPressed: _submitDummyTask,
+              ),
+            ),
+          ],
+        ),
       ),
     );
   }
@@ -421,105 +416,107 @@ class _DashboardScreenState extends State<DashboardScreen>
     final total = _credits?.totalCredits ?? 0;
     final recent = _credits?.recent ?? [];
 
-    return Padding(
-      padding: const EdgeInsets.all(24),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          // Total
-          Row(
-            children: [
-              const Icon(Icons.star, size: 32, color: Colors.amber),
-              const SizedBox(width: 12),
-              Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(
-                    'Total créditos',
-                    style: theme.textTheme.labelLarge?.copyWith(
-                      color: theme.colorScheme.onSurfaceVariant,
-                    ),
-                  ),
-                  Text(
-                    '$total',
-                    style: theme.textTheme.displayMedium?.copyWith(
-                      fontWeight: FontWeight.bold,
-                      color: Colors.amber[700],
-                    ),
-                  ),
-                ],
-              ),
-            ],
-          ),
-          const SizedBox(height: 24),
-
-          // Historial
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              Text('Historial reciente', style: theme.textTheme.titleMedium),
-              if (recent.isNotEmpty)
-                TextButton.icon(
-                  icon: const Icon(Icons.refresh, size: 18),
-                  label: const Text('Actualizar'),
-                  onPressed: _loadCredits,
-                ),
-            ],
-          ),
-          const SizedBox(height: 8),
-
-          if (recent.isEmpty)
-            Expanded(
-              child: Center(
-                child: Column(
-                  mainAxisSize: MainAxisSize.min,
+    return SafeArea(
+      top: false,
+      child: Padding(
+        padding: const EdgeInsets.all(24),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Row(
+              children: [
+                const Icon(Icons.star, size: 32, color: Colors.amber),
+                const SizedBox(width: 12),
+                Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Icon(Icons.star_border,
-                        size: 64, color: theme.colorScheme.outline),
-                    const SizedBox(height: 16),
                     Text(
-                      'Sin actividad reciente',
-                      style: theme.textTheme.bodyLarge?.copyWith(
+                      'Total créditos',
+                      style: theme.textTheme.labelLarge?.copyWith(
                         color: theme.colorScheme.onSurfaceVariant,
                       ),
                     ),
-                    const SizedBox(height: 8),
-                    const Text(
-                      'Completa tareas para ganar créditos',
-                      style: TextStyle(fontSize: 14),
+                    Text(
+                      '$total',
+                      style: theme.textTheme.displayMedium?.copyWith(
+                        fontWeight: FontWeight.bold,
+                        color: Colors.amber[700],
+                      ),
                     ),
                   ],
                 ),
-              ),
-            )
-          else
-            Expanded(
-              child: ListView.separated(
-                itemCount: recent.length,
-                separatorBuilder: (_, __) => const Divider(height: 1),
-                itemBuilder: (context, index) {
-                  final entry = recent[index];
-                  final amountNum = entry['amount'];
-                  final amount = (amountNum is num) ? amountNum.toDouble() : 0.0;
-                  final taskId = entry['task_id']?.toString() ?? '—';
-                  final grantedAt = entry['granted_at']?.toString() ?? '';
-
-                  return ListTile(
-                    leading: CircleAvatar(
-                      backgroundColor: Colors.amber.withValues(alpha: 0.2),
-                      child: const Icon(Icons.star, color: Colors.amber, size: 20),
-                    ),
-                    title: Text(
-                      '${amount.toStringAsFixed(amount == amount.roundToDouble() ? 0 : 1)} créditos · tarea #$taskId',
-                      style: theme.textTheme.titleMedium,
-                    ),
-                    subtitle: Text(grantedAt),
-                    trailing: const Icon(Icons.chevron_right),
-                  );
-                },
-              ),
+              ],
             ),
-        ],
+            const SizedBox(height: 24),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Text('Historial reciente', style: theme.textTheme.titleMedium),
+                if (recent.isNotEmpty)
+                  TextButton.icon(
+                    icon: const Icon(Icons.refresh, size: 18),
+                    label: const Text('Actualizar'),
+                    onPressed: _loadCredits,
+                  ),
+              ],
+            ),
+            const SizedBox(height: 8),
+            if (recent.isEmpty)
+              Expanded(
+                child: Center(
+                  child: Column(
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      Icon(Icons.star_border,
+                          size: 64, color: theme.colorScheme.outline),
+                      const SizedBox(height: 16),
+                      Text(
+                        'Sin actividad reciente',
+                        style: theme.textTheme.bodyLarge?.copyWith(
+                          color: theme.colorScheme.onSurfaceVariant,
+                        ),
+                      ),
+                      const SizedBox(height: 8),
+                      const Text(
+                        'Completa tareas para ganar créditos',
+                        style: TextStyle(fontSize: 14),
+                      ),
+                    ],
+                  ),
+                ),
+              )
+            else
+              Expanded(
+                child: ListView.separated(
+                  itemCount: recent.length,
+                  separatorBuilder: (_, __) => const Divider(height: 1),
+                  itemBuilder: (context, index) {
+                    final entry = recent[index];
+                    final amountNum = entry['amount'];
+                    final amount =
+                        (amountNum is num) ? amountNum.toDouble() : 0.0;
+                    final taskId = entry['task_id']?.toString() ?? '—';
+                    final grantedAt = entry['granted_at']?.toString() ?? '';
+
+                    return ListTile(
+                      leading: CircleAvatar(
+                        backgroundColor:
+                            Colors.amber.withValues(alpha: 0.2),
+                        child: const Icon(Icons.star,
+                            color: Colors.amber, size: 20),
+                      ),
+                      title: Text(
+                        '${amount.toStringAsFixed(amount == amount.roundToDouble() ? 0 : 1)} créditos · tarea #$taskId',
+                        style: theme.textTheme.titleMedium,
+                      ),
+                      subtitle: Text(grantedAt),
+                      trailing: const Icon(Icons.chevron_right),
+                    );
+                  },
+                ),
+              ),
+          ],
+        ),
       ),
     );
   }
