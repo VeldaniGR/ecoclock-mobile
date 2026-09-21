@@ -67,24 +67,36 @@ class TaskNextResponse {
       };
 }
 
-/// Resumen de créditos (/credits/me)
+/// Resumen de créditos (GET /me/credits)
 class CreditsSummary {
-  final int totalCredits;
-  final List<dynamic> recent;
+  final int userId;
+  final String username;
+  final double totalCredits;
+  final List<Map<String, dynamic>> recent;
 
   CreditsSummary({
+    required this.userId,
+    required this.username,
     required this.totalCredits,
     required this.recent,
   });
 
-  factory CreditsSummary.fromJson(Map<String, dynamic> json) =>
-      CreditsSummary(
-        totalCredits: json['total_credits'] as int,
-        recent: List<dynamic>.from(json['recent'] as List),
-      );
+  factory CreditsSummary.fromJson(Map<String, dynamic> json) {
+    final total = json['total'];
+    return CreditsSummary(
+      userId: json['user_id'] as int,
+      username: json['username'] as String? ?? '',
+      totalCredits: (total is num) ? total.toDouble() : 0.0,
+      recent: (json['recent'] as List? ?? [])
+          .map((e) => Map<String, dynamic>.from(e as Map))
+          .toList(),
+    );
+  }
 
   Map<String, dynamic> toJson() => {
-        'total_credits': totalCredits,
+        'user_id': userId,
+        'username': username,
+        'total': totalCredits,
         'recent': recent,
       };
 }
