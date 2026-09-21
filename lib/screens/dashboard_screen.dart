@@ -506,7 +506,7 @@ class _DashboardScreenState extends State<DashboardScreen>
 
                   return ListTile(
                     leading: CircleAvatar(
-                      backgroundColor: Colors.amber.withOpacity(0.2),
+                      backgroundColor: Colors.amber.withValues(alpha: 0.2),
                       child: const Icon(Icons.star, color: Colors.amber, size: 20),
                     ),
                     title: Text(
