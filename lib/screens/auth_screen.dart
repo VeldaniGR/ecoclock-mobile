@@ -5,6 +5,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:google_fonts/google_fonts.dart';
 import '../../services/api_service.dart';
 import '../main.dart'; // Para EcoClockThemeExtension
+import 'forgot_password_screen.dart';
 
 class AuthScreen extends StatefulWidget {
   final EcoClockApi api;
@@ -254,6 +255,29 @@ class _AuthScreenState extends State<AuthScreen> {
                 ),
 
                 const SizedBox(height: 16),
+                
+                // ¿Olvidaste tu contraseña? (solo en login)
+                if (_isLogin) ...[
+                  const SizedBox(height: 8),
+                  TextButton(
+                    onPressed: _loading
+                        ? null
+                        : () {
+                            Navigator.of(context).push(
+                              MaterialPageRoute(
+                                builder: (_) =>
+                                    ForgotPasswordScreen(api: widget.api),
+                              ),
+                            );
+                          },
+                    child: Text(
+                      '¿Olvidaste tu contraseña?',
+                      style: GoogleFonts.workSans(
+                        fontWeight: FontWeight.w500,
+                      ),
+                    ),
+                  ),
+                ],
 
                 // Cambiar modo
                 TextButton(

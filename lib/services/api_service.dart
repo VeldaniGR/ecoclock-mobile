@@ -161,6 +161,48 @@ class EcoClockApi {
   /// Cierra sesión (elimina token local)
   Future<void> logout() async => _clearToken();
 
+    /// Solicita correo de restablecimiento de contraseña
+  /// POST /auth/forgot-password
+  Future<String> forgotPassword({required String emailOrUsername}) async {
+    final response = await http.post(
+      Uri.parse('$baseUrl/auth/forgot-password'),
+      headers: {
+        'Content-Type': 'application/json',
+        'ngrok-skip-browser-warning': 'true',
+      },
+      body: jsonEncode({'email_or_username': emailOrUsername}),
+    );
+    final data = _handleResponse(response);
+    if (data is Map && data['message'] != null) {
+      return data['message'] as String;
+    }
+    return 'Si la cuenta existe, recibirás un correo con instrucciones.';
+  }
+
+  /// Cambia la contraseña con el token del correo
+  /// POST /auth/reset-password
+  Future<String> resetPassword({
+    required String token,
+    required String newPassword,
+  }) async {
+    final response = await http.post(
+      Uri.parse('$baseUrl/auth/reset-password'),
+      headers: {
+        'Content-Type': 'application/json',
+        'ngrok-skip-browser-warning': 'true',
+      },
+      body: jsonEncode({
+        'token': token,
+        'new_password': newPassword,
+      }),
+    );
+    final data = _handleResponse(response);
+    if (data is Map && data['message'] != null) {
+      return data['message'] as String;
+    }
+    return 'Contraseña actualizada. Ya puedes iniciar sesión.';
+  }
+
   // ──────────────────────────────────────────────────────────────
   // Usuario autenticado
   // ──────────────────────────────────────────────────────────────
