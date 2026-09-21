@@ -39,7 +39,7 @@ final ThemeData lightTheme = ThemeData(
     backgroundColor: Colors.transparent,
     surfaceTintColor: Colors.transparent,
   ),
-  cardTheme: CardTheme(
+  cardTheme: CardThemeData(
     color: const Color(0xFFFFFDF7),
     elevation: 0,
     shape: RoundedRectangleBorder(
@@ -115,7 +115,7 @@ final ThemeData darkTheme = ThemeData(
     backgroundColor: Colors.transparent,
     surfaceTintColor: Colors.transparent,
   ),
-  cardTheme: CardTheme(
+  cardTheme: CardThemeData(
     color: const Color(0xFF12201A),
     elevation: 0,
     shape: RoundedRectangleBorder(
@@ -191,7 +191,7 @@ final ThemeData duskTheme = ThemeData(
     backgroundColor: Colors.transparent,
     surfaceTintColor: Colors.transparent,
   ),
-  cardTheme: CardTheme(
+  cardTheme: CardThemeData(
     color: const Color(0xFF362D1F),
     elevation: 0,
     shape: RoundedRectangleBorder(
