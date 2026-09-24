@@ -25,7 +25,7 @@ class EcoClockApi {
   // ──────────────────────────────────────────────────────────────
   /// URL base de la API (ngrok tunnel a localhost:8000)
   /// Generado con: ngrok http 8000
-  static const String baseUrl = 'https://barometer-ceramics-shore.ngrok-free.dev';
+  static const String baseUrl = 'https://api.ecoclock.org';
 
   /// Clave de SharedPreferences para el token JWT
   static const String _tokenKey = 'ecoclock_jwt';
@@ -59,7 +59,6 @@ class EcoClockApi {
   /// Headers HTTP comunes (incluye Authorization si hay token)
   Map<String, String> get _headers => {
         'Content-Type': 'application/json',
-        'ngrok-skip-browser-warning': 'true',
         if (_token != null) 'Authorization': 'Bearer $_token',
       };
 
@@ -108,7 +107,6 @@ class EcoClockApi {
       Uri.parse('$baseUrl/auth/register'),
       headers: {
         'Content-Type': 'application/json',
-        'ngrok-skip-browser-warning': 'true',
       },
       body: jsonEncode({
         'email': email,
@@ -137,7 +135,6 @@ class EcoClockApi {
       Uri.parse('$baseUrl/auth/login'),
       headers: {
         'Content-Type': 'application/json',
-        'ngrok-skip-browser-warning': 'true',
       },
       body: jsonEncode({
         'username': username,
@@ -168,7 +165,6 @@ class EcoClockApi {
       Uri.parse('$baseUrl/auth/forgot-password'),
       headers: {
         'Content-Type': 'application/json',
-        'ngrok-skip-browser-warning': 'true',
       },
       body: jsonEncode({'email_or_username': emailOrUsername}),
     );
@@ -189,7 +185,6 @@ class EcoClockApi {
       Uri.parse('$baseUrl/auth/reset-password'),
       headers: {
         'Content-Type': 'application/json',
-        'ngrok-skip-browser-warning': 'true',
       },
       body: jsonEncode({
         'token': token,
