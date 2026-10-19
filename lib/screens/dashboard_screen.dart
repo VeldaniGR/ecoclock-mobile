@@ -432,23 +432,29 @@ class _DashboardScreenState extends State<DashboardScreen>
               children: [
                 const Icon(Icons.star, size: 32, color: Colors.amber),
                 const SizedBox(width: 12),
-                Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(
-                      'Total créditos',
-                      style: theme.textTheme.labelLarge?.copyWith(
-                        color: theme.colorScheme.onSurfaceVariant,
+                Expanded(
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        'Total créditos',
+                        style: theme.textTheme.labelLarge?.copyWith(
+                          color: theme.colorScheme.onSurfaceVariant,
+                        ),
                       ),
-                    ),
-                    Text(
-                      '$total',
-                      style: theme.textTheme.displayMedium?.copyWith(
-                        fontWeight: FontWeight.bold,
-                        color: Colors.amber[700],
+                      FittedBox(
+                        fit: BoxFit.scaleDown,
+                        alignment: Alignment.centerLeft,
+                        child: Text(
+                          _formatCredits(total),
+                          style: theme.textTheme.displayMedium?.copyWith(
+                            fontWeight: FontWeight.bold,
+                            color: Colors.amber[700],
+                          ),
+                        ),
                       ),
-                    ),
-                  ],
+                    ],
+                  ),
                 ),
               ],
             ),
@@ -511,7 +517,7 @@ class _DashboardScreenState extends State<DashboardScreen>
                             color: Colors.amber, size: 20),
                       ),
                       title: Text(
-                        '${amount.toStringAsFixed(amount == amount.roundToDouble() ? 0 : 1)} créditos · tarea #$taskId',
+                        '${_formatCredits(amount)} créditos · tarea #$taskId',
                         style: theme.textTheme.titleMedium,
                       ),
                       subtitle: Text(grantedAt),
@@ -524,5 +530,16 @@ class _DashboardScreenState extends State<DashboardScreen>
         ),
       ),
     );
+  }
+
+  /// Máximo 3 decimales; sin decimales si es entero.
+  String _formatCredits(num value) {
+    final v = value.toDouble();
+    if (v == v.roundToDouble()) return v.toInt().toString();
+    // hasta 3 decimales, sin ceros finales innecesarios
+    var s = v.toStringAsFixed(3);
+    s = s.replaceFirst(RegExp(r'0+$'), '');
+    s = s.replaceFirst(RegExp(r'\.$'), '');
+    return s;
   }
 }
