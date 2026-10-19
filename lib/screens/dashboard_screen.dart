@@ -214,7 +214,7 @@ class _DashboardScreenState extends State<DashboardScreen>
                     const Text(
                       'Eco\'clock Network te permite donar capacidad de cómputo '
                       'ociosa de tu dispositivo para procesar datos ambientales '
-                      '(deforestación, arrecifes de coral, biodiversidad).',
+                      '(deforestación, praderas de posidónia oceánica, biodiversidad de hongos).',
                     ),
                     const SizedBox(height: 8),
                     const Text(
@@ -336,29 +336,7 @@ class _DashboardScreenState extends State<DashboardScreen>
             const SizedBox(height: 8),
             JsonView(json: task.payload),
             const SizedBox(height: 24),
-            Container(
-              padding: const EdgeInsets.all(12),
-              decoration: BoxDecoration(
-                color:
-                    theme.colorScheme.secondaryContainer.withValues(alpha: 0.5),
-                borderRadius: BorderRadius.circular(8),
-              ),
-              child: Row(
-                children: [
-                  Icon(Icons.info_outline,
-                      size: 20, color: theme.colorScheme.onSecondaryContainer),
-                  const SizedBox(width: 8),
-                  Expanded(
-                    child: Text(
-                      'En la versión beta, el cómputo se simula. '
-                      'La versión final procesará los datos localmente.',
-                      style: TextStyle(
-                          color: theme.colorScheme.onSecondaryContainer),
-                    ),
-                  ),
-                ],
-              ),
-            ),
+
             const SizedBox(height: 16),
             SizedBox(
               width: double.infinity,
