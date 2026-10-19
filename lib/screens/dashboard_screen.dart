@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import '../../models/api_models.dart';
 import '../../services/api_service.dart';
 import '../widgets/json_view.dart';
+import '../services/worker.dart';
 
 class DashboardScreen extends StatefulWidget {
   final EcoClockApi api;
@@ -84,25 +85,20 @@ class _DashboardScreenState extends State<DashboardScreen>
     if (mounted) setState(() => _loadingTask = false);
   }
 
-  Future<void> _submitDummyTask() async {
+  Future<void> _submitComputedTask() async {
     if (_currentTask == null) return;
 
-    final dummyOutput = {
-      'result': 'completed_from_mobile',
-      'processed_at': DateTime.now().toIso8601String(),
-      'device': 'flutter_mobile',
-    };
+    final output = computeTaskOutput(_currentTask!.payload);
 
     try {
       await widget.api.submitTask(
         taskId: _currentTask!.taskId,
-        output: dummyOutput,
+        output: output,
       );
       if (!mounted) return;
-
       ScaffoldMessenger.of(context).showSnackBar(
         const SnackBar(
-          content: Text('✅ Tarea enviada, ganando créditos...'),
+          content: Text('Tarea enviada correctamente'),
           backgroundColor: Colors.green,
         ),
       );
@@ -111,14 +107,22 @@ class _DashboardScreenState extends State<DashboardScreen>
       if (!mounted) return;
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(
-          content: Text('Error: ${e.message}'),
-          backgroundColor: Theme.of(context).colorScheme.error,
+          content: Text(e.message),
+          backgroundColor: Colors.red,
+        ),
+      );
+    } catch (e) {
+      if (!mounted) return;
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(
+          content: Text('Error: $e'),
+          backgroundColor: Colors.red,
         ),
       );
     }
   }
 
-  @override
+
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
@@ -360,8 +364,8 @@ class _DashboardScreenState extends State<DashboardScreen>
               height: 48,
               child: FilledButton.icon(
                 icon: const Icon(Icons.send),
-                label: const Text('Completar y enviar (simulado)'),
-                onPressed: _submitDummyTask,
+                label: const Text('Calcular y enviar'),
+                onPressed: _submitComputedTask,
               ),
             ),
           ],
