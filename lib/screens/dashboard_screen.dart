@@ -196,6 +196,8 @@ class _DashboardScreenState extends State<DashboardScreen>
                 color: theme.colorScheme.onSurfaceVariant,
               ),
             ),
+            const SizedBox(height: 20),
+            _buildDashboardStatsRow(theme),
             const SizedBox(height: 24),
             Card(
               child: Padding(
@@ -460,6 +462,8 @@ class _DashboardScreenState extends State<DashboardScreen>
                 ),
               ],
             ),
+            const SizedBox(height: 16),
+            _buildDashboardStatsRow(theme),
             const SizedBox(height: 24),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -534,6 +538,44 @@ class _DashboardScreenState extends State<DashboardScreen>
     );
   }
 
+
+
+  Widget _buildDashboardStatsRow(ThemeData theme) {
+    final c = _credits;
+    final streak = c?.streakDays ?? 0;
+    final week = c?.creditsThisWeek ?? 0;
+    final tasks = c?.tasksDone ?? 0;
+    return Row(
+      children: [
+        Expanded(
+          child: _buildStatChip(
+            theme,
+            label: 'Racha',
+            value: '$streak d',
+            icon: Icons.local_fire_department_outlined,
+          ),
+        ),
+        const SizedBox(width: 10),
+        Expanded(
+          child: _buildStatChip(
+            theme,
+            label: 'Esta semana',
+            value: _formatCredits(week),
+            icon: Icons.date_range_outlined,
+          ),
+        ),
+        const SizedBox(width: 10),
+        Expanded(
+          child: _buildStatChip(
+            theme,
+            label: 'Tareas',
+            value: '$tasks',
+            icon: Icons.task_alt_outlined,
+          ),
+        ),
+      ],
+    );
+  }
 
   Widget _buildStatChip(
     ThemeData theme, {

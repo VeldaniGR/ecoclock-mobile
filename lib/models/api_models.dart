@@ -46,7 +46,6 @@ class TaskNextResponse {
 
   factory TaskNextResponse.fromJson(Map<String, dynamic> json) {
     final payload = Map<String, dynamic>.from(json['payload'] as Map? ?? {});
-    // El servidor usa "id" y "name"; el tipo real suele ir en payload.type
     final taskType = (payload['type'] as String?) ??
         (json['name'] as String?) ??
         'unknown';
@@ -75,6 +74,10 @@ class CreditsSummary {
   final List<Map<String, dynamic>> recent;
   final Map<String, int> byMode;
   final Map<String, int> byClient;
+  final int tasksDone;
+  final double creditsThisWeek;
+  final int streakDays;
+  final DateTime? lastActiveAt;
 
   CreditsSummary({
     required this.userId,
@@ -83,6 +86,10 @@ class CreditsSummary {
     required this.recent,
     this.byMode = const {},
     this.byClient = const {},
+    this.tasksDone = 0,
+    this.creditsThisWeek = 0,
+    this.streakDays = 0,
+    this.lastActiveAt,
   });
 
   factory CreditsSummary.fromJson(Map<String, dynamic> json) {
@@ -95,6 +102,11 @@ class CreditsSummary {
       };
     }
 
+    DateTime? parseDt(dynamic v) {
+      if (v == null) return null;
+      return DateTime.tryParse(v.toString());
+    }
+
     return CreditsSummary(
       userId: json['user_id'] as int,
       username: json['username'] as String? ?? '',
@@ -104,6 +116,16 @@ class CreditsSummary {
           .toList(),
       byMode: parseCountMap(json['by_mode']),
       byClient: parseCountMap(json['by_client']),
+      tasksDone: (json['tasks_done'] is num)
+          ? (json['tasks_done'] as num).toInt()
+          : 0,
+      creditsThisWeek: (json['credits_this_week'] is num)
+          ? (json['credits_this_week'] as num).toDouble()
+          : 0.0,
+      streakDays: (json['streak_days'] is num)
+          ? (json['streak_days'] as num).toInt()
+          : 0,
+      lastActiveAt: parseDt(json['last_active_at']),
     );
   }
 
@@ -117,6 +139,10 @@ class CreditsSummary {
         'recent': recent,
         'by_mode': byMode,
         'by_client': byClient,
+        'tasks_done': tasksDone,
+        'credits_this_week': creditsThisWeek,
+        'streak_days': streakDays,
+        'last_active_at': lastActiveAt?.toIso8601String(),
       };
 }
 
