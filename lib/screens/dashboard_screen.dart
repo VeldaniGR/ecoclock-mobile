@@ -102,6 +102,8 @@ class _DashboardScreenState extends State<DashboardScreen>
           backgroundColor: Colors.green,
         ),
       );
+      await _loadCredits();
+      await _loadCredits();
       await _loadAll();
     } on ApiException catch (e) {
       if (!mounted) return;
@@ -328,6 +330,28 @@ class _DashboardScreenState extends State<DashboardScreen>
                 ),
               ],
             ),
+            const SizedBox(height: 16),
+            Row(
+              children: [
+                Expanded(
+                  child: _buildStatChip(
+                    theme,
+                    label: 'Manuales',
+                    value: '${_credits?.manualCount ?? 0}',
+                    icon: Icons.touch_app_outlined,
+                  ),
+                ),
+                const SizedBox(width: 12),
+                Expanded(
+                  child: _buildStatChip(
+                    theme,
+                    label: 'Automáticas',
+                    value: '${_credits?.autoCount ?? 0}',
+                    icon: Icons.autorenew,
+                  ),
+                ),
+              ],
+            ),
             const SizedBox(height: 24),
             const Text(
               'Datos de la tarea (payload):',
@@ -506,6 +530,50 @@ class _DashboardScreenState extends State<DashboardScreen>
               ),
           ],
         ),
+      ),
+    );
+  }
+
+
+  Widget _buildStatChip(
+    ThemeData theme, {
+    required String label,
+    required String value,
+    required IconData icon,
+  }) {
+    return Container(
+      padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 12),
+      decoration: BoxDecoration(
+        color: theme.colorScheme.surfaceContainerHighest.withValues(alpha: 0.5),
+        borderRadius: BorderRadius.circular(12),
+        border: Border.all(
+          color: theme.colorScheme.outlineVariant.withValues(alpha: 0.4),
+        ),
+      ),
+      child: Row(
+        children: [
+          Icon(icon, size: 22, color: theme.colorScheme.primary),
+          const SizedBox(width: 10),
+          Expanded(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  label,
+                  style: theme.textTheme.labelMedium?.copyWith(
+                    color: theme.colorScheme.onSurfaceVariant,
+                  ),
+                ),
+                Text(
+                  value,
+                  style: theme.textTheme.titleLarge?.copyWith(
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+              ],
+            ),
+          ),
+        ],
       ),
     );
   }

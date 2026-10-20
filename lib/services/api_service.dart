@@ -235,12 +235,24 @@ class EcoClockApi {
   Future<void> submitTask({
     required int taskId,
     required Map<String, dynamic> output,
+    double? computeTimeSec,
+    String client = 'flutter_mobile',
+    String clientMode = 'manual',
   }) async {
     await _loadToken();
+    final body = <String, dynamic>{
+      'task_id': taskId,
+      'output': output,
+      'client': client,
+      'client_mode': clientMode,
+    };
+    if (computeTimeSec != null) {
+      body['compute_time_sec'] = computeTimeSec;
+    }
     final response = await http.post(
       Uri.parse('$baseUrl/tasks/submit'),
       headers: _headers,
-      body: jsonEncode({'task_id': taskId, 'output': output}),
+      body: jsonEncode(body),
     );
     _handleResponse(response);
   }

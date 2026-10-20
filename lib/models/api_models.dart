@@ -73,16 +73,28 @@ class CreditsSummary {
   final String username;
   final double totalCredits;
   final List<Map<String, dynamic>> recent;
+  final Map<String, int> byMode;
+  final Map<String, int> byClient;
 
   CreditsSummary({
     required this.userId,
     required this.username,
     required this.totalCredits,
     required this.recent,
+    this.byMode = const {},
+    this.byClient = const {},
   });
 
   factory CreditsSummary.fromJson(Map<String, dynamic> json) {
     final total = json['total'];
+    Map<String, int> parseCountMap(dynamic raw) {
+      if (raw is! Map) return {};
+      return {
+        for (final e in raw.entries)
+          e.key.toString(): (e.value is num) ? (e.value as num).toInt() : 0,
+      };
+    }
+
     return CreditsSummary(
       userId: json['user_id'] as int,
       username: json['username'] as String? ?? '',
@@ -90,14 +102,21 @@ class CreditsSummary {
       recent: (json['recent'] as List? ?? [])
           .map((e) => Map<String, dynamic>.from(e as Map))
           .toList(),
+      byMode: parseCountMap(json['by_mode']),
+      byClient: parseCountMap(json['by_client']),
     );
   }
+
+  int get manualCount => byMode['manual'] ?? 0;
+  int get autoCount => byMode['auto'] ?? 0;
 
   Map<String, dynamic> toJson() => {
         'user_id': userId,
         'username': username,
         'total': totalCredits,
         'recent': recent,
+        'by_mode': byMode,
+        'by_client': byClient,
       };
 }
 
