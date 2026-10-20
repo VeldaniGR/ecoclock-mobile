@@ -178,7 +178,7 @@ class _DashboardScreenState extends State<DashboardScreen>
 
     return SafeArea(
       top: false,
-      child: Padding(
+      child: SingleChildScrollView(
         padding: const EdgeInsets.all(24),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
@@ -545,6 +545,10 @@ class _DashboardScreenState extends State<DashboardScreen>
     final streak = c?.streakDays ?? 0;
     final week = c?.creditsThisWeek ?? 0;
     final tasks = c?.tasksDone ?? 0;
+    // Compacto: enteros grandes sin decimales largos
+    final weekLabel = week >= 100
+        ? week.round().toString()
+        : _formatCredits(week);
     return Row(
       children: [
         Expanded(
@@ -555,16 +559,16 @@ class _DashboardScreenState extends State<DashboardScreen>
             icon: Icons.local_fire_department_outlined,
           ),
         ),
-        const SizedBox(width: 10),
+        const SizedBox(width: 8),
         Expanded(
           child: _buildStatChip(
             theme,
-            label: 'Esta semana',
-            value: _formatCredits(week),
+            label: 'Semana',
+            value: weekLabel,
             icon: Icons.date_range_outlined,
           ),
         ),
-        const SizedBox(width: 10),
+        const SizedBox(width: 8),
         Expanded(
           child: _buildStatChip(
             theme,
