@@ -5,6 +5,7 @@ import '../../models/api_models.dart';
 import '../../services/api_service.dart';
 import '../widgets/json_view.dart';
 import '../services/worker.dart';
+import '../widgets/stat_card.dart';
 
 class DashboardScreen extends StatefulWidget {
   final EcoClockApi api;
@@ -508,42 +509,48 @@ Text('Acciones rápidas', style: theme.textTheme.titleMedium),
 
 
 
-  Widget _buildDashboardStatsRow(ThemeData theme) {
+Widget _buildDashboardStatsRow(ThemeData theme) {
     final c = _credits;
     final streak = c?.streakDays ?? 0;
     final week = c?.creditsThisWeek ?? 0;
     final tasks = c?.tasksDone ?? 0;
-    // Compacto: enteros grandes sin decimales largos
+
+    // Formato compacto para la semana
     final weekLabel = week >= 100
         ? week.round().toString()
         : _formatCredits(week);
-    return Row(
+
+    return Column(
       children: [
-        Expanded(
-          child: _buildStatChip(
-            theme,
-            label: 'Racha',
-            value: '$streak d',
-            icon: Icons.local_fire_department_outlined,
-          ),
+        // Primera fila: Racha + Semana
+        Row(
+          children: [
+            Expanded(
+              child: StatCard(
+                icon: Icons.local_fire_department_rounded,
+                label: 'Racha',
+                primaryValue: '$streak d',
+              ),
+            ),
+            const SizedBox(width: 12),
+            Expanded(
+              child: StatCard(
+                icon: Icons.calendar_today_rounded,
+                label: 'Semana',
+                primaryValue: weekLabel,
+                secondaryValue: null, // o pon aquí otro valor si lo tienes
+              ),
+            ),
+          ],
         ),
-        const SizedBox(width: 8),
-        Expanded(
-          child: _buildStatChip(
-            theme,
-            label: 'Semana',
-            value: weekLabel,
-            icon: Icons.date_range_outlined,
-          ),
-        ),
-        const SizedBox(width: 8),
-        Expanded(
-          child: _buildStatChip(
-            theme,
-            label: 'Tareas',
-            value: '$tasks',
-            icon: Icons.task_alt_outlined,
-          ),
+        const SizedBox(height: 12),
+        // Segunda fila: Tareas totales (ancho completo)
+        StatCard(
+          icon: Icons.check_circle_outline_rounded,
+          label: 'Tareas totales',
+          primaryValue: '$tasks',
+          secondaryValue: null, // o el valor secundario que quieras
+          isWide: true,
         ),
       ],
     );
