@@ -198,40 +198,8 @@ class _DashboardScreenState extends State<DashboardScreen>
             ),
             const SizedBox(height: 20),
             _buildDashboardStatsRow(theme),
-            const SizedBox(height: 24),
-            Card(
-              child: Padding(
-                padding: const EdgeInsets.all(16),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Row(
-                      children: [
-                        Icon(Icons.info_outline,
-                            color: theme.colorScheme.primary),
-                        const SizedBox(width: 8),
-                        Text('Sobre esta app',
-                            style: theme.textTheme.titleMedium),
-                      ],
-                    ),
-                    const SizedBox(height: 12),
-                    const Text(
-                      'Eco\'clock Network te permite donar capacidad de cómputo '
-                      'ociosa de tu dispositivo para procesar datos ambientales '
-                      '(deforestación, praderas de posidónia oceánica, biodiversidad de hongos).',
-                    ),
-                    const SizedBox(height: 8),
-                    const Text(
-                      'Cada tarea completada genera créditos Eco\'clock — '
-                      'sin valor monetario, pero con valor simbólico '
-                      'de contribución al planeta.',
-                    ),
-                  ],
-                ),
-              ),
-            ),
-            const SizedBox(height: 24),
-            Text('Acciones rápidas', style: theme.textTheme.titleMedium),
+            const SizedBox(height: 28),
+Text('Acciones rápidas', style: theme.textTheme.titleMedium),
             const SizedBox(height: 12),
             Wrap(
               spacing: 12,
