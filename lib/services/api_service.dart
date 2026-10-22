@@ -1,10 +1,11 @@
 // Servicio API para Eco'clock Network
 //
-// Maneja autenticación (JWT en SharedPreferences), peticiones HTTP y parsing de respuestas.
+// Maneja autenticación con access + refresh token (flutter_secure_storage),
+// auto-refresh transparente en 401 y reintento de peticiones.
 
 import 'dart:convert';
+import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:http/http.dart' as http;
-import 'package:shared_preferences/shared_preferences.dart';
 import '../models/api_models.dart';
 
 /// Excepción personalizada para errores de la API
@@ -15,58 +16,63 @@ class ApiException implements Exception {
   ApiException(this.message, {this.statusCode});
 
   @override
-  String toString() => 'ApiException: $message${statusCode != null ? ' (HTTP $statusCode)' : ''}';
+  String toString() =>
+      'ApiException: $message${statusCode != null ? ' (HTTP $statusCode)' : ''}';
 }
 
-/// Cliente API principal con persistencia de token JWT
+/// Cliente API principal con persistencia segura de tokens
 class EcoClockApi {
   // ──────────────────────────────────────────────────────────────
   // Configuración
   // ──────────────────────────────────────────────────────────────
-  /// URL base de la API (ngrok tunnel a localhost:8000)
-  /// Generado con: ngrok http 8000
   static const String baseUrl = 'https://api.ecoclock.org';
 
-  /// Clave de SharedPreferences para el token JWT
-  static const String _tokenKey = 'ecoclock_jwt';
+  static const String _accessTokenKey = 'ecoclock_access_token';
+  static const String _refreshTokenKey = 'ecoclock_refresh_token';
 
-  String? _token;
+  final FlutterSecureStorage _storage = const FlutterSecureStorage();
+
+  String? _accessToken;
+  String? _refreshToken;
+
+  // Evitar múltiples refreshes concurrentes
+  Future<bool>? _refreshing;
 
   // ──────────────────────────────────────────────────────────────
-  // Gestión de token (persistencia local)
+  // Gestión de tokens (almacenamiento seguro)
   // ──────────────────────────────────────────────────────────────
 
-  /// Carga el token guardado en SharedPreferences
-  Future<void> _loadToken() async {
-    final prefs = await SharedPreferences.getInstance();
-    _token = prefs.getString(_tokenKey);
+  Future<void> _loadTokens() async {
+    _accessToken = await _storage.read(key: _accessTokenKey);
+    _refreshToken = await _storage.read(key: _refreshTokenKey);
   }
 
-  /// Guarda el token en SharedPreferences
-  Future<void> _saveToken(String token) async {
-    final prefs = await SharedPreferences.getInstance();
-    await prefs.setString(_tokenKey, token);
-    _token = token;
+  Future<void> _saveTokens({
+    required String accessToken,
+    required String refreshToken,
+  }) async {
+    await _storage.write(key: _accessTokenKey, value: accessToken);
+    await _storage.write(key: _refreshTokenKey, value: refreshToken);
+    _accessToken = accessToken;
+    _refreshToken = refreshToken;
   }
 
-  /// Elimina el token (logout)
-  Future<void> _clearToken() async {
-    final prefs = await SharedPreferences.getInstance();
-    await prefs.remove(_tokenKey);
-    _token = null;
+  Future<void> _clearTokens() async {
+    await _storage.delete(key: _accessTokenKey);
+    await _storage.delete(key: _refreshTokenKey);
+    _accessToken = null;
+    _refreshToken = null;
   }
 
-  /// Headers HTTP comunes (incluye Authorization si hay token)
   Map<String, String> get _headers => {
         'Content-Type': 'application/json',
-        if (_token != null) 'Authorization': 'Bearer $_token',
+        if (_accessToken != null) 'Authorization': 'Bearer $_accessToken',
       };
 
   // ──────────────────────────────────────────────────────────────
-  // Helpers HTTP
+  // Helpers HTTP + auto-refresh
   // ──────────────────────────────────────────────────────────────
 
-  /// Procesa respuesta HTTP y lanza ApiException en caso de error
   dynamic _handleResponse(http.Response response) {
     if (response.statusCode >= 200 && response.statusCode < 300) {
       if (response.body.isEmpty) return null;
@@ -79,44 +85,91 @@ class EcoClockApi {
       if (errorJson is Map && errorJson.containsKey('detail')) {
         errorMessage = errorJson['detail'].toString();
       }
-    } catch (_) {
-      // Usar mensaje por defecto
-    }
-
-    // Auto-logout en 401
-    if (response.statusCode == 401) {
-      _clearToken();
-    }
+    } catch (_) {}
 
     throw ApiException(errorMessage, statusCode: response.statusCode);
+  }
+
+  /// Intenta renovar los tokens. Devuelve true si tuvo éxito.
+  Future<bool> _tryRefresh() async {
+    // Si ya hay un refresh en curso, esperamos el mismo
+    if (_refreshing != null) {
+      return _refreshing!;
+    }
+
+    _refreshing = () async {
+      try {
+        await _loadTokens();
+        if (_refreshToken == null) return false;
+
+        final response = await http.post(
+          Uri.parse('$baseUrl/auth/refresh'),
+          headers: {'Content-Type': 'application/json'},
+          body: jsonEncode({'refresh_token': _refreshToken}),
+        );
+
+        if (response.statusCode >= 200 && response.statusCode < 300) {
+          final data = jsonDecode(response.body) as Map<String, dynamic>;
+          await _saveTokens(
+            accessToken: data['access_token'] as String,
+            refreshToken: data['refresh_token'] as String,
+          );
+          return true;
+        }
+        // Refresh falló → limpiamos
+        await _clearTokens();
+        return false;
+      } catch (_) {
+        await _clearTokens();
+        return false;
+      } finally {
+        _refreshing = null;
+      }
+    }();
+
+    return _refreshing!;
+  }
+
+  /// Realiza una petición autenticada con reintento automático en 401
+  Future<http.Response> _authenticatedRequest(
+    Future<http.Response> Function() requestFn,
+  ) async {
+    await _loadTokens();
+
+    var response = await requestFn();
+
+    if (response.statusCode == 401) {
+      final refreshed = await _tryRefresh();
+      if (refreshed) {
+        // Reintentamos la petición original con el nuevo token
+        response = await requestFn();
+      }
+    }
+
+    return response;
   }
 
   // ──────────────────────────────────────────────────────────────
   // Autenticación
   // ──────────────────────────────────────────────────────────────
-  /// Registra un nuevo usuario y hace login automático
-  /// POST /auth/register  →  luego POST /auth/login
+
   Future<UserResponse> register({
     required String email,
     required String username,
     required String password,
     bool keepSession = true,
   }) async {
-    // 1. Registrar (el servidor NO devuelve token)
     final regResponse = await http.post(
       Uri.parse('$baseUrl/auth/register'),
-      headers: {
-        'Content-Type': 'application/json',
-      },
+      headers: {'Content-Type': 'application/json'},
       body: jsonEncode({
         'email': email,
         'username': username,
         'password': password,
       }),
     );
-    _handleResponse(regResponse); // lanza si falla
+    _handleResponse(regResponse);
 
-    // 2. Login automático para obtener el JWT
     return login(
       username: username,
       password: password,
@@ -124,8 +177,6 @@ class EcoClockApi {
     );
   }
 
-  /// Inicia sesión
-  /// POST /auth/login  (usa username, no email)
   Future<UserResponse> login({
     required String username,
     required String password,
@@ -133,67 +184,71 @@ class EcoClockApi {
   }) async {
     final response = await http.post(
       Uri.parse('$baseUrl/auth/login'),
-      headers: {
-        'Content-Type': 'application/json',
-      },
+      headers: {'Content-Type': 'application/json'},
       body: jsonEncode({
         'username': username,
         'password': password,
       }),
     );
-    final data = _handleResponse(response);
+    final data = _handleResponse(response) as Map<String, dynamic>;
 
-    final token = data['access_token'] as String;
+    final accessToken = data['access_token'] as String;
+    final refreshToken = data['refresh_token'] as String;
+
     if (keepSession) {
-      await _saveToken(token);
+      await _saveTokens(accessToken: accessToken, refreshToken: refreshToken);
     } else {
-      // Solo en memoria para esta sesión
-      _token = token;
+      _accessToken = accessToken;
+      _refreshToken = refreshToken;
     }
 
-    // El login solo devuelve token; pedimos /me para el usuario
     return getMe();
   }
 
-  /// Cierra sesión (elimina token local)
-  Future<void> logout() async => _clearToken();
+  Future<void> logout() async {
+    await _loadTokens();
+    if (_refreshToken != null && _accessToken != null) {
+      try {
+        await http.post(
+          Uri.parse('$baseUrl/auth/logout'),
+          headers: _headers,
+          body: jsonEncode({'refresh_token': _refreshToken}),
+        );
+      } catch (_) {
+        // Ignoramos errores de red en logout
+      }
+    }
+    await _clearTokens();
+  }
 
-    /// Solicita correo de restablecimiento de contraseña
-  /// POST /auth/forgot-password
   Future<String> forgotPassword({required String emailOrUsername}) async {
     final response = await http.post(
       Uri.parse('$baseUrl/auth/forgot-password'),
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: jsonEncode({'email_or_username': emailOrUsername}),
+      headers: {'Content-Type': 'application/json'},
+      body: jsonEncode({'email': emailOrUsername}),
     );
     final data = _handleResponse(response);
-    if (data is Map && data['message'] != null) {
-      return data['message'] as String;
+    if (data is Map && data['detail'] != null) {
+      return data['detail'] as String;
     }
     return 'Si la cuenta existe, recibirás un correo con instrucciones.';
   }
 
-  /// Cambia la contraseña con el token del correo
-  /// POST /auth/reset-password
   Future<String> resetPassword({
     required String token,
     required String newPassword,
   }) async {
     final response = await http.post(
       Uri.parse('$baseUrl/auth/reset-password'),
-      headers: {
-        'Content-Type': 'application/json',
-      },
+      headers: {'Content-Type': 'application/json'},
       body: jsonEncode({
         'token': token,
         'new_password': newPassword,
       }),
     );
     final data = _handleResponse(response);
-    if (data is Map && data['message'] != null) {
-      return data['message'] as String;
+    if (data is Map && data['detail'] != null) {
+      return data['detail'] as String;
     }
     return 'Contraseña actualizada. Ya puedes iniciar sesión.';
   }
@@ -202,13 +257,12 @@ class EcoClockApi {
   // Usuario autenticado
   // ──────────────────────────────────────────────────────────────
 
-  /// Obtiene datos del usuario autenticado
-  /// GET /me
   Future<UserResponse> getMe() async {
-    await _loadToken();
-    final response = await http.get(
-      Uri.parse('$baseUrl/auth/me'),
-      headers: _headers,
+    final response = await _authenticatedRequest(
+      () => http.get(
+        Uri.parse('$baseUrl/auth/me'),
+        headers: _headers,
+      ),
     );
     final data = _handleResponse(response);
     return UserResponse.fromJson(data as Map<String, dynamic>);
@@ -218,20 +272,17 @@ class EcoClockApi {
   // Tareas
   // ──────────────────────────────────────────────────────────────
 
-  /// Solicita la siguiente tarea disponible
-  /// GET /tasks/next
   Future<TaskNextResponse> getNextTask() async {
-    await _loadToken();
-    final response = await http.get(
-      Uri.parse('$baseUrl/tasks/next'),
-      headers: _headers,
+    final response = await _authenticatedRequest(
+      () => http.get(
+        Uri.parse('$baseUrl/tasks/next'),
+        headers: _headers,
+      ),
     );
     final data = _handleResponse(response);
     return TaskNextResponse.fromJson(data as Map<String, dynamic>);
   }
 
-  /// Envía el resultado de una tarea completada
-  /// POST /tasks/submit
   Future<void> submitTask({
     required int taskId,
     required Map<String, dynamic> output,
@@ -239,7 +290,6 @@ class EcoClockApi {
     String client = 'flutter_mobile',
     String clientMode = 'manual',
   }) async {
-    await _loadToken();
     final body = <String, dynamic>{
       'task_id': taskId,
       'output': output,
@@ -249,10 +299,13 @@ class EcoClockApi {
     if (computeTimeSec != null) {
       body['compute_time_sec'] = computeTimeSec;
     }
-    final response = await http.post(
-      Uri.parse('$baseUrl/tasks/submit'),
-      headers: _headers,
-      body: jsonEncode(body),
+
+    final response = await _authenticatedRequest(
+      () => http.post(
+        Uri.parse('$baseUrl/tasks/submit'),
+        headers: _headers,
+        body: jsonEncode(body),
+      ),
     );
     _handleResponse(response);
   }
@@ -261,23 +314,21 @@ class EcoClockApi {
   // Créditos
   // ──────────────────────────────────────────────────────────────
 
-  /// Obtiene el resumen de créditos del usuario
-  /// GET /credits/me
   Future<CreditsSummary> getCredits() async {
-    await _loadToken();
-    final response = await http.get(
-      Uri.parse('$baseUrl/me/credits'),
-      headers: _headers,
+    final response = await _authenticatedRequest(
+      () => http.get(
+        Uri.parse('$baseUrl/me/credits'),
+        headers: _headers,
+      ),
     );
     final data = _handleResponse(response);
     return CreditsSummary.fromJson(data as Map<String, dynamic>);
   }
 
   // ──────────────────────────────────────────────────────────────
-  // Health check (sin autenticación)
+  // Utilidades
   // ──────────────────────────────────────────────────────────────
 
-  /// Verifica si la API está disponible
   Future<bool> healthCheck() async {
     try {
       final response = await http.get(Uri.parse('$baseUrl/health'));
@@ -287,9 +338,8 @@ class EcoClockApi {
     }
   }
 
-  /// Indica si hay un token guardado (sesión iniciada)
   Future<bool> hasToken() async {
-    await _loadToken();
-    return _token != null;
+    await _loadTokens();
+    return _accessToken != null || _refreshToken != null;
   }
 }
