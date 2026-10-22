@@ -6,6 +6,7 @@ import '../../services/api_service.dart';
 import '../widgets/json_view.dart';
 import '../services/worker.dart';
 import '../widgets/stat_card.dart';
+import '../widgets/level_card.dart';
 
 class DashboardScreen extends StatefulWidget {
   final EcoClockApi api;
@@ -197,7 +198,14 @@ class _DashboardScreenState extends State<DashboardScreen>
                 color: theme.colorScheme.onSurfaceVariant,
               ),
             ),
-            const SizedBox(height: 20),
+            const SizedBox(height: 20),      
+            if (_credits?.level != null) ...[
+              LevelCard(
+                level: _credits!.level,
+                streakDays: _credits!.streakDays,
+              ),
+              const SizedBox(height: 16),
+            ],
             _buildDashboardStatsRow(theme),
             const SizedBox(height: 28),
 Text('Acciones rápidas', style: theme.textTheme.titleMedium),
@@ -433,6 +441,15 @@ Text('Acciones rápidas', style: theme.textTheme.titleMedium),
             ),
             const SizedBox(height: 16),
             _buildDashboardStatsRow(theme),
+            if (_credits != null) ...[
+              const SizedBox(height: 16),
+              LevelCard(
+                level: _credits!.level,
+                streakDays: _credits!.streakDays,
+              ),
+              const SizedBox(height: 16),
+              AchievementsRow(achievements: _credits!.achievements),
+            ],
             const SizedBox(height: 24),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,

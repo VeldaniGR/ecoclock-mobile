@@ -66,6 +66,57 @@ class TaskNextResponse {
       };
 }
 
+/// Nivel de gamificación (Fase B)
+class LevelInfo {
+  final int id;
+  final String name;
+  final int? nextId;
+  final String? nextName;
+  final double progress;
+
+  LevelInfo({
+    required this.id,
+    required this.name,
+    this.nextId,
+    this.nextName,
+    this.progress = 0.0,
+  });
+
+  factory LevelInfo.fromJson(Map<String, dynamic> json) => LevelInfo(
+        id: (json['id'] is num) ? (json['id'] as num).toInt() : 0,
+        name: json['name'] as String? ?? 'Recién llegado',
+        nextId: (json['next_id'] is num) ? (json['next_id'] as num).toInt() : null,
+        nextName: json['next_name'] as String?,
+        progress: (json['progress'] is num) ? (json['progress'] as num).toDouble() : 0.0,
+      );
+}
+
+/// Logro de gamificación
+class AchievementOut {
+  final String id;
+  final String name;
+  final DateTime? unlockedAt;
+
+  AchievementOut({
+    required this.id,
+    required this.name,
+    this.unlockedAt,
+  });
+
+  bool get unlocked => unlockedAt != null;
+
+  factory AchievementOut.fromJson(Map<String, dynamic> json) {
+    DateTime? dt;
+    final raw = json['unlocked_at'];
+    if (raw != null) dt = DateTime.tryParse(raw.toString());
+    return AchievementOut(
+      id: json['id'] as String? ?? '',
+      name: json['name'] as String? ?? '',
+      unlockedAt: dt,
+    );
+  }
+}
+
 /// Resumen de créditos (GET /me/credits)
 class CreditsSummary {
   final int userId;
@@ -78,6 +129,10 @@ class CreditsSummary {
   final double creditsThisWeek;
   final int streakDays;
   final DateTime? lastActiveAt;
+  final int activeDays;
+  final List<String> taskTypes;
+  final LevelInfo? level;
+  final List<AchievementOut> achievements;
 
   CreditsSummary({
     required this.userId,
@@ -90,6 +145,10 @@ class CreditsSummary {
     this.creditsThisWeek = 0,
     this.streakDays = 0,
     this.lastActiveAt,
+    this.activeDays = 0,
+    this.taskTypes = const [],
+    this.level,
+    this.achievements = const [],
   });
 
   factory CreditsSummary.fromJson(Map<String, dynamic> json) {
@@ -106,6 +165,20 @@ class CreditsSummary {
       if (v == null) return null;
       return DateTime.tryParse(v.toString());
     }
+
+    LevelInfo? level;
+    if (json['level'] is Map) {
+      level = LevelInfo.fromJson(Map<String, dynamic>.from(json['level'] as Map));
+    }
+
+    final achievements = (json['achievements'] as List? ?? [])
+        .whereType<Map>()
+        .map((e) => AchievementOut.fromJson(Map<String, dynamic>.from(e)))
+        .toList();
+
+    final taskTypes = (json['task_types'] as List? ?? [])
+        .map((e) => e.toString())
+        .toList();
 
     return CreditsSummary(
       userId: json['user_id'] as int,
@@ -126,6 +199,12 @@ class CreditsSummary {
           ? (json['streak_days'] as num).toInt()
           : 0,
       lastActiveAt: parseDt(json['last_active_at']),
+      activeDays: (json['active_days'] is num)
+          ? (json['active_days'] as num).toInt()
+          : 0,
+      taskTypes: taskTypes,
+      level: level,
+      achievements: achievements,
     );
   }
 
@@ -143,6 +222,8 @@ class CreditsSummary {
         'credits_this_week': creditsThisWeek,
         'streak_days': streakDays,
         'last_active_at': lastActiveAt?.toIso8601String(),
+        'active_days': activeDays,
+        'task_types': taskTypes,
       };
 }
 
