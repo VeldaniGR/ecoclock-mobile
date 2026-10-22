@@ -12,7 +12,8 @@ dependencies:
   http: ^1.2.0
   shared_preferences: ^2.2.0
   google_fonts: ^6.2.0
-  flutter_svg: ^2.0.10
+  flutter_svg: ^2.3.0
+  flutter_secure_storage: ^11.2.0
 
 dev_dependencies:
   flutter_test:
@@ -25,6 +26,7 @@ flutter:
   assets:
     - assets/logo.svg
     - assets/logo_apk_neon.png
+    - assets/icons/
 
 #Configuración del icono de launcher (Android + iOS)
 flutter_launcher_icons:

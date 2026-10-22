@@ -1,0 +1,24 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" fill="none">
+  <!-- Outer gold ring -->
+  <circle cx="64" cy="64" r="58" stroke="#D4A017" stroke-width="8" fill="#0D0D0D"/>
+  <!-- Lighthouse -->
+  <g fill="#D4A017">
+    <!-- Base -->
+    <ellipse cx="64" cy="100" rx="22" ry="6"/>
+    <!-- Tower body (tapered) -->
+    <path d="M50 100 L54 48 L74 48 L78 100 Z"/>
+    <!-- Middle band -->
+    <rect x="52" y="68" width="24" height="6" rx="1"/>
+    <!-- Lantern room -->
+    <rect x="54" y="36" width="20" height="14" rx="2"/>
+    <!-- Roof / dome -->
+    <path d="M52 36 Q64 22 76 36 Z"/>
+    <!-- Top ball -->
+    <circle cx="64" cy="24" r="4"/>
+    <!-- Door -->
+    <path d="M60 100 L60 88 Q64 84 68 88 L68 100 Z" fill="#0D0D0D"/>
+  </g>
+  <!-- Light beam -->
+  <path d="M76 42 L110 28 L110 56 Z" fill="#D4A017" opacity="0.55"/>
+  <path d="M76 42 L104 34 L104 50 Z" fill="#FFD700" opacity="0.7"/>
+</svg>

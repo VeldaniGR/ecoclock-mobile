@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" fill="none">
+  <!-- Outer gold ring -->
+  <circle cx="64" cy="64" r="58" stroke="#D4A017" stroke-width="8" fill="#0D0D0D"/>
+  <!-- Compass rose -->
+  <g fill="#D4A017">
+    <!-- Main 8-point star -->
+    <path d="M64 18 L70 50 L102 50 L76 68 L86 100 L64 80 L42 100 L52 68 L26 50 L58 50 Z"/>
+    <!-- Inner diamond accents -->
+    <path d="M64 38 L68 56 L86 56 L72 66 L76 84 L64 74 L52 84 L56 66 L42 56 L60 56 Z" fill="#B8860B" opacity="0.7"/>
+    <!-- Center circle -->
+    <circle cx="64" cy="64" r="6"/>
+  </g>
+  <!-- Leaf at bottom -->
+  <path d="M64 92 Q58 100 52 108 Q60 104 64 98 Q68 104 76 108 Q70 100 64 92 Z" fill="#D4A017"/>
+  <path d="M64 96 L64 108" stroke="#0D0D0D" stroke-width="1.5" stroke-linecap="round"/>
+</svg>

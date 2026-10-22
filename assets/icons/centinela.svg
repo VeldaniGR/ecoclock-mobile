@@ -1,0 +1,24 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" fill="none">
+  <!-- Outer gold ring -->
+  <circle cx="64" cy="64" r="58" stroke="#D4A017" stroke-width="8" fill="#0D0D0D"/>
+  <!-- Watchtower -->
+  <g fill="#D4A017">
+    <!-- Base -->
+    <rect x="42" y="92" width="44" height="10" rx="2"/>
+    <!-- Legs -->
+    <rect x="48" y="70" width="6" height="24" rx="1"/>
+    <rect x="74" y="70" width="6" height="24" rx="1"/>
+    <!-- Platform -->
+    <rect x="44" y="64" width="40" height="8" rx="2"/>
+    <!-- Cabin -->
+    <rect x="50" y="42" width="28" height="24" rx="2"/>
+    <!-- Roof -->
+    <path d="M46 42 L64 28 L82 42 Z"/>
+    <!-- Windows -->
+    <rect x="55" y="48" width="6" height="8" rx="1" fill="#0D0D0D"/>
+    <rect x="67" y="48" width="6" height="8" rx="1" fill="#0D0D0D"/>
+  </g>
+  <!-- Signal waves -->
+  <path d="M52 30 Q64 16 76 30" stroke="#D4A017" stroke-width="4" fill="none" stroke-linecap="round"/>
+  <path d="M44 22 Q64 4 84 22" stroke="#D4A017" stroke-width="3.5" fill="none" stroke-linecap="round" opacity="0.8"/>
+</svg>
