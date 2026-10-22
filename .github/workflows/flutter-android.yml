@@ -20,7 +20,6 @@ jobs:
             args: --debug --split-per-abi
           - build-type: release
             args: --release --split-per-abi
-
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -32,33 +31,14 @@ jobs:
           channel: 'stable'
           cache: true
 
-      - name: Generate platform folders (android/ios)
-        run: flutter create --platforms=android,ios --project-name ecoclock_mobile .
-
-      - name: Fix generated test (uses EcoClockApp not MyApp)
-        run: |
-          cat > test/widget_test.dart <<'EOF'
-          import 'package:flutter_test/flutter_test.dart';
-          import 'package:ecoclock_mobile/main.dart';
-
-          void main() {
-            testWidgets('App loads without crashing', (WidgetTester tester) async {
-              await tester.pumpWidget(const EcoClockApp());
-              expect(find.text('Eco\'clock Network'), findsOneWidget);
-            });
-          }
-          EOF
-
       - name: Ensure INTERNET permission in AndroidManifest
         run: |
           MANIFEST="android/app/src/main/AndroidManifest.xml"
-          # Añadir INTERNET si no existe
           if ! grep -q 'android.permission.INTERNET' "$MANIFEST"; then
-            sed -i '/<manifest/a\ <uses-permission android:name="android.permission.INTERNET"/>' "$MANIFEST"
+            sed -i '/<manifest/a\    <uses-permission android:name="android.permission.INTERNET"/>' "$MANIFEST"
           fi
-          # Añadir ACCESS_NETWORK_STATE si no existe
           if ! grep -q 'android.permission.ACCESS_NETWORK_STATE' "$MANIFEST"; then
-            sed -i '/<uses-permission android:name="android.permission.INTERNET"\/>/a\ <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>' "$MANIFEST"
+            sed -i '/<uses-permission android:name="android.permission.INTERNET"\/>/a\    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>' "$MANIFEST"
           fi
           echo "=== AndroidManifest.xml (permisos) ==="
           grep -A5 -E 'uses-permission|package=' "$MANIFEST" || true
@@ -105,33 +85,14 @@ jobs:
           channel: 'stable'
           cache: true
 
-      - name: Generate platform folders (android/ios)
-        run: flutter create --platforms=android,ios --project-name ecoclock_mobile .
-
-      - name: Fix generated test (uses EcoClockApp not MyApp)
-        run: |
-          cat > test/widget_test.dart <<'EOF'
-          import 'package:flutter_test/flutter_test.dart';
-          import 'package:ecoclock_mobile/main.dart';
-
-          void main() {
-            testWidgets('App loads without crashing', (WidgetTester tester) async {
-              await tester.pumpWidget(const EcoClockApp());
-              expect(find.text('Eco\'clock Network'), findsOneWidget);
-            });
-          }
-          EOF
-
       - name: Ensure INTERNET permission in AndroidManifest
         run: |
           MANIFEST="android/app/src/main/AndroidManifest.xml"
-          # Añadir INTERNET si no existe
           if ! grep -q 'android.permission.INTERNET' "$MANIFEST"; then
-            sed -i '/<manifest/a\ <uses-permission android:name="android.permission.INTERNET"/>' "$MANIFEST"
+            sed -i '/<manifest/a\    <uses-permission android:name="android.permission.INTERNET"/>' "$MANIFEST"
           fi
-          # Añadir ACCESS_NETWORK_STATE si no existe
           if ! grep -q 'android.permission.ACCESS_NETWORK_STATE' "$MANIFEST"; then
-            sed -i '/<uses-permission android:name="android.permission.INTERNET"\/>/a\ <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>' "$MANIFEST"
+            sed -i '/<uses-permission android:name="android.permission.INTERNET"\/>/a\    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>' "$MANIFEST"
           fi
           echo "=== AndroidManifest.xml (permisos) ==="
           grep -A5 -E 'uses-permission|package=' "$MANIFEST" || true
