@@ -133,7 +133,7 @@ class _DashboardScreenState extends State<DashboardScreen>
         title: const Text('Eco\'clock Network'),
         bottom: TabBar(
           controller: _tabController,
-          isScrollable: true, // útil con 4 tabs
+           // útil con 4 tabs
           tabs: const [
             Tab(icon: Icon(Icons.dashboard_outlined), text: 'Inicio'),
             Tab(icon: Icon(Icons.task_alt_outlined), text: 'Tarea'),
