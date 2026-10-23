@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class DonarScreen extends StatefulWidget {
@@ -10,12 +11,19 @@ class DonarScreen extends StatefulWidget {
 
 class _DonarScreenState extends State<DonarScreen> {
   double? selectedAmount;
+  final TextEditingController _customController = TextEditingController();
+  bool _showCustomField = false;
 
-  // TODO: Cuando tengas la cuenta de Stripe, sustituye este enlace
-  // por tu Payment Link real o por la llamada a tu backend.
-  final String stripePaymentLink = 'https://buy.stripe.com/test_XXXXXXXX'; // <-- CAMBIAR
+  // TODO: sustituir por tu Payment Link real de Stripe
+  final String stripePaymentLink = 'https://buy.stripe.com/test_XXXXXXXX';
 
   final List<double> quickAmounts = [5, 10, 25, 50];
+
+  @override
+  void dispose() {
+    _customController.dispose();
+    super.dispose();
+  }
 
   Future<void> _openStripe() async {
     final uri = Uri.parse(stripePaymentLink);
@@ -75,9 +83,15 @@ class _DonarScreenState extends State<DonarScreen> {
                 spacing: 10,
                 runSpacing: 10,
                 children: quickAmounts.map((amount) {
-                  final isSelected = selectedAmount == amount;
+                  final isSelected = selectedAmount == amount && !_showCustomField;
                   return GestureDetector(
-                    onTap: () => setState(() => selectedAmount = amount),
+                    onTap: () {
+                      setState(() {
+                        selectedAmount = amount;
+                        _showCustomField = false;
+                        _customController.clear();
+                      });
+                    },
                     child: Container(
                       padding: const EdgeInsets.symmetric(horizontal: 22, vertical: 14),
                       decoration: BoxDecoration(
@@ -106,28 +120,65 @@ class _DonarScreenState extends State<DonarScreen> {
 
               const SizedBox(height: 16),
 
-              // Otra cantidad (solo visual por ahora)
-              GestureDetector(
-                onTap: () {
-                  // TODO: abrir diálogo para cantidad personalizada
-                  setState(() => selectedAmount = null);
-                },
-                child: Container(
-                  width: double.infinity,
-                  padding: const EdgeInsets.symmetric(vertical: 14),
-                  decoration: BoxDecoration(
-                    color: const Color(0xFF122412),
-                    borderRadius: BorderRadius.circular(12),
-                    border: Border.all(color: Colors.white12),
-                  ),
-                  child: const Center(
-                    child: Text(
-                      'Otra cantidad',
-                      style: TextStyle(color: Colors.white70, fontSize: 15),
+              // Botón / Campo "Otra cantidad"
+              if (!_showCustomField)
+                GestureDetector(
+                  onTap: () {
+                    setState(() {
+                      _showCustomField = true;
+                      selectedAmount = null;
+                    });
+                  },
+                  child: Container(
+                    width: double.infinity,
+                    padding: const EdgeInsets.symmetric(vertical: 14),
+                    decoration: BoxDecoration(
+                      color: const Color(0xFF122412),
+                      borderRadius: BorderRadius.circular(12),
+                      border: Border.all(color: Colors.white12),
+                    ),
+                    child: const Center(
+                      child: Text(
+                        'Otra cantidad',
+                        style: TextStyle(color: Colors.white70, fontSize: 15),
+                      ),
                     ),
                   ),
+                )
+              else
+                TextField(
+                  controller: _customController,
+                  keyboardType: const TextInputType.numberWithOptions(decimal: true),
+                  inputFormatters: [
+                    FilteringTextInputFormatter.allow(RegExp(r'[\d.,]')),
+                  ],
+                  style: const TextStyle(color: Colors.white, fontSize: 16),
+                  decoration: InputDecoration(
+                    hintText: 'Ej: 15',
+                    hintStyle: const TextStyle(color: Colors.white38),
+                    suffixText: '€',
+                    suffixStyle: const TextStyle(color: Colors.white70),
+                    filled: true,
+                    fillColor: const Color(0xFF122412),
+                    border: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(12),
+                      borderSide: const BorderSide(color: Color(0xFFD4A017)),
+                    ),
+                    enabledBorder: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(12),
+                      borderSide: const BorderSide(color: Color(0xFFD4A017)),
+                    ),
+                    focusedBorder: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(12),
+                      borderSide: const BorderSide(color: Color(0xFFD4A017), width: 2),
+                    ),
+                    contentPadding: const EdgeInsets.symmetric(horizontal: 16, vertical: 14),
+                  ),
+                  onChanged: (value) {
+                    final parsed = double.tryParse(value.replaceAll(',', '.'));
+                    setState(() => selectedAmount = parsed);
+                  },
                 ),
-              ),
 
               const SizedBox(height: 36),
 
@@ -138,7 +189,7 @@ class _DonarScreenState extends State<DonarScreen> {
                 child: ElevatedButton(
                   onPressed: _openStripe,
                   style: ElevatedButton.styleFrom(
-                    backgroundColor: const Color(0xFFFF6B35), // naranja como el de "Refrescar"
+                    backgroundColor: const Color(0xFFFF6B35),
                     foregroundColor: Colors.white,
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(14),
@@ -157,7 +208,6 @@ class _DonarScreenState extends State<DonarScreen> {
 
               const SizedBox(height: 24),
 
-              // Disclaimer
               const Text(
                 'Serás redirigido a Stripe para completar el pago de forma segura. '
                 'Cuando tengamos la cuenta bancaria lista, este enlace se actualizará.',
