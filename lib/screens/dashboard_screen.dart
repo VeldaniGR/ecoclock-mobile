@@ -404,11 +404,12 @@ class _DashboardScreenState extends State<DashboardScreen>
 
     return SafeArea(
       top: false,
-      child: Padding(
+      child: SingleChildScrollView(
         padding: const EdgeInsets.all(24),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
+            // Total créditos
             Row(
               children: [
                 const Icon(Icons.star, size: 32, color: Colors.amber),
@@ -451,6 +452,8 @@ class _DashboardScreenState extends State<DashboardScreen>
               AchievementsRow(achievements: _credits!.achievements),
             ],
             const SizedBox(height: 24),
+
+            // Historial
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
@@ -464,8 +467,10 @@ class _DashboardScreenState extends State<DashboardScreen>
               ],
             ),
             const SizedBox(height: 8),
+
             if (recent.isEmpty)
-              Expanded(
+              Padding(
+                padding: const EdgeInsets.symmetric(vertical: 40),
                 child: Center(
                   child: Column(
                     mainAxisSize: MainAxisSize.min,
@@ -489,41 +494,39 @@ class _DashboardScreenState extends State<DashboardScreen>
                 ),
               )
             else
-              Expanded(
-                child: ListView.separated(
-                  itemCount: recent.length,
-                  separatorBuilder: (_, __) => const Divider(height: 1),
-                  itemBuilder: (context, index) {
-                    final entry = recent[index];
-                    final amountNum = entry['amount'];
-                    final amount =
-                        (amountNum is num) ? amountNum.toDouble() : 0.0;
-                    final taskId = entry['task_id']?.toString() ?? '—';
-                    final grantedAt = entry['granted_at']?.toString() ?? '';
+              ListView.separated(
+                shrinkWrap: true,
+                physics: const NeverScrollableScrollPhysics(),
+                itemCount: recent.length,
+                separatorBuilder: (_, __) => const Divider(height: 1),
+                itemBuilder: (context, index) {
+                  final entry = recent[index];
+                  final amountNum = entry['amount'];
+                  final amount =
+                      (amountNum is num) ? amountNum.toDouble() : 0.0;
+                  final taskId = entry['task_id']?.toString() ?? '—';
+                  final grantedAt = entry['granted_at']?.toString() ?? '';
 
-                    return ListTile(
-                      leading: CircleAvatar(
-                        backgroundColor:
-                            Colors.amber.withValues(alpha: 0.2),
-                        child: const Icon(Icons.star,
-                            color: Colors.amber, size: 20),
-                      ),
-                      title: Text(
-                        '${_formatCredits(amount)} créditos · tarea #$taskId',
-                        style: theme.textTheme.titleMedium,
-                      ),
-                      subtitle: Text(grantedAt),
-                      trailing: const Icon(Icons.chevron_right),
-                    );
-                  },
-                ),
+                  return ListTile(
+                    contentPadding: EdgeInsets.zero,
+                    leading: CircleAvatar(
+                      backgroundColor: Colors.amber.withValues(alpha: 0.2),
+                      child: const Icon(Icons.star, color: Colors.amber, size: 20),
+                    ),
+                    title: Text(
+                      '${_formatCredits(amount)} créditos · tarea #$taskId',
+                      style: theme.textTheme.titleMedium,
+                    ),
+                    subtitle: Text(grantedAt),
+                    trailing: const Icon(Icons.chevron_right),
+                  );
+                },
               ),
           ],
         ),
       ),
     );
   }
-
   Widget _buildDashboardStatsRow(ThemeData theme) {
     final c = _credits;
     final streak = c?.streakDays ?? 0;

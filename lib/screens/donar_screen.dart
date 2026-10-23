@@ -43,7 +43,7 @@ class _DonarScreenState extends State<DonarScreen> {
     return Scaffold(
       backgroundColor: const Color(0xFF0A1A0A),
       body: SafeArea(
-        child: SingleChildScrollView(
+        child: Padding(
           padding: const EdgeInsets.fromLTRB(20, 16, 20, 40),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
@@ -66,7 +66,7 @@ class _DonarScreenState extends State<DonarScreen> {
                   height: 1.45,
                 ),
               ),
-              const SizedBox(height: 32),
+              const SizedBox(height: 28),
 
               const Text(
                 'Elige una cantidad',
@@ -78,7 +78,6 @@ class _DonarScreenState extends State<DonarScreen> {
               ),
               const SizedBox(height: 14),
 
-              // Botones de cantidad rápida
               Wrap(
                 spacing: 10,
                 runSpacing: 10,
@@ -95,14 +94,10 @@ class _DonarScreenState extends State<DonarScreen> {
                     child: Container(
                       padding: const EdgeInsets.symmetric(horizontal: 22, vertical: 14),
                       decoration: BoxDecoration(
-                        color: isSelected
-                            ? const Color(0xFFD4A017)
-                            : const Color(0xFF122412),
+                        color: isSelected ? const Color(0xFFD4A017) : const Color(0xFF122412),
                         borderRadius: BorderRadius.circular(12),
                         border: Border.all(
-                          color: isSelected
-                              ? const Color(0xFFD4A017)
-                              : Colors.white12,
+                          color: isSelected ? const Color(0xFFD4A017) : Colors.white12,
                         ),
                       ),
                       child: Text(
@@ -120,7 +115,6 @@ class _DonarScreenState extends State<DonarScreen> {
 
               const SizedBox(height: 16),
 
-              // Botón / Campo "Otra cantidad"
               if (!_showCustomField)
                 GestureDetector(
                   onTap: () {
@@ -180,9 +174,8 @@ class _DonarScreenState extends State<DonarScreen> {
                   },
                 ),
 
-              const SizedBox(height: 36),
+              const Spacer(),
 
-              // Botón principal
               SizedBox(
                 width: double.infinity,
                 height: 54,
@@ -198,24 +191,17 @@ class _DonarScreenState extends State<DonarScreen> {
                   ),
                   child: const Text(
                     'Donar ahora',
-                    style: TextStyle(
-                      fontSize: 17,
-                      fontWeight: FontWeight.w600,
-                    ),
+                    style: TextStyle(fontSize: 17, fontWeight: FontWeight.w600),
                   ),
                 ),
               ),
 
-              const SizedBox(height: 24),
+              const SizedBox(height: 16),
 
               const Text(
                 'Serás redirigido a Stripe para completar el pago de forma segura. '
                 'Cuando tengamos la cuenta bancaria lista, este enlace se actualizará.',
-                style: TextStyle(
-                  color: Colors.white38,
-                  fontSize: 12,
-                  height: 1.4,
-                ),
+                style: TextStyle(color: Colors.white38, fontSize: 12, height: 1.4),
                 textAlign: TextAlign.center,
               ),
             ],
