@@ -1,19 +1,19 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import '../models/api_models.dart';
 
-/// Icono Material asociado a cada nivel (sin assets PNG todavía).
-IconData levelIcon(int id) {
+String levelSvg(int id) {
   switch (id) {
     case 1:
-      return Icons.explore_rounded; // Explorador
+      return 'assets/icons/explorador.svg';
     case 2:
-      return Icons.sensors_rounded; // Sensor
+      return 'assets/icons/sensor.svg';
     case 3:
-      return Icons.radar_rounded; // Centinela
+      return 'assets/icons/centinela.svg';
     case 4:
-      return Icons.wb_incandescent_rounded; // Faro (si no existe, cae al default)
+      return 'assets/icons/faro.svg';
     default:
-      return Icons.hiking_rounded;
+      return 'assets/icons/sensor.svg';
   }
 }
 
@@ -58,15 +58,14 @@ class LevelCard extends StatelessWidget {
       ),
       child: Row(
         children: [
-          Container(
+          // Icono SVG
+          SizedBox(
             width: 56,
             height: 56,
-            decoration: BoxDecoration(
-              shape: BoxShape.circle,
-              color: color.withValues(alpha: 0.2),
-              border: Border.all(color: color, width: 2),
+            child: SvgPicture.asset(
+              levelSvg(id),
+              fit: BoxFit.contain,
             ),
-            child: Icon(levelIcon(id), color: color, size: 28),
           ),
           const SizedBox(width: 14),
           Expanded(
