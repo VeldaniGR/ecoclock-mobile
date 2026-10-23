@@ -1,4 +1,4 @@
-// Dashboard principal con tabs: Inicio, Tarea, Créditos
+// Dashboard principal con tabs: Inicio, Tarea, Créditos, Donar
 
 import 'package:flutter/material.dart';
 import '../../models/api_models.dart';
@@ -7,6 +7,7 @@ import '../widgets/json_view.dart';
 import '../services/worker.dart';
 import '../widgets/stat_card.dart';
 import '../widgets/level_card.dart';
+import 'donar_screen.dart'; // ← nueva pantalla
 
 class DashboardScreen extends StatefulWidget {
   final EcoClockApi api;
@@ -37,7 +38,7 @@ class _DashboardScreenState extends State<DashboardScreen>
   @override
   void initState() {
     super.initState();
-    _tabController = TabController(length: 3, vsync: this);
+    _tabController = TabController(length: 4, vsync: this); // ← ahora 4 tabs
     _loadAll();
   }
 
@@ -105,7 +106,6 @@ class _DashboardScreenState extends State<DashboardScreen>
         ),
       );
       await _loadCredits();
-      await _loadCredits();
       await _loadAll();
     } on ApiException catch (e) {
       if (!mounted) return;
@@ -126,7 +126,6 @@ class _DashboardScreenState extends State<DashboardScreen>
     }
   }
 
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -134,10 +133,12 @@ class _DashboardScreenState extends State<DashboardScreen>
         title: const Text('Eco\'clock Network'),
         bottom: TabBar(
           controller: _tabController,
+          isScrollable: true, // útil con 4 tabs
           tabs: const [
             Tab(icon: Icon(Icons.dashboard_outlined), text: 'Inicio'),
             Tab(icon: Icon(Icons.task_alt_outlined), text: 'Tarea'),
             Tab(icon: Icon(Icons.stars_outlined), text: 'Créditos'),
+            Tab(icon: Icon(Icons.favorite_outline), text: 'Donar'), // ← nueva
           ],
         ),
         actions: [
@@ -162,6 +163,7 @@ class _DashboardScreenState extends State<DashboardScreen>
           _buildHomeTab(),
           _buildTaskTab(),
           _buildCreditsTab(),
+          const DonarScreen(), // ← nueva pestaña
         ],
       ),
     );
@@ -198,7 +200,7 @@ class _DashboardScreenState extends State<DashboardScreen>
                 color: theme.colorScheme.onSurfaceVariant,
               ),
             ),
-            const SizedBox(height: 20),      
+            const SizedBox(height: 20),
             if (_credits?.level != null) ...[
               LevelCard(
                 level: _credits!.level,
@@ -208,7 +210,7 @@ class _DashboardScreenState extends State<DashboardScreen>
             ],
             _buildDashboardStatsRow(theme),
             const SizedBox(height: 28),
-Text('Acciones rápidas', style: theme.textTheme.titleMedium),
+            Text('Acciones rápidas', style: theme.textTheme.titleMedium),
             const SizedBox(height: 12),
             Wrap(
               spacing: 12,
@@ -339,8 +341,6 @@ Text('Acciones rápidas', style: theme.textTheme.titleMedium),
             const SizedBox(height: 8),
             JsonView(json: task.payload),
             const SizedBox(height: 24),
-
-            const SizedBox(height: 16),
             SizedBox(
               width: double.infinity,
               height: 48,
@@ -524,22 +524,18 @@ Text('Acciones rápidas', style: theme.textTheme.titleMedium),
     );
   }
 
-
-
-Widget _buildDashboardStatsRow(ThemeData theme) {
+  Widget _buildDashboardStatsRow(ThemeData theme) {
     final c = _credits;
     final streak = c?.streakDays ?? 0;
     final week = c?.creditsThisWeek ?? 0;
     final tasks = c?.tasksDone ?? 0;
 
-    // Formato compacto para la semana
     final weekLabel = week >= 100
         ? week.round().toString()
         : _formatCredits(week);
 
     return Column(
       children: [
-        // Primera fila: Racha + Semana
         Row(
           children: [
             Expanded(
@@ -555,18 +551,17 @@ Widget _buildDashboardStatsRow(ThemeData theme) {
                 icon: Icons.calendar_today_rounded,
                 label: 'Semana',
                 primaryValue: weekLabel,
-                secondaryValue: null, // o pon aquí otro valor si lo tienes
+                secondaryValue: null,
               ),
             ),
           ],
         ),
         const SizedBox(height: 12),
-        // Segunda fila: Tareas totales (ancho completo)
         StatCard(
           icon: Icons.check_circle_outline_rounded,
           label: 'Tareas totales',
           primaryValue: '$tasks',
-          secondaryValue: null, // o el valor secundario que quieras
+          secondaryValue: null,
           isWide: true,
         ),
       ],
@@ -616,11 +611,9 @@ Widget _buildDashboardStatsRow(ThemeData theme) {
     );
   }
 
-  /// Máximo 3 decimales; sin decimales si es entero.
   String _formatCredits(num value) {
     final v = value.toDouble();
     if (v == v.roundToDouble()) return v.toInt().toString();
-    // hasta 3 decimales, sin ceros finales innecesarios
     var s = v.toStringAsFixed(3);
     s = s.replaceFirst(RegExp(r'0+$'), '');
     s = s.replaceFirst(RegExp(r'\.$'), '');

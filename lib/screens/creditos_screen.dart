@@ -21,7 +21,7 @@ class CreditosScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // === Datos de ejemplo (sustituye por los tuyos) ===
+    // === Datos de ejemplo (sustituye por los tuyos reales) ===
     final String nivelActual = 'Sensor';
     final double progreso = 0.65;
     final String siguienteNivel = 'Centinela';
@@ -36,8 +36,9 @@ class CreditosScreen extends StatelessWidget {
         child: Column(
           children: [
             // ===================== HEADER FIJO =====================
-            _buildTabs(),
-            const SizedBox(height: 16),
+            // Aquí van tus tabs reales si las tienes en esta pantalla
+            // Por ahora dejamos espacio
+            const SizedBox(height: 8),
 
             // Total créditos (fijo)
             Padding(
@@ -67,7 +68,7 @@ class CreditosScreen extends StatelessWidget {
                 ],
               ),
             ),
-            const SizedBox(height: 12),
+            const SizedBox(height: 16),
 
             // ===================== CONTENIDO SCROLLABLE =====================
             Expanded(
@@ -163,7 +164,6 @@ class CreditosScreen extends StatelessWidget {
                     ),
                     const SizedBox(height: 12),
 
-                    // Ejemplo de items de historial
                     _historialItem('+12.5', 'Tarea completada', 'hace 2h'),
                     _historialItem('+8.0', 'Bonus racha', 'hace 5h'),
                     _historialItem('+3.2', 'Tarea completada', 'ayer'),
@@ -177,23 +177,7 @@ class CreditosScreen extends StatelessWidget {
     );
   }
 
-  // ===================== WIDGETS AUXILIARES =====================
-
-  Widget _buildTabs() {
-    // Sustituye este placeholder por tu widget real de tabs
-    return Container(
-      height: 50,
-      color: Colors.transparent,
-      // TODO: pon aquí tu Row de tabs (Inicio / Tarea / Créditos)
-    );
-  }
-
-  Widget _statCard(
-    IconData icon,
-    String label,
-    String value, {
-    bool fullWidth = false,
-  }) {
+  Widget _statCard(IconData icon, String label, String value, {bool fullWidth = false}) {
     return Container(
       width: fullWidth ? double.infinity : null,
       padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 14),
@@ -205,10 +189,7 @@ class CreditosScreen extends StatelessWidget {
         children: [
           Icon(icon, color: const Color(0xFF7CFF7C), size: 20),
           const SizedBox(width: 10),
-          Text(
-            label,
-            style: const TextStyle(color: Colors.white70, fontSize: 14),
-          ),
+          Text(label, style: const TextStyle(color: Colors.white70, fontSize: 14)),
           const Spacer(),
           Text(
             value,
@@ -265,19 +246,14 @@ class CreditosScreen extends StatelessWidget {
                   child: LinearProgressIndicator(
                     value: progreso,
                     backgroundColor: Colors.white12,
-                    valueColor: const AlwaysStoppedAnimation<Color>(
-                      Color(0xFFD4A017),
-                    ),
+                    valueColor: const AlwaysStoppedAnimation<Color>(Color(0xFFD4A017)),
                     minHeight: 6,
                   ),
                 ),
                 const SizedBox(height: 6),
                 Text(
                   'Siguiente: $siguiente · Racha $racha d',
-                  style: const TextStyle(
-                    color: Colors.white54,
-                    fontSize: 12,
-                  ),
+                  style: const TextStyle(color: Colors.white54, fontSize: 12),
                 ),
               ],
             ),
@@ -294,9 +270,7 @@ class CreditosScreen extends StatelessWidget {
         children: [
           Icon(
             desbloqueado ? Icons.eco : Icons.lock_outline,
-            color: desbloqueado
-                ? const Color(0xFF7CFF7C)
-                : Colors.white38,
+            color: desbloqueado ? const Color(0xFF7CFF7C) : Colors.white38,
             size: 22,
           ),
           const SizedBox(width: 12),
@@ -311,9 +285,7 @@ class CreditosScreen extends StatelessWidget {
           ),
           Icon(
             desbloqueado ? Icons.check_circle : Icons.lock,
-            color: desbloqueado
-                ? const Color(0xFF7CFF7C)
-                : Colors.white30,
+            color: desbloqueado ? const Color(0xFF7CFF7C) : Colors.white30,
             size: 20,
           ),
         ],
@@ -340,10 +312,7 @@ class CreditosScreen extends StatelessWidget {
           ),
           const SizedBox(width: 12),
           Expanded(
-            child: Text(
-              descripcion,
-              style: const TextStyle(color: Colors.white),
-            ),
+            child: Text(descripcion, style: const TextStyle(color: Colors.white)),
           ),
           Text(
             tiempo,
