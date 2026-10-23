@@ -1,133 +1,154 @@
 # Eco'clock Network — Cliente Móvil (Flutter)
 
-Cliente móvil nativo para Android e iOS que consume la API de Eco'clock Network (FastAPI + JWT).
+Cliente móvil nativo para **Android** e **iOS** que consume la API de Eco'clock Network (FastAPI + JWT).
 
-## 📱 Características
+## Características principales
 
-| Función | Endpoint | Estado |
-|---------|----------|--------|
-| Registro de usuario | `POST /auth/register` | ✅ |
-| Login (JWT) | `POST /auth/login` | ✅ |
-| Perfil usuario | `GET /me` | ✅ |
-| Siguiente tarea | `GET /tasks/next` | ✅ |
-| Enviar resultado | `POST /tasks/submit` | ✅ (simulado) |
-| Créditos BOINC | `GET /credits/me` | ✅ |
-| Logout | Local (borra token) | ✅ |
-| Persistencia sesión | `SharedPreferences` | ✅ |
+| Función                        | Estado | Notas                                      |
+|--------------------------------|--------|--------------------------------------------|
+| Registro / Login (JWT)         | ✅     | Persistencia con SharedPreferences         |
+| Perfil de usuario              | ✅     | `GET /me`                                  |
+| Siguiente tarea + envío        | ✅     | Cálculo local + `POST /tasks/submit`       |
+| Sistema de créditos BOINC      | ✅     | Total, racha, semana, historial            |
+| Niveles / Badges               | ✅     | Explorador → Sensor → Centinela → Faro     |
+| Iconos SVG de niveles          | ✅     | Assets vectoriales escalables              |
+| Logros (Achievements)          | ✅     | Primera contribución, hábitats, etc.       |
+| Pestaña **Donar**              | ✅     | 95 % ONGs + 5 % mantenimiento (Stripe)     |
+| Scroll completo en Créditos    | ✅     | Historial siempre accesible                |
+| Dark theme (Material 3)        | ✅     | Paleta dark green + dorado                 |
+| CI / Builds Android            | ✅     | APK debug + release + AAB                  |
 
-## 🏗️ Estructura del proyecto
+## Estructura del proyecto
 
 ```
-ecoclock_mobile/
+ecoclock-mobile/
 ├── lib/
-│   ├── main.dart                 # Entry point + AuthGate
+│   ├── main.dart
 │   ├── models/
-│   │   └── api_models.dart       # Modelos tipados (UserResponse, TaskNextResponse, CreditsSummary)
+│   │   └── api_models.dart
 │   ├── services/
-│   │   └── api_service.dart      # EcoClockApi (HTTP + JWT persistence)
+│   │   ├── api_service.dart
+│   │   └── worker.dart
 │   ├── screens/
-│   │   ├── auth_screen.dart      # Login / Registro
-│   │   └── dashboard_screen.dart # Tabs: Inicio / Tarea / Créditos
+│   │   ├── auth_screen.dart
+│   │   ├── dashboard_screen.dart      # Tabs: Inicio / Tarea / Créditos / Donar
+│   │   ├── donar_screen.dart          # Pantalla de donaciones
+│   │   └── creditos_screen.dart       # (legacy / referencia)
 │   └── widgets/
-│       └── json_view.dart        # Visor JSON formateado
-├── pubspec.yaml                  # Dependencias
-└── README.md                     # Este archivo
+│       ├── level_card.dart            # Badge de nivel + SVG
+│       ├── stat_card.dart
+│       └── json_view.dart
+├── assets/
+│   └── icons/
+│       ├── explorador.svg
+│       ├── sensor.svg
+│       ├── centinela.svg
+│       └── faro.svg
+├── android/                           # Generado y versionado
+├── ios/
+├── .github/workflows/
+│   └── flutter-android.yml            # CI: build APK + AAB
+├── pubspec.yaml
+└── README.md
 ```
 
-## 🚀 Cómo ejecutar
+## Niveles del sistema
 
-### Requisitos previos
-- Flutter SDK ≥ 3.19 (Dart ≥ 3.3)
-- Android Studio / Xcode para emuladores
-- O dispositivo físico con depuración USB
+| Nivel       | ID | Icono SVG          | Color aproximado |
+|-------------|----|--------------------|------------------|
+| Explorador  | 1  | `explorador.svg`   | Verde oliva      |
+| Sensor      | 2  | `sensor.svg`       | Dorado           |
+| Centinela   | 3  | `centinela.svg`    | Verde oscuro     |
+| Faro        | 4  | `faro.svg`         | Dorado claro     |
 
-### Pasos
+Los iconos se cargan dinámicamente según el `level.id` que devuelve la API.
+
+## Pestaña Donar
+
+- Texto transparente: **95 %** de la donación va a las ONGs asociadas, **5 %** se destina al mantenimiento de la plataforma.
+- Cantidades rápidas: 5 € · 10 € · 25 € · 50 €
+- Campo “Otra cantidad” editable
+- Botón “Donar ahora” → abre enlace de Stripe (actualmente simulado)
+- Cuando se active la cuenta bancaria real solo hay que cambiar el `stripePaymentLink` en `donar_screen.dart`
+
+## Cómo ejecutar
+
+### Requisitos
+- Flutter SDK ≥ 3.27 (Dart ≥ 3.6)
+- Android Studio / Xcode o dispositivo físico
 
 ```bash
-# 1. Entrar al directorio
-cd ecoclock_mobile
-
-# 2. Instalar dependencias
+cd ecoclock-mobile
 flutter pub get
-
-# 3. Verificar dispositivos disponibles
 flutter devices
-
-# 4. Ejecutar en emulador/dispositivo
 flutter run
 ```
 
-### Para desarrollo local (API en localhost)
+### API local (desarrollo)
 
-Edita `lib/services/api_service.dart` y cambia:
-
-```dart
-static const String baseUrl = 'https://api.ecoclock.org';
-```
-
-Por tu IP local (ej. `http://192.168.1.XXX:8000`) o usa `10.0.2.2` en emulador Android:
+En `lib/services/api_service.dart`:
 
 ```dart
-static const String baseUrl = 'http://10.0.2.2:8000'; // Emulador Android → localhost host
+// Emulador Android
+static const String baseUrl = 'http://10.0.2.2:8000';
+
+// iOS Simulator
+static const String baseUrl = 'http://localhost:8000';
+
+// Dispositivo físico (cambia por tu IP LAN)
+static const String baseUrl = 'http://192.168.x.x:8000';
 ```
 
-> **Nota:** En iOS Simulator usa `http://localhost:8000`. En dispositivo físico usa la IP LAN de tu máquina.
+## Build de producción
 
-## 🔧 Configuración de la API
-
-La app espera que el servidor exponga estos endpoints (ya implementados en `ecoclock-network/server`):
-
-```
-POST   /auth/register     {email, password} → {access_token, user}
-POST   /auth/login        {email, password} → {access_token, user}
-GET    /me                         → UserResponse
-GET    /tasks/next                 → TaskNextResponse
-POST   /tasks/submit    {task_id, output} → 200 OK
-GET    /credits/me                 → CreditsSummary
-GET    /health                     → 200 OK (sin auth)
-```
-
-## 📦 Build para distribución
-
-### Android (APK / AAB)
 ```bash
 # APK debug
-flutter build apk --debug
+flutter build apk --debug --split-per-abi
 
 # APK release
-flutter build apk --release
+flutter build apk --release --split-per-abi
 
-# App Bundle (para Play Store)
+# App Bundle (Play Store)
 flutter build appbundle --release
 ```
 
-Salida: `build/app/outputs/flutter-apk/` o `build/app/outputs/bundle/release/`
+Los artefactos se generan también automáticamente en cada push a `main` mediante el workflow de GitHub Actions.
 
-### iOS (IPA)
-```bash
-# Requiere macOS + Xcode
-flutter build ios --release
-# Luego: Product → Archive en Xcode
-```
+## CI / GitHub Actions
 
-## 🎨 Temas y personalización
+El workflow (`.github/workflows/flutter-android.yml`) realiza:
 
-El tema se define en `lib/main.dart`:
-- **Material 3** activado
-- **Dark mode** por defecto (color seed: Teal)
-- Colores personalizados: `Color(0xFF0D1117)` background, `Color(0xFF161B22)` cards
+- `flutter pub get`
+- Generación de iconos de launcher
+- `flutter analyze`
+- Build de APK (debug + release split-per-abi)
+- Build de AAB (solo en push a main)
+- Subida de artefactos
 
-Para cambiar colores, modifica `ColorScheme.fromSeed(seedColor: Colors.teal, ...)`.
+## Próximos pasos (roadmap)
 
-## 🔄 Próximos pasos (para versión final)
+1. **Gamificación avanzada**  
+   - Más logros y recompensas  
+   - Sistema de hábitats / misiones
 
-1. **Cómputo real**: Reemplazar `_submitDummyTask()` en `dashboard_screen.dart` por lógica NDVI/nativa
-2. **Notificaciones push**: FCM / APNs para avisar cuando hay tareas nuevas
-3. **Background fetch**: WorkManager (Android) / BGAppRefresh (iOS) para cómputo en segundo plano
-4. **Biometría**: `local_auth` para proteger la app con huella/FaceID
-5. **Settings**: Pantalla para cambiar `baseUrl`, ver logs, exportar datos
-6. **Tests**: `flutter test` + integration tests con `integration_test`
+2. **Stripe real**  
+   - Payment Links o Checkout Session desde backend
 
-## 📄 Licencia
+3. **Cómputo real**  
+   - Sustituir el worker simulado por lógica NDVI / nativa
+
+4. **Notificaciones push**  
+   - FCM / APNs cuando haya nuevas tareas
+
+5. **Background work**  
+   - WorkManager (Android) + BGAppRefresh (iOS)
+
+6. **Biometría**  
+   - `local_auth` para desbloqueo
+
+7. **Pantalla de Ajustes**  
+   - Cambiar baseUrl, ver logs, exportar datos
+
+## Licencia
 
 MIT — igual que el repositorio principal `ecoclock-network`.
