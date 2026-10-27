@@ -408,4 +408,27 @@ class EcoClockApi {
     );
     _handleResponse(response);
   }
+
+  Future<void> deleteNode(int nodeId) async {
+    final response = await _authenticatedRequest(
+      () => http.delete(
+        Uri.parse('$baseUrl/nodes/$nodeId'),
+        headers: _headers,
+      ),
+    );
+    _handleResponse(response);
+  }
+
+  Future<Map<String, dynamic>> uploadNodeLogo(int nodeId, String filePath) async {
+    await _loadTokens();
+    final request = http.MultipartRequest(
+      'POST',
+      Uri.parse('$baseUrl/nodes/$nodeId/logo'),
+    );
+    request.headers['Authorization'] = 'Bearer $_accessToken';
+    request.files.add(await http.MultipartFile.fromPath('file', filePath));
+    final streamed = await request.send();
+    final response = await http.Response.fromStream(streamed);
+    return _handleResponse(response) as Map<String, dynamic>;
+  }
 }

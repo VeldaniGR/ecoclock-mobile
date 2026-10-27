@@ -229,7 +229,10 @@ class _DashboardScreenState extends State<DashboardScreen> {
 
             // Card de Nodo (si pertenece a uno)
             if (_myNode != null) ...[
-              _buildNodeCard(theme),
+              GestureDetector(
+                onTap: () => setState(() => _currentIndex = 3),
+                child: _buildNodeCard(theme),
+              ),
               const SizedBox(height: 16),
             ],
 

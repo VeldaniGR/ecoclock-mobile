@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:image_picker/image_picker.dart';
 import '../services/api_service.dart';
 
 class NodoScreen extends StatefulWidget {
@@ -16,10 +17,12 @@ class _NodoScreenState extends State<NodoScreen> {
   List<dynamic> _publicNodes = [];
   bool _loading = true;
   bool _loadingPublic = false;
+  bool _uploadingLogo = false;
   String? _error;
 
   final _nameController = TextEditingController();
   final _codeController = TextEditingController();
+  final _picker = ImagePicker();
 
   @override
   void initState() {
@@ -51,9 +54,7 @@ class _NodoScreenState extends State<NodoScreen> {
       if (mounted) {
         setState(() {
           _myNode = null;
-          if (!e.toString().contains('404')) {
-            _error = e.toString();
-          }
+          if (!e.toString().contains('404')) _error = e.toString();
         });
       }
     }
@@ -64,11 +65,8 @@ class _NodoScreenState extends State<NodoScreen> {
     try {
       final nodes = await widget.api.listPublicNodes();
       if (mounted) setState(() => _publicNodes = nodes);
-    } catch (_) {
-      // silencioso
-    } finally {
-      if (mounted) setState(() => _loadingPublic = false);
-    }
+    } catch (_) {}
+    if (mounted) setState(() => _loadingPublic = false);
   }
 
   Future<void> _createNode() async {
@@ -124,7 +122,6 @@ class _NodoScreenState extends State<NodoScreen> {
       ),
     );
     if (confirm != true) return;
-
     try {
       await widget.api.leaveNode();
       if (mounted) {
@@ -137,13 +134,71 @@ class _NodoScreenState extends State<NodoScreen> {
     }
   }
 
+  Future<void> _deleteNode() async {
+    final node = _myNode;
+    if (node == null) return;
+    final confirm = await showDialog<bool>(
+      context: context,
+      builder: (ctx) => AlertDialog(
+        title: const Text('Eliminar nodo'),
+        content: Text('¿Eliminar permanentemente el nodo "${node['name']}"? Esta acción no se puede deshacer.'),
+        actions: [
+          TextButton(onPressed: () => Navigator.pop(ctx, false), child: const Text('Cancelar')),
+          FilledButton(
+            style: FilledButton.styleFrom(backgroundColor: Colors.red),
+            onPressed: () => Navigator.pop(ctx, true),
+            child: const Text('Eliminar'),
+          ),
+        ],
+      ),
+    );
+    if (confirm != true) return;
+    try {
+      await widget.api.deleteNode(node['id'] as int);
+      if (mounted) {
+        setState(() => _myNode = null);
+        _showSnack('Nodo eliminado', success: true);
+        _loadPublicNodes();
+      }
+    } catch (e) {
+      _showSnack('Error: $e');
+    }
+  }
+
+  Future<void> _pickAndUploadLogo() async {
+    final node = _myNode;
+    if (node == null) return;
+
+    final XFile? image = await _picker.pickImage(
+      source: ImageSource.gallery,
+      maxWidth: 512,
+      maxHeight: 512,
+      imageQuality: 85,
+    );
+    if (image == null) return;
+
+    setState(() => _uploadingLogo = true);
+    try {
+      final result = await widget.api.uploadNodeLogo(node['id'] as int, image.path);
+      if (mounted) {
+        setState(() {
+          _myNode = {...node, 'logo_url': result['logo_url']};
+          _uploadingLogo = false;
+        });
+        _showSnack('Logo actualizado', success: true);
+      }
+    } catch (e) {
+      if (mounted) {
+        setState(() => _uploadingLogo = false);
+        _showSnack('Error al subir logo: $e');
+      }
+    }
+  }
+
   void _showSnack(String msg, {bool success = false}) {
     if (!mounted) return;
     ScaffoldMessenger.of(context).showSnackBar(
-      SnackBar(
-        content: Text(msg),
-        backgroundColor: success ? Colors.green : null,
-      ),
+      SnackBar(content: Text(msg), backgroundColor: success ? Colors.green : null),
     );
   }
 
@@ -151,9 +206,7 @@ class _NodoScreenState extends State<NodoScreen> {
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
 
-    if (_loading) {
-      return const Center(child: CircularProgressIndicator());
-    }
+    if (_loading) return const Center(child: CircularProgressIndicator());
 
     if (_error != null) {
       return Center(
@@ -168,12 +221,7 @@ class _NodoScreenState extends State<NodoScreen> {
       );
     }
 
-    // ========== TIENE NODO ==========
-    if (_myNode != null) {
-      return _buildMyNodeView(theme);
-    }
-
-    // ========== NO TIENE NODO ==========
+    if (_myNode != null) return _buildMyNodeView(theme);
     return _buildNoNodeView(theme);
   }
 
@@ -211,16 +259,12 @@ class _NodoScreenState extends State<NodoScreen> {
                     children: [
                       Text(
                         node['name'] ?? '',
-                        style: theme.textTheme.headlineSmall?.copyWith(
-                          fontWeight: FontWeight.bold,
-                        ),
+                        style: theme.textTheme.headlineSmall?.copyWith(fontWeight: FontWeight.bold),
                       ),
                       const SizedBox(height: 4),
                       Text(
                         isAdmin ? 'Administrador' : 'Miembro',
-                        style: theme.textTheme.bodyMedium?.copyWith(
-                          color: theme.colorScheme.primary,
-                        ),
+                        style: theme.textTheme.bodyMedium?.copyWith(color: theme.colorScheme.primary),
                       ),
                     ],
                   ),
@@ -231,28 +275,40 @@ class _NodoScreenState extends State<NodoScreen> {
             _infoCard(theme, 'Miembros', '${node['member_count'] ?? 0}'),
             if (isAdmin) ...[
               const SizedBox(height: 12),
-              _infoCard(
-                theme,
-                'Enlace de unión',
-                node['invite_code'] ?? '',
-                copyable: true,
-              ),
+              _infoCard(theme, 'Enlace de unión', node['invite_code'] ?? '', copyable: true),
             ],
             const SizedBox(height: 32),
-            if (isAdmin)
-              OutlinedButton.icon(
-                onPressed: () {
-                  _showSnack('Subida de logo desde la app próximamente');
-                },
-                icon: const Icon(Icons.image),
-                label: const Text('Cambiar logo'),
+            if (isAdmin) ...[
+              SizedBox(
+                width: double.infinity,
+                child: OutlinedButton.icon(
+                  onPressed: _uploadingLogo ? null : _pickAndUploadLogo,
+                  icon: _uploadingLogo
+                      ? const SizedBox(width: 18, height: 18, child: CircularProgressIndicator(strokeWidth: 2))
+                      : const Icon(Icons.image),
+                  label: Text(_uploadingLogo ? 'Subiendo...' : 'Cambiar logo'),
+                ),
               ),
-            const SizedBox(height: 12),
-            OutlinedButton.icon(
-              onPressed: _leaveNode,
-              icon: const Icon(Icons.exit_to_app),
-              label: const Text('Salir del nodo'),
-              style: OutlinedButton.styleFrom(foregroundColor: Colors.red),
+              const SizedBox(height: 12),
+              SizedBox(
+                width: double.infinity,
+                child: OutlinedButton.icon(
+                  onPressed: _deleteNode,
+                  icon: const Icon(Icons.delete_forever),
+                  label: const Text('Eliminar nodo'),
+                  style: OutlinedButton.styleFrom(foregroundColor: Colors.red),
+                ),
+              ),
+              const SizedBox(height: 12),
+            ],
+            SizedBox(
+              width: double.infinity,
+              child: OutlinedButton.icon(
+                onPressed: _leaveNode,
+                icon: const Icon(Icons.exit_to_app),
+                label: const Text('Salir del nodo'),
+                style: OutlinedButton.styleFrom(foregroundColor: Colors.orange),
+              ),
             ),
           ],
         ),
@@ -268,44 +324,27 @@ class _NodoScreenState extends State<NodoScreen> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Text(
-              'Nodos Ciudadanos',
-              style: theme.textTheme.headlineSmall?.copyWith(fontWeight: FontWeight.bold),
-            ),
+            Text('Nodos Ciudadanos', style: theme.textTheme.headlineSmall?.copyWith(fontWeight: FontWeight.bold)),
             const SizedBox(height: 8),
             Text(
               'Únete a un nodo o crea el tuyo para colaborar con otros ciudadanos.',
-              style: theme.textTheme.bodyMedium?.copyWith(
-                color: theme.colorScheme.onSurfaceVariant,
-              ),
+              style: theme.textTheme.bodyMedium?.copyWith(color: theme.colorScheme.onSurfaceVariant),
             ),
             const SizedBox(height: 32),
-
-            // Crear
             Text('Crear un nodo', style: theme.textTheme.titleMedium),
             const SizedBox(height: 12),
             TextField(
               controller: _nameController,
-              decoration: const InputDecoration(
-                labelText: 'Nombre del nodo',
-                border: OutlineInputBorder(),
-              ),
+              decoration: const InputDecoration(labelText: 'Nombre del nodo', border: OutlineInputBorder()),
             ),
             const SizedBox(height: 12),
             SizedBox(
               width: double.infinity,
-              child: FilledButton.icon(
-                onPressed: _createNode,
-                icon: const Icon(Icons.add),
-                label: const Text('Crear nodo'),
-              ),
+              child: FilledButton.icon(onPressed: _createNode, icon: const Icon(Icons.add), label: const Text('Crear nodo')),
             ),
-
             const SizedBox(height: 32),
             const Divider(),
             const SizedBox(height: 24),
-
-            // Unirse por código
             Text('Unirse con enlace de unión', style: theme.textTheme.titleMedium),
             const SizedBox(height: 12),
             TextField(
@@ -320,34 +359,21 @@ class _NodoScreenState extends State<NodoScreen> {
             const SizedBox(height: 12),
             SizedBox(
               width: double.infinity,
-              child: OutlinedButton.icon(
-                onPressed: _joinByCode,
-                icon: const Icon(Icons.login),
-                label: const Text('Unirse al nodo'),
-              ),
+              child: OutlinedButton.icon(onPressed: _joinByCode, icon: const Icon(Icons.login), label: const Text('Unirse al nodo')),
             ),
-
             const SizedBox(height: 32),
             const Divider(),
             const SizedBox(height: 24),
-
-            // Explorar nodos públicos
             Text('Explorar nodos públicos', style: theme.textTheme.titleMedium),
             const SizedBox(height: 12),
-
             if (_loadingPublic)
-              const Center(child: Padding(
-                padding: EdgeInsets.all(24),
-                child: CircularProgressIndicator(),
-              ))
+              const Center(child: Padding(padding: EdgeInsets.all(24), child: CircularProgressIndicator()))
             else if (_publicNodes.isEmpty)
               Padding(
                 padding: const EdgeInsets.symmetric(vertical: 16),
                 child: Text(
                   'No hay nodos públicos todavía. ¡Sé el primero en crear uno!',
-                  style: theme.textTheme.bodyMedium?.copyWith(
-                    color: theme.colorScheme.onSurfaceVariant,
-                  ),
+                  style: theme.textTheme.bodyMedium?.copyWith(color: theme.colorScheme.onSurfaceVariant),
                 ),
               )
             else
@@ -441,10 +467,7 @@ class _NodoScreenState extends State<NodoScreen> {
               children: [
                 Text(label, style: theme.textTheme.labelMedium),
                 const SizedBox(height: 4),
-                Text(
-                  value,
-                  style: theme.textTheme.titleMedium?.copyWith(fontWeight: FontWeight.w600),
-                ),
+                Text(value, style: theme.textTheme.titleMedium?.copyWith(fontWeight: FontWeight.w600)),
               ],
             ),
           ),
