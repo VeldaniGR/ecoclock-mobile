@@ -342,4 +342,70 @@ class EcoClockApi {
     await _loadTokens();
     return _accessToken != null || _refreshToken != null;
   }
+
+  // ──────────────────────────────────────────────────────────────
+  // Nodos Ciudadanos
+  // ──────────────────────────────────────────────────────────────
+
+  Future<Map<String, dynamic>> createNode(String name) async {
+    final response = await _authenticatedRequest(
+      () => http.post(
+        Uri.parse('$baseUrl/nodes'),
+        headers: _headers,
+        body: jsonEncode({'name': name}),
+      ),
+    );
+    return _handleResponse(response) as Map<String, dynamic>;
+  }
+
+  Future<Map<String, dynamic>?> getMyNode() async {
+    final response = await _authenticatedRequest(
+      () => http.get(
+        Uri.parse('$baseUrl/nodes/me'),
+        headers: _headers,
+      ),
+    );
+    if (response.statusCode == 404) return null;
+    return _handleResponse(response) as Map<String, dynamic>;
+  }
+
+  Future<List<dynamic>> listPublicNodes() async {
+    final response = await _authenticatedRequest(
+      () => http.get(
+        Uri.parse('$baseUrl/nodes'),
+        headers: _headers,
+      ),
+    );
+    return _handleResponse(response) as List<dynamic>;
+  }
+
+  Future<Map<String, dynamic>> joinNodeByCode(String code) async {
+    final response = await _authenticatedRequest(
+      () => http.post(
+        Uri.parse('$baseUrl/nodes/join/$code'),
+        headers: _headers,
+      ),
+    );
+    return _handleResponse(response) as Map<String, dynamic>;
+  }
+
+  Future<void> leaveNode() async {
+    final response = await _authenticatedRequest(
+      () => http.post(
+        Uri.parse('$baseUrl/nodes/leave'),
+        headers: _headers,
+      ),
+    );
+    _handleResponse(response);
+  }
+
+  Future<void> requestJoinNode(int nodeId) async {
+    final response = await _authenticatedRequest(
+      () => http.post(
+        Uri.parse('$baseUrl/nodes/$nodeId/request'),
+        headers: _headers,
+      ),
+    );
+    _handleResponse(response);
+  }
 }

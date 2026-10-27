@@ -1,4 +1,4 @@
-// Dashboard principal con tabs: Inicio, Tarea, Créditos, Donar
+// Dashboard principal con tabs: Inicio, Tarea, Créditos, Nodo, Donar
 
 import 'package:flutter/material.dart';
 import '../../models/api_models.dart';
@@ -7,7 +7,8 @@ import '../widgets/json_view.dart';
 import '../services/worker.dart';
 import '../widgets/stat_card.dart';
 import '../widgets/level_card.dart';
-import 'donar_screen.dart'; // ← nueva pantalla
+import 'donar_screen.dart';
+import 'nodo_screen.dart';
 
 class DashboardScreen extends StatefulWidget {
   final EcoClockApi api;
@@ -23,13 +24,13 @@ class DashboardScreen extends StatefulWidget {
   State<DashboardScreen> createState() => _DashboardScreenState();
 }
 
-class _DashboardScreenState extends State<DashboardScreen>
-    with SingleTickerProviderStateMixin {
-  late final TabController _tabController;
+class _DashboardScreenState extends State<DashboardScreen> {
+  int _currentIndex = 0;
 
   UserResponse? _user;
   CreditsSummary? _credits;
   TaskNextResponse? _currentTask;
+  Map<String, dynamic>? _myNode;
   bool _loadingUser = true;
   bool _loadingCredits = true;
   bool _loadingTask = true;
@@ -38,14 +39,7 @@ class _DashboardScreenState extends State<DashboardScreen>
   @override
   void initState() {
     super.initState();
-    _tabController = TabController(length: 4, vsync: this); // ← ahora 4 tabs
     _loadAll();
-  }
-
-  @override
-  void dispose() {
-    _tabController.dispose();
-    super.dispose();
   }
 
   Future<void> _loadAll() async {
@@ -53,6 +47,7 @@ class _DashboardScreenState extends State<DashboardScreen>
       _loadUser(),
       _loadCredits(),
       _loadTask(),
+      _loadMyNode(),
     ]);
   }
 
@@ -88,6 +83,15 @@ class _DashboardScreenState extends State<DashboardScreen>
     if (mounted) setState(() => _loadingTask = false);
   }
 
+  Future<void> _loadMyNode() async {
+    try {
+      _myNode = await widget.api.getMyNode();
+    } catch (_) {
+      _myNode = null;
+    }
+    if (mounted) setState(() {});
+  }
+
   Future<void> _submitComputedTask() async {
     if (_currentTask == null) return;
 
@@ -110,18 +114,12 @@ class _DashboardScreenState extends State<DashboardScreen>
     } on ApiException catch (e) {
       if (!mounted) return;
       ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(
-          content: Text(e.message),
-          backgroundColor: Colors.red,
-        ),
+        SnackBar(content: Text(e.message), backgroundColor: Colors.red),
       );
     } catch (e) {
       if (!mounted) return;
       ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(
-          content: Text('Error: $e'),
-          backgroundColor: Colors.red,
-        ),
+        SnackBar(content: Text('Error: $e'), backgroundColor: Colors.red),
       );
     }
   }
@@ -131,16 +129,6 @@ class _DashboardScreenState extends State<DashboardScreen>
     return Scaffold(
       appBar: AppBar(
         title: const Text('Eco\'clock Network'),
-        bottom: TabBar(
-          controller: _tabController,
-           // útil con 4 tabs
-          tabs: const [
-            Tab(icon: Icon(Icons.dashboard_outlined), text: 'Inicio'),
-            Tab(icon: Icon(Icons.task_alt_outlined), text: 'Tarea'),
-            Tab(icon: Icon(Icons.stars_outlined), text: 'Créditos'),
-            Tab(icon: Icon(Icons.favorite_outline), text: 'Donar'), // ← nueva
-          ],
-        ),
         actions: [
           IconButton(
             icon: const Icon(Icons.logout),
@@ -157,13 +145,50 @@ class _DashboardScreenState extends State<DashboardScreen>
           ),
         ],
       ),
-      body: TabBarView(
-        controller: _tabController,
+      body: IndexedStack(
+        index: _currentIndex,
         children: [
           _buildHomeTab(),
           _buildTaskTab(),
           _buildCreditsTab(),
-          const DonarScreen(), // ← nueva pestaña
+          NodoScreen(api: widget.api),
+          const DonarScreen(),
+        ],
+      ),
+      bottomNavigationBar: NavigationBar(
+        selectedIndex: _currentIndex,
+        onDestinationSelected: (index) {
+          setState(() => _currentIndex = index);
+          // Recargar nodo al entrar en la pestaña
+          if (index == 3) _loadMyNode();
+        },
+        labelBehavior: NavigationDestinationLabelBehavior.onlyShowSelected,
+        destinations: const [
+          NavigationDestination(
+            icon: Icon(Icons.dashboard_outlined),
+            selectedIcon: Icon(Icons.dashboard),
+            label: 'Inicio',
+          ),
+          NavigationDestination(
+            icon: Icon(Icons.task_alt_outlined),
+            selectedIcon: Icon(Icons.task_alt),
+            label: 'Tarea',
+          ),
+          NavigationDestination(
+            icon: Icon(Icons.stars_outlined),
+            selectedIcon: Icon(Icons.stars),
+            label: 'Créditos',
+          ),
+          NavigationDestination(
+            icon: Icon(Icons.groups_outlined),
+            selectedIcon: Icon(Icons.groups),
+            label: 'Nodo',
+          ),
+          NavigationDestination(
+            icon: Icon(Icons.favorite_outline),
+            selectedIcon: Icon(Icons.favorite),
+            label: 'Donar',
+          ),
         ],
       ),
     );
@@ -201,6 +226,13 @@ class _DashboardScreenState extends State<DashboardScreen>
               ),
             ),
             const SizedBox(height: 20),
+
+            // Card de Nodo (si pertenece a uno)
+            if (_myNode != null) ...[
+              _buildNodeCard(theme),
+              const SizedBox(height: 16),
+            ],
+
             if (_credits?.level != null) ...[
               LevelCard(
                 level: _credits!.level,
@@ -230,6 +262,68 @@ class _DashboardScreenState extends State<DashboardScreen>
             ),
           ],
         ),
+      ),
+    );
+  }
+
+  Widget _buildNodeCard(ThemeData theme) {
+    final node = _myNode!;
+    final logoUrl = node['logo_url'];
+
+    return Container(
+      padding: const EdgeInsets.all(14),
+      decoration: BoxDecoration(
+        color: theme.colorScheme.surfaceContainerHighest.withValues(alpha: 0.55),
+        borderRadius: BorderRadius.circular(14),
+        border: Border.all(
+          color: theme.colorScheme.primary.withValues(alpha: 0.3),
+        ),
+      ),
+      child: Row(
+        children: [
+          if (logoUrl != null)
+            ClipRRect(
+              borderRadius: BorderRadius.circular(8),
+              child: Image.network(
+                '${EcoClockApi.baseUrl}$logoUrl',
+                width: 44,
+                height: 44,
+                fit: BoxFit.cover,
+                errorBuilder: (_, __, ___) => const Icon(Icons.groups, size: 28),
+              ),
+            )
+          else
+            Container(
+              width: 44,
+              height: 44,
+              decoration: BoxDecoration(
+                color: theme.colorScheme.primary.withValues(alpha: 0.15),
+                borderRadius: BorderRadius.circular(8),
+              ),
+              child: Icon(Icons.groups, color: theme.colorScheme.primary),
+            ),
+          const SizedBox(width: 12),
+          Expanded(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  'Miembro del Nodo',
+                  style: theme.textTheme.labelMedium?.copyWith(
+                    color: theme.colorScheme.onSurfaceVariant,
+                  ),
+                ),
+                Text(
+                  node['name'] ?? '',
+                  style: theme.textTheme.titleMedium?.copyWith(
+                    fontWeight: FontWeight.w600,
+                  ),
+                ),
+              ],
+            ),
+          ),
+          Icon(Icons.chevron_right, color: theme.colorScheme.outline),
+        ],
       ),
     );
   }
@@ -295,8 +389,7 @@ class _DashboardScreenState extends State<DashboardScreen>
                   ),
                 ),
                 Container(
-                  padding:
-                      const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
+                  padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
                   decoration: BoxDecoration(
                     color: theme.colorScheme.primaryContainer,
                     borderRadius: BorderRadius.circular(16),
@@ -371,11 +464,7 @@ class _DashboardScreenState extends State<DashboardScreen>
           children: [
             Icon(icon, size: 64, color: color),
             const SizedBox(height: 16),
-            Text(
-              message,
-              textAlign: TextAlign.center,
-              style: theme.textTheme.bodyLarge,
-            ),
+            Text(message, textAlign: TextAlign.center, style: theme.textTheme.bodyLarge),
             const SizedBox(height: 24),
             FilledButton.icon(
               icon: const Icon(Icons.refresh),
@@ -409,7 +498,6 @@ class _DashboardScreenState extends State<DashboardScreen>
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            // Total créditos
             Row(
               children: [
                 const Icon(Icons.star, size: 32, color: Colors.amber),
@@ -452,8 +540,6 @@ class _DashboardScreenState extends State<DashboardScreen>
               AchievementsRow(achievements: _credits!.achievements),
             ],
             const SizedBox(height: 24),
-
-            // Historial
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
@@ -467,7 +553,6 @@ class _DashboardScreenState extends State<DashboardScreen>
               ],
             ),
             const SizedBox(height: 8),
-
             if (recent.isEmpty)
               Padding(
                 padding: const EdgeInsets.symmetric(vertical: 40),
@@ -475,19 +560,13 @@ class _DashboardScreenState extends State<DashboardScreen>
                   child: Column(
                     mainAxisSize: MainAxisSize.min,
                     children: [
-                      Icon(Icons.star_border,
-                          size: 64, color: theme.colorScheme.outline),
+                      Icon(Icons.star_border, size: 64, color: theme.colorScheme.outline),
                       const SizedBox(height: 16),
                       Text(
                         'Sin actividad reciente',
                         style: theme.textTheme.bodyLarge?.copyWith(
                           color: theme.colorScheme.onSurfaceVariant,
                         ),
-                      ),
-                      const SizedBox(height: 8),
-                      const Text(
-                        'Completa tareas para ganar créditos',
-                        style: TextStyle(fontSize: 14),
                       ),
                     ],
                   ),
@@ -502,8 +581,7 @@ class _DashboardScreenState extends State<DashboardScreen>
                 itemBuilder: (context, index) {
                   final entry = recent[index];
                   final amountNum = entry['amount'];
-                  final amount =
-                      (amountNum is num) ? amountNum.toDouble() : 0.0;
+                  final amount = (amountNum is num) ? amountNum.toDouble() : 0.0;
                   final taskId = entry['task_id']?.toString() ?? '—';
                   final grantedAt = entry['granted_at']?.toString() ?? '';
 
@@ -518,7 +596,6 @@ class _DashboardScreenState extends State<DashboardScreen>
                       style: theme.textTheme.titleMedium,
                     ),
                     subtitle: Text(grantedAt),
-                    trailing: const Icon(Icons.chevron_right),
                   );
                 },
               ),
@@ -527,15 +604,14 @@ class _DashboardScreenState extends State<DashboardScreen>
       ),
     );
   }
+
   Widget _buildDashboardStatsRow(ThemeData theme) {
     final c = _credits;
     final streak = c?.streakDays ?? 0;
     final week = c?.creditsThisWeek ?? 0;
     final tasks = c?.tasksDone ?? 0;
 
-    final weekLabel = week >= 100
-        ? week.round().toString()
-        : _formatCredits(week);
+    final weekLabel = week >= 100 ? week.round().toString() : _formatCredits(week);
 
     return Column(
       children: [
@@ -554,7 +630,6 @@ class _DashboardScreenState extends State<DashboardScreen>
                 icon: Icons.calendar_today_rounded,
                 label: 'Semana',
                 primaryValue: weekLabel,
-                secondaryValue: null,
               ),
             ),
           ],
@@ -564,7 +639,6 @@ class _DashboardScreenState extends State<DashboardScreen>
           icon: Icons.check_circle_outline_rounded,
           label: 'Tareas totales',
           primaryValue: '$tasks',
-          secondaryValue: null,
           isWide: true,
         ),
       ],
