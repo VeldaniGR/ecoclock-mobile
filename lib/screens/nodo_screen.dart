@@ -13,17 +13,18 @@ class NodoScreen extends StatefulWidget {
 
 class _NodoScreenState extends State<NodoScreen> {
   Map<String, dynamic>? _myNode;
+  List<dynamic> _publicNodes = [];
   bool _loading = true;
+  bool _loadingPublic = false;
   String? _error;
 
-  // Controllers
   final _nameController = TextEditingController();
   final _codeController = TextEditingController();
 
   @override
   void initState() {
     super.initState();
-    _loadMyNode();
+    _loadAll();
   }
 
   @override
@@ -33,25 +34,23 @@ class _NodoScreenState extends State<NodoScreen> {
     super.dispose();
   }
 
-  Future<void> _loadMyNode() async {
+  Future<void> _loadAll() async {
     setState(() {
       _loading = true;
       _error = null;
     });
+    await Future.wait([_loadMyNode(), _loadPublicNodes()]);
+    if (mounted) setState(() => _loading = false);
+  }
+
+  Future<void> _loadMyNode() async {
     try {
       final node = await widget.api.getMyNode();
-      if (mounted) {
-        setState(() {
-          _myNode = node;
-          _loading = false;
-        });
-      }
+      if (mounted) setState(() => _myNode = node);
     } catch (e) {
       if (mounted) {
         setState(() {
           _myNode = null;
-          _loading = false;
-          // 404 = no tiene nodo, no es error real
           if (!e.toString().contains('404')) {
             _error = e.toString();
           }
@@ -60,28 +59,32 @@ class _NodoScreenState extends State<NodoScreen> {
     }
   }
 
+  Future<void> _loadPublicNodes() async {
+    setState(() => _loadingPublic = true);
+    try {
+      final nodes = await widget.api.listPublicNodes();
+      if (mounted) setState(() => _publicNodes = nodes);
+    } catch (_) {
+      // silencioso
+    } finally {
+      if (mounted) setState(() => _loadingPublic = false);
+    }
+  }
+
   Future<void> _createNode() async {
     final name = _nameController.text.trim();
     if (name.length < 3) {
-      ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(content: Text('El nombre debe tener al menos 3 caracteres')),
-      );
+      _showSnack('El nombre debe tener al menos 3 caracteres');
       return;
     }
     try {
       final node = await widget.api.createNode(name);
       if (mounted) {
         setState(() => _myNode = node);
-        ScaffoldMessenger.of(context).showSnackBar(
-          const SnackBar(content: Text('Nodo creado correctamente'), backgroundColor: Colors.green),
-        );
+        _showSnack('Nodo creado correctamente', success: true);
       }
     } catch (e) {
-      if (mounted) {
-        ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(content: Text('Error: $e'), backgroundColor: Colors.red),
-        );
-      }
+      _showSnack('Error: $e');
     }
   }
 
@@ -92,16 +95,19 @@ class _NodoScreenState extends State<NodoScreen> {
       final node = await widget.api.joinNodeByCode(code);
       if (mounted) {
         setState(() => _myNode = node);
-        ScaffoldMessenger.of(context).showSnackBar(
-          const SnackBar(content: Text('Te has unido al nodo'), backgroundColor: Colors.green),
-        );
+        _showSnack('Te has unido al nodo', success: true);
       }
     } catch (e) {
-      if (mounted) {
-        ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(content: Text('Error: $e'), backgroundColor: Colors.red),
-        );
-      }
+      _showSnack('Error: $e');
+    }
+  }
+
+  Future<void> _requestJoin(int nodeId, String name) async {
+    try {
+      await widget.api.requestJoinNode(nodeId);
+      _showSnack('Solicitud enviada a "$name"', success: true);
+    } catch (e) {
+      _showSnack('Error: $e');
     }
   }
 
@@ -123,17 +129,22 @@ class _NodoScreenState extends State<NodoScreen> {
       await widget.api.leaveNode();
       if (mounted) {
         setState(() => _myNode = null);
-        ScaffoldMessenger.of(context).showSnackBar(
-          const SnackBar(content: Text('Has salido del nodo')),
-        );
+        _showSnack('Has salido del nodo');
+        _loadPublicNodes();
       }
     } catch (e) {
-      if (mounted) {
-        ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(content: Text('Error: $e'), backgroundColor: Colors.red),
-        );
-      }
+      _showSnack('Error: $e');
     }
+  }
+
+  void _showSnack(String msg, {bool success = false}) {
+    if (!mounted) return;
+    ScaffoldMessenger.of(context).showSnackBar(
+      SnackBar(
+        content: Text(msg),
+        backgroundColor: success ? Colors.green : null,
+      ),
+    );
   }
 
   @override
@@ -151,7 +162,7 @@ class _NodoScreenState extends State<NodoScreen> {
           children: [
             Text(_error!, style: const TextStyle(color: Colors.red)),
             const SizedBox(height: 16),
-            FilledButton(onPressed: _loadMyNode, child: const Text('Reintentar')),
+            FilledButton(onPressed: _loadAll, child: const Text('Reintentar')),
           ],
         ),
       );
@@ -159,100 +170,97 @@ class _NodoScreenState extends State<NodoScreen> {
 
     // ========== TIENE NODO ==========
     if (_myNode != null) {
-      final node = _myNode!;
-      final isAdmin = node['my_role'] == 'admin';
-      final logoUrl = node['logo_url'];
-
-      return SafeArea(
-        top: false,
-        child: SingleChildScrollView(
-          padding: const EdgeInsets.all(24),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              // Header con logo
-              Row(
-                children: [
-                  if (logoUrl != null)
-                    ClipRRect(
-                      borderRadius: BorderRadius.circular(12),
-                      child: Image.network(
-                        'http://localhost:8000$logoUrl', // TODO: usar baseUrl real
-                        width: 64,
-                        height: 64,
-                        fit: BoxFit.cover,
-                        errorBuilder: (_, __, ___) => _defaultLogo(),
-                      ),
-                    )
-                  else
-                    _defaultLogo(),
-                  const SizedBox(width: 16),
-                  Expanded(
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text(
-                          node['name'] ?? '',
-                          style: theme.textTheme.headlineSmall?.copyWith(
-                            fontWeight: FontWeight.bold,
-                          ),
-                        ),
-                        const SizedBox(height: 4),
-                        Text(
-                          isAdmin ? 'Administrador' : 'Miembro',
-                          style: theme.textTheme.bodyMedium?.copyWith(
-                            color: theme.colorScheme.primary,
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-                ],
-              ),
-              const SizedBox(height: 24),
-
-              // Info
-              _infoCard(theme, 'Miembros', '${node['member_count'] ?? 0}'),
-              const SizedBox(height: 12),
-
-              if (isAdmin) ...[
-                _infoCard(
-                  theme,
-                  'Enlace de unión',
-                  node['invite_code'] ?? '',
-                  copyable: true,
-                ),
-                const SizedBox(height: 12),
-              ],
-
-              const SizedBox(height: 32),
-
-              // Acciones
-              if (isAdmin)
-                OutlinedButton.icon(
-                  onPressed: () {
-                    // TODO: subir logo
-                    ScaffoldMessenger.of(context).showSnackBar(
-                      const SnackBar(content: Text('Subida de logo próximamente')),
-                    );
-                  },
-                  icon: const Icon(Icons.image),
-                  label: const Text('Cambiar logo'),
-                ),
-              const SizedBox(height: 12),
-              OutlinedButton.icon(
-                onPressed: _leaveNode,
-                icon: const Icon(Icons.exit_to_app),
-                label: const Text('Salir del nodo'),
-                style: OutlinedButton.styleFrom(foregroundColor: Colors.red),
-              ),
-            ],
-          ),
-        ),
-      );
+      return _buildMyNodeView(theme);
     }
 
     // ========== NO TIENE NODO ==========
+    return _buildNoNodeView(theme);
+  }
+
+  Widget _buildMyNodeView(ThemeData theme) {
+    final node = _myNode!;
+    final isAdmin = node['my_role'] == 'admin';
+    final logoUrl = node['logo_url'];
+
+    return SafeArea(
+      top: false,
+      child: SingleChildScrollView(
+        padding: const EdgeInsets.all(24),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Row(
+              children: [
+                if (logoUrl != null)
+                  ClipRRect(
+                    borderRadius: BorderRadius.circular(12),
+                    child: Image.network(
+                      '${EcoClockApi.baseUrl}$logoUrl',
+                      width: 64,
+                      height: 64,
+                      fit: BoxFit.cover,
+                      errorBuilder: (_, __, ___) => _defaultLogo(theme),
+                    ),
+                  )
+                else
+                  _defaultLogo(theme),
+                const SizedBox(width: 16),
+                Expanded(
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        node['name'] ?? '',
+                        style: theme.textTheme.headlineSmall?.copyWith(
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                      const SizedBox(height: 4),
+                      Text(
+                        isAdmin ? 'Administrador' : 'Miembro',
+                        style: theme.textTheme.bodyMedium?.copyWith(
+                          color: theme.colorScheme.primary,
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+              ],
+            ),
+            const SizedBox(height: 24),
+            _infoCard(theme, 'Miembros', '${node['member_count'] ?? 0}'),
+            if (isAdmin) ...[
+              const SizedBox(height: 12),
+              _infoCard(
+                theme,
+                'Enlace de unión',
+                node['invite_code'] ?? '',
+                copyable: true,
+              ),
+            ],
+            const SizedBox(height: 32),
+            if (isAdmin)
+              OutlinedButton.icon(
+                onPressed: () {
+                  _showSnack('Subida de logo desde la app próximamente');
+                },
+                icon: const Icon(Icons.image),
+                label: const Text('Cambiar logo'),
+              ),
+            const SizedBox(height: 12),
+            OutlinedButton.icon(
+              onPressed: _leaveNode,
+              icon: const Icon(Icons.exit_to_app),
+              label: const Text('Salir del nodo'),
+              style: OutlinedButton.styleFrom(foregroundColor: Colors.red),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+
+  Widget _buildNoNodeView(ThemeData theme) {
     return SafeArea(
       top: false,
       child: SingleChildScrollView(
@@ -273,7 +281,7 @@ class _NodoScreenState extends State<NodoScreen> {
             ),
             const SizedBox(height: 32),
 
-            // Crear nodo
+            // Crear
             Text('Crear un nodo', style: theme.textTheme.titleMedium),
             const SizedBox(height: 12),
             TextField(
@@ -293,7 +301,7 @@ class _NodoScreenState extends State<NodoScreen> {
               ),
             ),
 
-            const SizedBox(height: 40),
+            const SizedBox(height: 32),
             const Divider(),
             const SizedBox(height: 24),
 
@@ -318,21 +326,102 @@ class _NodoScreenState extends State<NodoScreen> {
                 label: const Text('Unirse al nodo'),
               ),
             ),
+
+            const SizedBox(height: 32),
+            const Divider(),
+            const SizedBox(height: 24),
+
+            // Explorar nodos públicos
+            Text('Explorar nodos públicos', style: theme.textTheme.titleMedium),
+            const SizedBox(height: 12),
+
+            if (_loadingPublic)
+              const Center(child: Padding(
+                padding: EdgeInsets.all(24),
+                child: CircularProgressIndicator(),
+              ))
+            else if (_publicNodes.isEmpty)
+              Padding(
+                padding: const EdgeInsets.symmetric(vertical: 16),
+                child: Text(
+                  'No hay nodos públicos todavía. ¡Sé el primero en crear uno!',
+                  style: theme.textTheme.bodyMedium?.copyWith(
+                    color: theme.colorScheme.onSurfaceVariant,
+                  ),
+                ),
+              )
+            else
+              ..._publicNodes.map((n) => _publicNodeCard(theme, n)),
           ],
         ),
       ),
     );
   }
 
-  Widget _defaultLogo() {
+  Widget _publicNodeCard(ThemeData theme, dynamic n) {
+    final name = n['name'] ?? '';
+    final count = n['member_count'] ?? 0;
+    final logoUrl = n['logo_url'];
+    final id = n['id'] as int;
+
+    return Container(
+      margin: const EdgeInsets.only(bottom: 12),
+      padding: const EdgeInsets.all(14),
+      decoration: BoxDecoration(
+        color: theme.colorScheme.surfaceContainerHighest.withValues(alpha: 0.5),
+        borderRadius: BorderRadius.circular(12),
+      ),
+      child: Row(
+        children: [
+          if (logoUrl != null)
+            ClipRRect(
+              borderRadius: BorderRadius.circular(8),
+              child: Image.network(
+                '${EcoClockApi.baseUrl}$logoUrl',
+                width: 44,
+                height: 44,
+                fit: BoxFit.cover,
+                errorBuilder: (_, __, ___) => Icon(Icons.groups, color: theme.colorScheme.primary),
+              ),
+            )
+          else
+            Container(
+              width: 44,
+              height: 44,
+              decoration: BoxDecoration(
+                color: theme.colorScheme.primary.withValues(alpha: 0.15),
+                borderRadius: BorderRadius.circular(8),
+              ),
+              child: Icon(Icons.groups, color: theme.colorScheme.primary),
+            ),
+          const SizedBox(width: 12),
+          Expanded(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(name, style: theme.textTheme.titleMedium?.copyWith(fontWeight: FontWeight.w600)),
+                Text('$count miembros', style: theme.textTheme.bodySmall),
+              ],
+            ),
+          ),
+          FilledButton.tonal(
+            onPressed: () => _requestJoin(id, name),
+            child: const Text('Solicitar'),
+          ),
+        ],
+      ),
+    );
+  }
+
+  Widget _defaultLogo(ThemeData theme) {
     return Container(
       width: 64,
       height: 64,
       decoration: BoxDecoration(
-        color: Colors.green.withValues(alpha: 0.2),
+        color: theme.colorScheme.primary.withValues(alpha: 0.15),
         borderRadius: BorderRadius.circular(12),
       ),
-      child: const Icon(Icons.groups, size: 32, color: Colors.green),
+      child: Icon(Icons.groups, size: 32, color: theme.colorScheme.primary),
     );
   }
 
@@ -364,9 +453,7 @@ class _NodoScreenState extends State<NodoScreen> {
               icon: const Icon(Icons.copy, size: 20),
               onPressed: () {
                 Clipboard.setData(ClipboardData(text: value));
-                ScaffoldMessenger.of(context).showSnackBar(
-                  const SnackBar(content: Text('Código copiado')),
-                );
+                _showSnack('Código copiado');
               },
             ),
         ],
