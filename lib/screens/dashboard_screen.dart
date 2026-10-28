@@ -35,6 +35,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
   bool _loadingCredits = true;
   bool _loadingTask = true;
   String? _taskError;
+  Map<String, dynamic>? _expedition;
 
   @override
   void initState() {
@@ -48,6 +49,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
       _loadCredits(),
       _loadTask(),
       _loadMyNode(),
+      _loadExpedition(),
     ]);
   }
 
@@ -122,6 +124,15 @@ class _DashboardScreenState extends State<DashboardScreen> {
         SnackBar(content: Text('Error: $e'), backgroundColor: Colors.red),
       );
     }
+  }
+
+  Future<void> _loadExpedition() async {
+    try {
+      _expedition = await widget.api.getCurrentExpedition();
+    } catch (_) {
+      _expedition = null;
+    }
+    if (mounted) setState(() {});
   }
 
   @override
@@ -228,6 +239,10 @@ class _DashboardScreenState extends State<DashboardScreen> {
             const SizedBox(height: 20),
 
             // Card de Nodo (si pertenece a uno)
+            if (_expedition != null) ...[
+              _buildExpeditionCard(theme),
+              const SizedBox(height: 16),
+            ],
             if (_myNode != null) ...[
               GestureDetector(
                 onTap: () => setState(() => _currentIndex = 3),
@@ -265,6 +280,74 @@ class _DashboardScreenState extends State<DashboardScreen> {
             ),
           ],
         ),
+      ),
+    );
+  }
+
+  
+  Widget _buildExpeditionCard(ThemeData theme) {
+    final e = _expedition;
+    if (e == null) return const SizedBox.shrink();
+
+    final goal = (e['goal_value'] as num?)?.toInt() ?? 1;
+    final current = (e['current_value'] as num?)?.toInt() ?? 0;
+    final progress = ((e['progress'] as num?)?.toDouble() ??
+            (goal > 0 ? current / goal : 0.0))
+        .clamp(0.0, 1.0);
+    final name = e['name']?.toString() ?? 'Expedición';
+    final desc = e['description']?.toString() ?? '';
+
+    return Container(
+      width: double.infinity,
+      padding: const EdgeInsets.all(16),
+      decoration: BoxDecoration(
+        color: theme.colorScheme.surfaceContainerHighest.withValues(alpha: 0.55),
+        borderRadius: BorderRadius.circular(14),
+        border: Border.all(
+          color: theme.colorScheme.primary.withValues(alpha: 0.35),
+        ),
+      ),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Row(
+            children: [
+              const Text('🍄', style: TextStyle(fontSize: 22)),
+              const SizedBox(width: 10),
+              Expanded(
+                child: Text(
+                  name,
+                  style: theme.textTheme.titleMedium?.copyWith(
+                    fontWeight: FontWeight.w700,
+                  ),
+                ),
+              ),
+            ],
+          ),
+          if (desc.isNotEmpty) ...[
+            const SizedBox(height: 6),
+            Text(
+              desc,
+              style: theme.textTheme.bodySmall?.copyWith(
+                color: theme.colorScheme.onSurfaceVariant,
+              ),
+            ),
+          ],
+          const SizedBox(height: 12),
+          ClipRRect(
+            borderRadius: BorderRadius.circular(6),
+            child: LinearProgressIndicator(
+              value: progress,
+              minHeight: 8,
+              backgroundColor: theme.colorScheme.surfaceContainerHighest,
+            ),
+          ),
+          const SizedBox(height: 8),
+          Text(
+            '$current / $goal tareas · ${(progress * 100).toStringAsFixed(1)}%',
+            style: theme.textTheme.labelMedium,
+          ),
+        ],
       ),
     );
   }

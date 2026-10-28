@@ -443,4 +443,21 @@ class EcoClockApi {
     return _handleResponse(response) as Map<String, dynamic>;
   }
 
+
+  Future<Map<String, dynamic>?> getCurrentExpedition() async {
+    final response = await _authenticatedRequest(
+      () => http.get(
+        Uri.parse('$baseUrl/expeditions/current'),
+        headers: _headers,
+      ),
+    );
+    if (response.statusCode == 204 || response.body.isEmpty || response.body == 'null') {
+      return null;
+    }
+    if (response.statusCode == 404) return null;
+    final data = _handleResponse(response);
+    if (data == null) return null;
+    return data as Map<String, dynamic>;
+  }
+
 }
