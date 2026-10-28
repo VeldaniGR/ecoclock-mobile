@@ -141,7 +141,9 @@ class _NodoScreenState extends State<NodoScreen> {
       context: context,
       builder: (ctx) => AlertDialog(
         title: const Text('Eliminar nodo'),
-        content: Text('¿Eliminar permanentemente el nodo "${node['name']}"? Esta acción no se puede deshacer.'),
+        content: Text(
+          '¿Eliminar permanentemente el nodo "${node['name']}"? Esta acción no se puede deshacer.',
+        ),
         actions: [
           TextButton(onPressed: () => Navigator.pop(ctx, false), child: const Text('Cancelar')),
           FilledButton(
@@ -159,6 +161,48 @@ class _NodoScreenState extends State<NodoScreen> {
         setState(() => _myNode = null);
         _showSnack('Nodo eliminado', success: true);
         _loadPublicNodes();
+      }
+    } catch (e) {
+      _showSnack('Error: $e');
+    }
+  }
+
+  Future<void> _renameNode() async {
+    final node = _myNode;
+    if (node == null) return;
+    final controller = TextEditingController(text: node['name']?.toString() ?? '');
+    final newName = await showDialog<String>(
+      context: context,
+      builder: (ctx) => AlertDialog(
+        title: const Text('Renombrar nodo'),
+        content: TextField(
+          controller: controller,
+          decoration: const InputDecoration(
+            labelText: 'Nuevo nombre',
+            border: OutlineInputBorder(),
+          ),
+          autofocus: true,
+        ),
+        actions: [
+          TextButton(onPressed: () => Navigator.pop(ctx), child: const Text('Cancelar')),
+          FilledButton(
+            onPressed: () => Navigator.pop(ctx, controller.text.trim()),
+            child: const Text('Guardar'),
+          ),
+        ],
+      ),
+    );
+    if (newName == null || newName.length < 3) {
+      if (newName != null && newName.length < 3) {
+        _showSnack('El nombre debe tener al menos 3 caracteres');
+      }
+      return;
+    }
+    try {
+      final updated = await widget.api.renameNode(node['id'] as int, newName);
+      if (mounted) {
+        setState(() => _myNode = updated);
+        _showSnack('Nombre actualizado', success: true);
       }
     } catch (e) {
       _showSnack('Error: $e');
@@ -206,7 +250,9 @@ class _NodoScreenState extends State<NodoScreen> {
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
 
-    if (_loading) return const Center(child: CircularProgressIndicator());
+    if (_loading) {
+      return const Center(child: CircularProgressIndicator());
+    }
 
     if (_error != null) {
       return Center(
@@ -221,7 +267,9 @@ class _NodoScreenState extends State<NodoScreen> {
       );
     }
 
-    if (_myNode != null) return _buildMyNodeView(theme);
+    if (_myNode != null) {
+      return _buildMyNodeView(theme);
+    }
     return _buildNoNodeView(theme);
   }
 
@@ -259,12 +307,16 @@ class _NodoScreenState extends State<NodoScreen> {
                     children: [
                       Text(
                         node['name'] ?? '',
-                        style: theme.textTheme.headlineSmall?.copyWith(fontWeight: FontWeight.bold),
+                        style: theme.textTheme.headlineSmall?.copyWith(
+                          fontWeight: FontWeight.bold,
+                        ),
                       ),
                       const SizedBox(height: 4),
                       Text(
                         isAdmin ? 'Administrador' : 'Miembro',
-                        style: theme.textTheme.bodyMedium?.copyWith(color: theme.colorScheme.primary),
+                        style: theme.textTheme.bodyMedium?.copyWith(
+                          color: theme.colorScheme.primary,
+                        ),
                       ),
                     ],
                   ),
@@ -275,7 +327,12 @@ class _NodoScreenState extends State<NodoScreen> {
             _infoCard(theme, 'Miembros', '${node['member_count'] ?? 0}'),
             if (isAdmin) ...[
               const SizedBox(height: 12),
-              _infoCard(theme, 'Enlace de unión', node['invite_code'] ?? '', copyable: true),
+              _infoCard(
+                theme,
+                'Enlace de unión',
+                node['invite_code'] ?? '',
+                copyable: true,
+              ),
             ],
             const SizedBox(height: 32),
             if (isAdmin) ...[
@@ -284,9 +341,22 @@ class _NodoScreenState extends State<NodoScreen> {
                 child: OutlinedButton.icon(
                   onPressed: _uploadingLogo ? null : _pickAndUploadLogo,
                   icon: _uploadingLogo
-                      ? const SizedBox(width: 18, height: 18, child: CircularProgressIndicator(strokeWidth: 2))
+                      ? const SizedBox(
+                          width: 18,
+                          height: 18,
+                          child: CircularProgressIndicator(strokeWidth: 2),
+                        )
                       : const Icon(Icons.image),
                   label: Text(_uploadingLogo ? 'Subiendo...' : 'Cambiar logo'),
+                ),
+              ),
+              const SizedBox(height: 12),
+              SizedBox(
+                width: double.infinity,
+                child: OutlinedButton.icon(
+                  onPressed: _renameNode,
+                  icon: const Icon(Icons.edit),
+                  label: const Text('Renombrar nodo'),
                 ),
               ),
               const SizedBox(height: 12),
@@ -324,23 +394,35 @@ class _NodoScreenState extends State<NodoScreen> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Text('Nodos Ciudadanos', style: theme.textTheme.headlineSmall?.copyWith(fontWeight: FontWeight.bold)),
+            Text(
+              'Nodos Ciudadanos',
+              style: theme.textTheme.headlineSmall?.copyWith(fontWeight: FontWeight.bold),
+            ),
             const SizedBox(height: 8),
             Text(
               'Únete a un nodo o crea el tuyo para colaborar con otros ciudadanos.',
-              style: theme.textTheme.bodyMedium?.copyWith(color: theme.colorScheme.onSurfaceVariant),
+              style: theme.textTheme.bodyMedium?.copyWith(
+                color: theme.colorScheme.onSurfaceVariant,
+              ),
             ),
             const SizedBox(height: 32),
             Text('Crear un nodo', style: theme.textTheme.titleMedium),
             const SizedBox(height: 12),
             TextField(
               controller: _nameController,
-              decoration: const InputDecoration(labelText: 'Nombre del nodo', border: OutlineInputBorder()),
+              decoration: const InputDecoration(
+                labelText: 'Nombre del nodo',
+                border: OutlineInputBorder(),
+              ),
             ),
             const SizedBox(height: 12),
             SizedBox(
               width: double.infinity,
-              child: FilledButton.icon(onPressed: _createNode, icon: const Icon(Icons.add), label: const Text('Crear nodo')),
+              child: FilledButton.icon(
+                onPressed: _createNode,
+                icon: const Icon(Icons.add),
+                label: const Text('Crear nodo'),
+              ),
             ),
             const SizedBox(height: 32),
             const Divider(),
@@ -359,7 +441,11 @@ class _NodoScreenState extends State<NodoScreen> {
             const SizedBox(height: 12),
             SizedBox(
               width: double.infinity,
-              child: OutlinedButton.icon(onPressed: _joinByCode, icon: const Icon(Icons.login), label: const Text('Unirse al nodo')),
+              child: OutlinedButton.icon(
+                onPressed: _joinByCode,
+                icon: const Icon(Icons.login),
+                label: const Text('Unirse al nodo'),
+              ),
             ),
             const SizedBox(height: 32),
             const Divider(),
@@ -367,13 +453,20 @@ class _NodoScreenState extends State<NodoScreen> {
             Text('Explorar nodos públicos', style: theme.textTheme.titleMedium),
             const SizedBox(height: 12),
             if (_loadingPublic)
-              const Center(child: Padding(padding: EdgeInsets.all(24), child: CircularProgressIndicator()))
+              const Center(
+                child: Padding(
+                  padding: EdgeInsets.all(24),
+                  child: CircularProgressIndicator(),
+                ),
+              )
             else if (_publicNodes.isEmpty)
               Padding(
                 padding: const EdgeInsets.symmetric(vertical: 16),
                 child: Text(
                   'No hay nodos públicos todavía. ¡Sé el primero en crear uno!',
-                  style: theme.textTheme.bodyMedium?.copyWith(color: theme.colorScheme.onSurfaceVariant),
+                  style: theme.textTheme.bodyMedium?.copyWith(
+                    color: theme.colorScheme.onSurfaceVariant,
+                  ),
                 ),
               )
             else
@@ -407,7 +500,8 @@ class _NodoScreenState extends State<NodoScreen> {
                 width: 44,
                 height: 44,
                 fit: BoxFit.cover,
-                errorBuilder: (_, __, ___) => Icon(Icons.groups, color: theme.colorScheme.primary),
+                errorBuilder: (_, __, ___) =>
+                    Icon(Icons.groups, color: theme.colorScheme.primary),
               ),
             )
           else
@@ -425,7 +519,10 @@ class _NodoScreenState extends State<NodoScreen> {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Text(name, style: theme.textTheme.titleMedium?.copyWith(fontWeight: FontWeight.w600)),
+                Text(
+                  name,
+                  style: theme.textTheme.titleMedium?.copyWith(fontWeight: FontWeight.w600),
+                ),
                 Text('$count miembros', style: theme.textTheme.bodySmall),
               ],
             ),
@@ -451,7 +548,12 @@ class _NodoScreenState extends State<NodoScreen> {
     );
   }
 
-  Widget _infoCard(ThemeData theme, String label, String value, {bool copyable = false}) {
+  Widget _infoCard(
+    ThemeData theme,
+    String label,
+    String value, {
+    bool copyable = false,
+  }) {
     return Container(
       width: double.infinity,
       padding: const EdgeInsets.all(16),
@@ -467,7 +569,10 @@ class _NodoScreenState extends State<NodoScreen> {
               children: [
                 Text(label, style: theme.textTheme.labelMedium),
                 const SizedBox(height: 4),
-                Text(value, style: theme.textTheme.titleMedium?.copyWith(fontWeight: FontWeight.w600)),
+                Text(
+                  value,
+                  style: theme.textTheme.titleMedium?.copyWith(fontWeight: FontWeight.w600),
+                ),
               ],
             ),
           ),

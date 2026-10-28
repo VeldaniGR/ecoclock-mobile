@@ -431,4 +431,16 @@ class EcoClockApi {
     final response = await http.Response.fromStream(streamed);
     return _handleResponse(response) as Map<String, dynamic>;
   }
+
+  Future<Map<String, dynamic>> renameNode(int nodeId, String name) async {
+    final response = await _authenticatedRequest(
+      () => http.patch(
+        Uri.parse('$baseUrl/nodes/$nodeId'),
+        headers: _headers,
+        body: jsonEncode({'name': name}),
+      ),
+    );
+    return _handleResponse(response) as Map<String, dynamic>;
+  }
+
 }
