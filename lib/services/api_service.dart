@@ -479,4 +479,66 @@ class EcoClockApi {
     return _handleResponse(response) as Map<String, dynamic>;
   }
 
+
+  Future<List<dynamic>> listNodeMembers(int nodeId) async {
+    final response = await _authenticatedRequest(
+      () => http.get(
+        Uri.parse('$baseUrl/nodes/$nodeId/members'),
+        headers: _headers,
+      ),
+    );
+    return _handleResponse(response) as List<dynamic>;
+  }
+
+  Future<List<dynamic>> listJoinRequests(int nodeId) async {
+    final response = await _authenticatedRequest(
+      () => http.get(
+        Uri.parse('$baseUrl/nodes/$nodeId/requests'),
+        headers: _headers,
+      ),
+    );
+    return _handleResponse(response) as List<dynamic>;
+  }
+
+  Future<void> acceptJoinRequest(int nodeId, int requestId) async {
+    final response = await _authenticatedRequest(
+      () => http.post(
+        Uri.parse('$baseUrl/nodes/$nodeId/requests/$requestId/accept'),
+        headers: _headers,
+      ),
+    );
+    _handleResponse(response);
+  }
+
+  Future<void> rejectJoinRequest(int nodeId, int requestId) async {
+    final response = await _authenticatedRequest(
+      () => http.post(
+        Uri.parse('$baseUrl/nodes/$nodeId/requests/$requestId/reject'),
+        headers: _headers,
+      ),
+    );
+    _handleResponse(response);
+  }
+
+  Future<void> kickMember(int nodeId, int userId) async {
+    final response = await _authenticatedRequest(
+      () => http.delete(
+        Uri.parse('$baseUrl/nodes/$nodeId/members/$userId'),
+        headers: _headers,
+      ),
+    );
+    _handleResponse(response);
+  }
+
+  Future<void> transferLeadership(int nodeId, int newAdminUserId) async {
+    final response = await _authenticatedRequest(
+      () => http.post(
+        Uri.parse('$baseUrl/nodes/$nodeId/transfer'),
+        headers: _headers,
+        body: jsonEncode({'new_admin_user_id': newAdminUserId}),
+      ),
+    );
+    _handleResponse(response);
+  }
+
 }
