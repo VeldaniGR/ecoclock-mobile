@@ -460,4 +460,23 @@ class EcoClockApi {
     return data as Map<String, dynamic>;
   }
 
+
+  Future<Map<String, dynamic>> updateNode({
+    required int nodeId,
+    String? name,
+    String? logoFrame,
+  }) async {
+    final body = <String, dynamic>{};
+    if (name != null) body['name'] = name;
+    if (logoFrame != null) body['logo_frame'] = logoFrame;
+    final response = await _authenticatedRequest(
+      () => http.patch(
+        Uri.parse('$baseUrl/nodes/$nodeId'),
+        headers: _headers,
+        body: jsonEncode(body),
+      ),
+    );
+    return _handleResponse(response) as Map<String, dynamic>;
+  }
+
 }

@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:image_picker/image_picker.dart';
@@ -24,6 +26,10 @@ class _NodoScreenState extends State<NodoScreen> {
   final _codeController = TextEditingController();
   final _picker = ImagePicker();
 
+  static const _frameLabels = {
+    'autumn_fungi': 'Otoño · Hongos',
+  };
+
   @override
   void initState() {
     super.initState();
@@ -35,6 +41,23 @@ class _NodoScreenState extends State<NodoScreen> {
     _nameController.dispose();
     _codeController.dispose();
     super.dispose();
+  }
+
+  List<String> _unlockedFrames(Map<String, dynamic> node) {
+    final raw = node['unlocked_frames'];
+    if (raw == null) return [];
+    if (raw is List) {
+      return raw.map((e) => e.toString()).toList();
+    }
+    if (raw is String && raw.isNotEmpty) {
+      try {
+        final decoded = jsonDecode(raw);
+        if (decoded is List) {
+          return decoded.map((e) => e.toString()).toList();
+        }
+      } catch (_) {}
+    }
+    return [];
   }
 
   Future<void> _loadAll() async {
@@ -142,7 +165,7 @@ class _NodoScreenState extends State<NodoScreen> {
       builder: (ctx) => AlertDialog(
         title: const Text('Eliminar nodo'),
         content: Text(
-          '¿Eliminar permanentemente el nodo "${node['name']}"? Esta acción no se puede deshacer.',
+          '¿Eliminar permanentemente el nodo "${node['name']}"?',
         ),
         actions: [
           TextButton(onPressed: () => Navigator.pop(ctx, false), child: const Text('Cancelar')),
@@ -192,17 +215,29 @@ class _NodoScreenState extends State<NodoScreen> {
         ],
       ),
     );
-    if (newName == null || newName.length < 3) {
-      if (newName != null && newName.length < 3) {
-        _showSnack('El nombre debe tener al menos 3 caracteres');
-      }
-      return;
-    }
+    if (newName == null || newName.length < 3) return;
     try {
       final updated = await widget.api.renameNode(node['id'] as int, newName);
       if (mounted) {
         setState(() => _myNode = updated);
         _showSnack('Nombre actualizado', success: true);
+      }
+    } catch (e) {
+      _showSnack('Error: $e');
+    }
+  }
+
+  Future<void> _setLogoFrame(String? frame) async {
+    final node = _myNode;
+    if (node == null) return;
+    try {
+      final updated = await widget.api.updateNode(
+        nodeId: node['id'] as int,
+        logoFrame: frame ?? 'none',
+      );
+      if (mounted) {
+        setState(() => _myNode = {...node, ...updated});
+        _showSnack('Marco actualizado', success: true);
       }
     } catch (e) {
       _showSnack('Error: $e');
@@ -267,16 +302,50 @@ class _NodoScreenState extends State<NodoScreen> {
       );
     }
 
-    if (_myNode != null) {
-      return _buildMyNodeView(theme);
-    }
+    if (_myNode != null) return _buildMyNodeView(theme);
     return _buildNoNodeView(theme);
+  }
+
+  Widget _buildLogo(ThemeData theme, Map<String, dynamic> node) {
+    final logoUrl = node['logo_url'];
+    final frame = node['logo_frame']?.toString();
+    final child = logoUrl != null
+        ? ClipRRect(
+            borderRadius: BorderRadius.circular(12),
+            child: Image.network(
+              '${EcoClockApi.baseUrl}$logoUrl',
+              width: 64,
+              height: 64,
+              fit: BoxFit.cover,
+              errorBuilder: (_, __, ___) => _defaultLogo(theme),
+            ),
+          )
+        : _defaultLogo(theme);
+
+    if (frame == 'autumn_fungi') {
+      return Container(
+        padding: const EdgeInsets.all(3),
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(14),
+          border: Border.all(color: const Color(0xFFC4A35A), width: 3),
+          boxShadow: [
+            BoxShadow(
+              color: const Color(0xFFC4A35A).withValues(alpha: 0.4),
+              blurRadius: 8,
+            ),
+          ],
+        ),
+        child: child,
+      );
+    }
+    return child;
   }
 
   Widget _buildMyNodeView(ThemeData theme) {
     final node = _myNode!;
     final isAdmin = node['my_role'] == 'admin';
-    final logoUrl = node['logo_url'];
+    final unlocked = _unlockedFrames(node);
+    final currentFrame = node['logo_frame']?.toString();
 
     return SafeArea(
       top: false,
@@ -287,19 +356,7 @@ class _NodoScreenState extends State<NodoScreen> {
           children: [
             Row(
               children: [
-                if (logoUrl != null)
-                  ClipRRect(
-                    borderRadius: BorderRadius.circular(12),
-                    child: Image.network(
-                      '${EcoClockApi.baseUrl}$logoUrl',
-                      width: 64,
-                      height: 64,
-                      fit: BoxFit.cover,
-                      errorBuilder: (_, __, ___) => _defaultLogo(theme),
-                    ),
-                  )
-                else
-                  _defaultLogo(theme),
+                _buildLogo(theme, node),
                 const SizedBox(width: 16),
                 Expanded(
                   child: Column(
@@ -333,6 +390,36 @@ class _NodoScreenState extends State<NodoScreen> {
                 node['invite_code'] ?? '',
                 copyable: true,
               ),
+              const SizedBox(height: 16),
+              Text('Marco del logo', style: theme.textTheme.titleMedium),
+              const SizedBox(height: 8),
+              if (unlocked.isEmpty)
+                Text(
+                  'Completa expediciones para desbloquear marcos.',
+                  style: theme.textTheme.bodySmall?.copyWith(
+                    color: theme.colorScheme.onSurfaceVariant,
+                  ),
+                )
+              else
+                Wrap(
+                  spacing: 8,
+                  runSpacing: 8,
+                  children: [
+                    ChoiceChip(
+                      label: const Text('Ninguno'),
+                      selected: currentFrame == null || currentFrame.isEmpty,
+                      onSelected: (_) => _setLogoFrame('none'),
+                    ),
+                    ...unlocked.map((f) {
+                      final label = _frameLabels[f] ?? f;
+                      return ChoiceChip(
+                        label: Text(label),
+                        selected: currentFrame == f,
+                        onSelected: (_) => _setLogoFrame(f),
+                      );
+                    }),
+                  ],
+                ),
             ],
             const SizedBox(height: 32),
             if (isAdmin) ...[
@@ -463,7 +550,7 @@ class _NodoScreenState extends State<NodoScreen> {
               Padding(
                 padding: const EdgeInsets.symmetric(vertical: 16),
                 child: Text(
-                  'No hay nodos públicos todavía. ¡Sé el primero en crear uno!',
+                  'No hay nodos públicos todavía.',
                   style: theme.textTheme.bodyMedium?.copyWith(
                     color: theme.colorScheme.onSurfaceVariant,
                   ),
