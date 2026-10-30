@@ -1,0 +1,59 @@
+{
+  "@@locale": "es",
+
+  "appTitle": "Eco'clock Network",
+  "@appTitle": {
+    "description": "Título de la aplicación"
+  },
+
+  "tabHome": "Inicio",
+  "tabTask": "Tarea",
+  "tabCredits": "Créditos",
+  "tabNode": "Nodo",
+  "tabDonate": "Donar",
+  "tabSettings": "Ajustes",
+
+  "welcome": "Bienvenido, {name}",
+  "@welcome": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+
+  "userId": "ID de usuario: {id}",
+  "@userId": {
+    "placeholders": {
+      "id": {
+        "type": "String"
+      }
+    }
+  },
+
+  "refreshAll": "Refrescar todo",
+  "requestTask": "Pedir tarea",
+  "logout": "Cerrar sesión",
+  "taskSent": "Tarea enviada correctamente",
+  "errorGeneric": "Error: {error}",
+  "@errorGeneric": {
+    "placeholders": {
+      "error": {
+        "type": "String"
+      }
+    }
+  },
+
+  "settingsTitle": "Ajustes",
+  "language": "Idioma",
+  "version": "Versión {version}",
+  "@version": {
+    "placeholders": {
+      "version": {
+        "type": "String"
+      }
+    }
+  },
+  "update": "Actualizar",
+  "updateDescription": "Comprobar si hay una nueva versión disponible"
+}

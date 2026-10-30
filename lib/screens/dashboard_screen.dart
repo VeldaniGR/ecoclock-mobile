@@ -1,5 +1,7 @@
 // Dashboard principal con tabs: Inicio, Tarea, Créditos, Nodo, Donar
 
+import '../l10n/app_localizations.dart';
+import 'settings_screen.dart';
 import 'package:flutter/material.dart';
 import '../../models/api_models.dart';
 import '../../services/api_service.dart';
@@ -135,75 +137,82 @@ class _DashboardScreenState extends State<DashboardScreen> {
     if (mounted) setState(() {});
   }
 
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: const Text('Eco\'clock Network'),
-        actions: [
-          IconButton(
-            icon: const Icon(Icons.logout),
-            onPressed: () {
-              widget.api.logout();
-              widget.onLogout();
-            },
-            tooltip: 'Cerrar sesión',
-          ),
-          IconButton(
-            icon: const Icon(Icons.refresh),
-            onPressed: _loadAll,
-            tooltip: 'Refrescar todo',
-          ),
-        ],
-      ),
-      body: IndexedStack(
-        index: _currentIndex,
-        children: [
-          _buildHomeTab(),
-          _buildTaskTab(),
-          _buildCreditsTab(),
-          NodoScreen(api: widget.api),
-          const DonarScreen(),
-        ],
-      ),
-      bottomNavigationBar: NavigationBar(
-        selectedIndex: _currentIndex,
-        onDestinationSelected: (index) {
-          setState(() => _currentIndex = index);
-          // Recargar nodo al entrar en la pestaña
-          if (index == 3) _loadMyNode();
-        },
-        labelBehavior: NavigationDestinationLabelBehavior.onlyShowSelected,
-        destinations: const [
-          NavigationDestination(
-            icon: Icon(Icons.dashboard_outlined),
-            selectedIcon: Icon(Icons.dashboard),
-            label: 'Inicio',
-          ),
-          NavigationDestination(
-            icon: Icon(Icons.task_alt_outlined),
-            selectedIcon: Icon(Icons.task_alt),
-            label: 'Tarea',
-          ),
-          NavigationDestination(
-            icon: Icon(Icons.stars_outlined),
-            selectedIcon: Icon(Icons.stars),
-            label: 'Créditos',
-          ),
-          NavigationDestination(
-            icon: Icon(Icons.groups_outlined),
-            selectedIcon: Icon(Icons.groups),
-            label: 'Nodo',
-          ),
-          NavigationDestination(
-            icon: Icon(Icons.favorite_outline),
-            selectedIcon: Icon(Icons.favorite),
-            label: 'Donar',
-          ),
-        ],
-      ),
-    );
-  }
+@override
+Widget build(BuildContext context) {
+  final l10n = AppLocalizations.of(context);
+
+  return Scaffold(
+    appBar: AppBar(
+      title: Text(l10n.appTitle),
+      actions: [
+        IconButton(
+          icon: const Icon(Icons.logout),
+          onPressed: () {
+            widget.api.logout();
+            widget.onLogout();
+          },
+          tooltip: l10n.logout,
+        ),
+        IconButton(
+          icon: const Icon(Icons.refresh),
+          onPressed: _loadAll,
+          tooltip: l10n.refreshAll,
+        ),
+      ],
+    ),
+    body: IndexedStack(
+      index: _currentIndex,
+      children: [
+        _buildHomeTab(),
+        _buildTaskTab(),
+        _buildCreditsTab(),
+        NodoScreen(api: widget.api),
+        const DonarScreen(),
+        const SettingsScreen(),          // ← nueva pestaña
+      ],
+    ),
+    bottomNavigationBar: NavigationBar(
+      selectedIndex: _currentIndex,
+      onDestinationSelected: (index) {
+        setState(() => _currentIndex = index);
+        if (index == 3) _loadMyNode();
+      },
+      labelBehavior: NavigationDestinationLabelBehavior.onlyShowSelected,
+      destinations: [
+        NavigationDestination(
+          icon: const Icon(Icons.dashboard_outlined),
+          selectedIcon: const Icon(Icons.dashboard),
+          label: l10n.tabHome,
+        ),
+        NavigationDestination(
+          icon: const Icon(Icons.task_alt_outlined),
+          selectedIcon: const Icon(Icons.task_alt),
+          label: l10n.tabTask,
+        ),
+        NavigationDestination(
+          icon: const Icon(Icons.stars_outlined),
+          selectedIcon: const Icon(Icons.stars),
+          label: l10n.tabCredits,
+        ),
+        NavigationDestination(
+          icon: const Icon(Icons.groups_outlined),
+          selectedIcon: const Icon(Icons.groups),
+          label: l10n.tabNode,
+        ),
+        NavigationDestination(
+          icon: const Icon(Icons.favorite_outline),
+          selectedIcon: const Icon(Icons.favorite),
+          label: l10n.tabDonate,
+        ),
+        NavigationDestination(
+          icon: const Icon(Icons.settings_outlined),
+          selectedIcon: const Icon(Icons.settings),
+          label: l10n.tabSettings,
+        ),
+      ],
+    ),
+  );
+}
 
   // ──────────────────────────────────────────────────────────────
   // Tab: Inicio

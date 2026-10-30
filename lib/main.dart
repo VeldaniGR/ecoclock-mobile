@@ -1,4 +1,7 @@
 // Eco'clock Network — Cliente móvil Flutter
+import 'package:flutter_localizations/flutter_localizations.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+import 'l10n/app_localizations.dart';
 //
 // Punto de entrada de la aplicación.
 // Maneja el estado de autenticación y navega entre AuthScreen y DashboardScreen.
@@ -379,8 +382,41 @@ class EcoClockThemeExtension extends ThemeExtension<EcoClockThemeExtension> {
   }
 }
 
-class EcoClockApp extends StatelessWidget {
+class EcoClockApp extends StatefulWidget {
   const EcoClockApp({super.key});
+
+  @override
+  State<EcoClockApp> createState() => _EcoClockAppState();
+
+  /// Permite cambiar el idioma desde cualquier sitio de la app
+  static void setLocale(BuildContext context, Locale newLocale) {
+    final state = context.findAncestorStateOfType<_EcoClockAppState>();
+    state?.setLocale(newLocale);
+  }
+}
+
+class _EcoClockAppState extends State<EcoClockApp> {
+  Locale? _locale;
+
+  @override
+  void initState() {
+    super.initState();
+    _loadSavedLocale();
+  }
+
+  Future<void> _loadSavedLocale() async {
+    final prefs = await SharedPreferences.getInstance();
+    final code = prefs.getString('locale');
+    if (code != null) {
+      setState(() => _locale = Locale(code));
+    }
+  }
+
+  Future<void> setLocale(Locale locale) async {
+    final prefs = await SharedPreferences.getInstance();
+    await prefs.setString('locale', locale.languageCode);
+    setState(() => _locale = locale);
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -389,7 +425,32 @@ class EcoClockApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       theme: lightTheme,
       darkTheme: darkTheme,
-      themeMode: ThemeMode.dark, // Forzar tema oscuro por defecto
+      themeMode: ThemeMode.dark,
+
+      // ─── Localización ─────────────────────────────────────────
+      locale: _locale,
+      supportedLocales: const [
+        Locale('ca'),
+        Locale('es'),
+        Locale('eu'),
+        Locale('en'),
+        Locale('fr'),
+        Locale('de'),
+        Locale('it'),
+        Locale('pt'),
+        Locale('zh'),
+        Locale('ja'),
+        Locale('ru'),
+        Locale('ar'),
+      ],
+      localizationsDelegates: const [
+        AppLocalizations.delegate,
+        GlobalMaterialLocalizations.delegate,
+        GlobalWidgetsLocalizations.delegate,
+        GlobalCupertinoLocalizations.delegate,
+      ],
+      // ──────────────────────────────────────────────────────────
+
       home: const AuthGate(),
     );
   }

@@ -1,0 +1,26 @@
+{
+  "@@locale": "en",
+
+  "appTitle": "Eco'clock Network",
+  "tabHome": "Home",
+  "tabTask": "Task",
+  "tabCredits": "Credits",
+  "tabNode": "Node",
+  "tabDonate": "Donate",
+  "tabSettings": "Settings",
+
+  "welcome": "Welcome, {name}",
+  "userId": "User ID: {id}",
+
+  "refreshAll": "Refresh all",
+  "requestTask": "Request task",
+  "logout": "Log out",
+  "taskSent": "Task submitted successfully",
+  "errorGeneric": "Error: {error}",
+
+  "settingsTitle": "Settings",
+  "language": "Language",
+  "version": "Version {version}",
+  "update": "Update",
+  "updateDescription": "Check for a new version"
+}

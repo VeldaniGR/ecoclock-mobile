@@ -1,0 +1,59 @@
+{
+  "@@locale": "eu",
+
+  "appTitle": "Eco'clock Network",
+  "@appTitle": {
+    "description": "Aplikazioaren izenburua"
+  },
+
+  "tabHome": "Hasi",
+  "tabTask": "Ataza",
+  "tabCredits": "Kredituak",
+  "tabNode": "Nodoa",
+  "tabDonate": "Eman dohaintza",
+  "tabSettings": "Ezarpenak",
+
+  "welcome": "Ongi etorri, {name}",
+  "@welcome": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+
+  "userId": "Erabiltzaile-identifikatzailea: {id}",
+  "@userId": {
+    "placeholders": {
+      "id": {
+        "type": "String"
+      }
+    }
+  },
+
+  "refreshAll": "Freskatu dena",
+  "requestTask": "Eskatu etxeko lanak",
+  "logout": "Saioa itxi",
+  "taskSent": "Zeregina behar bezala bidali da",
+  "errorGeneric": "Akatsa: {error}",
+  "@errorGeneric": {
+    "placeholders": {
+      "error": {
+        "type": "String"
+      }
+    }
+  },
+
+  "settingsTitle": "Ezarpenak",
+  "language": "Hizkuntza",
+  "version": "Bertsioa {version}",
+  "@version": {
+    "placeholders": {
+      "version": {
+        "type": "String"
+      }
+    }
+  },
+  "update": "Eguneratu",
+  "updateDescription": "Egiaztatu bertsio berri bat eskuragarri dagoen"
+}

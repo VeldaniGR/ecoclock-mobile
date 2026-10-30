@@ -1,0 +1,59 @@
+{
+  "@@locale": "ar",
+
+  "appTitle": "Eco'clock Network",
+  "@appTitle": {
+    "description": "عنوان التطبيق"
+  },
+
+  "tabHome": "يبدأ",
+  "tabTask": "مهمة",
+  "tabCredits": "طاقم العمل",
+  "tabNode": "العقدة",
+  "tabDonate": "يتبرع",
+  "tabSettings": "إعدادات",
+
+  "welcome": "مرحباً, {name}",
+  "@welcome": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+
+  "userId": "معرِّف المستخدم: {id}",
+  "@userId": {
+    "placeholders": {
+      "id": {
+        "type": "String"
+      }
+    }
+  },
+
+  "refreshAll": "تحديث الكل",
+  "requestTask": "اطلب الواجب المنزلي",
+  "logout": "تسجيل الخروج",
+  "taskSent": "تم تسليم المهمة بنجاح",
+  "errorGeneric": "خطأ: {error}",
+  "@errorGeneric": {
+    "placeholders": {
+      "error": {
+        "type": "String"
+      }
+    }
+  },
+
+  "settingsTitle": "إعدادات",
+  "language": "لغة",
+  "version": "إصدار {version}",
+  "@version": {
+    "placeholders": {
+      "version": {
+        "type": "String"
+      }
+    }
+  },
+  "update": "تحديث",
+  "updateDescription": "تحقق مما إذا كان هناك إصدار جديد متاح"
+}

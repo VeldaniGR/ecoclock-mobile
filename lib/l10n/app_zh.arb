@@ -1,0 +1,59 @@
+{
+  "@@locale": "zh",
+
+  "appTitle": "Eco'clock Network",
+  "@appTitle": {
+    "description": "應用程式標題"
+  },
+
+  "tabHome": "開始",
+  "tabTask": "任務",
+  "tabCredits": "製作名單",
+  "tabNode": "節點",
+  "tabDonate": "捐",
+  "tabSettings": "設定",
+
+  "welcome": "歡迎, {name}",
+  "@welcome": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+
+  "userId": "使用者身分: {id}",
+  "@userId": {
+    "placeholders": {
+      "id": {
+        "type": "String"
+      }
+    }
+  },
+
+  "refreshAll": "全部刷新",
+  "requestTask": "詢問作業",
+  "logout": "登出登入",
+  "taskSent": "作業提交成功",
+  "errorGeneric": "錯誤: {error}",
+  "@errorGeneric": {
+    "placeholders": {
+      "error": {
+        "type": "String"
+      }
+    }
+  },
+
+  "settingsTitle": "設定",
+  "language": "語言",
+  "version": "版本 {version}",
+  "@version": {
+    "placeholders": {
+      "version": {
+        "type": "String"
+      }
+    }
+  },
+  "update": "更新",
+  "updateDescription": "檢查是否有新版本可用"
+}

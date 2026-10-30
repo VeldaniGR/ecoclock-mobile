@@ -1,0 +1,59 @@
+{
+  "@@locale": "ru",
+
+  "appTitle": "Eco'clock Network",
+  "@appTitle": {
+    "description": "Название приложения"
+  },
+
+  "tabHome": "Начинать",
+  "tabTask": "Задача",
+  "tabCredits": "Авторы",
+  "tabNode": "Узел",
+  "tabDonate": "Пожертвовать",
+  "tabSettings": "Настройки",
+
+  "welcome": "Добро пожаловать, {name}",
+  "@welcome": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+
+  "userId": "ID пользователя: {id}",
+  "@userId": {
+    "placeholders": {
+      "id": {
+        "type": "String"
+      }
+    }
+  },
+
+  "refreshAll": "Обновить всё",
+  "requestTask": "Попросить задать домашнее задание",
+  "logout": "Выйти",
+  "taskSent": "Задание успешно отправлено",
+  "errorGeneric": "Ошибка: {error}",
+  "@errorGeneric": {
+    "placeholders": {
+      "error": {
+        "type": "String"
+      }
+    }
+  },
+
+  "settingsTitle": "Настройки",
+  "language": "Язык",
+  "version": "Версия {version}",
+  "@version": {
+    "placeholders": {
+      "version": {
+        "type": "String"
+      }
+    }
+  },
+  "update": "Обновлять",
+  "updateDescription": "Проверьте, доступна ли новая версия"
+}

@@ -1,0 +1,59 @@
+{
+  "@@locale": "ja",
+
+  "appTitle": "Eco'clock Network",
+  "@appTitle": {
+    "description": "アプリケーションのタイトル"
+  },
+
+  "tabHome": "始める",
+  "tabTask": "タスク",
+  "tabCredits": "クレジット",
+  "tabNode": "クレジット",
+  "tabDonate": "寄付する",
+  "tabSettings": "設定",
+
+  "welcome": "いらっしゃいませ, {name}",
+  "@welcome": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+
+  "userId": "ユーザーID: {id}",
+  "@userId": {
+    "placeholders": {
+      "id": {
+        "type": "String"
+      }
+    }
+  },
+
+  "refreshAll": "すべて更新",
+  "requestTask": "宿題について尋ねる",
+  "logout": "ログアウト",
+  "taskSent": "課題の提出が完了しました",
+  "errorGeneric": "間違い: {error}",
+  "@errorGeneric": {
+    "placeholders": {
+      "error": {
+        "type": "String"
+      }
+    }
+  },
+
+  "settingsTitle": "設定",
+  "language": "言語",
+  "version": "バージョン {version}",
+  "@version": {
+    "placeholders": {
+      "version": {
+        "type": "String"
+      }
+    }
+  },
+  "update": "アップデート",
+  "updateDescription": "新しいバージョンが利用可能か確認する"
+}
