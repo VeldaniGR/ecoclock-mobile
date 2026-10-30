@@ -1,7 +1,5 @@
-// Dashboard principal con tabs: Inicio, Tarea, Créditos, Nodo, Donar
+// Dashboard principal con tabs: Inicio, Tarea, Créditos, Nodo, Donar, Settings
 
-import '../l10n/app_localizations.dart';
-import 'settings_screen.dart';
 import 'package:flutter/material.dart';
 import '../../models/api_models.dart';
 import '../../services/api_service.dart';
@@ -9,8 +7,10 @@ import '../widgets/json_view.dart';
 import '../services/worker.dart';
 import '../widgets/stat_card.dart';
 import '../widgets/level_card.dart';
+import '../l10n/app_localizations.dart';
 import 'donar_screen.dart';
 import 'nodo_screen.dart';
+import 'settings_screen.dart';
 
 class DashboardScreen extends StatefulWidget {
   final EcoClockApi api;
@@ -107,9 +107,10 @@ class _DashboardScreenState extends State<DashboardScreen> {
         output: output,
       );
       if (!mounted) return;
+      final l10n = AppLocalizations.of(context);
       ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(
-          content: Text('Tarea enviada correctamente'),
+        SnackBar(
+          content: Text(l10n.taskSentSuccess),
           backgroundColor: Colors.green,
         ),
       );
@@ -137,82 +138,82 @@ class _DashboardScreenState extends State<DashboardScreen> {
     if (mounted) setState(() {});
   }
 
-@override
-Widget build(BuildContext context) {
-  final l10n = AppLocalizations.of(context);
+  @override
+  Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context);
 
-  return Scaffold(
-    appBar: AppBar(
-      title: Text(l10n.appTitle),
-      actions: [
-        IconButton(
-          icon: const Icon(Icons.logout),
-          onPressed: () {
-            widget.api.logout();
-            widget.onLogout();
-          },
-          tooltip: l10n.logout,
-        ),
-        IconButton(
-          icon: const Icon(Icons.refresh),
-          onPressed: _loadAll,
-          tooltip: l10n.refreshAll,
-        ),
-      ],
-    ),
-    body: IndexedStack(
-      index: _currentIndex,
-      children: [
-        _buildHomeTab(),
-        _buildTaskTab(),
-        _buildCreditsTab(),
-        NodoScreen(api: widget.api),
-        const DonarScreen(),
-        const SettingsScreen(),          // ← nueva pestaña
-      ],
-    ),
-    bottomNavigationBar: NavigationBar(
-      selectedIndex: _currentIndex,
-      onDestinationSelected: (index) {
-        setState(() => _currentIndex = index);
-        if (index == 3) _loadMyNode();
-      },
-      labelBehavior: NavigationDestinationLabelBehavior.onlyShowSelected,
-      destinations: [
-        NavigationDestination(
-          icon: const Icon(Icons.dashboard_outlined),
-          selectedIcon: const Icon(Icons.dashboard),
-          label: l10n.tabHome,
-        ),
-        NavigationDestination(
-          icon: const Icon(Icons.task_alt_outlined),
-          selectedIcon: const Icon(Icons.task_alt),
-          label: l10n.tabTask,
-        ),
-        NavigationDestination(
-          icon: const Icon(Icons.stars_outlined),
-          selectedIcon: const Icon(Icons.stars),
-          label: l10n.tabCredits,
-        ),
-        NavigationDestination(
-          icon: const Icon(Icons.groups_outlined),
-          selectedIcon: const Icon(Icons.groups),
-          label: l10n.tabNode,
-        ),
-        NavigationDestination(
-          icon: const Icon(Icons.favorite_outline),
-          selectedIcon: const Icon(Icons.favorite),
-          label: l10n.tabDonate,
-        ),
-        NavigationDestination(
-          icon: const Icon(Icons.settings_outlined),
-          selectedIcon: const Icon(Icons.settings),
-          label: l10n.tabSettings,
-        ),
-      ],
-    ),
-  );
-}
+    return Scaffold(
+      appBar: AppBar(
+        title: Text(l10n.appTitle),
+        actions: [
+          IconButton(
+            icon: const Icon(Icons.logout),
+            onPressed: () {
+              widget.api.logout();
+              widget.onLogout();
+            },
+            tooltip: l10n.logout,
+          ),
+          IconButton(
+            icon: const Icon(Icons.refresh),
+            onPressed: _loadAll,
+            tooltip: l10n.refreshAll,
+          ),
+        ],
+      ),
+      body: IndexedStack(
+        index: _currentIndex,
+        children: [
+          _buildHomeTab(),
+          _buildTaskTab(),
+          _buildCreditsTab(),
+          NodoScreen(api: widget.api),
+          const DonarScreen(),
+          const SettingsScreen(),
+        ],
+      ),
+      bottomNavigationBar: NavigationBar(
+        selectedIndex: _currentIndex,
+        onDestinationSelected: (index) {
+          setState(() => _currentIndex = index);
+          if (index == 3) _loadMyNode();
+        },
+        labelBehavior: NavigationDestinationLabelBehavior.onlyShowSelected,
+        destinations: [
+          NavigationDestination(
+            icon: const Icon(Icons.dashboard_outlined),
+            selectedIcon: const Icon(Icons.dashboard),
+            label: l10n.tabHome,
+          ),
+          NavigationDestination(
+            icon: const Icon(Icons.task_alt_outlined),
+            selectedIcon: const Icon(Icons.task_alt),
+            label: l10n.tabTask,
+          ),
+          NavigationDestination(
+            icon: const Icon(Icons.stars_outlined),
+            selectedIcon: const Icon(Icons.stars),
+            label: l10n.tabCredits,
+          ),
+          NavigationDestination(
+            icon: const Icon(Icons.groups_outlined),
+            selectedIcon: const Icon(Icons.groups),
+            label: l10n.tabNode,
+          ),
+          NavigationDestination(
+            icon: const Icon(Icons.favorite_outline),
+            selectedIcon: const Icon(Icons.favorite),
+            label: l10n.tabDonate,
+          ),
+          NavigationDestination(
+            icon: const Icon(Icons.settings_outlined),
+            selectedIcon: const Icon(Icons.settings),
+            label: l10n.tabSettings,
+          ),
+        ],
+      ),
+    );
+  }
 
   // ──────────────────────────────────────────────────────────────
   // Tab: Inicio
@@ -220,6 +221,7 @@ Widget build(BuildContext context) {
 
   Widget _buildHomeTab() {
     final theme = Theme.of(context);
+    final l10n = AppLocalizations.of(context);
 
     if (_loadingUser) {
       return const Center(child: CircularProgressIndicator());
@@ -233,29 +235,28 @@ Widget build(BuildContext context) {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text(
-              'Bienvenido, ${_user?.email ?? 'usuario'}',
+              l10n.welcome(_user?.email ?? l10n.userFallback),
               style: theme.textTheme.headlineSmall?.copyWith(
                 fontWeight: FontWeight.w600,
               ),
             ),
             const SizedBox(height: 8),
             Text(
-              'ID de usuario: ${_user?.id ?? '?'}',
+              l10n.userId('${_user?.id ?? '?'}'),
               style: theme.textTheme.bodyMedium?.copyWith(
                 color: theme.colorScheme.onSurfaceVariant,
               ),
             ),
             const SizedBox(height: 20),
 
-            // Card de Nodo (si pertenece a uno)
             if (_expedition != null) ...[
-              _buildExpeditionCard(theme),
+              _buildExpeditionCard(theme, l10n),
               const SizedBox(height: 16),
             ],
             if (_myNode != null) ...[
               GestureDetector(
                 onTap: () => setState(() => _currentIndex = 3),
-                child: _buildNodeCard(theme),
+                child: _buildNodeCard(theme, l10n),
               ),
               const SizedBox(height: 16),
             ],
@@ -269,7 +270,7 @@ Widget build(BuildContext context) {
             ],
             _buildDashboardStatsRow(theme),
             const SizedBox(height: 28),
-            Text('Acciones rápidas', style: theme.textTheme.titleMedium),
+            Text(l10n.quickActions, style: theme.textTheme.titleMedium),
             const SizedBox(height: 12),
             Wrap(
               spacing: 12,
@@ -277,12 +278,12 @@ Widget build(BuildContext context) {
               children: [
                 FilledButton.icon(
                   icon: const Icon(Icons.refresh),
-                  label: const Text('Refrescar todo'),
+                  label: Text(l10n.refreshAll),
                   onPressed: _loadAll,
                 ),
                 OutlinedButton.icon(
                   icon: const Icon(Icons.task_alt),
-                  label: const Text('Pedir tarea'),
+                  label: Text(l10n.requestTask),
                   onPressed: _loadTask,
                 ),
               ],
@@ -293,8 +294,7 @@ Widget build(BuildContext context) {
     );
   }
 
-  
-  Widget _buildExpeditionCard(ThemeData theme) {
+  Widget _buildExpeditionCard(ThemeData theme, AppLocalizations l10n) {
     final e = _expedition;
     if (e == null) return const SizedBox.shrink();
 
@@ -303,7 +303,7 @@ Widget build(BuildContext context) {
     final progress = ((e['progress'] as num?)?.toDouble() ??
             (goal > 0 ? current / goal : 0.0))
         .clamp(0.0, 1.0);
-    final name = e['name']?.toString() ?? 'Expedición';
+    final name = e['name']?.toString() ?? l10n.expeditionFallback;
     final desc = e['description']?.toString() ?? '';
 
     return Container(
@@ -353,7 +353,11 @@ Widget build(BuildContext context) {
           ),
           const SizedBox(height: 8),
           Text(
-            '$current / $goal tareas · ${(progress * 100).toStringAsFixed(1)}%',
+            l10n.tasksProgress(
+              current,
+              goal,
+              (progress * 100).toStringAsFixed(1),
+            ),
             style: theme.textTheme.labelMedium,
           ),
         ],
@@ -361,7 +365,7 @@ Widget build(BuildContext context) {
     );
   }
 
-  Widget _buildNodeCard(ThemeData theme) {
+  Widget _buildNodeCard(ThemeData theme, AppLocalizations l10n) {
     final node = _myNode!;
     final logoUrl = node['logo_url'];
 
@@ -403,7 +407,7 @@ Widget build(BuildContext context) {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  'Miembro del Nodo',
+                  l10n.nodeMember,
                   style: theme.textTheme.labelMedium?.copyWith(
                     color: theme.colorScheme.onSurfaceVariant,
                   ),
@@ -424,7 +428,7 @@ Widget build(BuildContext context) {
   }
 
   // ──────────────────────────────────────────────────────────────
-  // Tab: Tarea
+  // Tab: Tarea (todavía en español — se localizará después)
   // ──────────────────────────────────────────────────────────────
 
   Widget _buildTaskTab() {
@@ -573,7 +577,7 @@ Widget build(BuildContext context) {
   }
 
   // ──────────────────────────────────────────────────────────────
-  // Tab: Créditos
+  // Tab: Créditos (todavía en español — se localizará después)
   // ──────────────────────────────────────────────────────────────
 
   Widget _buildCreditsTab() {
