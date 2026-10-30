@@ -1,4 +1,4 @@
-// Pantalla de Ajustes — idioma, versión y botón Actualizar
+// Pantalla de Ajustes — idioma (dropdown), versión y botón Actualizar
 
 import 'package:flutter/material.dart';
 import 'package:url_launcher/url_launcher.dart';
@@ -56,8 +56,22 @@ class _SettingsScreenState extends State<SettingsScreen> {
 
   Future<void> _openDownloads() async {
     final uri = Uri.parse('https://download.ecoclock.org');
-    if (await canLaunchUrl(uri)) {
-      await launchUrl(uri, mode: LaunchMode.externalApplication);
+    try {
+      final launched = await launchUrl(
+        uri,
+        mode: LaunchMode.externalApplication,
+      );
+      if (!launched && mounted) {
+        ScaffoldMessenger.of(context).showSnackBar(
+          const SnackBar(content: Text('No se pudo abrir el enlace')),
+        );
+      }
+    } catch (e) {
+      if (mounted) {
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(content: Text('Error: $e')),
+        );
+      }
     }
   }
 
@@ -67,10 +81,16 @@ class _SettingsScreenState extends State<SettingsScreen> {
     final theme = Theme.of(context);
     final currentLocale = Localizations.localeOf(context).languageCode;
 
+    // Aseguramos que el valor del dropdown exista en la lista
+    final validCodes = _languages.map((e) => e['code']!).toList();
+    final selectedCode = validCodes.contains(currentLocale)
+        ? currentLocale
+        : 'es';
+
     return SafeArea(
       top: false,
       child: ListView(
-        padding: const EdgeInsets.all(24),
+        padding: const EdgeInsets.fromLTRB(24, 16, 24, 32),
         children: [
           // Título
           Text(
@@ -81,7 +101,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
           ),
           const SizedBox(height: 28),
 
-          // ─── Selector de idioma ────────────────────────────────
+          // ─── Selector de idioma (Dropdown) ─────────────────────
           Text(
             l10n.language,
             style: theme.textTheme.titleMedium?.copyWith(
@@ -90,34 +110,55 @@ class _SettingsScreenState extends State<SettingsScreen> {
           ),
           const SizedBox(height: 12),
 
-          Card(
-            child: Column(
-              children: _languages.map((lang) {
-                final isSelected = currentLocale == lang['code'];
-                return ListTile(
-                  title: Text(lang['name']!),
-                  trailing: isSelected
-                      ? Icon(Icons.check_circle, color: theme.colorScheme.primary)
-                      : null,
-                  selected: isSelected,
-                  onTap: () {
-                    EcoClockApp.setLocale(context, Locale(lang['code']!));
-                  },
-                );
-              }).toList(),
+          Container(
+            padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 4),
+            decoration: BoxDecoration(
+              color: theme.colorScheme.surfaceContainerHighest.withValues(alpha: 0.55),
+              borderRadius: BorderRadius.circular(14),
+              border: Border.all(
+                color: theme.colorScheme.outline.withValues(alpha: 0.3),
+              ),
+            ),
+            child: DropdownButtonHideUnderline(
+              child: DropdownButton<String>(
+                value: selectedCode,
+                isExpanded: true,
+                icon: Icon(
+                  Icons.arrow_drop_down_rounded,
+                  color: theme.colorScheme.onSurfaceVariant,
+                ),
+                dropdownColor: theme.colorScheme.surfaceContainerHighest,
+                borderRadius: BorderRadius.circular(14),
+                items: _languages.map((lang) {
+                  return DropdownMenuItem<String>(
+                    value: lang['code'],
+                    child: Text(
+                      lang['name']!,
+                      style: theme.textTheme.bodyLarge,
+                    ),
+                  );
+                }).toList(),
+                onChanged: (String? newCode) {
+                  if (newCode != null) {
+                    EcoClockApp.setLocale(context, Locale(newCode));
+                  }
+                },
+              ),
             ),
           ),
 
-          const SizedBox(height: 32),
+          const SizedBox(height: 40),
 
           // ─── Información de versión ────────────────────────────
           Text(
-            l10n.version('$_version${_buildNumber.isNotEmpty ? '+$_buildNumber' : ''}'),
+            l10n.version(
+              '$_version${_buildNumber.isNotEmpty ? '+$_buildNumber' : ''}',
+            ),
             style: theme.textTheme.bodyMedium?.copyWith(
               color: theme.colorScheme.onSurfaceVariant,
             ),
           ),
-          const SizedBox(height: 8),
+          const SizedBox(height: 4),
           Text(
             'Eco\'clock Network',
             style: theme.textTheme.bodySmall?.copyWith(
@@ -125,18 +166,22 @@ class _SettingsScreenState extends State<SettingsScreen> {
             ),
           ),
 
-          const SizedBox(height: 32),
+          const SizedBox(height: 36),
 
           // ─── Botón Actualizar ──────────────────────────────────
           SizedBox(
             width: double.infinity,
+            height: 52,
             child: FilledButton.icon(
-              icon: const Icon(Icons.system_update),
-              label: Text(l10n.update),
+              icon: const Icon(Icons.system_update_alt, size: 22),
+              label: Text(
+                l10n.update,
+                style: const TextStyle(fontSize: 16, fontWeight: FontWeight.w600),
+              ),
               onPressed: _openDownloads,
             ),
           ),
-          const SizedBox(height: 8),
+          const SizedBox(height: 12),
           Text(
             l10n.updateDescription,
             style: theme.textTheme.bodySmall?.copyWith(
