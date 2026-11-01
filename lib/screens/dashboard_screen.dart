@@ -428,11 +428,12 @@ class _DashboardScreenState extends State<DashboardScreen> {
   }
 
   // ──────────────────────────────────────────────────────────────
-  // Tab: Tarea (todavía en español — se localizará después)
+  // Tab: Tarea
   // ──────────────────────────────────────────────────────────────
 
   Widget _buildTaskTab() {
     final theme = Theme.of(context);
+    final l10n = AppLocalizations.of(context);
 
     if (_loadingTask) {
       return const Center(child: CircularProgressIndicator());
@@ -451,7 +452,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
       return _buildErrorState(
         icon: Icons.inbox_outlined,
         color: theme.colorScheme.primary,
-        message: 'No hay tareas disponibles ahora mismo.\nInténtalo más tarde.',
+        message: l10n.noTasksAvailable,
         onRetry: _loadTask,
       );
     }
@@ -472,14 +473,14 @@ class _DashboardScreenState extends State<DashboardScreen> {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
-                        'Nueva tarea: ${task.taskType}',
+                        l10n.newTask(task.taskType),
                         style: theme.textTheme.titleLarge?.copyWith(
                           fontWeight: FontWeight.w600,
                         ),
                       ),
                       const SizedBox(height: 4),
                       Text(
-                        'ID: ${task.taskId}',
+                        l10n.taskId(task.taskId),
                         style: theme.textTheme.bodyMedium?.copyWith(
                           color: theme.colorScheme.onSurfaceVariant,
                         ),
@@ -509,7 +510,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
                 Expanded(
                   child: _buildStatChip(
                     theme,
-                    label: 'Manuales',
+                    label: l10n.manualTasks,
                     value: '${_credits?.manualCount ?? 0}',
                     icon: Icons.touch_app_outlined,
                   ),
@@ -518,7 +519,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
                 Expanded(
                   child: _buildStatChip(
                     theme,
-                    label: 'Automáticas',
+                    label: l10n.autoTasks,
                     value: '${_credits?.autoCount ?? 0}',
                     icon: Icons.autorenew,
                   ),
@@ -526,9 +527,9 @@ class _DashboardScreenState extends State<DashboardScreen> {
               ],
             ),
             const SizedBox(height: 24),
-            const Text(
-              'Datos de la tarea (payload):',
-              style: TextStyle(fontWeight: FontWeight.bold),
+            Text(
+              l10n.taskPayload,
+              style: const TextStyle(fontWeight: FontWeight.bold),
             ),
             const SizedBox(height: 8),
             JsonView(json: task.payload),
@@ -538,7 +539,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
               height: 48,
               child: FilledButton.icon(
                 icon: const Icon(Icons.send),
-                label: const Text('Calcular y enviar'),
+                label: Text(l10n.computeAndSubmit),
                 onPressed: _submitComputedTask,
               ),
             ),
@@ -555,6 +556,8 @@ class _DashboardScreenState extends State<DashboardScreen> {
     required VoidCallback onRetry,
   }) {
     final theme = Theme.of(context);
+    final l10n = AppLocalizations.of(context);
+
     return Center(
       child: Padding(
         padding: const EdgeInsets.all(24),
@@ -567,7 +570,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
             const SizedBox(height: 24),
             FilledButton.icon(
               icon: const Icon(Icons.refresh),
-              label: const Text('Reintentar'),
+              label: Text(l10n.retry),
               onPressed: onRetry,
             ),
           ],
@@ -575,7 +578,6 @@ class _DashboardScreenState extends State<DashboardScreen> {
       ),
     );
   }
-
   // ──────────────────────────────────────────────────────────────
   // Tab: Créditos (todavía en español — se localizará después)
   // ──────────────────────────────────────────────────────────────
