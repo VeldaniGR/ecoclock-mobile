@@ -126,5 +126,50 @@
   "otherAmount": "مبلغ آخر",
   "donateNow": "تبرع الآن",
   "donateRedirectInfo": "سيتم توجيهك إلى Stripe لإتمام عملية الدفع بشكل آمن. وبمجرد تجهيز الحساب المصرفي، سيتم تحديث هذا الرابط.",
-  "paymentLinkError": "تعذّر فتح رابط الدفع"
+  "paymentLinkError": "تعذّر فتح رابط الدفع",
+
+  "levelExplorer": "مستكشف",
+  "levelSensor": "مستشعر",
+  "levelSentinel": "حارس",
+  "levelLighthouse": "منارة",
+  "nextLevel": "التالي: {level}",
+  "@nextLevel": {
+    "placeholders": {
+      "level": { "type": "String" }
+    }
+  },
+  "streakDays": "أثَر {days} d",
+  "@streakDays": {
+    "placeholders": {
+      "days": { "type": "int" }
+    }
+  },
+
+  "achievementFirstContribution": "المساهمة الأولى",
+  "achievementWeekActive": "أسبوع حافل بالنشاط",
+  "achievementTwoHabitats": "موطنان",
+  "achievementFirstNode": "العقدة الأولى",
+  "achievementHundredTasks": "100 مهمة",
+
+  "nodeCreate": "إنشاء عقدة",
+  "nodeJoinByCode": "انضم باستخدام الرمز",
+  "nodeName": "اسم العقدة",
+  "nodeCode": "رمز الدعوة",
+  "nodeLeave": "اخرج من العقدة",
+  "nodeDelete": "حذف العقدة",
+  "nodeRename": "إعادة تسمية العقدة",
+  "nodeMembers": "أعضاء",
+  "nodeRequests": "التطبيقات",
+  "nodePublic": "عُقد عامة",
+  "nodeJoinRequest": "طلب الانضمام",
+  "nodeCreated": "تم إنشاء العقدة بنجاح",
+  "nodeJoined": "لقد انضممت إلى العقدة",
+  "nodeLeft": "لقد غادرت العقدة",
+  "nodeDeleted": "تم حذف العقدة",
+  "nodeNameUpdated": "الاسم المُحدَّث",
+  "cancel": "يلغي",
+  "confirm": "يتأكد",
+  "save": "يحفظ",
+  "delete": "اِسْتَبْعَد",
+  "leave": "الخروج"
 }

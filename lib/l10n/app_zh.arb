@@ -126,5 +126,50 @@
   "otherAmount": "另一個金額",
   "donateNow": "立即捐贈",
   "donateRedirectInfo": "您將被重新導向至 Stripe 以安全完成付款。待銀行帳戶準備就緒後，此連結將會更新。",
-  "paymentLinkError": "無法開啟支付連結"
+  "paymentLinkError": "無法開啟支付連結",
+
+  "levelExplorer": "探索者",
+  "levelSensor": "感應器",
+  "levelSentinel": "哨兵",
+  "levelLighthouse": "燈塔",
+  "nextLevel": "下列的: {level}",
+  "@nextLevel": {
+    "placeholders": {
+      "level": { "type": "String" }
+    }
+  },
+  "streakDays": "條紋 {days} d",
+  "@streakDays": {
+    "placeholders": {
+      "days": { "type": "int" }
+    }
+  },
+
+  "achievementFirstContribution": "首次貢獻",
+  "achievementWeekActive": "充實的一周",
+  "achievementTwoHabitats": "兩種棲息地",
+  "achievementFirstNode": "第一個節點",
+  "achievementHundredTasks": "100項任務",
+
+  "nodeCreate": "建立節點",
+  "nodeJoinByCode": "使用代碼加入",
+  "nodeName": "節點名稱",
+  "nodeCode": "邀請碼",
+  "nodeLeave": "退出節點",
+  "nodeDelete": "刪除節點",
+  "nodeRename": "重新命名節點",
+  "nodeMembers": "成員",
+  "nodeRequests": "應用",
+  "nodePublic": "公共節點",
+  "nodeJoinRequest": "申請加入",
+  "nodeCreated": "節點創建成功",
+  "nodeJoined": "您已加入該節點",
+  "nodeLeft": "您已離開該節點",
+  "nodeDeleted": "節點已刪除",
+  "nodeNameUpdated": "已更新名稱",
+  "cancel": "取消",
+  "confirm": "確認",
+  "save": "保持",
+  "delete": "排除",
+  "leave": "出去"
 }

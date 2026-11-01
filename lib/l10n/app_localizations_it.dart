@@ -216,4 +216,104 @@ class AppLocalizationsIt extends AppLocalizations {
   @override
   String get paymentLinkError =>
       'Non è stato possibile aprire il link di pagamento';
+
+  @override
+  String get levelExplorer => 'Esploratore';
+
+  @override
+  String get levelSensor => 'Sensore';
+
+  @override
+  String get levelSentinel => 'Sentinella';
+
+  @override
+  String get levelLighthouse => 'Faro';
+
+  @override
+  String nextLevel(String level) {
+    return 'Seguente: $level';
+  }
+
+  @override
+  String streakDays(int days) {
+    return 'Strisciante $days d';
+  }
+
+  @override
+  String get achievementFirstContribution => 'Primo contributo';
+
+  @override
+  String get achievementWeekActive => 'Settimana attiva';
+
+  @override
+  String get achievementTwoHabitats => 'Due habitat';
+
+  @override
+  String get achievementFirstNode => 'Primo nodo';
+
+  @override
+  String get achievementHundredTasks => '100 attività';
+
+  @override
+  String get nodeCreate => 'Crea nodo';
+
+  @override
+  String get nodeJoinByCode => 'Partecipa con un codice';
+
+  @override
+  String get nodeName => 'Nome del nodo';
+
+  @override
+  String get nodeCode => 'Codice invito';
+
+  @override
+  String get nodeLeave => 'Esci dal nodo';
+
+  @override
+  String get nodeDelete => 'Elimina nodo';
+
+  @override
+  String get nodeRename => 'Rinomina nodo';
+
+  @override
+  String get nodeMembers => 'Membri';
+
+  @override
+  String get nodeRequests => 'Applicazioni';
+
+  @override
+  String get nodePublic => 'Nodi pubblici';
+
+  @override
+  String get nodeJoinRequest => 'Richiesta di partecipazione';
+
+  @override
+  String get nodeCreated => 'Nodo creato correttamente';
+
+  @override
+  String get nodeJoined => 'Ti sei unito al nodo';
+
+  @override
+  String get nodeLeft => 'Hai abbandonato il nodo';
+
+  @override
+  String get nodeDeleted => 'Nodo eliminato';
+
+  @override
+  String get nodeNameUpdated => 'Nome aggiornato';
+
+  @override
+  String get cancel => 'Cancellare';
+
+  @override
+  String get confirm => 'Confermare';
+
+  @override
+  String get save => 'Mantenere';
+
+  @override
+  String get delete => 'Eliminare';
+
+  @override
+  String get leave => 'Esci';
 }

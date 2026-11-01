@@ -126,5 +126,50 @@
   "otherAmount": "Un autre montant",
   "donateNow": "Faire un don maintenant",
   "donateRedirectInfo": "Vous serez redirigé vers Stripe pour effectuer le paiement en toute sécurité. Ce lien sera mis à jour une fois le compte bancaire prêt.",
-  "paymentLinkError": "Impossible d'ouvrir le lien de paiement"
+  "paymentLinkError": "Impossible d'ouvrir le lien de paiement",
+
+  "levelExplorer": "Explorateur",
+  "levelSensor": "Capteur",
+  "levelSentinel": "Sentinelle",
+  "levelLighthouse": "Phare",
+  "nextLevel": "Suivant: {level}",
+  "@nextLevel": {
+    "placeholders": {
+      "level": { "type": "String" }
+    }
+  },
+  "streakDays": "Série {days} d",
+  "@streakDays": {
+    "placeholders": {
+      "days": { "type": "int" }
+    }
+  },
+
+  "achievementFirstContribution": "Première contribution",
+  "achievementWeekActive": "Semaine active",
+  "achievementTwoHabitats": "Deux habitats",
+  "achievementFirstNode": "Premier nœud",
+  "achievementHundredTasks": "100 tâches",
+
+  "nodeCreate": "Créer un nœud",
+  "nodeJoinByCode": "Rejoindre avec un code",
+  "nodeName": "Nom du nœud",
+  "nodeCode": "Code d'invitation",
+  "nodeLeave": "Sortir du nœud",
+  "nodeDelete": "Supprimer le nœud",
+  "nodeRename": "Renommer le nœud",
+  "nodeMembers": "Membres",
+  "nodeRequests": "Demandes",
+  "nodePublic": "Nœuds publics",
+  "nodeJoinRequest": "Demander à rejoindre",
+  "nodeCreated": "Nœud créé avec succès",
+  "nodeJoined": "Tu as rejoint le nœud",
+  "nodeLeft": "Tu es sorti du nœud",
+  "nodeDeleted": "Nœud supprimé",
+  "nodeNameUpdated": "Nom mis à jour",
+  "cancel": "Annuler",
+  "confirm": "Confirmer",
+  "save": "Enregistrer",
+  "delete": "Supprimer",
+  "leave": "Sortir"
 }

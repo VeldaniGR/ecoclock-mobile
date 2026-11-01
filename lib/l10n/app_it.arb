@@ -126,5 +126,50 @@
   "otherAmount": "Un altro importo",
   "donateNow": "Dona ora",
   "donateRedirectInfo": "Verrai reindirizzato su Stripe per completare il pagamento in modo sicuro. Una volta che il conto bancario sarà pronto, questo link verrà aggiornato.",
-  "paymentLinkError": "Non è stato possibile aprire il link di pagamento"
+  "paymentLinkError": "Non è stato possibile aprire il link di pagamento",
+
+  "levelExplorer": "Esploratore",
+  "levelSensor": "Sensore",
+  "levelSentinel": "Sentinella",
+  "levelLighthouse": "Faro",
+  "nextLevel": "Seguente: {level}",
+  "@nextLevel": {
+    "placeholders": {
+      "level": { "type": "String" }
+    }
+  },
+  "streakDays": "Strisciante {days} d",
+  "@streakDays": {
+    "placeholders": {
+      "days": { "type": "int" }
+    }
+  },
+
+  "achievementFirstContribution": "Primo contributo",
+  "achievementWeekActive": "Settimana attiva",
+  "achievementTwoHabitats": "Due habitat",
+  "achievementFirstNode": "Primo nodo",
+  "achievementHundredTasks": "100 attività",
+
+  "nodeCreate": "Crea nodo",
+  "nodeJoinByCode": "Partecipa con un codice",
+  "nodeName": "Nome del nodo",
+  "nodeCode": "Codice invito",
+  "nodeLeave": "Esci dal nodo",
+  "nodeDelete": "Elimina nodo",
+  "nodeRename": "Rinomina nodo",
+  "nodeMembers": "Membri",
+  "nodeRequests": "Applicazioni",
+  "nodePublic": "Nodi pubblici",
+  "nodeJoinRequest": "Richiesta di partecipazione",
+  "nodeCreated": "Nodo creato correttamente",
+  "nodeJoined": "Ti sei unito al nodo",
+  "nodeLeft": "Hai abbandonato il nodo",
+  "nodeDeleted": "Nodo eliminato",
+  "nodeNameUpdated": "Nome aggiornato",
+  "cancel": "Cancellare",
+  "confirm": "Confermare",
+  "save": "Mantenere",
+  "delete": "Eliminare",
+  "leave": "Esci"
 }

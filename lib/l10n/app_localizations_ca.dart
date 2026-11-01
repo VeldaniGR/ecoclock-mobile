@@ -214,4 +214,104 @@ class AppLocalizationsCa extends AppLocalizations {
 
   @override
   String get paymentLinkError => 'No s\'ha pogut obrir l\'enllaç de pagament';
+
+  @override
+  String get levelExplorer => 'Explorador';
+
+  @override
+  String get levelSensor => 'Sensor';
+
+  @override
+  String get levelSentinel => 'Sentinella';
+
+  @override
+  String get levelLighthouse => 'Far';
+
+  @override
+  String nextLevel(String level) {
+    return 'Següent: $level';
+  }
+
+  @override
+  String streakDays(int days) {
+    return 'Ratxa $days d';
+  }
+
+  @override
+  String get achievementFirstContribution => 'Primera contribució';
+
+  @override
+  String get achievementWeekActive => 'Setmana actiu';
+
+  @override
+  String get achievementTwoHabitats => 'Dos hàbitats';
+
+  @override
+  String get achievementFirstNode => 'Primer node';
+
+  @override
+  String get achievementHundredTasks => '100 tasques';
+
+  @override
+  String get nodeCreate => 'Crear node';
+
+  @override
+  String get nodeJoinByCode => 'Unir-se amb codi';
+
+  @override
+  String get nodeName => 'Nom del node';
+
+  @override
+  String get nodeCode => 'Codi d\'invitació';
+
+  @override
+  String get nodeLeave => 'Sortir del node';
+
+  @override
+  String get nodeDelete => 'Eliminar node';
+
+  @override
+  String get nodeRename => 'Renombrar node';
+
+  @override
+  String get nodeMembers => 'Membres';
+
+  @override
+  String get nodeRequests => 'Sol·licituds';
+
+  @override
+  String get nodePublic => 'Nodes públics';
+
+  @override
+  String get nodeJoinRequest => 'Sol·licitar unir-se';
+
+  @override
+  String get nodeCreated => 'Node creat correctament';
+
+  @override
+  String get nodeJoined => 'T\'has unit al node';
+
+  @override
+  String get nodeLeft => 'Has sortit del node';
+
+  @override
+  String get nodeDeleted => 'Node eliminat';
+
+  @override
+  String get nodeNameUpdated => 'Nom actualitzat';
+
+  @override
+  String get cancel => 'Cancel·la';
+
+  @override
+  String get confirm => 'Confirma';
+
+  @override
+  String get save => 'Guarda';
+
+  @override
+  String get delete => 'Elimina';
+
+  @override
+  String get leave => 'Sortir';
 }

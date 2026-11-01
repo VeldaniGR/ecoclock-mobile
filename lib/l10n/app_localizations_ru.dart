@@ -214,4 +214,104 @@ class AppLocalizationsRu extends AppLocalizations {
 
   @override
   String get paymentLinkError => 'Не удалось открыть ссылку для оплаты';
+
+  @override
+  String get levelExplorer => 'Исследователь';
+
+  @override
+  String get levelSensor => 'Датчик';
+
+  @override
+  String get levelSentinel => 'Часовой';
+
+  @override
+  String get levelLighthouse => 'Маяк';
+
+  @override
+  String nextLevel(String level) {
+    return 'Следующий: $level';
+  }
+
+  @override
+  String streakDays(int days) {
+    return 'Серия $days d';
+  }
+
+  @override
+  String get achievementFirstContribution => 'Первый вклад';
+
+  @override
+  String get achievementWeekActive => 'Активная неделя';
+
+  @override
+  String get achievementTwoHabitats => 'Две среды обитания';
+
+  @override
+  String get achievementFirstNode => 'Первый узел';
+
+  @override
+  String get achievementHundredTasks => '100 задач';
+
+  @override
+  String get nodeCreate => 'Создать узел';
+
+  @override
+  String get nodeJoinByCode => 'Присоединиться по коду';
+
+  @override
+  String get nodeName => 'Имя узла';
+
+  @override
+  String get nodeCode => 'Код приглашения';
+
+  @override
+  String get nodeLeave => 'Выйти из узла';
+
+  @override
+  String get nodeDelete => 'Удалить узел';
+
+  @override
+  String get nodeRename => 'Переименовать узел';
+
+  @override
+  String get nodeMembers => 'Участники';
+
+  @override
+  String get nodeRequests => 'Приложения';
+
+  @override
+  String get nodePublic => 'Публичные узлы';
+
+  @override
+  String get nodeJoinRequest => 'Запрос на присоединение';
+
+  @override
+  String get nodeCreated => 'Узел успешно создан';
+
+  @override
+  String get nodeJoined => 'Вы присоединились к узлу';
+
+  @override
+  String get nodeLeft => 'Вы покинули узел';
+
+  @override
+  String get nodeDeleted => 'Узел удален';
+
+  @override
+  String get nodeNameUpdated => 'Обновлённое название';
+
+  @override
+  String get cancel => 'Отмена';
+
+  @override
+  String get confirm => 'Подтверждать';
+
+  @override
+  String get save => 'Держать';
+
+  @override
+  String get delete => 'Устранять';
+
+  @override
+  String get leave => 'Выходить';
 }

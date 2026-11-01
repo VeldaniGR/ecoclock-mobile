@@ -212,4 +212,104 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get paymentLinkError => 'تعذّر فتح رابط الدفع';
+
+  @override
+  String get levelExplorer => 'مستكشف';
+
+  @override
+  String get levelSensor => 'مستشعر';
+
+  @override
+  String get levelSentinel => 'حارس';
+
+  @override
+  String get levelLighthouse => 'منارة';
+
+  @override
+  String nextLevel(String level) {
+    return 'التالي: $level';
+  }
+
+  @override
+  String streakDays(int days) {
+    return 'أثَر $days d';
+  }
+
+  @override
+  String get achievementFirstContribution => 'المساهمة الأولى';
+
+  @override
+  String get achievementWeekActive => 'أسبوع حافل بالنشاط';
+
+  @override
+  String get achievementTwoHabitats => 'موطنان';
+
+  @override
+  String get achievementFirstNode => 'العقدة الأولى';
+
+  @override
+  String get achievementHundredTasks => '100 مهمة';
+
+  @override
+  String get nodeCreate => 'إنشاء عقدة';
+
+  @override
+  String get nodeJoinByCode => 'انضم باستخدام الرمز';
+
+  @override
+  String get nodeName => 'اسم العقدة';
+
+  @override
+  String get nodeCode => 'رمز الدعوة';
+
+  @override
+  String get nodeLeave => 'اخرج من العقدة';
+
+  @override
+  String get nodeDelete => 'حذف العقدة';
+
+  @override
+  String get nodeRename => 'إعادة تسمية العقدة';
+
+  @override
+  String get nodeMembers => 'أعضاء';
+
+  @override
+  String get nodeRequests => 'التطبيقات';
+
+  @override
+  String get nodePublic => 'عُقد عامة';
+
+  @override
+  String get nodeJoinRequest => 'طلب الانضمام';
+
+  @override
+  String get nodeCreated => 'تم إنشاء العقدة بنجاح';
+
+  @override
+  String get nodeJoined => 'لقد انضممت إلى العقدة';
+
+  @override
+  String get nodeLeft => 'لقد غادرت العقدة';
+
+  @override
+  String get nodeDeleted => 'تم حذف العقدة';
+
+  @override
+  String get nodeNameUpdated => 'الاسم المُحدَّث';
+
+  @override
+  String get cancel => 'يلغي';
+
+  @override
+  String get confirm => 'يتأكد';
+
+  @override
+  String get save => 'يحفظ';
+
+  @override
+  String get delete => 'اِسْتَبْعَد';
+
+  @override
+  String get leave => 'الخروج';
 }

@@ -213,4 +213,104 @@ class AppLocalizationsEs extends AppLocalizations {
 
   @override
   String get paymentLinkError => 'No se pudo abrir el enlace de pago';
+
+  @override
+  String get levelExplorer => 'Explorador';
+
+  @override
+  String get levelSensor => 'Sensor';
+
+  @override
+  String get levelSentinel => 'Centinela';
+
+  @override
+  String get levelLighthouse => 'Faro';
+
+  @override
+  String nextLevel(String level) {
+    return 'Siguiente: $level';
+  }
+
+  @override
+  String streakDays(int days) {
+    return 'Racha $days d';
+  }
+
+  @override
+  String get achievementFirstContribution => 'Primera contribución';
+
+  @override
+  String get achievementWeekActive => 'Semana activo';
+
+  @override
+  String get achievementTwoHabitats => 'Dos hábitats';
+
+  @override
+  String get achievementFirstNode => 'Primer nodo';
+
+  @override
+  String get achievementHundredTasks => '100 tareas';
+
+  @override
+  String get nodeCreate => 'Crear nodo';
+
+  @override
+  String get nodeJoinByCode => 'Unirse con código';
+
+  @override
+  String get nodeName => 'Nombre del nodo';
+
+  @override
+  String get nodeCode => 'Código de invitación';
+
+  @override
+  String get nodeLeave => 'Salir del nodo';
+
+  @override
+  String get nodeDelete => 'Eliminar nodo';
+
+  @override
+  String get nodeRename => 'Renombrar nodo';
+
+  @override
+  String get nodeMembers => 'Miembros';
+
+  @override
+  String get nodeRequests => 'Solicitudes';
+
+  @override
+  String get nodePublic => 'Nodos públicos';
+
+  @override
+  String get nodeJoinRequest => 'Solicitar unirse';
+
+  @override
+  String get nodeCreated => 'Nodo creado correctamente';
+
+  @override
+  String get nodeJoined => 'Te has unido al nodo';
+
+  @override
+  String get nodeLeft => 'Has salido del nodo';
+
+  @override
+  String get nodeDeleted => 'Nodo eliminado';
+
+  @override
+  String get nodeNameUpdated => 'Nombre actualizado';
+
+  @override
+  String get cancel => 'Cancelar';
+
+  @override
+  String get confirm => 'Confirmar';
+
+  @override
+  String get save => 'Guardar';
+
+  @override
+  String get delete => 'Eliminar';
+
+  @override
+  String get leave => 'Salir';
 }

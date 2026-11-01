@@ -126,5 +126,50 @@
   "otherAmount": "別の金額",
   "donateNow": "今すぐ寄付する",
   "donateRedirectInfo": "安全に決済を完了していただくため、Stripeのページへリダイレクトされます。銀行口座の準備が整い次第、このリンクは更新されます。",
-  "paymentLinkError": "支払いリンクを開くことができませんでした。"
+  "paymentLinkError": "支払いリンクを開くことができませんでした。",
+
+  "levelExplorer": "エクスプローラ",
+  "levelSensor": "センサー",
+  "levelSentinel": "センチネル",
+  "levelLighthouse": "灯台",
+  "nextLevel": "続く: {level}",
+  "@nextLevel": {
+    "placeholders": {
+      "level": { "type": "String" }
+    }
+  },
+  "streakDays": "連続 {days} d",
+  "@streakDays": {
+    "placeholders": {
+      "days": { "type": "int" }
+    }
+  },
+
+  "achievementFirstContribution": "最初の貢献",
+  "achievementWeekActive": "アクティブな一週間",
+  "achievementTwoHabitats": "2つの生息環境",
+  "achievementFirstNode": "最初のノード",
+  "achievementHundredTasks": "100のタスク",
+
+  "nodeCreate": "ノードを作成",
+  "nodeJoinByCode": "コードで参加",
+  "nodeName": "ノード名",
+  "nodeCode": "招待コード",
+  "nodeLeave": "ノードから出る",
+  "nodeDelete": "ノードを削除",
+  "nodeRename": "ノードの名前を変更",
+  "nodeMembers": "メンバー",
+  "nodeRequests": "用途",
+  "nodePublic": "パブリックノード",
+  "nodeJoinRequest": "参加リクエスト",
+  "nodeCreated": "ノードが正常に作成されました",
+  "nodeJoined": "ノードに参加しました",
+  "nodeLeft": "ノードから離れました",
+  "nodeDeleted": "ノードが削除されました",
+  "nodeNameUpdated": "更新された名前",
+  "cancel": "キャンセル",
+  "confirm": "確認する",
+  "save": "保つ",
+  "delete": "なくす",
+  "leave": "外出"
 }

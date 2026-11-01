@@ -489,6 +489,198 @@ abstract class AppLocalizations {
   /// In es, this message translates to:
   /// **'No se pudo abrir el enlace de pago'**
   String get paymentLinkError;
+
+  /// No description provided for @levelExplorer.
+  ///
+  /// In es, this message translates to:
+  /// **'Explorador'**
+  String get levelExplorer;
+
+  /// No description provided for @levelSensor.
+  ///
+  /// In es, this message translates to:
+  /// **'Sensor'**
+  String get levelSensor;
+
+  /// No description provided for @levelSentinel.
+  ///
+  /// In es, this message translates to:
+  /// **'Centinela'**
+  String get levelSentinel;
+
+  /// No description provided for @levelLighthouse.
+  ///
+  /// In es, this message translates to:
+  /// **'Faro'**
+  String get levelLighthouse;
+
+  /// No description provided for @nextLevel.
+  ///
+  /// In es, this message translates to:
+  /// **'Siguiente: {level}'**
+  String nextLevel(String level);
+
+  /// No description provided for @streakDays.
+  ///
+  /// In es, this message translates to:
+  /// **'Racha {days} d'**
+  String streakDays(int days);
+
+  /// No description provided for @achievementFirstContribution.
+  ///
+  /// In es, this message translates to:
+  /// **'Primera contribución'**
+  String get achievementFirstContribution;
+
+  /// No description provided for @achievementWeekActive.
+  ///
+  /// In es, this message translates to:
+  /// **'Semana activo'**
+  String get achievementWeekActive;
+
+  /// No description provided for @achievementTwoHabitats.
+  ///
+  /// In es, this message translates to:
+  /// **'Dos hábitats'**
+  String get achievementTwoHabitats;
+
+  /// No description provided for @achievementFirstNode.
+  ///
+  /// In es, this message translates to:
+  /// **'Primer nodo'**
+  String get achievementFirstNode;
+
+  /// No description provided for @achievementHundredTasks.
+  ///
+  /// In es, this message translates to:
+  /// **'100 tareas'**
+  String get achievementHundredTasks;
+
+  /// No description provided for @nodeCreate.
+  ///
+  /// In es, this message translates to:
+  /// **'Crear nodo'**
+  String get nodeCreate;
+
+  /// No description provided for @nodeJoinByCode.
+  ///
+  /// In es, this message translates to:
+  /// **'Unirse con código'**
+  String get nodeJoinByCode;
+
+  /// No description provided for @nodeName.
+  ///
+  /// In es, this message translates to:
+  /// **'Nombre del nodo'**
+  String get nodeName;
+
+  /// No description provided for @nodeCode.
+  ///
+  /// In es, this message translates to:
+  /// **'Código de invitación'**
+  String get nodeCode;
+
+  /// No description provided for @nodeLeave.
+  ///
+  /// In es, this message translates to:
+  /// **'Salir del nodo'**
+  String get nodeLeave;
+
+  /// No description provided for @nodeDelete.
+  ///
+  /// In es, this message translates to:
+  /// **'Eliminar nodo'**
+  String get nodeDelete;
+
+  /// No description provided for @nodeRename.
+  ///
+  /// In es, this message translates to:
+  /// **'Renombrar nodo'**
+  String get nodeRename;
+
+  /// No description provided for @nodeMembers.
+  ///
+  /// In es, this message translates to:
+  /// **'Miembros'**
+  String get nodeMembers;
+
+  /// No description provided for @nodeRequests.
+  ///
+  /// In es, this message translates to:
+  /// **'Solicitudes'**
+  String get nodeRequests;
+
+  /// No description provided for @nodePublic.
+  ///
+  /// In es, this message translates to:
+  /// **'Nodos públicos'**
+  String get nodePublic;
+
+  /// No description provided for @nodeJoinRequest.
+  ///
+  /// In es, this message translates to:
+  /// **'Solicitar unirse'**
+  String get nodeJoinRequest;
+
+  /// No description provided for @nodeCreated.
+  ///
+  /// In es, this message translates to:
+  /// **'Nodo creado correctamente'**
+  String get nodeCreated;
+
+  /// No description provided for @nodeJoined.
+  ///
+  /// In es, this message translates to:
+  /// **'Te has unido al nodo'**
+  String get nodeJoined;
+
+  /// No description provided for @nodeLeft.
+  ///
+  /// In es, this message translates to:
+  /// **'Has salido del nodo'**
+  String get nodeLeft;
+
+  /// No description provided for @nodeDeleted.
+  ///
+  /// In es, this message translates to:
+  /// **'Nodo eliminado'**
+  String get nodeDeleted;
+
+  /// No description provided for @nodeNameUpdated.
+  ///
+  /// In es, this message translates to:
+  /// **'Nombre actualizado'**
+  String get nodeNameUpdated;
+
+  /// No description provided for @cancel.
+  ///
+  /// In es, this message translates to:
+  /// **'Cancelar'**
+  String get cancel;
+
+  /// No description provided for @confirm.
+  ///
+  /// In es, this message translates to:
+  /// **'Confirmar'**
+  String get confirm;
+
+  /// No description provided for @save.
+  ///
+  /// In es, this message translates to:
+  /// **'Guardar'**
+  String get save;
+
+  /// No description provided for @delete.
+  ///
+  /// In es, this message translates to:
+  /// **'Eliminar'**
+  String get delete;
+
+  /// No description provided for @leave.
+  ///
+  /// In es, this message translates to:
+  /// **'Salir'**
+  String get leave;
 }
 
 class _AppLocalizationsDelegate

@@ -211,4 +211,104 @@ class AppLocalizationsJa extends AppLocalizations {
 
   @override
   String get paymentLinkError => '支払いリンクを開くことができませんでした。';
+
+  @override
+  String get levelExplorer => 'エクスプローラ';
+
+  @override
+  String get levelSensor => 'センサー';
+
+  @override
+  String get levelSentinel => 'センチネル';
+
+  @override
+  String get levelLighthouse => '灯台';
+
+  @override
+  String nextLevel(String level) {
+    return '続く: $level';
+  }
+
+  @override
+  String streakDays(int days) {
+    return '連続 $days d';
+  }
+
+  @override
+  String get achievementFirstContribution => '最初の貢献';
+
+  @override
+  String get achievementWeekActive => 'アクティブな一週間';
+
+  @override
+  String get achievementTwoHabitats => '2つの生息環境';
+
+  @override
+  String get achievementFirstNode => '最初のノード';
+
+  @override
+  String get achievementHundredTasks => '100のタスク';
+
+  @override
+  String get nodeCreate => 'ノードを作成';
+
+  @override
+  String get nodeJoinByCode => 'コードで参加';
+
+  @override
+  String get nodeName => 'ノード名';
+
+  @override
+  String get nodeCode => '招待コード';
+
+  @override
+  String get nodeLeave => 'ノードから出る';
+
+  @override
+  String get nodeDelete => 'ノードを削除';
+
+  @override
+  String get nodeRename => 'ノードの名前を変更';
+
+  @override
+  String get nodeMembers => 'メンバー';
+
+  @override
+  String get nodeRequests => '用途';
+
+  @override
+  String get nodePublic => 'パブリックノード';
+
+  @override
+  String get nodeJoinRequest => '参加リクエスト';
+
+  @override
+  String get nodeCreated => 'ノードが正常に作成されました';
+
+  @override
+  String get nodeJoined => 'ノードに参加しました';
+
+  @override
+  String get nodeLeft => 'ノードから離れました';
+
+  @override
+  String get nodeDeleted => 'ノードが削除されました';
+
+  @override
+  String get nodeNameUpdated => '更新された名前';
+
+  @override
+  String get cancel => 'キャンセル';
+
+  @override
+  String get confirm => '確認する';
+
+  @override
+  String get save => '保つ';
+
+  @override
+  String get delete => 'なくす';
+
+  @override
+  String get leave => '外出';
 }

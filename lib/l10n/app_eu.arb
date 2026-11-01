@@ -126,5 +126,50 @@
   "otherAmount": "Beste kopuru bat",
   "donateNow": "Egin dohaintza orain",
   "donateRedirectInfo": "Stripe-ra bideratuko zaitugu, ordainketa modu seguruan burutzeko. Banku-kontua prest dagoenean, esteka hau eguneratu egingo da.",
-  "paymentLinkError": "Ezin izan da ordainketa-esteka ireki"
+  "paymentLinkError": "Ezin izan da ordainketa-esteka ireki",
+
+  "levelExplorer": "Esploratzailea",
+  "levelSensor": "Sentsorea",
+  "levelSentinel": "Zaintzailea",
+  "levelLighthouse": "Itsasargia",
+  "nextLevel": "Jarraitzen: {level}",
+  "@nextLevel": {
+    "placeholders": {
+      "level": { "type": "String" }
+    }
+  },
+  "streakDays": "Segida {days} d",
+  "@streakDays": {
+    "placeholders": {
+      "days": { "type": "int" }
+    }
+  },
+
+  "achievementFirstContribution": "Lehen ekarpena",
+  "achievementWeekActive": "Aste aktiboa",
+  "achievementTwoHabitats": "Bi habitat",
+  "achievementFirstNode": "Lehen nodoa",
+  "achievementHundredTasks": "100 zeregin",
+
+  "nodeCreate": "Sortu nodoa",
+  "nodeJoinByCode": "Sartu kodearekin",
+  "nodeName": "Nodo-izena",
+  "nodeCode": "Gonbidapen-kodea",
+  "nodeLeave": "Irten nodotik",
+  "nodeDelete": "Ezabatu nodoa",
+  "nodeRename": "Aldatu nodoaren izena",
+  "nodeMembers": "Kideak",
+  "nodeRequests": "Aplikazioak",
+  "nodePublic": "Nodo publikoak",
+  "nodeJoinRequest": "Sartzeko eskaera",
+  "nodeCreated": "Nodoa arrakastaz sortu da",
+  "nodeJoined": "Nodoarekin bat egin duzu",
+  "nodeLeft": "Nodoa utzi duzu",
+  "nodeDeleted": "Nodoa ezabatua",
+  "nodeNameUpdated": "Eguneratutako izena",
+  "cancel": "Utzi",
+  "confirm": "Berretsi",
+  "save": "Gorde",
+  "delete": "Ezabatu",
+  "leave": "Irten"
 }

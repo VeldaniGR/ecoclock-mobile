@@ -211,4 +211,104 @@ class AppLocalizationsZh extends AppLocalizations {
 
   @override
   String get paymentLinkError => '無法開啟支付連結';
+
+  @override
+  String get levelExplorer => '探索者';
+
+  @override
+  String get levelSensor => '感應器';
+
+  @override
+  String get levelSentinel => '哨兵';
+
+  @override
+  String get levelLighthouse => '燈塔';
+
+  @override
+  String nextLevel(String level) {
+    return '下列的: $level';
+  }
+
+  @override
+  String streakDays(int days) {
+    return '條紋 $days d';
+  }
+
+  @override
+  String get achievementFirstContribution => '首次貢獻';
+
+  @override
+  String get achievementWeekActive => '充實的一周';
+
+  @override
+  String get achievementTwoHabitats => '兩種棲息地';
+
+  @override
+  String get achievementFirstNode => '第一個節點';
+
+  @override
+  String get achievementHundredTasks => '100項任務';
+
+  @override
+  String get nodeCreate => '建立節點';
+
+  @override
+  String get nodeJoinByCode => '使用代碼加入';
+
+  @override
+  String get nodeName => '節點名稱';
+
+  @override
+  String get nodeCode => '邀請碼';
+
+  @override
+  String get nodeLeave => '退出節點';
+
+  @override
+  String get nodeDelete => '刪除節點';
+
+  @override
+  String get nodeRename => '重新命名節點';
+
+  @override
+  String get nodeMembers => '成員';
+
+  @override
+  String get nodeRequests => '應用';
+
+  @override
+  String get nodePublic => '公共節點';
+
+  @override
+  String get nodeJoinRequest => '申請加入';
+
+  @override
+  String get nodeCreated => '節點創建成功';
+
+  @override
+  String get nodeJoined => '您已加入該節點';
+
+  @override
+  String get nodeLeft => '您已離開該節點';
+
+  @override
+  String get nodeDeleted => '節點已刪除';
+
+  @override
+  String get nodeNameUpdated => '已更新名稱';
+
+  @override
+  String get cancel => '取消';
+
+  @override
+  String get confirm => '確認';
+
+  @override
+  String get save => '保持';
+
+  @override
+  String get delete => '排除';
+
+  @override
+  String get leave => '出去';
 }

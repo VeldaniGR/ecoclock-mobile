@@ -126,5 +126,50 @@
   "otherAmount": "Una altra quantitat",
   "donateNow": "Donar ara",
   "donateRedirectInfo": "Seràs redirigit a Stripe per completar el pagament de manera segura. Quan tinguem el compte bancari llest, aquest enllaç s'actualitzarà.",
-  "paymentLinkError": "No s'ha pogut obrir l'enllaç de pagament"
+  "paymentLinkError": "No s'ha pogut obrir l'enllaç de pagament",
+
+  "levelExplorer": "Explorador",
+  "levelSensor": "Sensor",
+  "levelSentinel": "Sentinella",
+  "levelLighthouse": "Far",
+  "nextLevel": "Següent: {level}",
+  "@nextLevel": {
+    "placeholders": {
+      "level": { "type": "String" }
+    }
+  },
+  "streakDays": "Ratxa {days} d",
+  "@streakDays": {
+    "placeholders": {
+      "days": { "type": "int" }
+    }
+  },
+
+  "achievementFirstContribution": "Primera contribució",
+  "achievementWeekActive": "Setmana actiu",
+  "achievementTwoHabitats": "Dos hàbitats",
+  "achievementFirstNode": "Primer node",
+  "achievementHundredTasks": "100 tasques",
+
+  "nodeCreate": "Crear node",
+  "nodeJoinByCode": "Unir-se amb codi",
+  "nodeName": "Nom del node",
+  "nodeCode": "Codi d'invitació",
+  "nodeLeave": "Sortir del node",
+  "nodeDelete": "Eliminar node",
+  "nodeRename": "Renombrar node",
+  "nodeMembers": "Membres",
+  "nodeRequests": "Sol·licituds",
+  "nodePublic": "Nodes públics",
+  "nodeJoinRequest": "Sol·licitar unir-se",
+  "nodeCreated": "Node creat correctament",
+  "nodeJoined": "T'has unit al node",
+  "nodeLeft": "Has sortit del node",
+  "nodeDeleted": "Node eliminat",
+  "nodeNameUpdated": "Nom actualitzat",
+  "cancel": "Cancel·la",
+  "confirm": "Confirma",
+  "save": "Guarda",
+  "delete": "Elimina",
+  "leave": "Sortir"
 }

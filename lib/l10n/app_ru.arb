@@ -126,5 +126,50 @@
   "otherAmount": "Другая сумма",
   "donateNow": "Пожертвовать сейчас",
   "donateRedirectInfo": "Вы будете перенаправлены на сайт Stripe для безопасного завершения оплаты. Как только банковский счет будет готов, эта ссылка обновится.",
-  "paymentLinkError": "Не удалось открыть ссылку для оплаты"
+  "paymentLinkError": "Не удалось открыть ссылку для оплаты",
+
+  "levelExplorer": "Исследователь",
+  "levelSensor": "Датчик",
+  "levelSentinel": "Часовой",
+  "levelLighthouse": "Маяк",
+  "nextLevel": "Следующий: {level}",
+  "@nextLevel": {
+    "placeholders": {
+      "level": { "type": "String" }
+    }
+  },
+  "streakDays": "Серия {days} d",
+  "@streakDays": {
+    "placeholders": {
+      "days": { "type": "int" }
+    }
+  },
+
+  "achievementFirstContribution": "Первый вклад",
+  "achievementWeekActive": "Активная неделя",
+  "achievementTwoHabitats": "Две среды обитания",
+  "achievementFirstNode": "Первый узел",
+  "achievementHundredTasks": "100 задач",
+
+  "nodeCreate": "Создать узел",
+  "nodeJoinByCode": "Присоединиться по коду",
+  "nodeName": "Имя узла",
+  "nodeCode": "Код приглашения",
+  "nodeLeave": "Выйти из узла",
+  "nodeDelete": "Удалить узел",
+  "nodeRename": "Переименовать узел",
+  "nodeMembers": "Участники",
+  "nodeRequests": "Приложения",
+  "nodePublic": "Публичные узлы",
+  "nodeJoinRequest": "Запрос на присоединение",
+  "nodeCreated": "Узел успешно создан",
+  "nodeJoined": "Вы присоединились к узлу",
+  "nodeLeft": "Вы покинули узел",
+  "nodeDeleted": "Узел удален",
+  "nodeNameUpdated": "Обновлённое название",
+  "cancel": "Отмена",
+  "confirm": "Подтверждать",
+  "save": "Держать",
+  "delete": "Устранять",
+  "leave": "Выходить"
 }

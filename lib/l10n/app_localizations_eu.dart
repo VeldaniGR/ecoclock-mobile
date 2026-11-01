@@ -213,4 +213,104 @@ class AppLocalizationsEu extends AppLocalizations {
 
   @override
   String get paymentLinkError => 'Ezin izan da ordainketa-esteka ireki';
+
+  @override
+  String get levelExplorer => 'Esploratzailea';
+
+  @override
+  String get levelSensor => 'Sentsorea';
+
+  @override
+  String get levelSentinel => 'Zaintzailea';
+
+  @override
+  String get levelLighthouse => 'Itsasargia';
+
+  @override
+  String nextLevel(String level) {
+    return 'Jarraitzen: $level';
+  }
+
+  @override
+  String streakDays(int days) {
+    return 'Segida $days d';
+  }
+
+  @override
+  String get achievementFirstContribution => 'Lehen ekarpena';
+
+  @override
+  String get achievementWeekActive => 'Aste aktiboa';
+
+  @override
+  String get achievementTwoHabitats => 'Bi habitat';
+
+  @override
+  String get achievementFirstNode => 'Lehen nodoa';
+
+  @override
+  String get achievementHundredTasks => '100 zeregin';
+
+  @override
+  String get nodeCreate => 'Sortu nodoa';
+
+  @override
+  String get nodeJoinByCode => 'Sartu kodearekin';
+
+  @override
+  String get nodeName => 'Nodo-izena';
+
+  @override
+  String get nodeCode => 'Gonbidapen-kodea';
+
+  @override
+  String get nodeLeave => 'Irten nodotik';
+
+  @override
+  String get nodeDelete => 'Ezabatu nodoa';
+
+  @override
+  String get nodeRename => 'Aldatu nodoaren izena';
+
+  @override
+  String get nodeMembers => 'Kideak';
+
+  @override
+  String get nodeRequests => 'Aplikazioak';
+
+  @override
+  String get nodePublic => 'Nodo publikoak';
+
+  @override
+  String get nodeJoinRequest => 'Sartzeko eskaera';
+
+  @override
+  String get nodeCreated => 'Nodoa arrakastaz sortu da';
+
+  @override
+  String get nodeJoined => 'Nodoarekin bat egin duzu';
+
+  @override
+  String get nodeLeft => 'Nodoa utzi duzu';
+
+  @override
+  String get nodeDeleted => 'Nodoa ezabatua';
+
+  @override
+  String get nodeNameUpdated => 'Eguneratutako izena';
+
+  @override
+  String get cancel => 'Utzi';
+
+  @override
+  String get confirm => 'Berretsi';
+
+  @override
+  String get save => 'Gorde';
+
+  @override
+  String get delete => 'Ezabatu';
+
+  @override
+  String get leave => 'Irten';
 }

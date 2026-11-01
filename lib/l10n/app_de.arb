@@ -126,5 +126,50 @@
   "otherAmount": "Ein anderer Betrag",
   "donateNow": "Jetzt spenden",
   "donateRedirectInfo": "Du wirst zu Stripe weitergeleitet, um die Zahlung sicher abzuschließen. Sobald das Bankkonto bereitsteht, wird dieser Link aktualisiert.",
-  "paymentLinkError": "Der Zahlungslink konnte nicht geöffnet werden."
+  "paymentLinkError": "Der Zahlungslink konnte nicht geöffnet werden.",
+
+  "levelExplorer": "Entdecker",
+  "levelSensor": "Sensor",
+  "levelSentinel": "Wächter",
+  "levelLighthouse": "Leuchtturm",
+  "nextLevel": "Nächstes: {level}",
+  "@nextLevel": {
+    "placeholders": {
+      "level": { "type": "String" }
+    }
+  },
+  "streakDays": "Glückssträhne {days} d",
+  "@streakDays": {
+    "placeholders": {
+      "days": { "type": "int" }
+    }
+  },
+
+  "achievementFirstContribution": "Erster Beitrag",
+  "achievementWeekActive": "Aktive Woche",
+  "achievementTwoHabitats": "Zwei Lebensräume",
+  "achievementFirstNode": "Erster Knoten",
+  "achievementHundredTasks": "100 Aufgaben",
+
+  "nodeCreate": "Knoten erstellen",
+  "nodeJoinByCode": "Mit Code beitreten",
+  "nodeName": "Knotenname",
+  "nodeCode": "Einladungscode",
+  "nodeLeave": "Den Knoten verlassen",
+  "nodeDelete": "Knoten löschen",
+  "nodeRename": "Knoten umbenennen",
+  "nodeMembers": "Mitglieder",
+  "nodeRequests": "Anträge",
+  "nodePublic": "Öffentliche Knoten",
+  "nodeJoinRequest": "Beitritt beantragen",
+  "nodeCreated": "Knoten erfolgreich erstellt",
+  "nodeJoined": "Du bist dem Knoten beigetreten.",
+  "nodeLeft": "Du hast den Knoten verlassen.",
+  "nodeDeleted": "Knoten gelöscht",
+  "nodeNameUpdated": "Aktualisierter Name",
+  "cancel": "Abbrechen",
+  "confirm": "Bestätigen",
+  "save": "Speichern",
+  "delete": "Löschen",
+  "leave": "Beenden"
 }

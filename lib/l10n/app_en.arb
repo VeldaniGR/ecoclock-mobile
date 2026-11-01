@@ -93,5 +93,50 @@
   "otherAmount": "Another amount",
   "donateNow": "Donate now",
   "donateRedirectInfo": "You will be redirected to Stripe to complete the payment securely. Once the bank account is ready, this link will be updated.",
-  "paymentLinkError": "The payment link could not be opened"
+  "paymentLinkError": "The payment link could not be opened",
+
+  "levelExplorer": "Explorer",
+  "levelSensor": "Sensor",
+  "levelSentinel": "Sentinel",
+  "levelLighthouse": "Lighthouse",
+  "nextLevel": "Next: {level}",
+  "@nextLevel": {
+    "placeholders": {
+      "level": { "type": "String" }
+    }
+  },
+  "streakDays": "Streak {days} d",
+  "@streakDays": {
+    "placeholders": {
+      "days": { "type": "int" }
+    }
+  },
+
+  "achievementFirstContribution": "First contribution",
+  "achievementWeekActive": "Active week",
+  "achievementTwoHabitats": "Two habitats",
+  "achievementFirstNode": "First node",
+  "achievementHundredTasks": "100 tasks",
+
+  "nodeCreate": "Create node",
+  "nodeJoinByCode": "Join with code",
+  "nodeName": "Node name",
+  "nodeCode": "Invitation code",
+  "nodeLeave": "Exit the node",
+  "nodeDelete": "Delete node",
+  "nodeRename": "Rename node",
+  "nodeMembers": "Members",
+  "nodeRequests": "Applications",
+  "nodePublic": "Public nodes",
+  "nodeJoinRequest": "Request to join",
+  "nodeCreated": "Node created successfully",
+  "nodeJoined": "You have joined the node",
+  "nodeLeft": "You have left the node",
+  "nodeDeleted": "Node deleted",
+  "nodeNameUpdated": "Updated name",
+  "cancel": "Cancel",
+  "confirm": "Confirm",
+  "save": "Keep",
+  "delete": "Eliminate",
+  "leave": "Exit"
 }

@@ -215,4 +215,104 @@ class AppLocalizationsDe extends AppLocalizations {
   @override
   String get paymentLinkError =>
       'Der Zahlungslink konnte nicht geöffnet werden.';
+
+  @override
+  String get levelExplorer => 'Entdecker';
+
+  @override
+  String get levelSensor => 'Sensor';
+
+  @override
+  String get levelSentinel => 'Wächter';
+
+  @override
+  String get levelLighthouse => 'Leuchtturm';
+
+  @override
+  String nextLevel(String level) {
+    return 'Nächstes: $level';
+  }
+
+  @override
+  String streakDays(int days) {
+    return 'Glückssträhne $days d';
+  }
+
+  @override
+  String get achievementFirstContribution => 'Erster Beitrag';
+
+  @override
+  String get achievementWeekActive => 'Aktive Woche';
+
+  @override
+  String get achievementTwoHabitats => 'Zwei Lebensräume';
+
+  @override
+  String get achievementFirstNode => 'Erster Knoten';
+
+  @override
+  String get achievementHundredTasks => '100 Aufgaben';
+
+  @override
+  String get nodeCreate => 'Knoten erstellen';
+
+  @override
+  String get nodeJoinByCode => 'Mit Code beitreten';
+
+  @override
+  String get nodeName => 'Knotenname';
+
+  @override
+  String get nodeCode => 'Einladungscode';
+
+  @override
+  String get nodeLeave => 'Den Knoten verlassen';
+
+  @override
+  String get nodeDelete => 'Knoten löschen';
+
+  @override
+  String get nodeRename => 'Knoten umbenennen';
+
+  @override
+  String get nodeMembers => 'Mitglieder';
+
+  @override
+  String get nodeRequests => 'Anträge';
+
+  @override
+  String get nodePublic => 'Öffentliche Knoten';
+
+  @override
+  String get nodeJoinRequest => 'Beitritt beantragen';
+
+  @override
+  String get nodeCreated => 'Knoten erfolgreich erstellt';
+
+  @override
+  String get nodeJoined => 'Du bist dem Knoten beigetreten.';
+
+  @override
+  String get nodeLeft => 'Du hast den Knoten verlassen.';
+
+  @override
+  String get nodeDeleted => 'Knoten gelöscht';
+
+  @override
+  String get nodeNameUpdated => 'Aktualisierter Name';
+
+  @override
+  String get cancel => 'Abbrechen';
+
+  @override
+  String get confirm => 'Bestätigen';
+
+  @override
+  String get save => 'Speichern';
+
+  @override
+  String get delete => 'Löschen';
+
+  @override
+  String get leave => 'Beenden';
 }
