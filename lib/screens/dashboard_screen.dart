@@ -268,7 +268,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
               ),
               const SizedBox(height: 16),
             ],
-            _buildDashboardStatsRow(theme),
+            _buildDashboardStatsRow(theme, l10n),
             const SizedBox(height: 28),
             Text(l10n.quickActions, style: theme.textTheme.titleMedium),
             const SizedBox(height: 12),
@@ -579,11 +579,12 @@ class _DashboardScreenState extends State<DashboardScreen> {
     );
   }
   // ──────────────────────────────────────────────────────────────
-  // Tab: Créditos (todavía en español — se localizará después)
+  // Tab: Créditos
   // ──────────────────────────────────────────────────────────────
 
   Widget _buildCreditsTab() {
     final theme = Theme.of(context);
+    final l10n = AppLocalizations.of(context);
 
     if (_loadingCredits) {
       return const Center(child: CircularProgressIndicator());
@@ -608,7 +609,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
-                        'Total créditos',
+                        l10n.totalCredits,
                         style: theme.textTheme.labelLarge?.copyWith(
                           color: theme.colorScheme.onSurfaceVariant,
                         ),
@@ -630,7 +631,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
               ],
             ),
             const SizedBox(height: 16),
-            _buildDashboardStatsRow(theme),
+            _buildDashboardStatsRow(theme, l10n),
             if (_credits != null) ...[
               const SizedBox(height: 16),
               LevelCard(
@@ -644,11 +645,11 @@ class _DashboardScreenState extends State<DashboardScreen> {
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                Text('Historial reciente', style: theme.textTheme.titleMedium),
+                Text(l10n.recentHistory, style: theme.textTheme.titleMedium),
                 if (recent.isNotEmpty)
                   TextButton.icon(
                     icon: const Icon(Icons.refresh, size: 18),
-                    label: const Text('Actualizar'),
+                    label: Text(l10n.updateHistory),
                     onPressed: _loadCredits,
                   ),
               ],
@@ -664,7 +665,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
                       Icon(Icons.star_border, size: 64, color: theme.colorScheme.outline),
                       const SizedBox(height: 16),
                       Text(
-                        'Sin actividad reciente',
+                        l10n.noRecentActivity,
                         style: theme.textTheme.bodyLarge?.copyWith(
                           color: theme.colorScheme.onSurfaceVariant,
                         ),
@@ -693,7 +694,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
                       child: const Icon(Icons.star, color: Colors.amber, size: 20),
                     ),
                     title: Text(
-                      '${_formatCredits(amount)} créditos · tarea #$taskId',
+                      l10n.creditEntry(_formatCredits(amount), taskId),
                       style: theme.textTheme.titleMedium,
                     ),
                     subtitle: Text(grantedAt),
@@ -706,7 +707,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
     );
   }
 
-  Widget _buildDashboardStatsRow(ThemeData theme) {
+  Widget _buildDashboardStatsRow(ThemeData theme, AppLocalizations l10n) {
     final c = _credits;
     final streak = c?.streakDays ?? 0;
     final week = c?.creditsThisWeek ?? 0;
@@ -721,7 +722,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
             Expanded(
               child: StatCard(
                 icon: Icons.local_fire_department_rounded,
-                label: 'Racha',
+                label: l10n.streak,
                 primaryValue: '$streak d',
               ),
             ),
@@ -729,7 +730,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
             Expanded(
               child: StatCard(
                 icon: Icons.calendar_today_rounded,
-                label: 'Semana',
+                label: l10n.week,
                 primaryValue: weekLabel,
               ),
             ),
@@ -738,63 +739,10 @@ class _DashboardScreenState extends State<DashboardScreen> {
         const SizedBox(height: 12),
         StatCard(
           icon: Icons.check_circle_outline_rounded,
-          label: 'Tareas totales',
+          label: l10n.totalTasks,
           primaryValue: '$tasks',
           isWide: true,
         ),
       ],
     );
   }
-
-  Widget _buildStatChip(
-    ThemeData theme, {
-    required String label,
-    required String value,
-    required IconData icon,
-  }) {
-    return Container(
-      padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 12),
-      decoration: BoxDecoration(
-        color: theme.colorScheme.surfaceContainerHighest.withValues(alpha: 0.5),
-        borderRadius: BorderRadius.circular(12),
-        border: Border.all(
-          color: theme.colorScheme.outlineVariant.withValues(alpha: 0.4),
-        ),
-      ),
-      child: Row(
-        children: [
-          Icon(icon, size: 22, color: theme.colorScheme.primary),
-          const SizedBox(width: 10),
-          Expanded(
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(
-                  label,
-                  style: theme.textTheme.labelMedium?.copyWith(
-                    color: theme.colorScheme.onSurfaceVariant,
-                  ),
-                ),
-                Text(
-                  value,
-                  style: theme.textTheme.titleLarge?.copyWith(
-                    fontWeight: FontWeight.bold,
-                  ),
-                ),
-              ],
-            ),
-          ),
-        ],
-      ),
-    );
-  }
-
-  String _formatCredits(num value) {
-    final v = value.toDouble();
-    if (v == v.roundToDouble()) return v.toInt().toString();
-    var s = v.toStringAsFixed(3);
-    s = s.replaceFirst(RegExp(r'0+$'), '');
-    s = s.replaceFirst(RegExp(r'\.$'), '');
-    return s;
-  }
-}
