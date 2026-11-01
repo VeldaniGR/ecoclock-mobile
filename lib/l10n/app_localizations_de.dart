@@ -72,4 +72,147 @@ class AppLocalizationsDe extends AppLocalizations {
 
   @override
   String get updateDescription => 'Prüfen, ob eine neue Version verfügbar ist';
+
+  @override
+  String get quickActions => 'Schnellaktionen';
+
+  @override
+  String get nodeMember => 'Mitglied des Knotens';
+
+  @override
+  String get expeditionFallback => 'Expedition';
+
+  @override
+  String tasksProgress(int current, int goal, String percent) {
+    return '$current / $goal Aufgaben · $percent%';
+  }
+
+  @override
+  String get userFallback => 'Benutzer';
+
+  @override
+  String newTask(String type) {
+    return 'Neue Aufgabe: $type';
+  }
+
+  @override
+  String taskId(String id) {
+    return 'ID: $id';
+  }
+
+  @override
+  String get manualTasks => 'Manuelle';
+
+  @override
+  String get autoTasks => 'Automatische';
+
+  @override
+  String get taskPayload => 'Aufgabendaten (Payload):';
+
+  @override
+  String get computeAndSubmit => 'Berechnen und senden';
+
+  @override
+  String get noTasksAvailable =>
+      'Im Moment sind keine Aufgaben verfügbar. Versuche es später noch einmal.';
+
+  @override
+  String get retry => 'Erneut versuchen';
+
+  @override
+  String get taskSentSuccess => 'Aufgabe erfolgreich übermittelt';
+
+  @override
+  String get totalCredits => 'Gesamt-Credits';
+
+  @override
+  String get recentHistory => 'Kürzliche Historie';
+
+  @override
+  String get noRecentActivity => 'Keine kürzliche Aktivität';
+
+  @override
+  String creditEntry(String amount, String taskId) {
+    return '$amount Credits · Aufgabe #$taskId';
+  }
+
+  @override
+  String get streak => 'Glückssträhne';
+
+  @override
+  String get week => 'Woche';
+
+  @override
+  String get totalTasks => 'Gesamtaufgaben';
+
+  @override
+  String get updateHistory => 'Aktualisieren';
+
+  @override
+  String get loginTitle => 'Anmelden';
+
+  @override
+  String get registerTitle => 'Konto erstellen';
+
+  @override
+  String get loginSubtitle =>
+      'Greifen Sie auf Ihr Konto für Computer-Spenden zu';
+
+  @override
+  String get registerSubtitle =>
+      'Schließe dich dem Netzwerk zur Umweltüberwachung an';
+
+  @override
+  String get username => 'Benutzer';
+
+  @override
+  String get email => 'Email';
+
+  @override
+  String get password => 'Passwort';
+
+  @override
+  String get keepSession => 'Angemeldet bleiben';
+
+  @override
+  String get loginButton => 'Anmelden';
+
+  @override
+  String get registerButton => 'Registrieren';
+
+  @override
+  String get forgotPassword => 'Hast du dein Passwort vergessen?';
+
+  @override
+  String get noAccount => 'Hast du kein Konto? Registriere dich';
+
+  @override
+  String get hasAccount => 'Hast du schon ein Konto? Melde dich an.';
+
+  @override
+  String get checkingSession => 'Sitzung wird überprüft...';
+
+  @override
+  String get donateTitle => 'Unterstütze das Eco\'clock Network';
+
+  @override
+  String get donateDescription =>
+      '95 % deiner Spende fließen direkt an die Partner-NGOs. Die restlichen 5 % werden für den Unterhalt und die Weiterentwicklung der Plattform verwendet.';
+
+  @override
+  String get chooseAmount => 'Wähle eine Menge';
+
+  @override
+  String get otherAmount => 'Ein anderer Betrag';
+
+  @override
+  String get donateNow => 'Jetzt spenden';
+
+  @override
+  String get donateRedirectInfo =>
+      'Du wirst zu Stripe weitergeleitet, um die Zahlung sicher abzuschließen. Sobald das Bankkonto bereitsteht, wird dieser Link aktualisiert.';
+
+  @override
+  String get paymentLinkError =>
+      'Der Zahlungslink konnte nicht geöffnet werden.';
 }

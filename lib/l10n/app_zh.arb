@@ -55,5 +55,76 @@
     }
   },
   "update": "更新",
-  "updateDescription": "檢查是否有新版本可用"
+  "updateDescription": "檢查是否有新版本可用",
+
+  "quickActions": "快速操作",
+  "nodeMember": "節點成員",
+  "expeditionFallback": "遠徵",
+  "tasksProgress": "{current} / {goal} 任務 · {percent}%",
+  "@tasksProgress": {
+    "placeholders": {
+      "current": { "type": "int" },
+      "goal": { "type": "int" },
+      "percent": { "type": "String" }
+    }
+  },
+  "userFallback": "使用者",  
+
+  "newTask": "新任務： {type}",
+  "@newTask": {
+    "placeholders": {
+      "type": { "type": "String" }
+    }
+  },
+  "taskId": "ID: {id}",
+  "@taskId": {
+    "placeholders": {
+      "id": { "type": "String" }
+    }
+  },
+  "manualTasks": "手冊",
+  "autoTasks": "自動的",
+  "taskPayload": "任務資料（有效載荷）：",
+  "computeAndSubmit": "計算並發送",
+  "noTasksAvailable": "目前沒有可用任務。\n稍後再試。",
+  "retry": "重試",
+  "taskSentSuccess": "作業提交成功",
+
+  "totalCredits": "總學分",
+  "recentHistory": "近代史",
+  "noRecentActivity": "近期無活動",
+  "creditEntry": "{amount} 製作名單 · 任務 #{taskId}",
+  "@creditEntry": {
+    "placeholders": {
+      "amount": { "type": "String" },
+      "taskId": { "type": "String" }
+    }
+  },
+  "streak": "條紋",
+  "week": "星期",
+  "totalTasks": "任務總數",
+  "updateHistory": "更新",
+
+  "loginTitle": "登入",
+  "registerTitle": "建立帳戶",
+  "loginSubtitle": "造訪您的計算捐贈帳戶",
+  "registerSubtitle": "加入環境監測網絡",
+  "username": "使用者",
+  "email": "電子郵件",
+  "password": "密碼",
+  "keepSession": "保持會話開啟",
+  "loginButton": "進入",
+  "registerButton": "登記",
+  "forgotPassword": "忘記密碼了嗎？",
+  "noAccount": "還沒有帳戶？註冊",
+  "hasAccount": "已有帳戶？登入",
+  "checkingSession": "正在驗證會話…",
+
+  "donateTitle": "支持 Eco'clock 網絡",
+  "donateDescription": "您捐贈款項的 95% 將直接撥付給合作非政府組織（NGO），其餘 5% 則用於平台的維護與發展。",
+  "chooseAmount": "選擇金額",
+  "otherAmount": "另一個金額",
+  "donateNow": "立即捐贈",
+  "donateRedirectInfo": "您將被重新導向至 Stripe 以安全完成付款。待銀行帳戶準備就緒後，此連結將會更新。",
+  "paymentLinkError": "無法開啟支付連結"
 }

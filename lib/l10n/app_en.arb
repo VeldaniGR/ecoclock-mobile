@@ -22,5 +22,76 @@
   "language": "Language",
   "version": "Version {version}",
   "update": "Update",
-  "updateDescription": "Check for a new version"
+  "updateDescription": "Check for a new version",
+
+  "quickActions": "Quick actions",
+  "nodeMember": "Node Member",
+  "expeditionFallback": "Expedition",
+  "tasksProgress": "{current} / {goal} tasks · {percent}%",
+  "@tasksProgress": {
+    "placeholders": {
+      "current": { "type": "int" },
+      "goal": { "type": "int" },
+      "percent": { "type": "String" }
+    }
+  },
+  "userFallback": "user",
+
+  "newTask": "New task: {type}",
+  "@newTask": {
+    "placeholders": {
+      "type": { "type": "String" }
+    }
+  },
+  "taskId": "ID: {id}",
+  "@taskId": {
+    "placeholders": {
+      "id": { "type": "String" }
+    }
+  },
+  "manualTasks": "Manual",
+  "autoTasks": "Automatic",
+  "taskPayload": "Task details (payload):",
+  "computeAndSubmit": "Calculate and send",
+  "noTasksAvailable": "There are no tasks available right now. Please try again later.",
+  "retry": "Retry",
+  "taskSentSuccess": "Assignment submitted successfully",
+
+  "totalCredits": "Total credits",
+  "recentHistory": "Recent history",
+  "noRecentActivity": "No recent activity",
+  "creditEntry": "{amount} credits · assignment #{taskId}",
+  "@creditEntry": {
+    "placeholders": {
+      "amount": { "type": "String" },
+      "taskId": { "type": "String" }
+    }
+  },
+  "streak": "Streak",
+  "week": "Week",
+  "totalTasks": "Total tasks",
+  "updateHistory": "Update",
+
+  "loginTitle": "Login",
+  "registerTitle": "Create account",
+  "loginSubtitle": "Access your computing donation account",
+  "registerSubtitle": "Join the environmental monitoring network",
+  "username": "User",
+  "email": "Email",
+  "password": "Password",
+  "keepSession": "Keep session open",
+  "loginButton": "Enter",
+  "registerButton": "Register",
+  "forgotPassword": "Forgot your password?",
+  "noAccount": "Don't have an account? Sign up",
+  "hasAccount": "Already have an account? Log in",
+  "checkingSession": "Verifying session...",
+
+  "donateTitle": "Support Eco'clock Network",
+  "donateDescription": "95% of your donation goes directly to the partner NGOs. The remaining 5% is used for the maintenance and development of the platform.",
+  "chooseAmount": "Choose an amount",
+  "otherAmount": "Another amount",
+  "donateNow": "Donate now",
+  "donateRedirectInfo": "You will be redirected to Stripe to complete the payment securely. Once the bank account is ready, this link will be updated.",
+  "paymentLinkError": "The payment link could not be opened"
 }

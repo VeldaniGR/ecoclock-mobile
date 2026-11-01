@@ -55,5 +55,76 @@
     }
   },
   "update": "Atualizar",
-  "updateDescription": "Verificar se há uma nova versão disponível"
+  "updateDescription": "Verificar se há uma nova versão disponível",
+
+  "quickActions": "Ações rápidas",
+  "nodeMember": "Membro do Nó",
+  "expeditionFallback": "Expedição",
+  "tasksProgress": "{current} / {goal} tarefas · {percent}%",
+  "@tasksProgress": {
+    "placeholders": {
+      "current": { "type": "int" },
+      "goal": { "type": "int" },
+      "percent": { "type": "String" }
+    }
+  },
+  "userFallback": "usuário",  
+
+  "newTask": "Nova tarefa: {type}",
+  "@newTask": {
+    "placeholders": {
+      "type": { "type": "String" }
+    }
+  },
+  "taskId": "ID: {id}",
+  "@taskId": {
+    "placeholders": {
+      "id": { "type": "String" }
+    }
+  },
+  "manualTasks": "Manuais",
+  "autoTasks": "Automático",
+  "taskPayload": "Dados da tarefa (payload):",
+  "computeAndSubmit": "Calcular e enviar",
+  "noTasksAvailable": "Não há tarefas disponíveis neste momento. \nTente mais tarde.",
+  "retry": "Tentar novamente",
+  "taskSentSuccess": "Tarefa enviada corretamente",
+
+  "totalCredits": "Total de créditos",
+  "recentHistory": "Histórico recente",
+  "noRecentActivity": "Sem atividade recente",
+  "creditEntry": "{amount} créditos · tarefa #{taskId}",
+  "@creditEntry": {
+    "placeholders": {
+      "amount": { "type": "String" },
+      "taskId": { "type": "String" }
+    }
+  },
+  "streak": "Onda",
+  "week": "Semana",
+  "totalTasks": "Total de tarefas",
+  "updateHistory": "Atualizar",
+
+  "loginTitle": "Entrar",
+  "registerTitle": "Criar conta",
+  "loginSubtitle": "Acesse sua conta de doação de computação",
+  "registerSubtitle": "Junte-se à rede de monitoramento ambiental",
+  "username": "Usuário",
+  "email": "E-mail",
+  "password": "Senha",
+  "keepSession": "Manter sessão aberta",
+  "loginButton": "Digitar",
+  "registerButton": "Cadastrar-se",
+  "forgotPassword": "Esqueceu sua senha?",
+  "noAccount": "Não tem conta? Cadastre-se",
+  "hasAccount": "Já tem uma conta? Faça login",
+  "checkingSession": "Verificando sessão...",
+
+  "donateTitle": "Apoie a Eco'clock Network",
+  "donateDescription": "95% da sua doação é destinada diretamente às ONGs parceiras. Os 5% restantes são utilizados para a manutenção e o desenvolvimento da plataforma.",
+  "chooseAmount": "Escolha uma quantidade",
+  "otherAmount": "Outra quantidade",
+  "donateNow": "Doar agora",
+  "donateRedirectInfo": "Você será redirecionado para o Stripe para concluir o pagamento de forma segura. Quando a conta bancária estiver pronta, este link será atualizado.",
+  "paymentLinkError": "Não foi possível abrir o link de pagamento"
 }

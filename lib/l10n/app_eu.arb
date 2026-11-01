@@ -55,5 +55,76 @@
     }
   },
   "update": "Eguneratu",
-  "updateDescription": "Egiaztatu bertsio berri bat eskuragarri dagoen"
+  "updateDescription": "Egiaztatu bertsio berri bat eskuragarri dagoen",
+
+  "quickActions": "Ekintza azkarrak",
+  "nodeMember": "Nodo-kidea",
+  "expeditionFallback": "Espedizioa",
+  "tasksProgress": "{current} / {goal} zereginak · {percent}%",
+  "@tasksProgress": {
+    "placeholders": {
+      "current": { "type": "int" },
+      "goal": { "type": "int" },
+      "percent": { "type": "String" }
+    }
+  },
+  "userFallback": "erabiltzailea",  
+
+  "newTask": "Zeregin berria: {type}",
+  "@newTask": {
+    "placeholders": {
+      "type": { "type": "String" }
+    }
+  },
+  "taskId": "ID: {id}",
+  "@taskId": {
+    "placeholders": {
+      "id": { "type": "String" }
+    }
+  },
+  "manualTasks": "Eskuzko",
+  "autoTasks": "Automatikoa",
+  "taskPayload": "Ataza-datuak (karga):",
+  "computeAndSubmit": "Kalkulatu eta bidali",
+  "noTasksAvailable": "Une honetan ez dago zereginik eskuragarri. Mesedez, saiatu berriro geroago.",
+  "retry": "Saiatu berriro",
+  "taskSentSuccess": "Zeregina behar bezala bidali da",
+
+  "totalCredits": "Kreditu-kopuru osoa",
+  "recentHistory": "Azkenaldiko historia",
+  "noRecentActivity": "Azkenaldiko jarduerarik ez",
+  "creditEntry": "{amount} kredituak · zeregina #{taskId}",
+  "@creditEntry": {
+    "placeholders": {
+      "amount": { "type": "String" },
+      "taskId": { "type": "String" }
+    }
+  },
+  "streak": "Segida",
+  "week": "Astea",
+  "totalTasks": "Zeregin guztiak",
+  "updateHistory": "Eguneratu",
+
+  "loginTitle": "Saioa hasi",
+  "registerTitle": "Sortu kontua",
+  "loginSubtitle": "Sartu zure informatika-dohaintzen kontuan",
+  "registerSubtitle": "Bat egin ingurumen-jarraipeneko sarearekin",
+  "username": "Erabiltzailea",
+  "email": "Posta elektronikoa",
+  "password": "Pasahitza",
+  "keepSession": "Mantendu saioa irekita",
+  "loginButton": "Sartu",
+  "registerButton": "Erregistratu",
+  "forgotPassword": "Pasahitza ahaztu duzu?",
+  "noAccount": "Ez duzu konturik? Eman izena",
+  "hasAccount": "Baduzu konturik? Hasi saioa",
+  "checkingSession": "Saioa egiaztatzen...",
+
+  "donateTitle": "Babestu Eco'clock Network",
+  "donateDescription": "Zure dohaintzaren % 95 zuzenean bazkide diren GKEetara bideratzen da. Gainerako % 5a plataforma mantentzeko eta garatzeko erabiltzen da.",
+  "chooseAmount": "Aukeratu zenbateko bat",
+  "otherAmount": "Beste kopuru bat",
+  "donateNow": "Egin dohaintza orain",
+  "donateRedirectInfo": "Stripe-ra bideratuko zaitugu, ordainketa modu seguruan burutzeko. Banku-kontua prest dagoenean, esteka hau eguneratu egingo da.",
+  "paymentLinkError": "Ezin izan da ordainketa-esteka ireki"
 }

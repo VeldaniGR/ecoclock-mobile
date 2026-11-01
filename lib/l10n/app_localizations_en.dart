@@ -72,4 +72,144 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get updateDescription => 'Check for a new version';
+
+  @override
+  String get quickActions => 'Quick actions';
+
+  @override
+  String get nodeMember => 'Node Member';
+
+  @override
+  String get expeditionFallback => 'Expedition';
+
+  @override
+  String tasksProgress(int current, int goal, String percent) {
+    return '$current / $goal tasks · $percent%';
+  }
+
+  @override
+  String get userFallback => 'user';
+
+  @override
+  String newTask(String type) {
+    return 'New task: $type';
+  }
+
+  @override
+  String taskId(String id) {
+    return 'ID: $id';
+  }
+
+  @override
+  String get manualTasks => 'Manual';
+
+  @override
+  String get autoTasks => 'Automatic';
+
+  @override
+  String get taskPayload => 'Task details (payload):';
+
+  @override
+  String get computeAndSubmit => 'Calculate and send';
+
+  @override
+  String get noTasksAvailable =>
+      'There are no tasks available right now. Please try again later.';
+
+  @override
+  String get retry => 'Retry';
+
+  @override
+  String get taskSentSuccess => 'Assignment submitted successfully';
+
+  @override
+  String get totalCredits => 'Total credits';
+
+  @override
+  String get recentHistory => 'Recent history';
+
+  @override
+  String get noRecentActivity => 'No recent activity';
+
+  @override
+  String creditEntry(String amount, String taskId) {
+    return '$amount credits · assignment #$taskId';
+  }
+
+  @override
+  String get streak => 'Streak';
+
+  @override
+  String get week => 'Week';
+
+  @override
+  String get totalTasks => 'Total tasks';
+
+  @override
+  String get updateHistory => 'Update';
+
+  @override
+  String get loginTitle => 'Login';
+
+  @override
+  String get registerTitle => 'Create account';
+
+  @override
+  String get loginSubtitle => 'Access your computing donation account';
+
+  @override
+  String get registerSubtitle => 'Join the environmental monitoring network';
+
+  @override
+  String get username => 'User';
+
+  @override
+  String get email => 'Email';
+
+  @override
+  String get password => 'Password';
+
+  @override
+  String get keepSession => 'Keep session open';
+
+  @override
+  String get loginButton => 'Enter';
+
+  @override
+  String get registerButton => 'Register';
+
+  @override
+  String get forgotPassword => 'Forgot your password?';
+
+  @override
+  String get noAccount => 'Don\'t have an account? Sign up';
+
+  @override
+  String get hasAccount => 'Already have an account? Log in';
+
+  @override
+  String get checkingSession => 'Verifying session...';
+
+  @override
+  String get donateTitle => 'Support Eco\'clock Network';
+
+  @override
+  String get donateDescription =>
+      '95% of your donation goes directly to the partner NGOs. The remaining 5% is used for the maintenance and development of the platform.';
+
+  @override
+  String get chooseAmount => 'Choose an amount';
+
+  @override
+  String get otherAmount => 'Another amount';
+
+  @override
+  String get donateNow => 'Donate now';
+
+  @override
+  String get donateRedirectInfo =>
+      'You will be redirected to Stripe to complete the payment securely. Once the bank account is ready, this link will be updated.';
+
+  @override
+  String get paymentLinkError => 'The payment link could not be opened';
 }

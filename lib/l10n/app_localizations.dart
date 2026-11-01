@@ -231,6 +231,264 @@ abstract class AppLocalizations {
   /// In es, this message translates to:
   /// **'Comprobar si hay una nueva versión disponible'**
   String get updateDescription;
+
+  /// No description provided for @quickActions.
+  ///
+  /// In es, this message translates to:
+  /// **'Acciones rápidas'**
+  String get quickActions;
+
+  /// No description provided for @nodeMember.
+  ///
+  /// In es, this message translates to:
+  /// **'Miembro del Nodo'**
+  String get nodeMember;
+
+  /// No description provided for @expeditionFallback.
+  ///
+  /// In es, this message translates to:
+  /// **'Expedición'**
+  String get expeditionFallback;
+
+  /// No description provided for @tasksProgress.
+  ///
+  /// In es, this message translates to:
+  /// **'{current} / {goal} tareas · {percent}%'**
+  String tasksProgress(int current, int goal, String percent);
+
+  /// No description provided for @userFallback.
+  ///
+  /// In es, this message translates to:
+  /// **'usuario'**
+  String get userFallback;
+
+  /// No description provided for @newTask.
+  ///
+  /// In es, this message translates to:
+  /// **'Nueva tarea: {type}'**
+  String newTask(String type);
+
+  /// No description provided for @taskId.
+  ///
+  /// In es, this message translates to:
+  /// **'ID: {id}'**
+  String taskId(String id);
+
+  /// No description provided for @manualTasks.
+  ///
+  /// In es, this message translates to:
+  /// **'Manuales'**
+  String get manualTasks;
+
+  /// No description provided for @autoTasks.
+  ///
+  /// In es, this message translates to:
+  /// **'Automáticas'**
+  String get autoTasks;
+
+  /// No description provided for @taskPayload.
+  ///
+  /// In es, this message translates to:
+  /// **'Datos de la tarea (payload):'**
+  String get taskPayload;
+
+  /// No description provided for @computeAndSubmit.
+  ///
+  /// In es, this message translates to:
+  /// **'Calcular y enviar'**
+  String get computeAndSubmit;
+
+  /// No description provided for @noTasksAvailable.
+  ///
+  /// In es, this message translates to:
+  /// **'No hay tareas disponibles ahora mismo.\nInténtalo más tarde.'**
+  String get noTasksAvailable;
+
+  /// No description provided for @retry.
+  ///
+  /// In es, this message translates to:
+  /// **'Reintentar'**
+  String get retry;
+
+  /// No description provided for @taskSentSuccess.
+  ///
+  /// In es, this message translates to:
+  /// **'Tarea enviada correctamente'**
+  String get taskSentSuccess;
+
+  /// No description provided for @totalCredits.
+  ///
+  /// In es, this message translates to:
+  /// **'Total créditos'**
+  String get totalCredits;
+
+  /// No description provided for @recentHistory.
+  ///
+  /// In es, this message translates to:
+  /// **'Historial reciente'**
+  String get recentHistory;
+
+  /// No description provided for @noRecentActivity.
+  ///
+  /// In es, this message translates to:
+  /// **'Sin actividad reciente'**
+  String get noRecentActivity;
+
+  /// No description provided for @creditEntry.
+  ///
+  /// In es, this message translates to:
+  /// **'{amount} créditos · tarea #{taskId}'**
+  String creditEntry(String amount, String taskId);
+
+  /// No description provided for @streak.
+  ///
+  /// In es, this message translates to:
+  /// **'Racha'**
+  String get streak;
+
+  /// No description provided for @week.
+  ///
+  /// In es, this message translates to:
+  /// **'Semana'**
+  String get week;
+
+  /// No description provided for @totalTasks.
+  ///
+  /// In es, this message translates to:
+  /// **'Tareas totales'**
+  String get totalTasks;
+
+  /// No description provided for @updateHistory.
+  ///
+  /// In es, this message translates to:
+  /// **'Actualizar'**
+  String get updateHistory;
+
+  /// No description provided for @loginTitle.
+  ///
+  /// In es, this message translates to:
+  /// **'Iniciar sesión'**
+  String get loginTitle;
+
+  /// No description provided for @registerTitle.
+  ///
+  /// In es, this message translates to:
+  /// **'Crear cuenta'**
+  String get registerTitle;
+
+  /// No description provided for @loginSubtitle.
+  ///
+  /// In es, this message translates to:
+  /// **'Accede a tu cuenta de donación de cómputo'**
+  String get loginSubtitle;
+
+  /// No description provided for @registerSubtitle.
+  ///
+  /// In es, this message translates to:
+  /// **'Únete a la red de monitorización ambiental'**
+  String get registerSubtitle;
+
+  /// No description provided for @username.
+  ///
+  /// In es, this message translates to:
+  /// **'Usuario'**
+  String get username;
+
+  /// No description provided for @email.
+  ///
+  /// In es, this message translates to:
+  /// **'Email'**
+  String get email;
+
+  /// No description provided for @password.
+  ///
+  /// In es, this message translates to:
+  /// **'Contraseña'**
+  String get password;
+
+  /// No description provided for @keepSession.
+  ///
+  /// In es, this message translates to:
+  /// **'Mantener sesión abierta'**
+  String get keepSession;
+
+  /// No description provided for @loginButton.
+  ///
+  /// In es, this message translates to:
+  /// **'Entrar'**
+  String get loginButton;
+
+  /// No description provided for @registerButton.
+  ///
+  /// In es, this message translates to:
+  /// **'Registrarse'**
+  String get registerButton;
+
+  /// No description provided for @forgotPassword.
+  ///
+  /// In es, this message translates to:
+  /// **'¿Olvidaste tu contraseña?'**
+  String get forgotPassword;
+
+  /// No description provided for @noAccount.
+  ///
+  /// In es, this message translates to:
+  /// **'¿No tienes cuenta? Regístrate'**
+  String get noAccount;
+
+  /// No description provided for @hasAccount.
+  ///
+  /// In es, this message translates to:
+  /// **'¿Ya tienes cuenta? Inicia sesión'**
+  String get hasAccount;
+
+  /// No description provided for @checkingSession.
+  ///
+  /// In es, this message translates to:
+  /// **'Verificando sesión...'**
+  String get checkingSession;
+
+  /// No description provided for @donateTitle.
+  ///
+  /// In es, this message translates to:
+  /// **'Apoya Eco\'clock Network'**
+  String get donateTitle;
+
+  /// No description provided for @donateDescription.
+  ///
+  /// In es, this message translates to:
+  /// **'El 95 % de tu donación se destina directamente a las ONGs asociadas. El 5 % restante se utiliza para el mantenimiento y desarrollo de la plataforma.'**
+  String get donateDescription;
+
+  /// No description provided for @chooseAmount.
+  ///
+  /// In es, this message translates to:
+  /// **'Elige una cantidad'**
+  String get chooseAmount;
+
+  /// No description provided for @otherAmount.
+  ///
+  /// In es, this message translates to:
+  /// **'Otra cantidad'**
+  String get otherAmount;
+
+  /// No description provided for @donateNow.
+  ///
+  /// In es, this message translates to:
+  /// **'Donar ahora'**
+  String get donateNow;
+
+  /// No description provided for @donateRedirectInfo.
+  ///
+  /// In es, this message translates to:
+  /// **'Serás redirigido a Stripe para completar el pago de forma segura. Cuando tengamos la cuenta bancaria lista, este enlace se actualizará.'**
+  String get donateRedirectInfo;
+
+  /// No description provided for @paymentLinkError.
+  ///
+  /// In es, this message translates to:
+  /// **'No se pudo abrir el enlace de pago'**
+  String get paymentLinkError;
 }
 
 class _AppLocalizationsDelegate

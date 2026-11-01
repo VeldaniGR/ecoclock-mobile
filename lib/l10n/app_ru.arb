@@ -55,5 +55,76 @@
     }
   },
   "update": "Обновлять",
-  "updateDescription": "Проверьте, доступна ли новая версия"
+  "updateDescription": "Проверьте, доступна ли новая версия",
+
+  "quickActions": "Быстрые действия",
+  "nodeMember": "Участник узла",
+  "expeditionFallback": "Экспедиция",
+  "tasksProgress": "{current} / {goal} задачи · {percent}%",
+  "@tasksProgress": {
+    "placeholders": {
+      "current": { "type": "int" },
+      "goal": { "type": "int" },
+      "percent": { "type": "String" }
+    }
+  },
+  "userFallback": "пользователь",  
+
+  "newTask": "Новая задача: {type}",
+  "@newTask": {
+    "placeholders": {
+      "type": { "type": "String" }
+    }
+  },
+  "taskId": "ID: {id}",
+  "@taskId": {
+    "placeholders": {
+      "id": { "type": "String" }
+    }
+  },
+  "manualTasks": "Руководства",
+  "autoTasks": "Автоматический",
+  "taskPayload": "Данные задачи (полезная нагрузка):",
+  "computeAndSubmit": "Рассчитать и отправить",
+  "noTasksAvailable": "В данный момент нет доступных задач.\nПопробуйте позже.",
+  "retry": "Повторить",
+  "taskSentSuccess": "Задание успешно отправлено",
+
+  "totalCredits": "Общее количество зачетных единиц",
+  "recentHistory": "Недавняя история",
+  "noRecentActivity": "В последнее время активности нет",
+  "creditEntry": "{amount} зачётные единицы · задание #{taskId}",
+  "@creditEntry": {
+    "placeholders": {
+      "amount": { "type": "String" },
+      "taskId": { "type": "String" }
+    }
+  },
+  "streak": "Серия",
+  "week": "Неделя",
+  "totalTasks": "Всего задач",
+  "updateHistory": "Обновлять",
+
+  "loginTitle": "Авторизоваться",
+  "registerTitle": "Зарегистрироваться",
+  "loginSubtitle": "Получите доступ к своему счету для пожертвований на оплату компьютеров.",
+  "registerSubtitle": "Присоединяйтесь к сети экологического мониторинга",
+  "username": "Пользователь",
+  "email": "Электронная почта",
+  "password": "Пароль",
+  "keepSession": "Оставить сеанс открытым",
+  "loginButton": "Входить",
+  "registerButton": "Зарегистрироваться",
+  "forgotPassword": "Забыли пароль?",
+  "noAccount": "Нет аккаунта? Зарегистрируйтесь",
+  "hasAccount": "Уже есть аккаунт? Войдите",
+  "checkingSession": "Проверка сеанса...",
+
+  "donateTitle": "Поддержите сеть Eco'clock",
+  "donateDescription": "95 % вашего пожертвования направляются непосредственно партнерским НКО. Оставшиеся 5 % используются для поддержания и развития платформы.",
+  "chooseAmount": "Выберите сумму",
+  "otherAmount": "Другая сумма",
+  "donateNow": "Пожертвовать сейчас",
+  "donateRedirectInfo": "Вы будете перенаправлены на сайт Stripe для безопасного завершения оплаты. Как только банковский счет будет готов, эта ссылка обновится.",
+  "paymentLinkError": "Не удалось открыть ссылку для оплаты"
 }

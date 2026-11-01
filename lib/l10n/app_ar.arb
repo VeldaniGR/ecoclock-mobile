@@ -55,5 +55,76 @@
     }
   },
   "update": "تحديث",
-  "updateDescription": "تحقق مما إذا كان هناك إصدار جديد متاح"
+  "updateDescription": "تحقق مما إذا كان هناك إصدار جديد متاح",
+
+  "quickActions": "إجراءات سريعة",
+  "nodeMember": "عضو في العقدة",
+  "expeditionFallback": "رحلة استكشافية",
+  "tasksProgress": "{current} / {goal} مهام · {percent}%",
+  "@tasksProgress": {
+    "placeholders": {
+      "current": { "type": "int" },
+      "goal": { "type": "int" },
+      "percent": { "type": "String" }
+    }
+  },
+  "userFallback": "مستخدم",
+
+  "newTask": "مهمة جديدة: {type}",
+  "@newTask": {
+    "placeholders": {
+      "type": { "type": "String" }
+    }
+  },
+  "taskId": "ID: {id}",
+  "@taskId": {
+    "placeholders": {
+      "id": { "type": "String" }
+    }
+  },
+  "manualTasks": "الأدلة",
+  "autoTasks": "تلقائي",
+  "taskPayload": "بيانات المهمة (الحمولة):",
+  "computeAndSubmit": "احسِب وأرسِل",
+  "noTasksAvailable": "لا توجد مهام متاحة في الوقت الحالي. يرجى المحاولة مجدداً لاحقاً.",
+  "retry": "إعادة المحاولة",
+  "taskSentSuccess": "تم تسليم المهمة بنجاح",
+
+  "totalCredits": "إجمالي الوحدات الدراسية",
+  "recentHistory": "التاريخ الحديث",
+  "noRecentActivity": "لا يوجد نشاط حديث",
+  "creditEntry": "{amount} اعتمادات · مهمة #{taskId}",
+  "@creditEntry": {
+    "placeholders": {
+      "amount": { "type": "String" },
+      "taskId": { "type": "String" }
+    }
+  },
+  "streak": "أثَر",
+  "week": "أسبوع",
+  "totalTasks": "إجمالي المهام",
+  "updateHistory": "تحديث",
+
+  "loginTitle": "تسجيل الدخول",
+  "registerTitle": "إنشاء حساب",
+  "loginSubtitle": "ادخل إلى حساب التبرعات الخاص بك في مجال الحوسبة",
+  "registerSubtitle": "انضم إلى شبكة الرصد البيئي",
+  "username": "مستخدم",
+  "email": "بريد إلكتروني",
+  "password": "كلمة المرور",
+  "keepSession": "إبقاء الجلسة مفتوحة",
+  "loginButton": "يدخل",
+  "registerButton": "يسجل",
+  "forgotPassword": "نسيت كلمة السر؟",
+  "noAccount": "ألا تملك حساباً؟ اشترك",
+  "hasAccount": "هل لديك حساب بالفعل؟ سجّل الدخول",
+  "checkingSession": "جاري التحقق من الجلسة...",
+
+  "donateTitle": "ادعم شبكة Eco'clock",
+  "donateDescription": "تذهب 95% من تبرعك مباشرةً إلى المنظمات غير الحكومية الشريكة، بينما تُستخدم نسبة الـ 5% المتبقية في صيانة المنصة وتطويرها.",
+  "chooseAmount": "اختر مبلغاً",
+  "otherAmount": "مبلغ آخر",
+  "donateNow": "تبرع الآن",
+  "donateRedirectInfo": "سيتم توجيهك إلى Stripe لإتمام عملية الدفع بشكل آمن. وبمجرد تجهيز الحساب المصرفي، سيتم تحديث هذا الرابط.",
+  "paymentLinkError": "تعذّر فتح رابط الدفع"
 }

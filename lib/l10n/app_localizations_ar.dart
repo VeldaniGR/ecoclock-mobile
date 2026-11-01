@@ -72,4 +72,144 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get updateDescription => 'تحقق مما إذا كان هناك إصدار جديد متاح';
+
+  @override
+  String get quickActions => 'إجراءات سريعة';
+
+  @override
+  String get nodeMember => 'عضو في العقدة';
+
+  @override
+  String get expeditionFallback => 'رحلة استكشافية';
+
+  @override
+  String tasksProgress(int current, int goal, String percent) {
+    return '$current / $goal مهام · $percent%';
+  }
+
+  @override
+  String get userFallback => 'مستخدم';
+
+  @override
+  String newTask(String type) {
+    return 'مهمة جديدة: $type';
+  }
+
+  @override
+  String taskId(String id) {
+    return 'ID: $id';
+  }
+
+  @override
+  String get manualTasks => 'الأدلة';
+
+  @override
+  String get autoTasks => 'تلقائي';
+
+  @override
+  String get taskPayload => 'بيانات المهمة (الحمولة):';
+
+  @override
+  String get computeAndSubmit => 'احسِب وأرسِل';
+
+  @override
+  String get noTasksAvailable =>
+      'لا توجد مهام متاحة في الوقت الحالي. يرجى المحاولة مجدداً لاحقاً.';
+
+  @override
+  String get retry => 'إعادة المحاولة';
+
+  @override
+  String get taskSentSuccess => 'تم تسليم المهمة بنجاح';
+
+  @override
+  String get totalCredits => 'إجمالي الوحدات الدراسية';
+
+  @override
+  String get recentHistory => 'التاريخ الحديث';
+
+  @override
+  String get noRecentActivity => 'لا يوجد نشاط حديث';
+
+  @override
+  String creditEntry(String amount, String taskId) {
+    return '$amount اعتمادات · مهمة #$taskId';
+  }
+
+  @override
+  String get streak => 'أثَر';
+
+  @override
+  String get week => 'أسبوع';
+
+  @override
+  String get totalTasks => 'إجمالي المهام';
+
+  @override
+  String get updateHistory => 'تحديث';
+
+  @override
+  String get loginTitle => 'تسجيل الدخول';
+
+  @override
+  String get registerTitle => 'إنشاء حساب';
+
+  @override
+  String get loginSubtitle => 'ادخل إلى حساب التبرعات الخاص بك في مجال الحوسبة';
+
+  @override
+  String get registerSubtitle => 'انضم إلى شبكة الرصد البيئي';
+
+  @override
+  String get username => 'مستخدم';
+
+  @override
+  String get email => 'بريد إلكتروني';
+
+  @override
+  String get password => 'كلمة المرور';
+
+  @override
+  String get keepSession => 'إبقاء الجلسة مفتوحة';
+
+  @override
+  String get loginButton => 'يدخل';
+
+  @override
+  String get registerButton => 'يسجل';
+
+  @override
+  String get forgotPassword => 'نسيت كلمة السر؟';
+
+  @override
+  String get noAccount => 'ألا تملك حساباً؟ اشترك';
+
+  @override
+  String get hasAccount => 'هل لديك حساب بالفعل؟ سجّل الدخول';
+
+  @override
+  String get checkingSession => 'جاري التحقق من الجلسة...';
+
+  @override
+  String get donateTitle => 'ادعم شبكة Eco\'clock';
+
+  @override
+  String get donateDescription =>
+      'تذهب 95% من تبرعك مباشرةً إلى المنظمات غير الحكومية الشريكة، بينما تُستخدم نسبة الـ 5% المتبقية في صيانة المنصة وتطويرها.';
+
+  @override
+  String get chooseAmount => 'اختر مبلغاً';
+
+  @override
+  String get otherAmount => 'مبلغ آخر';
+
+  @override
+  String get donateNow => 'تبرع الآن';
+
+  @override
+  String get donateRedirectInfo =>
+      'سيتم توجيهك إلى Stripe لإتمام عملية الدفع بشكل آمن. وبمجرد تجهيز الحساب المصرفي، سيتم تحديث هذا الرابط.';
+
+  @override
+  String get paymentLinkError => 'تعذّر فتح رابط الدفع';
 }

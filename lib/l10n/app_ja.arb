@@ -55,5 +55,76 @@
     }
   },
   "update": "アップデート",
-  "updateDescription": "新しいバージョンが利用可能か確認する"
+  "updateDescription": "新しいバージョンが利用可能か確認する",
+
+  "quickActions": "クイックアクション",
+  "nodeMember": "ノードメンバー",
+  "expeditionFallback": "遠征",
+  "tasksProgress": "{current} / {goal} タスク · {percent}%",
+  "@tasksProgress": {
+    "placeholders": {
+      "current": { "type": "int" },
+      "goal": { "type": "int" },
+      "percent": { "type": "String" }
+    }
+  },
+  "userFallback": "ユーザー", 
+
+  "newTask": "新しいタスク: {type}",
+  "@newTask": {
+    "placeholders": {
+      "type": { "type": "String" }
+    }
+  },
+  "taskId": "ID: {id}",
+  "@taskId": {
+    "placeholders": {
+      "id": { "type": "String" }
+    }
+  },
+  "manualTasks": "マニュアル",
+  "autoTasks": "自動",
+  "taskPayload": "タスクデータ（ペイロード）:",
+  "computeAndSubmit": "計算して送信する",
+  "noTasksAvailable": "現在、利用可能なタスクはありません。\n後でもう一度試してください。",
+  "retry": "リトライ",
+  "taskSentSuccess": "課題の提出が完了しました",
+
+  "totalCredits": "合計単位数",
+  "recentHistory": "近年の歴史",
+  "noRecentActivity": "最近の活動はありません",
+  "creditEntry": "{amount} クレジット · 割り当て #{taskId}",
+  "@creditEntry": {
+    "placeholders": {
+      "amount": { "type": "String" },
+      "taskId": { "type": "String" }
+    }
+  },
+  "streak": "連続",
+  "week": "週",
+  "totalTasks": "タスク合計",
+  "updateHistory": "アップデート",
+
+  "loginTitle": "ログイン",
+  "registerTitle": "アカウントを作成する",
+  "loginSubtitle": "コンピューティング寄付アカウントにアクセスする",
+  "registerSubtitle": "環境モニタリングネットワークに参加しよう",
+  "username": "ユーザー",
+  "email": "Eメール",
+  "password": "パスワード",
+  "keepSession": "セッションを維持する",
+  "loginButton": "入力",
+  "registerButton": "登録する",
+  "forgotPassword": "パスワードをお忘れですか？",
+  "noAccount": "アカウントをお持ちでないですか？登録する",
+  "hasAccount": "すでにアカウントをお持ちですか？ログイン",
+  "checkingSession": "セッションを検証中...",
+
+  "donateTitle": "Eco'clock Networkを支援する",
+  "donateDescription": "寄付金の95%は、提携NGOに直接届けられます。残りの5%は、プラットフォームの維持・開発に充てられます。",
+  "chooseAmount": "金額を選択してください",
+  "otherAmount": "別の金額",
+  "donateNow": "今すぐ寄付する",
+  "donateRedirectInfo": "安全に決済を完了していただくため、Stripeのページへリダイレクトされます。銀行口座の準備が整い次第、このリンクは更新されます。",
+  "paymentLinkError": "支払いリンクを開くことができませんでした。"
 }

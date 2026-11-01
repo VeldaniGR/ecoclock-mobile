@@ -55,5 +55,76 @@
     }
   },
   "update": "Aktualisieren",
-  "updateDescription": "Prüfen, ob eine neue Version verfügbar ist"
+  "updateDescription": "Prüfen, ob eine neue Version verfügbar ist",
+
+  "quickActions": "Schnellaktionen",
+  "nodeMember": "Mitglied des Knotens",
+  "expeditionFallback": "Expedition",
+  "tasksProgress": "{current} / {goal} Aufgaben · {percent}%",
+  "@tasksProgress": {
+    "placeholders": {
+      "current": { "type": "int" },
+      "goal": { "type": "int" },
+      "percent": { "type": "String" }
+    }
+  },
+  "userFallback": "Benutzer",
+
+  "newTask": "Neue Aufgabe: {type}",
+  "@newTask": {
+    "placeholders": {
+      "type": { "type": "String" }
+    }
+  },
+  "taskId": "ID: {id}",
+  "@taskId": {
+    "placeholders": {
+      "id": { "type": "String" }
+    }
+  },
+  "manualTasks": "Manuelle",
+  "autoTasks": "Automatische",
+  "taskPayload": "Aufgabendaten (Payload):",
+  "computeAndSubmit": "Berechnen und senden",
+  "noTasksAvailable": "Im Moment sind keine Aufgaben verfügbar. Versuche es später noch einmal.",
+  "retry": "Erneut versuchen",
+  "taskSentSuccess": "Aufgabe erfolgreich übermittelt",
+
+  "totalCredits": "Gesamt-Credits",
+  "recentHistory": "Kürzliche Historie",
+  "noRecentActivity": "Keine kürzliche Aktivität",
+  "creditEntry": "{amount} Credits · Aufgabe #{taskId}",
+  "@creditEntry": {
+    "placeholders": {
+      "amount": { "type": "String" },
+      "taskId": { "type": "String" }
+    }
+  },
+  "streak": "Glückssträhne",
+  "week": "Woche",
+  "totalTasks": "Gesamtaufgaben",
+  "updateHistory": "Aktualisieren",
+
+  "loginTitle": "Anmelden",
+  "registerTitle": "Konto erstellen",
+  "loginSubtitle": "Greifen Sie auf Ihr Konto für Computer-Spenden zu",
+  "registerSubtitle": "Schließe dich dem Netzwerk zur Umweltüberwachung an",
+  "username": "Benutzer",
+  "email": "Email",
+  "password": "Passwort",
+  "keepSession": "Angemeldet bleiben",
+  "loginButton": "Anmelden",
+  "registerButton": "Registrieren",
+  "forgotPassword": "Hast du dein Passwort vergessen?",
+  "noAccount": "Hast du kein Konto? Registriere dich",
+  "hasAccount": "Hast du schon ein Konto? Melde dich an.",
+  "checkingSession": "Sitzung wird überprüft...",
+
+  "donateTitle": "Unterstütze das Eco'clock Network",
+  "donateDescription": "95 % deiner Spende fließen direkt an die Partner-NGOs. Die restlichen 5 % werden für den Unterhalt und die Weiterentwicklung der Plattform verwendet.",
+  "chooseAmount": "Wähle eine Menge",
+  "otherAmount": "Ein anderer Betrag",
+  "donateNow": "Jetzt spenden",
+  "donateRedirectInfo": "Du wirst zu Stripe weitergeleitet, um die Zahlung sicher abzuschließen. Sobald das Bankkonto bereitsteht, wird dieser Link aktualisiert.",
+  "paymentLinkError": "Der Zahlungslink konnte nicht geöffnet werden."
 }

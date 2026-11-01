@@ -73,4 +73,146 @@ class AppLocalizationsFr extends AppLocalizations {
   @override
   String get updateDescription =>
       'Vérifier si une nouvelle version est disponible';
+
+  @override
+  String get quickActions => 'Actions rapides';
+
+  @override
+  String get nodeMember => 'Membre du Nœud';
+
+  @override
+  String get expeditionFallback => 'Expédition';
+
+  @override
+  String tasksProgress(int current, int goal, String percent) {
+    return '$current / $goal tâches · $percent%';
+  }
+
+  @override
+  String get userFallback => 'utilisateur';
+
+  @override
+  String newTask(String type) {
+    return 'Nouvelle tâche: $type';
+  }
+
+  @override
+  String taskId(String id) {
+    return 'ID: $id';
+  }
+
+  @override
+  String get manualTasks => 'Manuels';
+
+  @override
+  String get autoTasks => 'Automatiques';
+
+  @override
+  String get taskPayload => 'Données de la tâche (payload):';
+
+  @override
+  String get computeAndSubmit => 'Calculer et envoyer';
+
+  @override
+  String get noTasksAvailable =>
+      'Aucune tâche n\'est disponible pour le moment. Réessayez plus tard.';
+
+  @override
+  String get retry => 'Réessayer';
+
+  @override
+  String get taskSentSuccess => 'Devoir envoyé correctement';
+
+  @override
+  String get totalCredits => 'Total des crédits';
+
+  @override
+  String get recentHistory => 'Historique récent';
+
+  @override
+  String get noRecentActivity => 'Aucune activité récente';
+
+  @override
+  String creditEntry(String amount, String taskId) {
+    return '$amount crédits · tâche #$taskId';
+  }
+
+  @override
+  String get streak => 'Série';
+
+  @override
+  String get week => 'Semaine';
+
+  @override
+  String get totalTasks => 'Total des tâches';
+
+  @override
+  String get updateHistory => 'Mettre à jour';
+
+  @override
+  String get loginTitle => 'Se connecter';
+
+  @override
+  String get registerTitle => 'Créer un compte';
+
+  @override
+  String get loginSubtitle =>
+      'Accédez à votre compte de dons de matériel informatique';
+
+  @override
+  String get registerSubtitle =>
+      'Rejoignez le réseau de surveillance environnementale';
+
+  @override
+  String get username => 'Utilisateur';
+
+  @override
+  String get email => 'E-mail';
+
+  @override
+  String get password => 'Mot de passe';
+
+  @override
+  String get keepSession => 'Maintenir la session ouverte';
+
+  @override
+  String get loginButton => 'Entrer';
+
+  @override
+  String get registerButton => 'S\'inscrire';
+
+  @override
+  String get forgotPassword => 'Avez-vous oublié votre mot de passe ?';
+
+  @override
+  String get noAccount => 'Vous n\'avez pas de compte ? Inscrivez-vous';
+
+  @override
+  String get hasAccount => 'Vous avez déjà un compte ? Connectez-vous';
+
+  @override
+  String get checkingSession => 'Vérification de la session...';
+
+  @override
+  String get donateTitle => 'Soutenez Eco\'clock Network';
+
+  @override
+  String get donateDescription =>
+      '95 % de votre don est directement reversé aux ONG partenaires. Les 5 % restants servent au maintien et au développement de la plateforme.';
+
+  @override
+  String get chooseAmount => 'Choisissez un montant';
+
+  @override
+  String get otherAmount => 'Un autre montant';
+
+  @override
+  String get donateNow => 'Faire un don maintenant';
+
+  @override
+  String get donateRedirectInfo =>
+      'Vous serez redirigé vers Stripe pour effectuer le paiement en toute sécurité. Ce lien sera mis à jour une fois le compte bancaire prêt.';
+
+  @override
+  String get paymentLinkError => 'Impossible d\'ouvrir le lien de paiement';
 }

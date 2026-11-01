@@ -55,5 +55,76 @@
     }
   },
   "update": "Actualitzar",
-  "updateDescription": "Comprovar si hi ha una nova versió disponible"
+  "updateDescription": "Comprovar si hi ha una nova versió disponible",
+
+  "quickActions": "Accions ràpides",
+  "nodeMember": "Membre del Node",
+  "expeditionFallback": "Expedició",
+  "tasksProgress": "{current} / {goal} tasques · {percent}%",
+  "@tasksProgress": {
+    "placeholders": {
+      "current": { "type": "int" },
+      "goal": { "type": "int" },
+      "percent": { "type": "String" }
+    }
+  },
+  "userFallback": "usuari",
+
+  "newTask": "Tasca nova: {type}",
+  "@newTask": {
+    "placeholders": {
+      "type": { "type": "String" }
+    }
+  },
+  "taskId": "ID: {id}",
+  "@taskId": {
+    "placeholders": {
+      "id": { "type": "String" }
+    }
+  },
+  "manualTasks": "Manuals",
+  "autoTasks": "Automàtiques",
+  "taskPayload": "Dades de la tasca (payload):",
+  "computeAndSubmit": "Calcular i enviar",
+  "noTasksAvailable": "No hi ha tasques disponibles ara mateix.\nTorna-ho a intentar més tard.",
+  "retry": "Reintentar",
+  "taskSentSuccess": "Tasca enviada correctament",
+
+  "totalCredits": "Total crèdits",
+  "recentHistory": "Historial recent",
+  "noRecentActivity": "Sense activitat recent",
+  "creditEntry": "{amount} crèdits · tasca #{taskId}",
+  "@creditEntry": {
+    "placeholders": {
+      "amount": { "type": "String" },
+      "taskId": { "type": "String" }
+    }
+  },
+  "streak": "Ratxa",
+  "week": "Setmana",
+  "totalTasks": "Tasques totals",
+  "updateHistory": "Actualitzar",
+
+  "loginTitle": "Obrir sessió",
+  "registerTitle": "Crear conta",
+  "loginSubtitle": "Accedeix a la teva conta de donació de còmput",
+  "registerSubtitle": "Uneix-te a la xarxa de monitorització ambiental",
+  "username": "Usuari",
+  "email": "Email",
+  "password": "Contrasenya",
+  "keepSession": "Romandre amb sessió oberta",
+  "loginButton": "Entrar",
+  "registerButton": "Registrarse",
+  "forgotPassword": "Has oblidat la contrasenya?",
+  "noAccount": "No tens compte? Registra't",
+  "hasAccount": "Ja tens compte? Inicia sessió",
+  "checkingSession": "Verificant sessió...",
+
+  "donateTitle": "Recolza Eco'clock Network",
+  "donateDescription": "El 95% de la teva donació es destina directament a les ONG associades. El 5% restant s'utilitza per al manteniment i el desenvolupament de la plataforma.",
+  "chooseAmount": "Trieu una quantitat",
+  "otherAmount": "Una altra quantitat",
+  "donateNow": "Donar ara",
+  "donateRedirectInfo": "Seràs redirigit a Stripe per completar el pagament de manera segura. Quan tinguem el compte bancari llest, aquest enllaç s'actualitzarà.",
+  "paymentLinkError": "No s'ha pogut obrir l'enllaç de pagament"
 }
