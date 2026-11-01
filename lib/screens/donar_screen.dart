@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:url_launcher/url_launcher.dart';
 
+import '../l10n/app_localizations.dart';
+
 class DonarScreen extends StatefulWidget {
   const DonarScreen({super.key});
 
@@ -27,12 +29,18 @@ class _DonarScreenState extends State<DonarScreen> {
 
   Future<void> _openStripe() async {
     final uri = Uri.parse(stripePaymentLink);
-    if (await canLaunchUrl(uri)) {
-      await launchUrl(uri, mode: LaunchMode.externalApplication);
-    } else {
+    final l10n = AppLocalizations.of(context);
+    try {
+      final launched = await launchUrl(uri, mode: LaunchMode.externalApplication);
+      if (!launched && mounted) {
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(content: Text(l10n.paymentLinkError)),
+        );
+      }
+    } catch (e) {
       if (mounted) {
         ScaffoldMessenger.of(context).showSnackBar(
-          const SnackBar(content: Text('No se pudo abrir el enlace de pago')),
+          SnackBar(content: Text(l10n.paymentLinkError)),
         );
       }
     }
@@ -40,6 +48,8 @@ class _DonarScreenState extends State<DonarScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context);
+
     return Scaffold(
       backgroundColor: const Color(0xFF0A1A0A),
       body: SafeArea(
@@ -48,19 +58,18 @@ class _DonarScreenState extends State<DonarScreen> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              const Text(
-                'Apoya Eco\'clock Network',
-                style: TextStyle(
+              Text(
+                l10n.donateTitle,
+                style: const TextStyle(
                   color: Colors.white,
                   fontSize: 24,
                   fontWeight: FontWeight.bold,
                 ),
               ),
               const SizedBox(height: 12),
-              const Text(
-                'El 95 % de tu donación se destina directamente a las ONGs asociadas. '
-                'El 5 % restante se utiliza para el mantenimiento y desarrollo de la plataforma.',
-                style: TextStyle(
+              Text(
+                l10n.donateDescription,
+                style: const TextStyle(
                   color: Colors.white70,
                   fontSize: 15,
                   height: 1.45,
@@ -68,9 +77,9 @@ class _DonarScreenState extends State<DonarScreen> {
               ),
               const SizedBox(height: 28),
 
-              const Text(
-                'Elige una cantidad',
-                style: TextStyle(
+              Text(
+                l10n.chooseAmount,
+                style: const TextStyle(
                   color: Colors.white,
                   fontSize: 17,
                   fontWeight: FontWeight.w600,
@@ -131,10 +140,10 @@ class _DonarScreenState extends State<DonarScreen> {
                       borderRadius: BorderRadius.circular(12),
                       border: Border.all(color: Colors.white12),
                     ),
-                    child: const Center(
+                    child: Center(
                       child: Text(
-                        'Otra cantidad',
-                        style: TextStyle(color: Colors.white70, fontSize: 15),
+                        l10n.otherAmount,
+                        style: const TextStyle(color: Colors.white70, fontSize: 15),
                       ),
                     ),
                   ),
@@ -189,19 +198,18 @@ class _DonarScreenState extends State<DonarScreen> {
                     ),
                     elevation: 0,
                   ),
-                  child: const Text(
-                    'Donar ahora',
-                    style: TextStyle(fontSize: 17, fontWeight: FontWeight.w600),
+                  child: Text(
+                    l10n.donateNow,
+                    style: const TextStyle(fontSize: 17, fontWeight: FontWeight.w600),
                   ),
                 ),
               ),
 
               const SizedBox(height: 16),
 
-              const Text(
-                'Serás redirigido a Stripe para completar el pago de forma segura. '
-                'Cuando tengamos la cuenta bancaria lista, este enlace se actualizará.',
-                style: TextStyle(color: Colors.white38, fontSize: 12, height: 1.4),
+              Text(
+                l10n.donateRedirectInfo,
+                style: const TextStyle(color: Colors.white38, fontSize: 12, height: 1.4),
                 textAlign: TextAlign.center,
               ),
             ],
