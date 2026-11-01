@@ -1,10 +1,12 @@
-// Pantalla de autenticación (Login / Registro)
+// Pantalla de autenticación (Login / Registro) + selector de idioma
 
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:google_fonts/google_fonts.dart';
-import '../../services/api_service.dart';
-import '../main.dart'; // Para EcoClockThemeExtension
+
+import '../l10n/app_localizations.dart';
+import '../main.dart'; // EcoClockThemeExtension + EcoClockApp.setLocale
+import '../services/api_service.dart';
 import 'forgot_password_screen.dart';
 
 class AuthScreen extends StatefulWidget {
@@ -29,6 +31,21 @@ class _AuthScreenState extends State<AuthScreen> {
   bool _keepSession = true;
   String? _error;
   bool _loading = false;
+
+  static const List<Map<String, String>> _languages = [
+    {'code': 'ca', 'name': 'Català'},
+    {'code': 'es', 'name': 'Español'},
+    {'code': 'eu', 'name': 'Euskera'},
+    {'code': 'en', 'name': 'English'},
+    {'code': 'fr', 'name': 'Français'},
+    {'code': 'de', 'name': 'Deutsch'},
+    {'code': 'it', 'name': 'Italiano'},
+    {'code': 'pt', 'name': 'Português'},
+    {'code': 'zh', 'name': '中文'},
+    {'code': 'ja', 'name': '日本語'},
+    {'code': 'ru', 'name': 'Русский'},
+    {'code': 'ar', 'name': 'العربية'},
+  ];
 
   Future<void> _submit() async {
     setState(() {
@@ -55,7 +72,7 @@ class _AuthScreenState extends State<AuthScreen> {
     } on ApiException catch (e) {
       setState(() => _error = e.message);
     } catch (e) {
-      setState(() => _error = 'Error inesperado: $e');
+      setState(() => _error = 'Error: $e');
     } finally {
       if (mounted) setState(() => _loading = false);
     }
@@ -74,11 +91,16 @@ class _AuthScreenState extends State<AuthScreen> {
     final theme = Theme.of(context);
     final ecoTheme = EcoClockThemeExtension.of(context);
     final colorScheme = theme.colorScheme;
+    final l10n = AppLocalizations.of(context);
+    final currentLocale = Localizations.localeOf(context).languageCode;
+
+    final validCodes = _languages.map((e) => e['code']!).toList();
+    final selectedCode = validCodes.contains(currentLocale) ? currentLocale : 'es';
 
     return Scaffold(
       appBar: AppBar(
         title: Text(
-          'Eco\'clock Network',
+          l10n.appTitle,
           style: GoogleFonts.fraunces(
             fontWeight: FontWeight.w700,
             fontSize: 20,
@@ -95,6 +117,37 @@ class _AuthScreenState extends State<AuthScreen> {
             ),
           ),
         ),
+        actions: [
+          // ─── Selector de idioma ────────────────────────────────
+          Padding(
+            padding: const EdgeInsets.only(right: 8),
+            child: DropdownButtonHideUnderline(
+              child: DropdownButton<String>(
+                value: selectedCode,
+                icon: Icon(
+                  Icons.language,
+                  color: colorScheme.onSurfaceVariant,
+                ),
+                dropdownColor: theme.colorScheme.surfaceContainerHighest,
+                borderRadius: BorderRadius.circular(12),
+                items: _languages.map((lang) {
+                  return DropdownMenuItem<String>(
+                    value: lang['code'],
+                    child: Text(
+                      lang['name']!,
+                      style: theme.textTheme.bodyMedium,
+                    ),
+                  );
+                }).toList(),
+                onChanged: (String? newCode) {
+                  if (newCode != null) {
+                    EcoClockApp.setLocale(context, Locale(newCode));
+                  }
+                },
+              ),
+            ),
+          ),
+        ],
       ),
       body: SafeArea(
         child: Center(
@@ -115,7 +168,7 @@ class _AuthScreenState extends State<AuthScreen> {
                 const SizedBox(height: 24),
 
                 Text(
-                  _isLogin ? 'Iniciar sesión' : 'Crear cuenta',
+                  _isLogin ? l10n.loginTitle : l10n.registerTitle,
                   style: GoogleFonts.fraunces(
                     fontWeight: FontWeight.w600,
                     fontSize: 28,
@@ -124,9 +177,7 @@ class _AuthScreenState extends State<AuthScreen> {
                 ),
                 const SizedBox(height: 8),
                 Text(
-                  _isLogin
-                      ? 'Accede a tu cuenta de donación de cómputo'
-                      : 'Únete a la red de monitorización ambiental',
+                  _isLogin ? l10n.loginSubtitle : l10n.registerSubtitle,
                   style: GoogleFonts.workSans(
                     color: colorScheme.onSurfaceVariant,
                     fontSize: 16,
@@ -135,11 +186,11 @@ class _AuthScreenState extends State<AuthScreen> {
                 ),
                 const SizedBox(height: 32),
 
-                // Username (siempre)
+                // Username
                 TextField(
                   controller: _usernameController,
                   decoration: InputDecoration(
-                    labelText: 'Usuario',
+                    labelText: l10n.username,
                     prefixIcon: Icon(
                       Icons.person_outline,
                       color: colorScheme.onSurfaceVariant,
@@ -151,12 +202,12 @@ class _AuthScreenState extends State<AuthScreen> {
                 ),
                 const SizedBox(height: 16),
 
-                // Email (solo en registro)
+                // Email (solo registro)
                 if (!_isLogin) ...[
                   TextField(
                     controller: _emailController,
                     decoration: InputDecoration(
-                      labelText: 'Email',
+                      labelText: l10n.email,
                       prefixIcon: Icon(
                         Icons.email_outlined,
                         color: colorScheme.onSurfaceVariant,
@@ -174,7 +225,7 @@ class _AuthScreenState extends State<AuthScreen> {
                 TextField(
                   controller: _passwordController,
                   decoration: InputDecoration(
-                    labelText: 'Contraseña',
+                    labelText: l10n.password,
                     prefixIcon: Icon(
                       Icons.lock_outline,
                       color: colorScheme.onSurfaceVariant,
@@ -188,14 +239,14 @@ class _AuthScreenState extends State<AuthScreen> {
                 ),
                 const SizedBox(height: 12),
 
-                // Checkbox mantener sesión
+                // Mantener sesión
                 CheckboxListTile(
                   value: _keepSession,
                   onChanged: _loading
                       ? null
                       : (v) => setState(() => _keepSession = v ?? true),
                   title: Text(
-                    'Mantener sesión abierta',
+                    l10n.keepSession,
                     style: GoogleFonts.workSans(
                       fontSize: 14,
                       color: colorScheme.onSurface,
@@ -245,7 +296,7 @@ class _AuthScreenState extends State<AuthScreen> {
                             ),
                           )
                         : Text(
-                            _isLogin ? 'Entrar' : 'Registrarse',
+                            _isLogin ? l10n.loginButton : l10n.registerButton,
                             style: GoogleFonts.workSans(
                               fontSize: 16,
                               fontWeight: FontWeight.w600,
@@ -255,10 +306,9 @@ class _AuthScreenState extends State<AuthScreen> {
                 ),
 
                 const SizedBox(height: 16),
-                
-                // ¿Olvidaste tu contraseña? (solo en login)
+
+                // Olvidé contraseña
                 if (_isLogin) ...[
-                  const SizedBox(height: 8),
                   TextButton(
                     onPressed: _loading
                         ? null
@@ -271,7 +321,7 @@ class _AuthScreenState extends State<AuthScreen> {
                             );
                           },
                     child: Text(
-                      '¿Olvidaste tu contraseña?',
+                      l10n.forgotPassword,
                       style: GoogleFonts.workSans(
                         fontWeight: FontWeight.w500,
                       ),
@@ -285,9 +335,7 @@ class _AuthScreenState extends State<AuthScreen> {
                       ? null
                       : () => setState(() => _isLogin = !_isLogin),
                   child: Text(
-                    _isLogin
-                        ? '¿No tienes cuenta? Regístrate'
-                        : '¿Ya tienes cuenta? Inicia sesión',
+                    _isLogin ? l10n.noAccount : l10n.hasAccount,
                     style: GoogleFonts.workSans(
                       fontWeight: FontWeight.w500,
                     ),
