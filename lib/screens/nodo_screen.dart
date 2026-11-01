@@ -3,6 +3,8 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:image_picker/image_picker.dart';
+
+import '../l10n/app_localizations.dart';
 import '../services/api_service.dart';
 
 class NodoScreen extends StatefulWidget {
@@ -107,10 +109,12 @@ class _NodoScreenState extends State<NodoScreen> {
         });
       }
     } catch (_) {
-      if (mounted) setState(() {
-        _members = [];
-        _joinRequests = [];
-      });
+      if (mounted) {
+        setState(() {
+          _members = [];
+          _joinRequests = [];
+        });
+      }
     }
     if (mounted) setState(() => _loadingAdminLists = false);
   }
@@ -125,6 +129,7 @@ class _NodoScreenState extends State<NodoScreen> {
   }
 
   Future<void> _createNode() async {
+    final l10n = AppLocalizations.of(context);
     final name = _nameController.text.trim();
     if (name.length < 3) {
       _showSnack('El nombre debe tener al menos 3 caracteres');
@@ -135,7 +140,7 @@ class _NodoScreenState extends State<NodoScreen> {
       if (mounted) {
         setState(() => _myNode = node);
         await _loadAdminLists(node);
-        _showSnack('Nodo creado correctamente', success: true);
+        _showSnack(l10n.nodeCreated, success: true);
       }
     } catch (e) {
       _showSnack('Error: $e');
@@ -143,6 +148,7 @@ class _NodoScreenState extends State<NodoScreen> {
   }
 
   Future<void> _joinByCode() async {
+    final l10n = AppLocalizations.of(context);
     final code = _codeController.text.trim().toUpperCase();
     if (code.isEmpty) return;
     try {
@@ -150,7 +156,7 @@ class _NodoScreenState extends State<NodoScreen> {
       if (mounted) {
         setState(() => _myNode = node);
         await _loadAdminLists(node);
-        _showSnack('Te has unido al nodo', success: true);
+        _showSnack(l10n.nodeJoined, success: true);
       }
     } catch (e) {
       _showSnack('Error: $e');
@@ -167,14 +173,15 @@ class _NodoScreenState extends State<NodoScreen> {
   }
 
   Future<void> _leaveNode() async {
+    final l10n = AppLocalizations.of(context);
     final confirm = await showDialog<bool>(
       context: context,
       builder: (ctx) => AlertDialog(
-        title: const Text('Salir del nodo'),
+        title: Text(l10n.nodeLeave),
         content: const Text('¿Seguro que quieres salir de este nodo?'),
         actions: [
-          TextButton(onPressed: () => Navigator.pop(ctx, false), child: const Text('Cancelar')),
-          FilledButton(onPressed: () => Navigator.pop(ctx, true), child: const Text('Salir')),
+          TextButton(onPressed: () => Navigator.pop(ctx, false), child: Text(l10n.cancel)),
+          FilledButton(onPressed: () => Navigator.pop(ctx, true), child: Text(l10n.leave)),
         ],
       ),
     );
@@ -187,7 +194,7 @@ class _NodoScreenState extends State<NodoScreen> {
           _members = [];
           _joinRequests = [];
         });
-        _showSnack('Has salido del nodo');
+        _showSnack(l10n.nodeLeft);
         _loadPublicNodes();
       }
     } catch (e) {
@@ -196,19 +203,20 @@ class _NodoScreenState extends State<NodoScreen> {
   }
 
   Future<void> _deleteNode() async {
+    final l10n = AppLocalizations.of(context);
     final node = _myNode;
     if (node == null) return;
     final confirm = await showDialog<bool>(
       context: context,
       builder: (ctx) => AlertDialog(
-        title: const Text('Eliminar nodo'),
+        title: Text(l10n.nodeDelete),
         content: Text('¿Eliminar permanentemente el nodo "${node['name']}"?'),
         actions: [
-          TextButton(onPressed: () => Navigator.pop(ctx, false), child: const Text('Cancelar')),
+          TextButton(onPressed: () => Navigator.pop(ctx, false), child: Text(l10n.cancel)),
           FilledButton(
             style: FilledButton.styleFrom(backgroundColor: Colors.red),
             onPressed: () => Navigator.pop(ctx, true),
-            child: const Text('Eliminar'),
+            child: Text(l10n.delete),
           ),
         ],
       ),
@@ -222,7 +230,7 @@ class _NodoScreenState extends State<NodoScreen> {
           _members = [];
           _joinRequests = [];
         });
-        _showSnack('Nodo eliminado', success: true);
+        _showSnack(l10n.nodeDeleted, success: true);
         _loadPublicNodes();
       }
     } catch (e) {
@@ -231,26 +239,27 @@ class _NodoScreenState extends State<NodoScreen> {
   }
 
   Future<void> _renameNode() async {
+    final l10n = AppLocalizations.of(context);
     final node = _myNode;
     if (node == null) return;
     final controller = TextEditingController(text: node['name']?.toString() ?? '');
     final newName = await showDialog<String>(
       context: context,
       builder: (ctx) => AlertDialog(
-        title: const Text('Renombrar nodo'),
+        title: Text(l10n.nodeRename),
         content: TextField(
           controller: controller,
-          decoration: const InputDecoration(
-            labelText: 'Nuevo nombre',
-            border: OutlineInputBorder(),
+          decoration: InputDecoration(
+            labelText: l10n.nodeName,
+            border: const OutlineInputBorder(),
           ),
           autofocus: true,
         ),
         actions: [
-          TextButton(onPressed: () => Navigator.pop(ctx), child: const Text('Cancelar')),
+          TextButton(onPressed: () => Navigator.pop(ctx), child: Text(l10n.cancel)),
           FilledButton(
             onPressed: () => Navigator.pop(ctx, controller.text.trim()),
-            child: const Text('Guardar'),
+            child: Text(l10n.save),
           ),
         ],
       ),
@@ -260,7 +269,7 @@ class _NodoScreenState extends State<NodoScreen> {
       final updated = await widget.api.renameNode(node['id'] as int, newName);
       if (mounted) {
         setState(() => _myNode = updated);
-        _showSnack('Nombre actualizado', success: true);
+        _showSnack(l10n.nodeNameUpdated, success: true);
       }
     } catch (e) {
       _showSnack('Error: $e');
@@ -337,6 +346,7 @@ class _NodoScreenState extends State<NodoScreen> {
   }
 
   Future<void> _kick(int userId, String username) async {
+    final l10n = AppLocalizations.of(context);
     final node = _myNode;
     if (node == null) return;
     final ok = await showDialog<bool>(
@@ -345,7 +355,7 @@ class _NodoScreenState extends State<NodoScreen> {
         title: const Text('Expulsar miembro'),
         content: Text('¿Expulsar a $username del nodo?'),
         actions: [
-          TextButton(onPressed: () => Navigator.pop(ctx, false), child: const Text('Cancelar')),
+          TextButton(onPressed: () => Navigator.pop(ctx, false), child: Text(l10n.cancel)),
           FilledButton(
             style: FilledButton.styleFrom(backgroundColor: Colors.red),
             onPressed: () => Navigator.pop(ctx, true),
@@ -366,6 +376,7 @@ class _NodoScreenState extends State<NodoScreen> {
   }
 
   Future<void> _transfer(int userId, String username) async {
+    final l10n = AppLocalizations.of(context);
     final node = _myNode;
     if (node == null) return;
     final ok = await showDialog<bool>(
@@ -376,7 +387,7 @@ class _NodoScreenState extends State<NodoScreen> {
           '¿Ceder el rol de administrador a $username? Pasarás a ser miembro.',
         ),
         actions: [
-          TextButton(onPressed: () => Navigator.pop(ctx, false), child: const Text('Cancelar')),
+          TextButton(onPressed: () => Navigator.pop(ctx, false), child: Text(l10n.cancel)),
           FilledButton(onPressed: () => Navigator.pop(ctx, true), child: const Text('Transferir')),
         ],
       ),
@@ -401,6 +412,8 @@ class _NodoScreenState extends State<NodoScreen> {
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
+    final l10n = AppLocalizations.of(context);
+
     if (_loading) return const Center(child: CircularProgressIndicator());
     if (_error != null) {
       return Center(
@@ -409,13 +422,13 @@ class _NodoScreenState extends State<NodoScreen> {
           children: [
             Text(_error!, style: const TextStyle(color: Colors.red)),
             const SizedBox(height: 16),
-            FilledButton(onPressed: _loadAll, child: const Text('Reintentar')),
+            FilledButton(onPressed: _loadAll, child: Text(l10n.retry)),
           ],
         ),
       );
     }
-    if (_myNode != null) return _buildMyNodeView(theme);
-    return _buildNoNodeView(theme);
+    if (_myNode != null) return _buildMyNodeView(theme, l10n);
+    return _buildNoNodeView(theme, l10n);
   }
 
   Widget _buildLogo(ThemeData theme, Map<String, dynamic> node) {
@@ -453,7 +466,19 @@ class _NodoScreenState extends State<NodoScreen> {
     return child;
   }
 
-  Widget _buildMyNodeView(ThemeData theme) {
+  Widget _defaultLogo(ThemeData theme) {
+    return Container(
+      width: 64,
+      height: 64,
+      decoration: BoxDecoration(
+        color: theme.colorScheme.primary.withValues(alpha: 0.15),
+        borderRadius: BorderRadius.circular(12),
+      ),
+      child: Icon(Icons.groups, color: theme.colorScheme.primary, size: 32),
+    );
+  }
+
+  Widget _buildMyNodeView(ThemeData theme, AppLocalizations l10n) {
     final node = _myNode!;
     final isAdmin = node['my_role'] == 'admin';
     final unlocked = _unlockedFrames(node);
@@ -496,7 +521,7 @@ class _NodoScreenState extends State<NodoScreen> {
                 ],
               ),
               const SizedBox(height: 24),
-              _infoCard(theme, 'Miembros', '${node['member_count'] ?? 0}'),
+              _infoCard(theme, l10n.nodeMembers, '${node['member_count'] ?? 0}'),
               if (isAdmin) ...[
                 const SizedBox(height: 12),
                 _infoCard(
@@ -538,7 +563,7 @@ class _NodoScreenState extends State<NodoScreen> {
               ],
               if (isAdmin) ...[
                 const SizedBox(height: 28),
-                Text('Solicitudes pendientes', style: theme.textTheme.titleMedium),
+                Text(l10n.nodeRequests, style: theme.textTheme.titleMedium),
                 const SizedBox(height: 8),
                 if (_loadingAdminLists)
                   const Padding(
@@ -579,7 +604,7 @@ class _NodoScreenState extends State<NodoScreen> {
                   }),
               ],
               const SizedBox(height: 28),
-              Text('Miembros del nodo', style: theme.textTheme.titleMedium),
+              Text(l10n.nodeMembers, style: theme.textTheme.titleMedium),
               const SizedBox(height: 8),
               if (_loadingAdminLists)
                 const Padding(
@@ -638,7 +663,7 @@ class _NodoScreenState extends State<NodoScreen> {
                   child: OutlinedButton.icon(
                     onPressed: _renameNode,
                     icon: const Icon(Icons.edit),
-                    label: const Text('Renombrar nodo'),
+                    label: Text(l10n.nodeRename),
                   ),
                 ),
                 const SizedBox(height: 12),
@@ -647,7 +672,7 @@ class _NodoScreenState extends State<NodoScreen> {
                   child: OutlinedButton.icon(
                     onPressed: _deleteNode,
                     icon: const Icon(Icons.delete_forever),
-                    label: const Text('Eliminar nodo'),
+                    label: Text(l10n.nodeDelete),
                     style: OutlinedButton.styleFrom(foregroundColor: Colors.red),
                   ),
                 ),
@@ -658,7 +683,7 @@ class _NodoScreenState extends State<NodoScreen> {
                 child: OutlinedButton.icon(
                   onPressed: _leaveNode,
                   icon: const Icon(Icons.exit_to_app),
-                  label: const Text('Salir del nodo'),
+                  label: Text(l10n.nodeLeave),
                   style: OutlinedButton.styleFrom(foregroundColor: Colors.orange),
                 ),
               ),
@@ -669,7 +694,7 @@ class _NodoScreenState extends State<NodoScreen> {
     );
   }
 
-  Widget _buildNoNodeView(ThemeData theme) {
+  Widget _buildNoNodeView(ThemeData theme, AppLocalizations l10n) {
     return SafeArea(
       top: false,
       child: SingleChildScrollView(
@@ -689,13 +714,13 @@ class _NodoScreenState extends State<NodoScreen> {
               ),
             ),
             const SizedBox(height: 32),
-            Text('Crear un nodo', style: theme.textTheme.titleMedium),
+            Text(l10n.nodeCreate, style: theme.textTheme.titleMedium),
             const SizedBox(height: 12),
             TextField(
               controller: _nameController,
-              decoration: const InputDecoration(
-                labelText: 'Nombre del nodo',
-                border: OutlineInputBorder(),
+              decoration: InputDecoration(
+                labelText: l10n.nodeName,
+                border: const OutlineInputBorder(),
               ),
             ),
             const SizedBox(height: 12),
@@ -704,20 +729,20 @@ class _NodoScreenState extends State<NodoScreen> {
               child: FilledButton.icon(
                 onPressed: _createNode,
                 icon: const Icon(Icons.add),
-                label: const Text('Crear nodo'),
+                label: Text(l10n.nodeCreate),
               ),
             ),
             const SizedBox(height: 32),
             const Divider(),
             const SizedBox(height: 24),
-            Text('Unirse con enlace de unión', style: theme.textTheme.titleMedium),
+            Text(l10n.nodeJoinByCode, style: theme.textTheme.titleMedium),
             const SizedBox(height: 12),
             TextField(
               controller: _codeController,
               textCapitalization: TextCapitalization.characters,
-              decoration: const InputDecoration(
-                labelText: 'Código de invitación',
-                border: OutlineInputBorder(),
+              decoration: InputDecoration(
+                labelText: l10n.nodeCode,
+                border: const OutlineInputBorder(),
                 hintText: 'Ej: QY8RY5LD',
               ),
             ),
@@ -727,108 +752,52 @@ class _NodoScreenState extends State<NodoScreen> {
               child: OutlinedButton.icon(
                 onPressed: _joinByCode,
                 icon: const Icon(Icons.login),
-                label: const Text('Unirse al nodo'),
+                label: Text(l10n.nodeJoinByCode),
               ),
             ),
             const SizedBox(height: 32),
-            const Divider(),
-            const SizedBox(height: 24),
-            Text('Explorar nodos públicos', style: theme.textTheme.titleMedium),
+            Text(l10n.nodePublic, style: theme.textTheme.titleMedium),
             const SizedBox(height: 12),
             if (_loadingPublic)
-              const Center(child: Padding(
-                padding: EdgeInsets.all(24),
-                child: CircularProgressIndicator(),
-              ))
+              const Center(child: CircularProgressIndicator())
             else if (_publicNodes.isEmpty)
               Text(
-                'No hay nodos públicos todavía.',
-                style: theme.textTheme.bodyMedium?.copyWith(
+                'No hay nodos públicos disponibles.',
+                style: theme.textTheme.bodySmall?.copyWith(
                   color: theme.colorScheme.onSurfaceVariant,
                 ),
               )
             else
-              ..._publicNodes.map((n) => _publicNodeCard(theme, n)),
+              ..._publicNodes.map((n) {
+                final name = n['name']?.toString() ?? '';
+                final id = n['id'] as int;
+                final count = n['member_count'] ?? 0;
+                return Card(
+                  margin: const EdgeInsets.only(bottom: 8),
+                  child: ListTile(
+                    title: Text(name),
+                    subtitle: Text('$count miembros'),
+                    trailing: TextButton(
+                      onPressed: () => _requestJoin(id, name),
+                      child: Text(l10n.nodeJoinRequest),
+                    ),
+                  ),
+                );
+              }),
           ],
         ),
       ),
     );
   }
 
-  Widget _publicNodeCard(ThemeData theme, dynamic n) {
-    final name = n['name'] ?? '';
-    final count = n['member_count'] ?? 0;
-    final logoUrl = n['logo_url'];
-    final id = n['id'] as int;
-    return Container(
-      margin: const EdgeInsets.only(bottom: 12),
-      padding: const EdgeInsets.all(14),
-      decoration: BoxDecoration(
-        color: theme.colorScheme.surfaceContainerHighest.withValues(alpha: 0.5),
-        borderRadius: BorderRadius.circular(12),
-      ),
-      child: Row(
-        children: [
-          if (logoUrl != null)
-            ClipRRect(
-              borderRadius: BorderRadius.circular(8),
-              child: Image.network(
-                '${EcoClockApi.baseUrl}$logoUrl',
-                width: 44,
-                height: 44,
-                fit: BoxFit.cover,
-                errorBuilder: (_, __, ___) =>
-                    Icon(Icons.groups, color: theme.colorScheme.primary),
-              ),
-            )
-          else
-            Container(
-              width: 44,
-              height: 44,
-              decoration: BoxDecoration(
-                color: theme.colorScheme.primary.withValues(alpha: 0.15),
-                borderRadius: BorderRadius.circular(8),
-              ),
-              child: Icon(Icons.groups, color: theme.colorScheme.primary),
-            ),
-          const SizedBox(width: 12),
-          Expanded(
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(name, style: theme.textTheme.titleMedium?.copyWith(fontWeight: FontWeight.w600)),
-                Text('$count miembros', style: theme.textTheme.bodySmall),
-              ],
-            ),
-          ),
-          FilledButton.tonal(
-            onPressed: () => _requestJoin(id, name),
-            child: const Text('Solicitar'),
-          ),
-        ],
-      ),
-    );
-  }
-
-  Widget _defaultLogo(ThemeData theme) {
-    return Container(
-      width: 64,
-      height: 64,
-      decoration: BoxDecoration(
-        color: theme.colorScheme.primary.withValues(alpha: 0.15),
-        borderRadius: BorderRadius.circular(12),
-      ),
-      child: Icon(Icons.groups, size: 32, color: theme.colorScheme.primary),
-    );
-  }
-
   Widget _infoCard(ThemeData theme, String label, String value, {bool copyable = false}) {
     return Container(
       width: double.infinity,
-      padding: const EdgeInsets.all(16),
+      padding: const EdgeInsets.all(14),
       decoration: BoxDecoration(
-        color: theme.colorScheme.surfaceContainerHighest.withValues(alpha: 0.5),
+        color: theme.colorScheme.surfaceContainerHighest.withValues(alpha: 0.55),
         borderRadius: BorderRadius.circular(12),
+        border: Border.all(color: theme.colorScheme.outline.withValues(alpha: 0.2)),
       ),
       child: Row(
         children: [
@@ -836,8 +805,13 @@ class _NodoScreenState extends State<NodoScreen> {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Text(label, style: theme.textTheme.labelMedium),
-                const SizedBox(height: 4),
+                Text(
+                  label,
+                  style: theme.textTheme.labelMedium?.copyWith(
+                    color: theme.colorScheme.onSurfaceVariant,
+                  ),
+                ),
+                const SizedBox(height: 2),
                 Text(
                   value,
                   style: theme.textTheme.titleMedium?.copyWith(fontWeight: FontWeight.w600),
@@ -850,7 +824,7 @@ class _NodoScreenState extends State<NodoScreen> {
               icon: const Icon(Icons.copy, size: 20),
               onPressed: () {
                 Clipboard.setData(ClipboardData(text: value));
-                _showSnack('Código copiado');
+                _showSnack('Código copiado', success: true);
               },
             ),
         ],
