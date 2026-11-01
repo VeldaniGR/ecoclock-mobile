@@ -745,4 +745,56 @@ class _DashboardScreenState extends State<DashboardScreen> {
         ),
       ],
     );
+  Widget _buildStatChip(
+    ThemeData theme, {
+    required String label,
+    required String value,
+    required IconData icon,
+  }) {
+    return Container(
+      padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 12),
+      decoration: BoxDecoration(
+        color: theme.colorScheme.surfaceContainerHighest.withValues(alpha: 0.5),
+        borderRadius: BorderRadius.circular(12),
+        border: Border.all(
+          color: theme.colorScheme.outlineVariant.withValues(alpha: 0.4),
+        ),
+      ),
+      child: Row(
+        children: [
+          Icon(icon, size: 22, color: theme.colorScheme.primary),
+          const SizedBox(width: 10),
+          Expanded(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  label,
+                  style: theme.textTheme.labelMedium?.copyWith(
+                    color: theme.colorScheme.onSurfaceVariant,
+                  ),
+                ),
+                Text(
+                  value,
+                  style: theme.textTheme.titleLarge?.copyWith(
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+              ],
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+
+  String _formatCredits(num value) {
+    final v = value.toDouble();
+    if (v == v.roundToDouble()) return v.toInt().toString();
+    var s = v.toStringAsFixed(3);
+    s = s.replaceFirst(RegExp(r'0+$'), '');
+    s = s.replaceFirst(RegExp(r'\.$'), '');
+    return s;
+  }
+}
   }
