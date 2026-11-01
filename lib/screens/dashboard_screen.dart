@@ -745,6 +745,8 @@ class _DashboardScreenState extends State<DashboardScreen> {
         ),
       ],
     );
+  }
+
   Widget _buildStatChip(
     ThemeData theme, {
     required String label,
@@ -797,4 +799,3 @@ class _DashboardScreenState extends State<DashboardScreen> {
     return s;
   }
 }
-
