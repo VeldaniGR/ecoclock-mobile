@@ -1,4 +1,4 @@
-// Pantalla de autenticación (Login / Registro) + selector de idioma
+// Pantalla de autenticación (Login / Registro) + selector de idioma compacto
 
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -103,9 +103,10 @@ class _AuthScreenState extends State<AuthScreen> {
           l10n.appTitle,
           style: GoogleFonts.fraunces(
             fontWeight: FontWeight.w700,
-            fontSize: 20,
+            fontSize: 18,
             color: colorScheme.onSurface,
           ),
+          overflow: TextOverflow.ellipsis,
         ),
         leading: Padding(
           padding: const EdgeInsets.all(8.0),
@@ -118,34 +119,34 @@ class _AuthScreenState extends State<AuthScreen> {
           ),
         ),
         actions: [
-          // ─── Selector de idioma ────────────────────────────────
-          Padding(
-            padding: const EdgeInsets.only(right: 8),
-            child: DropdownButtonHideUnderline(
-              child: DropdownButton<String>(
-                value: selectedCode,
-                icon: Icon(
-                  Icons.language,
-                  color: colorScheme.onSurfaceVariant,
-                ),
-                dropdownColor: theme.colorScheme.surfaceContainerHighest,
-                borderRadius: BorderRadius.circular(12),
-                items: _languages.map((lang) {
-                  return DropdownMenuItem<String>(
-                    value: lang['code'],
-                    child: Text(
-                      lang['name']!,
-                      style: theme.textTheme.bodyMedium,
-                    ),
-                  );
-                }).toList(),
-                onChanged: (String? newCode) {
-                  if (newCode != null) {
-                    EcoClockApp.setLocale(context, Locale(newCode));
-                  }
-                },
-              ),
+          // Selector de idioma compacto (solo icono)
+          PopupMenuButton<String>(
+            icon: Icon(
+              Icons.language,
+              color: colorScheme.onSurfaceVariant,
             ),
+            tooltip: l10n.language,
+            onSelected: (code) {
+              EcoClockApp.setLocale(context, Locale(code));
+            },
+            itemBuilder: (context) {
+              return _languages.map((lang) {
+                final isSelected = lang['code'] == selectedCode;
+                return PopupMenuItem<String>(
+                  value: lang['code'],
+                  child: Row(
+                    children: [
+                      if (isSelected)
+                        Icon(Icons.check, size: 18, color: colorScheme.primary)
+                      else
+                        const SizedBox(width: 18),
+                      const SizedBox(width: 8),
+                      Text(lang['name']!),
+                    ],
+                  ),
+                );
+              }).toList();
+            },
           ),
         ],
       ),
