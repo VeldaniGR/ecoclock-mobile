@@ -34,6 +34,7 @@ flutter:
     - assets/logo.svg
     - assets/logo_apk_neon.png
     - assets/icons/
+    - assets/frames/
 
 #Configuración del icono de launcher (Android + iOS)
 flutter_launcher_icons:
