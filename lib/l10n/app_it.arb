@@ -171,5 +171,20 @@
   "confirm": "Confermare",
   "save": "Mantenere",
   "delete": "Eliminare",
-  "leave": "Esci"
+  "leave": "Esci",
+
+  "roleAdmin": "Amministratore",
+  "roleMember": "Membro",
+  "logoFrame": "Cornice per logo",
+  "noPendingRequests": "Non ci sono richieste in sospeso.",
+  "changeLogo": "Cambia logo",
+  "transferLeadership": "Trasferire la leadership",
+  "kickMember": "Espellere",
+  "achievementsTitle": "Traguardi",
+  "maxLevel": "Livello massimo",
+  "noneFrame": "Nessuno",
+  "uploading": "Caricamento in corso...",
+  "wantsToJoin": "Vuole unirsi",
+  "inviteLink": "Anello di collegamento",
+  "completeExpeditionsForFrames": "Completa le spedizioni per sbloccare i telai."
 }

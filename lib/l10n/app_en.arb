@@ -138,5 +138,20 @@
   "confirm": "Confirm",
   "save": "Keep",
   "delete": "Eliminate",
-  "leave": "Exit"
+  "leave": "Exit",
+
+  "roleAdmin": "Administrador",
+  "roleMember": "Miembro",
+  "logoFrame": "Marco del logo",
+  "noPendingRequests": "No hay solicitudes pendientes.",
+  "changeLogo": "Cambiar logo",
+  "transferLeadership": "Transferir liderazgo",
+  "kickMember": "Expulsar",
+  "achievementsTitle": "Logros",
+  "maxLevel": "Nivel máximo",
+  "noneFrame": "Ninguno",
+  "uploading": "Subiendo...",
+  "wantsToJoin": "Quiere unirse",
+  "inviteLink": "Enlace de unión",
+  "completeExpeditionsForFrames": "Complete expeditions to unlock frames."
 }

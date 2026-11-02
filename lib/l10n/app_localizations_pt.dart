@@ -312,4 +312,47 @@ class AppLocalizationsPt extends AppLocalizations {
 
   @override
   String get leave => 'Sair';
+
+  @override
+  String get roleAdmin => 'Administrador';
+
+  @override
+  String get roleMember => 'Membro';
+
+  @override
+  String get logoFrame => 'Moldura do logotipo';
+
+  @override
+  String get noPendingRequests => 'Não há solicitações pendentes.';
+
+  @override
+  String get changeLogo => 'Mudar logo';
+
+  @override
+  String get transferLeadership => 'Transferir a liderança';
+
+  @override
+  String get kickMember => 'Expulsar';
+
+  @override
+  String get achievementsTitle => 'Conquistas';
+
+  @override
+  String get maxLevel => 'Nível máximo';
+
+  @override
+  String get noneFrame => 'Nenhum';
+
+  @override
+  String get uploading => 'Subindo...';
+
+  @override
+  String get wantsToJoin => 'Quer se juntar';
+
+  @override
+  String get inviteLink => 'Elo de ligação';
+
+  @override
+  String get completeExpeditionsForFrames =>
+      'Conclua expedições para desbloquear marcos.';
 }

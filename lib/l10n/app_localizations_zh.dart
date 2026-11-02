@@ -311,4 +311,46 @@ class AppLocalizationsZh extends AppLocalizations {
 
   @override
   String get leave => '出去';
+
+  @override
+  String get roleAdmin => '行政人員';
+
+  @override
+  String get roleMember => '成員';
+
+  @override
+  String get logoFrame => '標誌邊框';
+
+  @override
+  String get noPendingRequests => '沒有待處理的請求。';
+
+  @override
+  String get changeLogo => '更改標誌';
+
+  @override
+  String get transferLeadership => '移交領導權';
+
+  @override
+  String get kickMember => '驅逐';
+
+  @override
+  String get achievementsTitle => '成就';
+
+  @override
+  String get maxLevel => '最高等級';
+
+  @override
+  String get noneFrame => '沒有任何';
+
+  @override
+  String get uploading => '正在上傳…';
+
+  @override
+  String get wantsToJoin => '他想加入';
+
+  @override
+  String get inviteLink => '連結環節';
+
+  @override
+  String get completeExpeditionsForFrames => '完成遠徵以解鎖框架。';
 }

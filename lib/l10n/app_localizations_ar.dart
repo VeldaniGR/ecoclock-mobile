@@ -312,4 +312,46 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get leave => 'الخروج';
+
+  @override
+  String get roleAdmin => 'مسؤول';
+
+  @override
+  String get roleMember => 'عضو';
+
+  @override
+  String get logoFrame => 'إطار الشعار';
+
+  @override
+  String get noPendingRequests => 'لا توجد طلبات معلقة.';
+
+  @override
+  String get changeLogo => 'تغيير الشعار';
+
+  @override
+  String get transferLeadership => 'نقل القيادة';
+
+  @override
+  String get kickMember => 'طرد';
+
+  @override
+  String get achievementsTitle => 'الإنجازات';
+
+  @override
+  String get maxLevel => 'المستوى الأقصى';
+
+  @override
+  String get noneFrame => 'لا أحد';
+
+  @override
+  String get uploading => 'جارٍ الرفع...';
+
+  @override
+  String get wantsToJoin => 'يريد الانضمام';
+
+  @override
+  String get inviteLink => 'حلقة وصل';
+
+  @override
+  String get completeExpeditionsForFrames => 'أكمل البعثات لفتح الإطارات.';
 }

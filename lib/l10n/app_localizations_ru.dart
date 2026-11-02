@@ -314,4 +314,47 @@ class AppLocalizationsRu extends AppLocalizations {
 
   @override
   String get leave => 'Выходить';
+
+  @override
+  String get roleAdmin => 'Администратор';
+
+  @override
+  String get roleMember => 'Член';
+
+  @override
+  String get logoFrame => 'Рамка для логотипа';
+
+  @override
+  String get noPendingRequests => 'Ожидающих запросов нет.';
+
+  @override
+  String get changeLogo => 'Изменить логотип';
+
+  @override
+  String get transferLeadership => 'Передача руководства';
+
+  @override
+  String get kickMember => 'Исключить';
+
+  @override
+  String get achievementsTitle => 'Достижения';
+
+  @override
+  String get maxLevel => 'Максимальный уровень';
+
+  @override
+  String get noneFrame => 'Никто';
+
+  @override
+  String get uploading => 'Загрузка...';
+
+  @override
+  String get wantsToJoin => 'Он хочет присоединиться';
+
+  @override
+  String get inviteLink => 'Связующее звено';
+
+  @override
+  String get completeExpeditionsForFrames =>
+      'Завершайте экспедиции, чтобы разблокировать рамки.';
 }

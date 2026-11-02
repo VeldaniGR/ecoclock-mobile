@@ -171,5 +171,20 @@
   "confirm": "Bestätigen",
   "save": "Speichern",
   "delete": "Löschen",
-  "leave": "Beenden"
+  "leave": "Beenden",
+
+  "roleAdmin": "Administrator",
+  "roleMember": "Mitglied",
+  "logoFrame": "Logo-Rahmen",
+  "noPendingRequests": "Es liegen keine ausstehenden Anträge vor.",
+  "changeLogo": "Logo ändern",
+  "transferLeadership": "Führung übertragen",
+  "kickMember": "Ausweisen",
+  "achievementsTitle": "Erfolge",
+  "maxLevel": "Maximales Niveau",
+  "noneFrame": "Keiner",
+  "uploading": "Wird hochgeladen...",
+  "wantsToJoin": "Möchte sich anschließen.",
+  "inviteLink": "Verbindungsglied",
+  "completeExpeditionsForFrames": "Schließe Expeditionen ab, um Rahmen freizuschalten."
 }

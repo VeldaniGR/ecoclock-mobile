@@ -313,4 +313,47 @@ class AppLocalizationsEu extends AppLocalizations {
 
   @override
   String get leave => 'Irten';
+
+  @override
+  String get roleAdmin => 'Administratzailea';
+
+  @override
+  String get roleMember => 'Kide';
+
+  @override
+  String get logoFrame => 'Logotipo-markoa';
+
+  @override
+  String get noPendingRequests => 'Ez dago eskaera pendenterik.';
+
+  @override
+  String get changeLogo => 'Aldatu logotipoa';
+
+  @override
+  String get transferLeadership => 'Lidergoa eskualdatu';
+
+  @override
+  String get kickMember => 'Kanporatu';
+
+  @override
+  String get achievementsTitle => 'Lorpenak';
+
+  @override
+  String get maxLevel => 'Gehienezko maila';
+
+  @override
+  String get noneFrame => 'Bat ere ez';
+
+  @override
+  String get uploading => 'Igotzen...';
+
+  @override
+  String get wantsToJoin => 'Bat egin nahi du';
+
+  @override
+  String get inviteLink => 'Lotura-elementua';
+
+  @override
+  String get completeExpeditionsForFrames =>
+      'Osatu espedizioak markoak desblokeatzeko.';
 }

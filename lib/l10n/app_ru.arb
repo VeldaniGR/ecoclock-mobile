@@ -171,5 +171,20 @@
   "confirm": "Подтверждать",
   "save": "Держать",
   "delete": "Устранять",
-  "leave": "Выходить"
+  "leave": "Выходить",
+
+  "roleAdmin": "Администратор",
+  "roleMember": "Член",
+  "logoFrame": "Рамка для логотипа",
+  "noPendingRequests": "Ожидающих запросов нет.",
+  "changeLogo": "Изменить логотип",
+  "transferLeadership": "Передача руководства",
+  "kickMember": "Исключить",
+  "achievementsTitle": "Достижения",
+  "maxLevel": "Максимальный уровень",
+  "noneFrame": "Никто",
+  "uploading": "Загрузка...",
+  "wantsToJoin": "Он хочет присоединиться",
+  "inviteLink": "Связующее звено",
+  "completeExpeditionsForFrames": "Завершайте экспедиции, чтобы разблокировать рамки."
 }

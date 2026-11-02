@@ -311,4 +311,46 @@ class AppLocalizationsJa extends AppLocalizations {
 
   @override
   String get leave => '外出';
+
+  @override
+  String get roleAdmin => '管理者';
+
+  @override
+  String get roleMember => 'メンバー';
+
+  @override
+  String get logoFrame => 'ロゴフレーム';
+
+  @override
+  String get noPendingRequests => '保留中のリクエストはありません。';
+
+  @override
+  String get changeLogo => 'ロゴを変更';
+
+  @override
+  String get transferLeadership => 'リーダーシップの引き継ぎ';
+
+  @override
+  String get kickMember => '追放する';
+
+  @override
+  String get achievementsTitle => '実績';
+
+  @override
+  String get maxLevel => '最大レベル';
+
+  @override
+  String get noneFrame => 'なし';
+
+  @override
+  String get uploading => 'アップロード中...';
+
+  @override
+  String get wantsToJoin => '彼は参加したがっている。';
+
+  @override
+  String get inviteLink => 'つなぎのリンク';
+
+  @override
+  String get completeExpeditionsForFrames => '遠征を完了して、フレームをアンロックしよう。';
 }

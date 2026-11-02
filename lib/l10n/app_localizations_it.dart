@@ -316,4 +316,47 @@ class AppLocalizationsIt extends AppLocalizations {
 
   @override
   String get leave => 'Esci';
+
+  @override
+  String get roleAdmin => 'Amministratore';
+
+  @override
+  String get roleMember => 'Membro';
+
+  @override
+  String get logoFrame => 'Cornice per logo';
+
+  @override
+  String get noPendingRequests => 'Non ci sono richieste in sospeso.';
+
+  @override
+  String get changeLogo => 'Cambia logo';
+
+  @override
+  String get transferLeadership => 'Trasferire la leadership';
+
+  @override
+  String get kickMember => 'Espellere';
+
+  @override
+  String get achievementsTitle => 'Traguardi';
+
+  @override
+  String get maxLevel => 'Livello massimo';
+
+  @override
+  String get noneFrame => 'Nessuno';
+
+  @override
+  String get uploading => 'Caricamento in corso...';
+
+  @override
+  String get wantsToJoin => 'Vuole unirsi';
+
+  @override
+  String get inviteLink => 'Anello di collegamento';
+
+  @override
+  String get completeExpeditionsForFrames =>
+      'Completa le spedizioni per sbloccare i telai.';
 }

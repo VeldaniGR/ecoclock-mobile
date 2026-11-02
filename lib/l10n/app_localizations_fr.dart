@@ -315,4 +315,47 @@ class AppLocalizationsFr extends AppLocalizations {
 
   @override
   String get leave => 'Sortir';
+
+  @override
+  String get roleAdmin => 'Administrateur';
+
+  @override
+  String get roleMember => 'Membre';
+
+  @override
+  String get logoFrame => 'Cadre du logo';
+
+  @override
+  String get noPendingRequests => 'Il n\'y a pas de demandes en attente.';
+
+  @override
+  String get changeLogo => 'Changer le logo';
+
+  @override
+  String get transferLeadership => 'Transférer le leadership';
+
+  @override
+  String get kickMember => 'Expulser';
+
+  @override
+  String get achievementsTitle => 'Réalisations';
+
+  @override
+  String get maxLevel => 'Niveau maximal';
+
+  @override
+  String get noneFrame => 'Aucun';
+
+  @override
+  String get uploading => 'Chargement...';
+
+  @override
+  String get wantsToJoin => 'Il veut se joindre';
+
+  @override
+  String get inviteLink => 'Lien d\'union';
+
+  @override
+  String get completeExpeditionsForFrames =>
+      'Terminez des expéditions pour débloquer des cadres.';
 }

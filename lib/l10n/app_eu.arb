@@ -171,5 +171,20 @@
   "confirm": "Berretsi",
   "save": "Gorde",
   "delete": "Ezabatu",
-  "leave": "Irten"
+  "leave": "Irten",
+
+  "roleAdmin": "Administratzailea",
+  "roleMember": "Kide",
+  "logoFrame": "Logotipo-markoa",
+  "noPendingRequests": "Ez dago eskaera pendenterik.",
+  "changeLogo": "Aldatu logotipoa",
+  "transferLeadership": "Lidergoa eskualdatu",
+  "kickMember": "Kanporatu",
+  "achievementsTitle": "Lorpenak",
+  "maxLevel": "Gehienezko maila",
+  "noneFrame": "Bat ere ez",
+  "uploading": "Igotzen...",
+  "wantsToJoin": "Bat egin nahi du",
+  "inviteLink": "Lotura-elementua",
+  "completeExpeditionsForFrames": "Osatu espedizioak markoak desblokeatzeko."
 }

@@ -315,4 +315,47 @@ class AppLocalizationsDe extends AppLocalizations {
 
   @override
   String get leave => 'Beenden';
+
+  @override
+  String get roleAdmin => 'Administrator';
+
+  @override
+  String get roleMember => 'Mitglied';
+
+  @override
+  String get logoFrame => 'Logo-Rahmen';
+
+  @override
+  String get noPendingRequests => 'Es liegen keine ausstehenden Anträge vor.';
+
+  @override
+  String get changeLogo => 'Logo ändern';
+
+  @override
+  String get transferLeadership => 'Führung übertragen';
+
+  @override
+  String get kickMember => 'Ausweisen';
+
+  @override
+  String get achievementsTitle => 'Erfolge';
+
+  @override
+  String get maxLevel => 'Maximales Niveau';
+
+  @override
+  String get noneFrame => 'Keiner';
+
+  @override
+  String get uploading => 'Wird hochgeladen...';
+
+  @override
+  String get wantsToJoin => 'Möchte sich anschließen.';
+
+  @override
+  String get inviteLink => 'Verbindungsglied';
+
+  @override
+  String get completeExpeditionsForFrames =>
+      'Schließe Expeditionen ab, um Rahmen freizuschalten.';
 }

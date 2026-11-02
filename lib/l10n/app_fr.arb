@@ -171,5 +171,20 @@
   "confirm": "Confirmer",
   "save": "Enregistrer",
   "delete": "Supprimer",
-  "leave": "Sortir"
+  "leave": "Sortir",
+  
+  "roleAdmin": "Administrateur",
+  "roleMember": "Membre",
+  "logoFrame": "Cadre du logo",
+  "noPendingRequests": "Il n'y a pas de demandes en attente.",
+  "changeLogo": "Changer le logo",
+  "transferLeadership": "Transférer le leadership",
+  "kickMember": "Expulser",
+  "achievementsTitle": "Réalisations",
+  "maxLevel": "Niveau maximal",
+  "noneFrame": "Aucun",
+  "uploading": "Chargement...",
+  "wantsToJoin": "Il veut se joindre",
+  "inviteLink": "Lien d'union",
+  "completeExpeditionsForFrames": "Terminez des expéditions pour débloquer des cadres."
 }

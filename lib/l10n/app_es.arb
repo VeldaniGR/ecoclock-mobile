@@ -171,5 +171,20 @@
   "confirm": "Confirmar",
   "save": "Guardar",
   "delete": "Eliminar",
-  "leave": "Salir"
+  "leave": "Salir",
+
+  "roleAdmin": "Administrador",
+  "roleMember": "Miembro",
+  "logoFrame": "Marco del logo",
+  "noPendingRequests": "No hay solicitudes pendientes.",
+  "changeLogo": "Cambiar logo",
+  "transferLeadership": "Transferir liderazgo",
+  "kickMember": "Expulsar",
+  "achievementsTitle": "Logros",
+  "maxLevel": "Nivel máximo",
+  "noneFrame": "Ninguno",
+  "uploading": "Subiendo...",
+  "wantsToJoin": "Quiere unirse",
+  "inviteLink": "Enlace de unión",
+  "completeExpeditionsForFrames": "Completa expediciones para desbloquear marcos."
 }

@@ -171,5 +171,20 @@
   "confirm": "يتأكد",
   "save": "يحفظ",
   "delete": "اِسْتَبْعَد",
-  "leave": "الخروج"
+  "leave": "الخروج",
+
+  "roleAdmin": "مسؤول",
+  "roleMember": "عضو",
+  "logoFrame": "إطار الشعار",
+  "noPendingRequests": "لا توجد طلبات معلقة.",
+  "changeLogo": "تغيير الشعار",
+  "transferLeadership": "نقل القيادة",
+  "kickMember": "طرد",
+  "achievementsTitle": "الإنجازات",
+  "maxLevel": "المستوى الأقصى",
+  "noneFrame": "لا أحد",
+  "uploading": "جارٍ الرفع...",
+  "wantsToJoin": "يريد الانضمام",
+  "inviteLink": "حلقة وصل",
+  "completeExpeditionsForFrames": "أكمل البعثات لفتح الإطارات."
 }

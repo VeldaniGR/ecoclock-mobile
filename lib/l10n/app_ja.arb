@@ -171,5 +171,20 @@
   "confirm": "確認する",
   "save": "保つ",
   "delete": "なくす",
-  "leave": "外出"
+  "leave": "外出",
+
+  "roleAdmin": "管理者",
+  "roleMember": "メンバー",
+  "logoFrame": "ロゴフレーム",
+  "noPendingRequests": "保留中のリクエストはありません。",
+  "changeLogo": "ロゴを変更",
+  "transferLeadership": "リーダーシップの引き継ぎ",
+  "kickMember": "追放する",
+  "achievementsTitle": "実績",
+  "maxLevel": "最大レベル",
+  "noneFrame": "なし",
+  "uploading": "アップロード中...",
+  "wantsToJoin": "彼は参加したがっている。",
+  "inviteLink": "つなぎのリンク",
+  "completeExpeditionsForFrames": "遠征を完了して、フレームをアンロックしよう。"
 }

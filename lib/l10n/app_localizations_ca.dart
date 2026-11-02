@@ -314,4 +314,47 @@ class AppLocalizationsCa extends AppLocalizations {
 
   @override
   String get leave => 'Sortir';
+
+  @override
+  String get roleAdmin => 'Administrador';
+
+  @override
+  String get roleMember => 'Membre';
+
+  @override
+  String get logoFrame => 'Marc del logo';
+
+  @override
+  String get noPendingRequests => 'No hi ha sol·licituds pendents.';
+
+  @override
+  String get changeLogo => 'Canvia logo';
+
+  @override
+  String get transferLeadership => 'Transferir lideratge';
+
+  @override
+  String get kickMember => 'Expulsar';
+
+  @override
+  String get achievementsTitle => 'Assoliments';
+
+  @override
+  String get maxLevel => 'Nivell màxim';
+
+  @override
+  String get noneFrame => 'Ninguno';
+
+  @override
+  String get uploading => 'Pujant...';
+
+  @override
+  String get wantsToJoin => 'Vol unir-se';
+
+  @override
+  String get inviteLink => 'Enllaç d\'unió';
+
+  @override
+  String get completeExpeditionsForFrames =>
+      'Completa expedicions per desbloquejar marcs.';
 }

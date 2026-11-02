@@ -171,5 +171,20 @@
   "confirm": "Confirma",
   "save": "Guarda",
   "delete": "Elimina",
-  "leave": "Sortir"
+  "leave": "Sortir",
+
+  "roleAdmin": "Administrador",
+  "roleMember": "Membre",
+  "logoFrame": "Marc del logo",
+  "noPendingRequests": "No hi ha sol·licituds pendents.",
+  "changeLogo": "Canvia logo",
+  "transferLeadership": "Transferir lideratge",
+  "kickMember": "Expulsar",
+  "achievementsTitle": "Assoliments",
+  "maxLevel": "Nivell màxim",
+  "noneFrame": "Ninguno",
+  "uploading": "Pujant...",
+  "wantsToJoin": "Vol unir-se",
+  "inviteLink": "Enllaç d'unió",
+  "completeExpeditionsForFrames": "Completa expedicions per desbloquejar marcs."
 }

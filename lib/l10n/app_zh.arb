@@ -171,5 +171,20 @@
   "confirm": "確認",
   "save": "保持",
   "delete": "排除",
-  "leave": "出去"
+  "leave": "出去",
+
+  "roleAdmin": "行政人員",
+  "roleMember": "成員",
+  "logoFrame": "標誌邊框",
+  "noPendingRequests": "沒有待處理的請求。",
+  "changeLogo": "更改標誌",
+  "transferLeadership": "移交領導權",
+  "kickMember": "驅逐",
+  "achievementsTitle": "成就",
+  "maxLevel": "最高等級",
+  "noneFrame": "沒有任何",
+  "uploading": "正在上傳…",
+  "wantsToJoin": "他想加入",
+  "inviteLink": "連結環節",
+  "completeExpeditionsForFrames": "完成遠徵以解鎖框架。"
 }

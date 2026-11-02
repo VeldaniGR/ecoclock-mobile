@@ -681,6 +681,90 @@ abstract class AppLocalizations {
   /// In es, this message translates to:
   /// **'Salir'**
   String get leave;
+
+  /// No description provided for @roleAdmin.
+  ///
+  /// In es, this message translates to:
+  /// **'Administrador'**
+  String get roleAdmin;
+
+  /// No description provided for @roleMember.
+  ///
+  /// In es, this message translates to:
+  /// **'Miembro'**
+  String get roleMember;
+
+  /// No description provided for @logoFrame.
+  ///
+  /// In es, this message translates to:
+  /// **'Marco del logo'**
+  String get logoFrame;
+
+  /// No description provided for @noPendingRequests.
+  ///
+  /// In es, this message translates to:
+  /// **'No hay solicitudes pendientes.'**
+  String get noPendingRequests;
+
+  /// No description provided for @changeLogo.
+  ///
+  /// In es, this message translates to:
+  /// **'Cambiar logo'**
+  String get changeLogo;
+
+  /// No description provided for @transferLeadership.
+  ///
+  /// In es, this message translates to:
+  /// **'Transferir liderazgo'**
+  String get transferLeadership;
+
+  /// No description provided for @kickMember.
+  ///
+  /// In es, this message translates to:
+  /// **'Expulsar'**
+  String get kickMember;
+
+  /// No description provided for @achievementsTitle.
+  ///
+  /// In es, this message translates to:
+  /// **'Logros'**
+  String get achievementsTitle;
+
+  /// No description provided for @maxLevel.
+  ///
+  /// In es, this message translates to:
+  /// **'Nivel máximo'**
+  String get maxLevel;
+
+  /// No description provided for @noneFrame.
+  ///
+  /// In es, this message translates to:
+  /// **'Ninguno'**
+  String get noneFrame;
+
+  /// No description provided for @uploading.
+  ///
+  /// In es, this message translates to:
+  /// **'Subiendo...'**
+  String get uploading;
+
+  /// No description provided for @wantsToJoin.
+  ///
+  /// In es, this message translates to:
+  /// **'Quiere unirse'**
+  String get wantsToJoin;
+
+  /// No description provided for @inviteLink.
+  ///
+  /// In es, this message translates to:
+  /// **'Enlace de unión'**
+  String get inviteLink;
+
+  /// No description provided for @completeExpeditionsForFrames.
+  ///
+  /// In es, this message translates to:
+  /// **'Completa expediciones para desbloquear marcos.'**
+  String get completeExpeditionsForFrames;
 }
 
 class _AppLocalizationsDelegate
