@@ -368,6 +368,46 @@ class _DashboardScreenState extends State<DashboardScreen> {
   Widget _buildNodeCard(ThemeData theme, AppLocalizations l10n) {
     final node = _myNode!;
     final logoUrl = node['logo_url'];
+    final frame = node['logo_frame']?.toString();
+    final frameAsset = _homeFrameAsset(frame);
+
+    Widget logoWidget;
+    if (logoUrl != null) {
+      logoWidget = ClipRRect(
+        borderRadius: BorderRadius.circular(8),
+        child: Image.network(
+          '${EcoClockApi.baseUrl}$logoUrl',
+          width: 44,
+          height: 44,
+          fit: BoxFit.cover,
+          errorBuilder: (_, __, ___) => const Icon(Icons.groups, size: 28),
+        ),
+      );
+    } else {
+      logoWidget = Container(
+        width: 44,
+        height: 44,
+        decoration: BoxDecoration(
+          color: theme.colorScheme.primary.withValues(alpha: 0.15),
+          borderRadius: BorderRadius.circular(8),
+        ),
+        child: Icon(Icons.groups, color: theme.colorScheme.primary),
+      );
+    }
+
+    if (frameAsset != null) {
+      logoWidget = SizedBox(
+        width: 56,
+        height: 56,
+        child: Stack(
+          alignment: Alignment.center,
+          children: [
+            SizedBox(width: 40, height: 40, child: logoWidget),
+            Image.asset(frameAsset, width: 56, height: 56, fit: BoxFit.contain),
+          ],
+        ),
+      );
+    }
 
     return Container(
       padding: const EdgeInsets.all(14),
@@ -380,27 +420,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
       ),
       child: Row(
         children: [
-          if (logoUrl != null)
-            ClipRRect(
-              borderRadius: BorderRadius.circular(8),
-              child: Image.network(
-                '${EcoClockApi.baseUrl}$logoUrl',
-                width: 44,
-                height: 44,
-                fit: BoxFit.cover,
-                errorBuilder: (_, __, ___) => const Icon(Icons.groups, size: 28),
-              ),
-            )
-          else
-            Container(
-              width: 44,
-              height: 44,
-              decoration: BoxDecoration(
-                color: theme.colorScheme.primary.withValues(alpha: 0.15),
-                borderRadius: BorderRadius.circular(8),
-              ),
-              child: Icon(Icons.groups, color: theme.colorScheme.primary),
-            ),
+          logoWidget,
           const SizedBox(width: 12),
           Expanded(
             child: Column(
@@ -425,6 +445,22 @@ class _DashboardScreenState extends State<DashboardScreen> {
         ],
       ),
     );
+  }
+
+  String? _homeFrameAsset(String? frameId) {
+    if (frameId == null || frameId.isEmpty || frameId == 'none') return null;
+    const known = {
+      'autumn_fungi',
+      'water',
+      'deforestation',
+      'environmental_crime',
+      'energy',
+      'sea_ice',
+      'ozone',
+      'posidonia',
+    };
+    if (!known.contains(frameId)) return null;
+    return 'assets/frames/$frameId.png';
   }
 
   // ──────────────────────────────────────────────────────────────

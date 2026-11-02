@@ -434,51 +434,76 @@ class _NodoScreenState extends State<NodoScreen> {
     return _buildNoNodeView(theme, l10n);
   }
 
-  Widget _buildLogo(ThemeData theme, Map<String, dynamic> node) {
+  Widget _buildLogo(ThemeData theme, Map<String, dynamic> node, {double size = 64}) {
     final logoUrl = node['logo_url'];
     final frame = node['logo_frame']?.toString();
-    final child = logoUrl != null
+
+    final logo = logoUrl != null
         ? ClipRRect(
-            borderRadius: BorderRadius.circular(12),
+            borderRadius: BorderRadius.circular(size * 0.18),
             child: Image.network(
               '${EcoClockApi.baseUrl}$logoUrl',
-              width: 64,
-              height: 64,
+              width: size,
+              height: size,
               fit: BoxFit.cover,
-              errorBuilder: (_, __, ___) => _defaultLogo(theme),
+              errorBuilder: (_, __, ___) => _defaultLogo(theme, size: size),
             ),
           )
-        : _defaultLogo(theme);
+        : _defaultLogo(theme, size: size);
 
-    if (frame == 'autumn_fungi') {
-      return Container(
-        padding: const EdgeInsets.all(3),
-        decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(14),
-          border: Border.all(color: const Color(0xFFC4A35A), width: 3),
-          boxShadow: [
-            BoxShadow(
-              color: const Color(0xFFC4A35A).withValues(alpha: 0.4),
-              blurRadius: 8,
+    final frameAsset = _frameAsset(frame);
+    if (frameAsset != null) {
+      return SizedBox(
+        width: size * 1.25,
+        height: size * 1.25,
+        child: Stack(
+          alignment: Alignment.center,
+          children: [
+            SizedBox(
+              width: size * 0.78,
+              height: size * 0.78,
+              child: logo,
+            ),
+            Image.asset(
+              frameAsset,
+              width: size * 1.25,
+              height: size * 1.25,
+              fit: BoxFit.contain,
             ),
           ],
         ),
-        child: child,
       );
     }
-    return child;
+
+    return logo;
   }
 
-  Widget _defaultLogo(ThemeData theme) {
+  Widget _defaultLogo(ThemeData theme, {double size = 64}) {
     return Container(
-      width: 64,
-      height: 64,
+      width: size,
+      height: size,
       decoration: BoxDecoration(
         color: theme.colorScheme.primary.withValues(alpha: 0.15),
-        borderRadius: BorderRadius.circular(12),
+        borderRadius: BorderRadius.circular(size * 0.18),
       ),
-      child: Icon(Icons.groups, color: theme.colorScheme.primary, size: 32),
+      child: Icon(Icons.groups, color: theme.colorScheme.primary, size: size * 0.5),
     );
+  }
+
+  String? _frameAsset(String? frameId) {
+    if (frameId == null || frameId.isEmpty || frameId == 'none') return null;
+    const known = {
+      'autumn_fungi',
+      'water',
+      'deforestation',
+      'environmental_crime',
+      'energy',
+      'sea_ice',
+      'ozone',
+      'posidonia',
+    };
+    if (!known.contains(frameId)) return null;
+    return 'assets/frames/$frameId.png';
   }
 
   Widget _buildMyNodeView(ThemeData theme, AppLocalizations l10n) {
