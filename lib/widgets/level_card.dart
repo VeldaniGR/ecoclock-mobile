@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+
+import '../l10n/app_localizations.dart';
 import '../models/api_models.dart';
 
 String levelSvg(int id) {
@@ -32,6 +34,38 @@ Color levelColor(int id, ColorScheme cs) {
   }
 }
 
+String _localizedLevelName(AppLocalizations l10n, int id, String? apiName) {
+  switch (id) {
+    case 1:
+      return l10n.levelExplorer;
+    case 2:
+      return l10n.levelSensor;
+    case 3:
+      return l10n.levelSentinel;
+    case 4:
+      return l10n.levelLighthouse;
+    default:
+      return apiName ?? '—';
+  }
+}
+
+String _localizedAchievementName(AppLocalizations l10n, String id, String apiName) {
+  switch (id) {
+    case 'first_task':
+      return l10n.achievementFirstContribution;
+    case 'streak_7':
+      return l10n.achievementWeekActive;
+    case 'two_habitats':
+      return l10n.achievementTwoHabitats;
+    case 'first_node':
+      return l10n.achievementFirstNode;
+    case 'hundred_tasks':
+      return l10n.achievementHundredTasks;
+    default:
+      return apiName;
+  }
+}
+
 class LevelCard extends StatelessWidget {
   final LevelInfo? level;
   final int streakDays;
@@ -42,11 +76,15 @@ class LevelCard extends StatelessWidget {
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
     final cs = theme.colorScheme;
+    final l10n = AppLocalizations.of(context);
     final lv = level;
     final id = lv?.id ?? 0;
-    final name = lv?.name ?? 'Recién llegado';
+    final name = _localizedLevelName(l10n, id, lv?.name);
     final progress = (lv?.progress ?? 0.0).clamp(0.0, 1.0);
-    final next = lv?.nextName;
+    final nextId = (lv?.id ?? 0) + 1;
+    final nextName = lv?.nextName != null
+        ? _localizedLevelName(l10n, nextId, lv?.nextName)
+        : null;
     final color = levelColor(id, cs);
 
     return Container(
@@ -58,7 +96,6 @@ class LevelCard extends StatelessWidget {
       ),
       child: Row(
         children: [
-          // Icono SVG
           SizedBox(
             width: 56,
             height: 56,
@@ -91,9 +128,9 @@ class LevelCard extends StatelessWidget {
                 ),
                 const SizedBox(height: 6),
                 Text(
-                  next != null
-                      ? 'Siguiente: $next · Racha $streakDays d'
-                      : 'Nivel máximo · Racha $streakDays d',
+                  nextName != null
+                      ? '${l10n.nextLevel(nextName)} · ${l10n.streakDays(streakDays)}'
+                      : '${l10n.maxLevel} · ${l10n.streakDays(streakDays)}',
                   style: theme.textTheme.bodySmall?.copyWith(
                     color: cs.onSurfaceVariant,
                   ),
@@ -130,14 +167,16 @@ class AchievementsRow extends StatelessWidget {
     if (achievements.isEmpty) return const SizedBox.shrink();
     final theme = Theme.of(context);
     final cs = theme.colorScheme;
+    final l10n = AppLocalizations.of(context);
 
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Text('Logros', style: theme.textTheme.titleMedium),
+        Text(l10n.achievementsTitle, style: theme.textTheme.titleMedium),
         const SizedBox(height: 10),
         ...achievements.map((a) {
           final unlocked = a.unlocked;
+          final displayName = _localizedAchievementName(l10n, a.id, a.name);
           return Padding(
             padding: const EdgeInsets.only(bottom: 8),
             child: Row(
@@ -150,7 +189,7 @@ class AchievementsRow extends StatelessWidget {
                 const SizedBox(width: 10),
                 Expanded(
                   child: Text(
-                    a.name,
+                    displayName,
                     style: theme.textTheme.bodyMedium?.copyWith(
                       color: unlocked ? cs.onSurface : cs.onSurfaceVariant,
                       fontWeight: unlocked ? FontWeight.w600 : FontWeight.w400,

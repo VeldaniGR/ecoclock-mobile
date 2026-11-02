@@ -352,14 +352,14 @@ class _NodoScreenState extends State<NodoScreen> {
     final ok = await showDialog<bool>(
       context: context,
       builder: (ctx) => AlertDialog(
-        title: const Text('Expulsar miembro'),
+        title: Text(l10n.kickMember),
         content: Text('¿Expulsar a $username del nodo?'),
         actions: [
           TextButton(onPressed: () => Navigator.pop(ctx, false), child: Text(l10n.cancel)),
           FilledButton(
             style: FilledButton.styleFrom(backgroundColor: Colors.red),
             onPressed: () => Navigator.pop(ctx, true),
-            child: const Text('Expulsar'),
+            child: Text(l10n.kickMember),
           ),
         ],
       ),
@@ -382,13 +382,16 @@ class _NodoScreenState extends State<NodoScreen> {
     final ok = await showDialog<bool>(
       context: context,
       builder: (ctx) => AlertDialog(
-        title: const Text('Transferir liderazgo'),
+        title: Text(l10n.transferLeadership),
         content: Text(
           '¿Ceder el rol de administrador a $username? Pasarás a ser miembro.',
         ),
         actions: [
           TextButton(onPressed: () => Navigator.pop(ctx, false), child: Text(l10n.cancel)),
-          FilledButton(onPressed: () => Navigator.pop(ctx, true), child: const Text('Transferir')),
+          FilledButton(
+            onPressed: () => Navigator.pop(ctx, true),
+            child: Text(l10n.transferLeadership),
+          ),
         ],
       ),
     );
@@ -510,7 +513,7 @@ class _NodoScreenState extends State<NodoScreen> {
                         ),
                         const SizedBox(height: 4),
                         Text(
-                          isAdmin ? 'Administrador' : 'Miembro',
+                          isAdmin ? l10n.roleAdmin : l10n.roleMember,
                           style: theme.textTheme.bodyMedium?.copyWith(
                             color: theme.colorScheme.primary,
                           ),
@@ -526,16 +529,16 @@ class _NodoScreenState extends State<NodoScreen> {
                 const SizedBox(height: 12),
                 _infoCard(
                   theme,
-                  'Enlace de unión',
+                  l10n.inviteLink,
                   node['invite_code'] ?? '',
                   copyable: true,
                 ),
                 const SizedBox(height: 16),
-                Text('Marco del logo', style: theme.textTheme.titleMedium),
+                Text(l10n.logoFrame, style: theme.textTheme.titleMedium),
                 const SizedBox(height: 8),
                 if (unlocked.isEmpty)
                   Text(
-                    'Completa expediciones para desbloquear marcos.',
+                    l10n.completeExpeditionsForFrames,
                     style: theme.textTheme.bodySmall?.copyWith(
                       color: theme.colorScheme.onSurfaceVariant,
                     ),
@@ -546,7 +549,7 @@ class _NodoScreenState extends State<NodoScreen> {
                     runSpacing: 8,
                     children: [
                       ChoiceChip(
-                        label: const Text('Ninguno'),
+                        label: Text(l10n.noneFrame),
                         selected: currentFrame == null || currentFrame.isEmpty,
                         onSelected: (_) => _setLogoFrame('none'),
                       ),
@@ -572,7 +575,7 @@ class _NodoScreenState extends State<NodoScreen> {
                   )
                 else if (_joinRequests.isEmpty)
                   Text(
-                    'No hay solicitudes pendientes.',
+                    l10n.noPendingRequests,
                     style: theme.textTheme.bodySmall?.copyWith(
                       color: theme.colorScheme.onSurfaceVariant,
                     ),
@@ -585,7 +588,7 @@ class _NodoScreenState extends State<NodoScreen> {
                       margin: const EdgeInsets.only(bottom: 8),
                       child: ListTile(
                         title: Text(username),
-                        subtitle: const Text('Quiere unirse'),
+                        subtitle: Text(l10n.wantsToJoin),
                         trailing: Row(
                           mainAxisSize: MainAxisSize.min,
                           children: [
@@ -625,16 +628,22 @@ class _NodoScreenState extends State<NodoScreen> {
                     margin: const EdgeInsets.only(bottom: 8),
                     child: ListTile(
                       title: Text(username),
-                      subtitle: Text(role == 'admin' ? 'Administrador' : 'Miembro'),
+                      subtitle: Text(role == 'admin' ? l10n.roleAdmin : l10n.roleMember),
                       trailing: isAdmin && role != 'admin'
                           ? PopupMenuButton<String>(
                               onSelected: (v) {
                                 if (v == 'kick') _kick(uid, username);
                                 if (v == 'transfer') _transfer(uid, username);
                               },
-                              itemBuilder: (ctx) => const [
-                                PopupMenuItem(value: 'transfer', child: Text('Transferir liderazgo')),
-                                PopupMenuItem(value: 'kick', child: Text('Expulsar')),
+                              itemBuilder: (ctx) => [
+                                PopupMenuItem(
+                                  value: 'transfer',
+                                  child: Text(l10n.transferLeadership),
+                                ),
+                                PopupMenuItem(
+                                  value: 'kick',
+                                  child: Text(l10n.kickMember),
+                                ),
                               ],
                             )
                           : null,
@@ -654,7 +663,7 @@ class _NodoScreenState extends State<NodoScreen> {
                             child: CircularProgressIndicator(strokeWidth: 2),
                           )
                         : const Icon(Icons.image),
-                    label: Text(_uploadingLogo ? 'Subiendo...' : 'Cambiar logo'),
+                    label: Text(_uploadingLogo ? l10n.uploading : l10n.changeLogo),
                   ),
                 ),
                 const SizedBox(height: 12),
