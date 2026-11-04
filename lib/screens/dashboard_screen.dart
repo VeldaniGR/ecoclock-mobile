@@ -66,7 +66,11 @@ class _DashboardScreenState extends State<DashboardScreen> {
     } catch (_) {
       _impact = null;
     }
-    if (mounted) setState(() => _loadingImpact = false);
+    if (mounted) {
+      setState(() {
+        _loadingImpact = false;
+      });
+    }
   }
 
   Future<void> _loadUser() async {
@@ -114,6 +118,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
     if (_currentTask == null) return;
 
     final output = computeTaskOutput(_currentTask!.payload);
+    final hexesBefore = _impact?.totalHexes ?? 0;
 
     try {
       await widget.api.submitTask(
@@ -121,15 +126,37 @@ class _DashboardScreenState extends State<DashboardScreen> {
         output: output,
       );
       if (!mounted) return;
+
       final l10n = AppLocalizations.of(context);
+
+      // Créditos, nueva tarea, expedición e impacto
+      await Future.wait([
+        _loadCredits(),
+        _loadTask(),
+        _loadExpedition(),
+        _loadImpact(),
+      ]);
+      if (!mounted) return;
+
+      final hexesAfter = _impact?.totalHexes ?? 0;
+      String msg = l10n.taskSentSuccess;
+      if (hexesAfter > hexesBefore) {
+        // Hexágono(s) nuevo(s): mostrar el más reciente
+        final all = _impact?.allHexes ?? [];
+        if (all.isNotEmpty) {
+          final sorted = [...all]
+            ..sort((a, b) => b.unlockedAt.compareTo(a.unlockedAt));
+          final h = sorted.first;
+          msg = '${l10n.taskSentSuccess} · ${h.hexCode} (${h.tileSlug})';
+        }
+      }
+
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(
-          content: Text(l10n.taskSentSuccess),
+          content: Text(msg),
           backgroundColor: Colors.green,
         ),
       );
-      await _loadCredits();
-      await _loadAll();
     } on ApiException catch (e) {
       if (!mounted) return;
       ScaffoldMessenger.of(context).showSnackBar(
