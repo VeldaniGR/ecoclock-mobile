@@ -7,6 +7,7 @@ import '../widgets/json_view.dart';
 import '../services/worker.dart';
 import '../widgets/stat_card.dart';
 import '../widgets/level_card.dart';
+import '../widgets/impact_map_card.dart';
 import '../l10n/app_localizations.dart';
 import 'donar_screen.dart';
 import 'nodo_screen.dart';
@@ -38,6 +39,9 @@ class _DashboardScreenState extends State<DashboardScreen> {
   bool _loadingTask = true;
   String? _taskError;
   Map<String, dynamic>? _expedition;
+  MeImpact? _impact;
+  bool _loadingImpact = true;
+  ImpactScope _impactScope = ImpactScope.me;
 
   @override
   void initState() {
@@ -52,20 +56,17 @@ class _DashboardScreenState extends State<DashboardScreen> {
       _loadTask(),
       _loadMyNode(),
       _loadExpedition(),
+      _loadImpact(),
     ]);
-    // TEMP: probar mapa de impacto
+  }
+
+  Future<void> _loadImpact() async {
     try {
-      final impact = await widget.api.getMyImpact();
-      debugPrint('Impact hexes: ${impact.totalHexes}');
-      for (final t in impact.tiles) {
-        debugPrint('  tile=${t.tileSlug} n=${t.totalUnlocked}');
-        for (final h in t.hexes) {
-          debugPrint('    ${h.hexCode} ${h.color} (${h.lat}, ${h.lon})');
-        }
-      }
-    } catch (e) {
-      debugPrint('Impact error: $e');
+      _impact = await widget.api.getMyImpact();
+    } catch (_) {
+      _impact = null;
     }
+    if (mounted) setState(() => _loadingImpact = false);
   }
 
   Future<void> _loadUser() async {
@@ -282,24 +283,12 @@ class _DashboardScreenState extends State<DashboardScreen> {
               const SizedBox(height: 16),
             ],
             _buildDashboardStatsRow(theme, l10n),
-            const SizedBox(height: 28),
-            Text(l10n.quickActions, style: theme.textTheme.titleMedium),
-            const SizedBox(height: 12),
-            Wrap(
-              spacing: 12,
-              runSpacing: 12,
-              children: [
-                FilledButton.icon(
-                  icon: const Icon(Icons.refresh),
-                  label: Text(l10n.refreshAll),
-                  onPressed: _loadAll,
-                ),
-                OutlinedButton.icon(
-                  icon: const Icon(Icons.task_alt),
-                  label: Text(l10n.requestTask),
-                  onPressed: _loadTask,
-                ),
-              ],
+            const SizedBox(height: 20),
+            ImpactMapCard(
+              impact: _impact,
+              loading: _loadingImpact,
+              scope: _impactScope,
+              onScopeChanged: (s) => setState(() => _impactScope = s),
             ),
           ],
         ),
@@ -308,7 +297,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
   }
 
   /// Icono de la tarjeta de expedición según slug / reward_frame / nombre.
-  String _expeditionEmoji(Map<String, dynamic> e) {
+    String _expeditionEmoji(Map<String, dynamic> e) {
     final slug = (e['slug'] ?? '').toString().toLowerCase();
     final frame = (e['reward_frame'] ?? '').toString().toLowerCase();
     final name = (e['name'] ?? '').toString().toLowerCase();
@@ -322,7 +311,6 @@ class _DashboardScreenState extends State<DashboardScreen> {
         name.contains('artico')) {
       return '🧊';
     }
-
     if (slug.contains('autumn') ||
         slug.contains('fungi') ||
         frame.contains('fungi') ||
@@ -331,8 +319,25 @@ class _DashboardScreenState extends State<DashboardScreen> {
         name.contains('otono')) {
       return '🍄';
     }
-
     return '🧭';
+  }
+
+  /// Texto de cuerpo según familia de expedición (v1: ES en app).
+  /// Más adelante: 2–3 claves l10n, no una por campaña.
+  String _expeditionDescription(Map<String, dynamic> e) {
+    final slug = (e['slug'] ?? '').toString().toLowerCase();
+
+    if (slug.contains('arctic') || slug.contains('winter')) {
+      return 'Expedición de invierno: monitorización del deshielo ártico. '
+          'Completa tareas y la actividad exterior con el cuadrante para '
+          'ganar el logro y colorear hexágonos en la loseta Ártico.';
+    }
+    if (slug.contains('autumn') || slug.contains('fungi')) {
+      return 'Expedición de otoño: monitorización de biodiversidad (hongos). '
+          'Completa tareas de la red para avanzar en la meta colectiva.';
+    }
+    // Fallback: lo que envíe la API
+    return e['description']?.toString() ?? '';
   }
 
   Widget _buildExpeditionCard(ThemeData theme, AppLocalizations l10n) {
@@ -345,7 +350,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
             (goal > 0 ? current / goal : 0.0))
         .clamp(0.0, 1.0);
     final name = e['name']?.toString() ?? l10n.expeditionFallback;
-    final desc = e['description']?.toString() ?? '';
+    final desc = _expeditionDescription(e);
 
     return Container(
       width: double.infinity,
