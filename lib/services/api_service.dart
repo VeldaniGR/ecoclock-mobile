@@ -337,6 +337,18 @@ class EcoClockApi {
     return MeImpact.fromJson(data as Map<String, dynamic>);
   }
 
+  /// Sobre de navegante (GET /me/impact/navigator-envelope)
+  Future<NavigatorEnvelope> getNavigatorEnvelope() async {
+    final response = await _authenticatedRequest(
+      () => http.get(
+        Uri.parse('$baseUrl/me/impact/navigator-envelope'),
+        headers: _headers,
+      ),
+    );
+    final data = _handleResponse(response);
+    return NavigatorEnvelope.fromJson(data as Map<String, dynamic>);
+  }
+
   // ──────────────────────────────────────────────────────────────
   // Utilidades
   // ──────────────────────────────────────────────────────────────

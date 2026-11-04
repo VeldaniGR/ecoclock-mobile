@@ -40,6 +40,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
   String? _taskError;
   Map<String, dynamic>? _expedition;
   MeImpact? _impact;
+  NavigatorEnvelope? _envelope;
   bool _loadingImpact = true;
   ImpactScope _impactScope = ImpactScope.me;
 
@@ -57,6 +58,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
       _loadMyNode(),
       _loadExpedition(),
       _loadImpact(),
+      _loadEnvelope(),
     ]);
   }
 
@@ -135,6 +137,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
         _loadTask(),
         _loadExpedition(),
         _loadImpact(),
+        _loadEnvelope(),
       ]);
       if (!mounted) return;
 
@@ -175,6 +178,15 @@ class _DashboardScreenState extends State<DashboardScreen> {
       _expedition = await widget.api.getCurrentExpedition();
     } catch (_) {
       _expedition = null;
+    }
+    if (mounted) setState(() {});
+  }
+
+  Future<void> _loadEnvelope() async {
+    try {
+      _envelope = await widget.api.getNavigatorEnvelope();
+    } catch (_) {
+      _envelope = null;
     }
     if (mounted) setState(() {});
   }
@@ -295,6 +307,18 @@ class _DashboardScreenState extends State<DashboardScreen> {
               _buildExpeditionCard(theme, l10n),
               const SizedBox(height: 16),
             ],
+
+            if (_expedition != null) ...[
+              _buildExpeditionCard(theme, l10n),
+              const SizedBox(height: 16),
+            ],
+            _buildNavigatorBanner(theme),
+            ImpactMapCard(
+              impact: _impact,
+              loading: _loadingImpact,
+              scope: _impactScope,
+              onScopeChanged: (s) => setState(() => _impactScope = s),
+            ),
 
             // Mapa de impacto (debajo de la expedición)
             ImpactMapCard(
@@ -440,6 +464,52 @@ class _DashboardScreenState extends State<DashboardScreen> {
               (progress * 100).toStringAsFixed(1),
             ),
             style: theme.textTheme.labelMedium,
+          ),
+        ],
+      ),
+    );
+  }
+
+  Widget _buildNavigatorBanner(ThemeData theme) {
+    final env = _envelope;
+    if (env == null || !env.showBanner || env.message == null) {
+      return const SizedBox.shrink();
+    }
+
+    return Container(
+      width: double.infinity,
+      margin: const EdgeInsets.only(bottom: 16),
+      padding: const EdgeInsets.all(14),
+      decoration: BoxDecoration(
+        color: const Color(0xFF5B9EA6).withValues(alpha: 0.22),
+        borderRadius: BorderRadius.circular(14),
+        border: Border.all(color: const Color(0xFF5B9EA6), width: 1.2),
+      ),
+      child: Row(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          const Text('✉️', style: TextStyle(fontSize: 22)),
+          const SizedBox(width: 10),
+          Expanded(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  env.message!,
+                  style: theme.textTheme.titleSmall?.copyWith(
+                    fontWeight: FontWeight.w700,
+                  ),
+                ),
+                const SizedBox(height: 4),
+                Text(
+                  '${env.hexCount}/${env.hexThreshold} hex · '
+                  '${env.personalTaskCount}/${env.taskThreshold} tareas',
+                  style: theme.textTheme.bodySmall?.copyWith(
+                    color: theme.colorScheme.onSurfaceVariant,
+                  ),
+                ),
+              ],
+            ),
           ),
         ],
       ),

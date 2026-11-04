@@ -334,3 +334,47 @@ class MeImpact {
   List<ImpactHex> get allHexes =>
       tiles.expand((t) => t.hexes).toList(growable: false);
 }
+
+/// Sobre de navegante (GET /me/impact/navigator-envelope)
+class NavigatorEnvelope {
+  final String status; // locked | ready | sent | validated
+  final String? expeditionSlug;
+  final String tileSlug;
+  final int hexCount;
+  final int hexThreshold;
+  final int personalTaskCount;
+  final int taskThreshold;
+  final String? message;
+  final String? trigger;
+
+  NavigatorEnvelope({
+    required this.status,
+    this.expeditionSlug,
+    required this.tileSlug,
+    required this.hexCount,
+    required this.hexThreshold,
+    required this.personalTaskCount,
+    required this.taskThreshold,
+    this.message,
+    this.trigger,
+  });
+
+  bool get isLocked => status == 'locked';
+  bool get isReady => status == 'ready';
+  bool get showBanner =>
+      status == 'ready' || status == 'sent' || status == 'validated';
+
+  factory NavigatorEnvelope.fromJson(Map<String, dynamic> json) {
+    return NavigatorEnvelope(
+      status: json['status'] as String? ?? 'locked',
+      expeditionSlug: json['expedition_slug'] as String?,
+      tileSlug: json['tile_slug'] as String? ?? 'arctic',
+      hexCount: json['hex_count'] as int? ?? 0,
+      hexThreshold: json['hex_threshold'] as int? ?? 5,
+      personalTaskCount: json['personal_task_count'] as int? ?? 0,
+      taskThreshold: json['task_threshold'] as int? ?? 25,
+      message: json['message'] as String?,
+      trigger: json['trigger'] as String?,
+    );
+  }
+}
