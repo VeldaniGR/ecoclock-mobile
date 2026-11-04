@@ -236,3 +236,101 @@ class ApiError {
   factory ApiError.fromJson(Map<String, dynamic> json) =>
       ApiError(detail: json['detail'] as String? ?? 'Error desconocido');
 }
+
+// ──────────────────────────────────────────────────────────────
+// Mapa de impacto
+// ──────────────────────────────────────────────────────────────
+
+/// Hexágono desbloqueado (GET /me/impact)
+class ImpactHex {
+  final String tileSlug;
+  final String hexCode;
+  final String color;
+  final String source;
+  final String? expeditionSlug;
+  final double? lat;
+  final double? lon;
+  final DateTime unlockedAt;
+  final DateTime? validatedAt;
+
+  ImpactHex({
+    required this.tileSlug,
+    required this.hexCode,
+    required this.color,
+    required this.source,
+    this.expeditionSlug,
+    this.lat,
+    this.lon,
+    required this.unlockedAt,
+    this.validatedAt,
+  });
+
+  factory ImpactHex.fromJson(Map<String, dynamic> json) {
+    return ImpactHex(
+      tileSlug: json['tile_slug'] as String? ?? '',
+      hexCode: json['hex_code'] as String? ?? '',
+      color: json['color'] as String? ?? 'glacier',
+      source: json['source'] as String? ?? '',
+      expeditionSlug: json['expedition_slug'] as String?,
+      lat: (json['lat'] as num?)?.toDouble(),
+      lon: (json['lon'] as num?)?.toDouble(),
+      unlockedAt: DateTime.tryParse(json['unlocked_at'] as String? ?? '') ??
+          DateTime.fromMillisecondsSinceEpoch(0),
+      validatedAt: json['validated_at'] != null
+          ? DateTime.tryParse(json['validated_at'] as String)
+          : null,
+    );
+  }
+}
+
+/// Resumen de una loseta con sus hexágonos
+class ImpactTileSummary {
+  final String tileSlug;
+  final String? tileName;
+  final int totalUnlocked;
+  final List<ImpactHex> hexes;
+
+  ImpactTileSummary({
+    required this.tileSlug,
+    this.tileName,
+    required this.totalUnlocked,
+    required this.hexes,
+  });
+
+  factory ImpactTileSummary.fromJson(Map<String, dynamic> json) {
+    final rawHexes = json['hexes'] as List<dynamic>? ?? [];
+    return ImpactTileSummary(
+      tileSlug: json['tile_slug'] as String? ?? '',
+      tileName: json['tile_name'] as String?,
+      totalUnlocked: json['total_unlocked'] as int? ?? 0,
+      hexes: rawHexes
+          .map((e) => ImpactHex.fromJson(e as Map<String, dynamic>))
+          .toList(),
+    );
+  }
+}
+
+/// Respuesta de GET /me/impact
+class MeImpact {
+  final List<ImpactTileSummary> tiles;
+  final int totalHexes;
+
+  MeImpact({
+    required this.tiles,
+    required this.totalHexes,
+  });
+
+  factory MeImpact.fromJson(Map<String, dynamic> json) {
+    final rawTiles = json['tiles'] as List<dynamic>? ?? [];
+    return MeImpact(
+      tiles: rawTiles
+          .map((e) => ImpactTileSummary.fromJson(e as Map<String, dynamic>))
+          .toList(),
+      totalHexes: json['total_hexes'] as int? ?? 0,
+    );
+  }
+
+  /// Todos los hexágonos aplanados (útil para el grid)
+  List<ImpactHex> get allHexes =>
+      tiles.expand((t) => t.hexes).toList(growable: false);
+}

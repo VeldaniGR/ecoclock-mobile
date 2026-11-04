@@ -325,6 +325,18 @@ class EcoClockApi {
     return CreditsSummary.fromJson(data as Map<String, dynamic>);
   }
 
+  /// Mapa de impacto del usuario (GET /me/impact)
+  Future<MeImpact> getMyImpact() async {
+    final response = await _authenticatedRequest(
+      () => http.get(
+        Uri.parse('$baseUrl/me/impact'),
+        headers: _headers,
+      ),
+    );
+    final data = _handleResponse(response);
+    return MeImpact.fromJson(data as Map<String, dynamic>);
+  }
+
   // ──────────────────────────────────────────────────────────────
   // Utilidades
   // ──────────────────────────────────────────────────────────────

@@ -53,6 +53,19 @@ class _DashboardScreenState extends State<DashboardScreen> {
       _loadMyNode(),
       _loadExpedition(),
     ]);
+    // TEMP: probar mapa de impacto
+    try {
+      final impact = await widget.api.getMyImpact();
+      debugPrint('Impact hexes: ${impact.totalHexes}');
+      for (final t in impact.tiles) {
+        debugPrint('  tile=${t.tileSlug} n=${t.totalUnlocked}');
+        for (final h in t.hexes) {
+          debugPrint('    ${h.hexCode} ${h.color} (${h.lat}, ${h.lon})');
+        }
+      }
+    } catch (e) {
+      debugPrint('Impact error: $e');
+    }
   }
 
   Future<void> _loadUser() async {
@@ -294,6 +307,34 @@ class _DashboardScreenState extends State<DashboardScreen> {
     );
   }
 
+  /// Icono de la tarjeta de expedición según slug / reward_frame / nombre.
+  String _expeditionEmoji(Map<String, dynamic> e) {
+    final slug = (e['slug'] ?? '').toString().toLowerCase();
+    final frame = (e['reward_frame'] ?? '').toString().toLowerCase();
+    final name = (e['name'] ?? '').toString().toLowerCase();
+
+    if (slug.contains('arctic') ||
+        slug.contains('winter') ||
+        frame.contains('arctic') ||
+        frame.contains('ice') ||
+        name.contains('hielo') ||
+        name.contains('ártico') ||
+        name.contains('artico')) {
+      return '🧊';
+    }
+
+    if (slug.contains('autumn') ||
+        slug.contains('fungi') ||
+        frame.contains('fungi') ||
+        name.contains('hongo') ||
+        name.contains('otoño') ||
+        name.contains('otono')) {
+      return '🍄';
+    }
+
+    return '🧭';
+  }
+
   Widget _buildExpeditionCard(ThemeData theme, AppLocalizations l10n) {
     final e = _expedition;
     if (e == null) return const SizedBox.shrink();
@@ -321,7 +362,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
         children: [
           Row(
             children: [
-              const Text('🍄', style: TextStyle(fontSize: 22)),
+              Text(_expeditionEmoji(e), style: const TextStyle(fontSize: 22)),
               const SizedBox(width: 10),
               Expanded(
                 child: Text(
