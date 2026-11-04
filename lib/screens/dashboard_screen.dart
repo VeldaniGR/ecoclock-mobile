@@ -263,10 +263,22 @@ class _DashboardScreenState extends State<DashboardScreen> {
             ),
             const SizedBox(height: 20),
 
+            // Expedición activa
             if (_expedition != null) ...[
               _buildExpeditionCard(theme, l10n),
               const SizedBox(height: 16),
             ],
+
+            // Mapa de impacto (debajo de la expedición)
+            ImpactMapCard(
+              impact: _impact,
+              loading: _loadingImpact,
+              scope: _impactScope,
+              onScopeChanged: (s) => setState(() => _impactScope = s),
+            ),
+            const SizedBox(height: 16),
+
+            // Nodo
             if (_myNode != null) ...[
               GestureDetector(
                 onTap: () => setState(() => _currentIndex = 3),
@@ -275,6 +287,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
               const SizedBox(height: 16),
             ],
 
+            // Nivel
             if (_credits?.level != null) ...[
               LevelCard(
                 level: _credits!.level,
@@ -282,14 +295,9 @@ class _DashboardScreenState extends State<DashboardScreen> {
               ),
               const SizedBox(height: 16),
             ],
+
+            // Stats
             _buildDashboardStatsRow(theme, l10n),
-            const SizedBox(height: 20),
-            ImpactMapCard(
-              impact: _impact,
-              loading: _loadingImpact,
-              scope: _impactScope,
-              onScopeChanged: (s) => setState(() => _impactScope = s),
-            ),
           ],
         ),
       ),
