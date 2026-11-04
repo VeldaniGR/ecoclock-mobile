@@ -75,7 +75,6 @@ class _ImpactMapCardState extends State<ImpactMapCard> {
       _transform.value = Matrix4.identity();
       return;
     }
-    // Último desbloqueado = el de unlockedAt más reciente
     final sorted = [...hexes]
       ..sort((a, b) => b.unlockedAt.compareTo(a.unlockedAt));
     final parsed = _parseHex(sorted.first.hexCode);
@@ -89,12 +88,14 @@ class _ImpactMapCardState extends State<ImpactMapCard> {
     final cx = ox + col * horiz + offsetX;
     final cy = oy + row * vert;
 
-    // Centrar en el viewport ~280x220
     const vw = 280.0;
     const vh = 220.0;
     final dx = vw / 2 - cx;
     final dy = vh / 2 - cy;
-    _transform.value = Matrix4.identity()..translate(dx, dy);
+
+    final m = Matrix4.identity();
+    m.setTranslationRaw(dx, dy, 0);
+    _transform.value = m;
   }
 
   @override
