@@ -302,25 +302,16 @@ class _DashboardScreenState extends State<DashboardScreen> {
             ),
             const SizedBox(height: 20),
 
-            // Expedición activa
+            // Expedición (una sola)
             if (_expedition != null) ...[
               _buildExpeditionCard(theme, l10n),
               const SizedBox(height: 16),
             ],
 
-            if (_expedition != null) ...[
-              _buildExpeditionCard(theme, l10n),
-              const SizedBox(height: 16),
-            ],
+            // Sobre de navegante
             _buildNavigatorBanner(theme),
-            ImpactMapCard(
-              impact: _impact,
-              loading: _loadingImpact,
-              scope: _impactScope,
-              onScopeChanged: (s) => setState(() => _impactScope = s),
-            ),
 
-            // Mapa de impacto (debajo de la expedición)
+            // Mapa (uno solo)
             ImpactMapCard(
               impact: _impact,
               loading: _loadingImpact,
