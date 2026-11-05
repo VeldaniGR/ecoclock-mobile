@@ -191,6 +191,40 @@ class _DashboardScreenState extends State<DashboardScreen> {
     if (mounted) setState(() {});
   }
 
+  bool _isSendingEnvelope = false;
+
+  Future<void> _onSendEnvelope() async {
+    if (_isSendingEnvelope) return;
+
+    setState(() => _isSendingEnvelope = true);
+
+    try {
+      await widget.api.ackNavigatorEnvelopeSent();
+      // Recargamos para que el banner pase a "sent"
+      await _loadEnvelope();
+
+      if (mounted) {
+        ScaffoldMessenger.of(context).showSnackBar(
+          const SnackBar(
+            content: Text('¡Sobre enviado! Revisa tu correo.'),
+            backgroundColor: Color(0xFF5B9EA6),
+          ),
+        );
+      }
+    } catch (e) {
+      if (mounted) {
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(
+            content: Text('Error al enviar el sobre: $e'),
+            backgroundColor: Colors.red.shade700,
+          ),
+        );
+      }
+    } finally {
+      if (mounted) setState(() => _isSendingEnvelope = false);
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     final l10n = AppLocalizations.of(context);
@@ -463,9 +497,14 @@ class _DashboardScreenState extends State<DashboardScreen> {
 
   Widget _buildNavigatorBanner(ThemeData theme) {
     final env = _envelope;
+
     if (env == null || !env.showBanner || env.message == null) {
       return const SizedBox.shrink();
     }
+
+    final bool canSend = env.status == 'ready' || env.status == 'sent';
+    final String buttonLabel =
+        env.status == 'sent' ? 'Reenviar sobre' : 'Enviar sobre';
 
     return Container(
       width: double.infinity,
@@ -476,32 +515,62 @@ class _DashboardScreenState extends State<DashboardScreen> {
         borderRadius: BorderRadius.circular(14),
         border: Border.all(color: const Color(0xFF5B9EA6), width: 1.2),
       ),
-      child: Row(
+      child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          const Text('✉️', style: TextStyle(fontSize: 22)),
-          const SizedBox(width: 10),
-          Expanded(
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(
-                  env.message!,
-                  style: theme.textTheme.titleSmall?.copyWith(
-                    fontWeight: FontWeight.w700,
-                  ),
+          Row(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              const Text('✉️', style: TextStyle(fontSize: 22)),
+              const SizedBox(width: 10),
+              Expanded(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      env.message!,
+                      style: theme.textTheme.titleSmall?.copyWith(
+                        fontWeight: FontWeight.w700,
+                      ),
+                    ),
+                    const SizedBox(height: 4),
+                    Text(
+                      '${env.hexCount}/${env.hexThreshold} hex · '
+                      '${env.personalTaskCount}/${env.taskThreshold} tareas',
+                      style: theme.textTheme.bodySmall?.copyWith(
+                        color: theme.colorScheme.onSurfaceVariant,
+                      ),
+                    ),
+                  ],
                 ),
-                const SizedBox(height: 4),
-                Text(
-                  '${env.hexCount}/${env.hexThreshold} hex · '
-                  '${env.personalTaskCount}/${env.taskThreshold} tareas',
-                  style: theme.textTheme.bodySmall?.copyWith(
-                    color: theme.colorScheme.onSurfaceVariant,
-                  ),
-                ),
-              ],
-            ),
+              ),
+            ],
           ),
+          if (canSend) ...[
+            const SizedBox(height: 12),
+            SizedBox(
+              width: double.infinity,
+              child: FilledButton.icon(
+                onPressed: _isSendingEnvelope ? null : _onSendEnvelope,
+                icon: _isSendingEnvelope
+                    ? const SizedBox(
+                        width: 18,
+                        height: 18,
+                        child: CircularProgressIndicator(
+                          strokeWidth: 2,
+                          color: Colors.white,
+                        ),
+                      )
+                    : const Icon(Icons.send_rounded, size: 18),
+                label: Text(_isSendingEnvelope ? 'Enviando…' : buttonLabel),
+                style: FilledButton.styleFrom(
+                  backgroundColor: const Color(0xFF5B9EA6),
+                  foregroundColor: Colors.white,
+                  padding: const EdgeInsets.symmetric(vertical: 12),
+                ),
+              ),
+            ),
+          ],
         ],
       ),
     );

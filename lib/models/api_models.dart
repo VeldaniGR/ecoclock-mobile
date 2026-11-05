@@ -361,8 +361,7 @@ class NavigatorEnvelope {
 
   bool get isLocked => status == 'locked';
   bool get isReady => status == 'ready';
-  bool get showBanner =>
-      status == 'ready' || status == 'sent' || status == 'validated';
+  bool get showBanner => status != 'locked';
 
   factory NavigatorEnvelope.fromJson(Map<String, dynamic> json) {
     return NavigatorEnvelope(
