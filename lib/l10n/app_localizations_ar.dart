@@ -354,4 +354,83 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get completeExpeditionsForFrames => 'أكمل البعثات لفتح الإطارات.';
+
+  @override
+  String get navigatorBannerReady => 'ظرف الملاّح الخاص بك جاهز';
+
+  @override
+  String get navigatorBannerSent => 'تم إرسال الظرف — أكمل النشاط الخارجي';
+
+  @override
+  String get navigatorBannerValidated =>
+      'نشاط خارجي مُعتمد — مُوجِّه في الجليد!';
+
+  @override
+  String get navigatorSendButton => 'أرسل المظروف';
+
+  @override
+  String get navigatorResendButton => 'إعادة توجيه بخصوص';
+
+  @override
+  String get navigatorSending => 'إرسال…';
+
+  @override
+  String get navigatorSentSuccess => 'تم إرسال المظروف! تفقد بريدك الإلكتروني.';
+
+  @override
+  String navigatorSendError(String error) {
+    return 'خطأ في إرسال المظروف: $error';
+  }
+
+  @override
+  String navigatorHexTasksCounter(
+      int hexCount, int hexThreshold, int taskCount, int taskThreshold) {
+    return '$hexCount/$hexThreshold مسدس · $taskCount/$taskThreshold مهام';
+  }
+
+  @override
+  String get impactMapTitle => 'خريطة الأثر';
+
+  @override
+  String get impactTileArctic => 'القطب الشمالي';
+
+  @override
+  String get impactTileMediterranean => 'البحر الأبيض المتوسط';
+
+  @override
+  String get impactTabOnlyMe => 'أنا فقط';
+
+  @override
+  String get impactTabMyNode => 'عُقدتي';
+
+  @override
+  String get impactTabNetwork => 'شبكة';
+
+  @override
+  String get impactTabOnlyMeDesc => 'أثرك الشخصي';
+
+  @override
+  String get impactTabMyNodeDesc => 'تأثير العقدة الخاصة بك';
+
+  @override
+  String get impactTabNetworkDesc => 'التأثير على الشبكة بأكملها';
+
+  @override
+  String impactHexesUnlocked(int count) {
+    return '$count أشكال سداسية غير مقفلة';
+  }
+
+  @override
+  String impactTotalHexes(int total) {
+    return 'المجموع: $total أشكال سداسية';
+  }
+
+  @override
+  String get impactNoHexes => 'لم تفتح أي أشكال سداسية بعد.';
+
+  @override
+  String get impactGoldenHex => 'سداسي ذهبي';
+
+  @override
+  String get impactNavigatorTitle => 'ملاحو الجليد';
 }

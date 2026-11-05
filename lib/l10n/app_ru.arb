@@ -219,7 +219,7 @@
   "impactTabNetwork": "сеть",
   "impactTabOnlyMeDesc": "Ваш личный вклад",
   "impactTabMyNodeDesc": "Влияние вашей ноды",
-  "impactTabNetworkDesc": "Влияние на всю сеть"
+  "impactTabNetworkDesc": "Влияние на всю сеть",
   "impactHexesUnlocked": "{count} разблокированные шестиугольники",
   "@impactHexesUnlocked": {
     "placeholders": {

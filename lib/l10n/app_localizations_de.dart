@@ -358,4 +358,85 @@ class AppLocalizationsDe extends AppLocalizations {
   @override
   String get completeExpeditionsForFrames =>
       'Schließe Expeditionen ab, um Rahmen freizuschalten.';
+
+  @override
+  String get navigatorBannerReady => 'Dein Seefahrer-Umschlag ist fertig.';
+
+  @override
+  String get navigatorBannerSent =>
+      'Versandter Umschlag – schließe die externe Aktivität ab';
+
+  @override
+  String get navigatorBannerValidated =>
+      'Validierte Outdoor-Aktivität – Eis-Navigator!';
+
+  @override
+  String get navigatorSendButton => 'Umschlag versenden';
+
+  @override
+  String get navigatorResendButton => 'Weiterleiten über';
+
+  @override
+  String get navigatorSending => 'Wird gesendet…';
+
+  @override
+  String get navigatorSentSuccess =>
+      'Umschlag verschickt! Überprüfe deine E-Mails.';
+
+  @override
+  String navigatorSendError(String error) {
+    return 'Fehler beim Senden des Umschlags: $error';
+  }
+
+  @override
+  String navigatorHexTasksCounter(
+      int hexCount, int hexThreshold, int taskCount, int taskThreshold) {
+    return '$hexCount/$hexThreshold hex · $taskCount/$taskThreshold Aufgaben';
+  }
+
+  @override
+  String get impactMapTitle => 'Auswirkungskarte';
+
+  @override
+  String get impactTileArctic => 'Arktis';
+
+  @override
+  String get impactTileMediterranean => 'Mittelmeer';
+
+  @override
+  String get impactTabOnlyMe => 'Nur ich';
+
+  @override
+  String get impactTabMyNode => 'Mein Knoten';
+
+  @override
+  String get impactTabNetwork => 'Netzwerk';
+
+  @override
+  String get impactTabOnlyMeDesc => 'Dein persönlicher Einfluss';
+
+  @override
+  String get impactTabMyNodeDesc => 'Auswirkung deines Knotens';
+
+  @override
+  String get impactTabNetworkDesc => 'Auswirkung auf das gesamte Netzwerk';
+
+  @override
+  String impactHexesUnlocked(int count) {
+    return '$count freigeschaltete Sechsecke';
+  }
+
+  @override
+  String impactTotalHexes(int total) {
+    return 'Total: $total Sechsecke';
+  }
+
+  @override
+  String get impactNoHexes => 'Du hast noch keine Sechsecke freigeschaltet.';
+
+  @override
+  String get impactGoldenHex => 'Goldenes Sechseck';
+
+  @override
+  String get impactNavigatorTitle => 'Eissegler';
 }

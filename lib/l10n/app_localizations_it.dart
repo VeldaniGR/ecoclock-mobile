@@ -359,4 +359,84 @@ class AppLocalizationsIt extends AppLocalizations {
   @override
   String get completeExpeditionsForFrames =>
       'Completa le spedizioni per sbloccare i telai.';
+
+  @override
+  String get navigatorBannerReady => 'La busta del tuo navigatore è pronta';
+
+  @override
+  String get navigatorBannerSent =>
+      'Busta inviata: completa l\'attività esterna';
+
+  @override
+  String get navigatorBannerValidated =>
+      'Attività all\'aperto convalidata: navigatore tra i ghiacci!';
+
+  @override
+  String get navigatorSendButton => 'Inviare busta';
+
+  @override
+  String get navigatorResendButton => 'Inoltrare busta';
+
+  @override
+  String get navigatorSending => 'Invio in corso…';
+
+  @override
+  String get navigatorSentSuccess => 'Busta inviata! Controlla la tua email.';
+
+  @override
+  String navigatorSendError(String error) {
+    return 'Errore durante l\'invio della busta: $error';
+  }
+
+  @override
+  String navigatorHexTasksCounter(
+      int hexCount, int hexThreshold, int taskCount, int taskThreshold) {
+    return '$hexCount/$hexThreshold esa · $taskCount/$taskThreshold compiti';
+  }
+
+  @override
+  String get impactMapTitle => 'Mappa degli impatti';
+
+  @override
+  String get impactTileArctic => 'artico';
+
+  @override
+  String get impactTileMediterranean => 'mediterraneo';
+
+  @override
+  String get impactTabOnlyMe => 'Solo io';
+
+  @override
+  String get impactTabMyNode => 'Il mio nodo';
+
+  @override
+  String get impactTabNetwork => 'Rete';
+
+  @override
+  String get impactTabOnlyMeDesc => 'Il tuo impatto personale';
+
+  @override
+  String get impactTabMyNodeDesc => 'Impatto del tuo nodo';
+
+  @override
+  String get impactTabNetworkDesc => 'Impatto sull\'intera rete';
+
+  @override
+  String impactHexesUnlocked(int count) {
+    return '$count esagoni sbloccati';
+  }
+
+  @override
+  String impactTotalHexes(int total) {
+    return 'Totale: $total esagoni';
+  }
+
+  @override
+  String get impactNoHexes => 'Non hai ancora sbloccato alcun esagono.';
+
+  @override
+  String get impactGoldenHex => 'Esagono aureo';
+
+  @override
+  String get impactNavigatorTitle => 'Navigatori tra i ghiacci';
 }

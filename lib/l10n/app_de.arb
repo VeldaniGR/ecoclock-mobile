@@ -219,7 +219,7 @@
   "impactTabNetwork": "Netzwerk",
   "impactTabOnlyMeDesc": "Dein persönlicher Einfluss",
   "impactTabMyNodeDesc": "Auswirkung deines Knotens",
-  "impactTabNetworkDesc": "Auswirkung auf das gesamte Netzwerk"
+  "impactTabNetworkDesc": "Auswirkung auf das gesamte Netzwerk",
   "impactHexesUnlocked": "{count} freigeschaltete Sechsecke",
   "@impactHexesUnlocked": {
     "placeholders": {

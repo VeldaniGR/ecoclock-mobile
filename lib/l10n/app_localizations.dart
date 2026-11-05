@@ -765,6 +765,145 @@ abstract class AppLocalizations {
   /// In es, this message translates to:
   /// **'Completa expediciones para desbloquear marcos.'**
   String get completeExpeditionsForFrames;
+
+  /// No description provided for @navigatorBannerReady.
+  ///
+  /// In es, this message translates to:
+  /// **'Tu sobre de navegante está listo'**
+  String get navigatorBannerReady;
+
+  /// No description provided for @navigatorBannerSent.
+  ///
+  /// In es, this message translates to:
+  /// **'Sobre enviado — completa la actividad exterior'**
+  String get navigatorBannerSent;
+
+  /// No description provided for @navigatorBannerValidated.
+  ///
+  /// In es, this message translates to:
+  /// **'Actividad exterior validada — ¡Navegante del hielo!'**
+  String get navigatorBannerValidated;
+
+  /// No description provided for @navigatorSendButton.
+  ///
+  /// In es, this message translates to:
+  /// **'Enviar sobre'**
+  String get navigatorSendButton;
+
+  /// No description provided for @navigatorResendButton.
+  ///
+  /// In es, this message translates to:
+  /// **'Reenviar sobre'**
+  String get navigatorResendButton;
+
+  /// No description provided for @navigatorSending.
+  ///
+  /// In es, this message translates to:
+  /// **'Enviando…'**
+  String get navigatorSending;
+
+  /// No description provided for @navigatorSentSuccess.
+  ///
+  /// In es, this message translates to:
+  /// **'¡Sobre enviado! Revisa tu correo.'**
+  String get navigatorSentSuccess;
+
+  /// No description provided for @navigatorSendError.
+  ///
+  /// In es, this message translates to:
+  /// **'Error al enviar el sobre: {error}'**
+  String navigatorSendError(String error);
+
+  /// No description provided for @navigatorHexTasksCounter.
+  ///
+  /// In es, this message translates to:
+  /// **'{hexCount}/{hexThreshold} hex · {taskCount}/{taskThreshold} tareas'**
+  String navigatorHexTasksCounter(
+      int hexCount, int hexThreshold, int taskCount, int taskThreshold);
+
+  /// No description provided for @impactMapTitle.
+  ///
+  /// In es, this message translates to:
+  /// **'Mapa de impacto'**
+  String get impactMapTitle;
+
+  /// No description provided for @impactTileArctic.
+  ///
+  /// In es, this message translates to:
+  /// **'Ártico'**
+  String get impactTileArctic;
+
+  /// No description provided for @impactTileMediterranean.
+  ///
+  /// In es, this message translates to:
+  /// **'Mediterráneo'**
+  String get impactTileMediterranean;
+
+  /// No description provided for @impactTabOnlyMe.
+  ///
+  /// In es, this message translates to:
+  /// **'Solo yo'**
+  String get impactTabOnlyMe;
+
+  /// No description provided for @impactTabMyNode.
+  ///
+  /// In es, this message translates to:
+  /// **'Mi Nodo'**
+  String get impactTabMyNode;
+
+  /// No description provided for @impactTabNetwork.
+  ///
+  /// In es, this message translates to:
+  /// **'Red'**
+  String get impactTabNetwork;
+
+  /// No description provided for @impactTabOnlyMeDesc.
+  ///
+  /// In es, this message translates to:
+  /// **'Tu impacto personal'**
+  String get impactTabOnlyMeDesc;
+
+  /// No description provided for @impactTabMyNodeDesc.
+  ///
+  /// In es, this message translates to:
+  /// **'Impacto de tu nodo'**
+  String get impactTabMyNodeDesc;
+
+  /// No description provided for @impactTabNetworkDesc.
+  ///
+  /// In es, this message translates to:
+  /// **'Impacto de toda la red'**
+  String get impactTabNetworkDesc;
+
+  /// No description provided for @impactHexesUnlocked.
+  ///
+  /// In es, this message translates to:
+  /// **'{count} hexágonos desbloqueados'**
+  String impactHexesUnlocked(int count);
+
+  /// No description provided for @impactTotalHexes.
+  ///
+  /// In es, this message translates to:
+  /// **'Total: {total} hexágonos'**
+  String impactTotalHexes(int total);
+
+  /// No description provided for @impactNoHexes.
+  ///
+  /// In es, this message translates to:
+  /// **'Aún no has desbloqueado hexágonos'**
+  String get impactNoHexes;
+
+  /// No description provided for @impactGoldenHex.
+  ///
+  /// In es, this message translates to:
+  /// **'Hexágono dorado'**
+  String get impactGoldenHex;
+
+  /// No description provided for @impactNavigatorTitle.
+  ///
+  /// In es, this message translates to:
+  /// **'Navegantes del Hielo'**
+  String get impactNavigatorTitle;
 }
 
 class _AppLocalizationsDelegate

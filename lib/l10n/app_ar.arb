@@ -219,7 +219,7 @@
   "impactTabNetwork": "شبكة",
   "impactTabOnlyMeDesc": "أثرك الشخصي",
   "impactTabMyNodeDesc": "تأثير العقدة الخاصة بك",
-  "impactTabNetworkDesc": "التأثير على الشبكة بأكملها"
+  "impactTabNetworkDesc": "التأثير على الشبكة بأكملها",
   "impactHexesUnlocked": "{count} أشكال سداسية غير مقفلة",
   "@impactHexesUnlocked": {
     "placeholders": {

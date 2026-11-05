@@ -357,4 +357,85 @@ class AppLocalizationsRu extends AppLocalizations {
   @override
   String get completeExpeditionsForFrames =>
       'Завершайте экспедиции, чтобы разблокировать рамки.';
+
+  @override
+  String get navigatorBannerReady => 'Конверт для вашего навигатора готов';
+
+  @override
+  String get navigatorBannerSent =>
+      'Конверт отправлен — выполните внешнее действие';
+
+  @override
+  String get navigatorBannerValidated =>
+      'Проверенный вид активности на свежем воздухе — ледовый навигатор!';
+
+  @override
+  String get navigatorSendButton => 'Отправить письмо';
+
+  @override
+  String get navigatorResendButton => 'Переслать письмо';
+
+  @override
+  String get navigatorSending => 'Отправка…';
+
+  @override
+  String get navigatorSentSuccess =>
+      'Конверт отправлен! Проверьте электронную почту.';
+
+  @override
+  String navigatorSendError(String error) {
+    return 'Ошибка при отправке конверта: $error';
+  }
+
+  @override
+  String navigatorHexTasksCounter(
+      int hexCount, int hexThreshold, int taskCount, int taskThreshold) {
+    return '$hexCount/$hexThreshold шест · $taskCount/$taskThreshold задачи';
+  }
+
+  @override
+  String get impactMapTitle => 'Карта воздействия';
+
+  @override
+  String get impactTileArctic => 'Арктика';
+
+  @override
+  String get impactTileMediterranean => 'Средиземноморский';
+
+  @override
+  String get impactTabOnlyMe => 'Только я';
+
+  @override
+  String get impactTabMyNode => 'Мой узел';
+
+  @override
+  String get impactTabNetwork => 'сеть';
+
+  @override
+  String get impactTabOnlyMeDesc => 'Ваш личный вклад';
+
+  @override
+  String get impactTabMyNodeDesc => 'Влияние вашей ноды';
+
+  @override
+  String get impactTabNetworkDesc => 'Влияние на всю сеть';
+
+  @override
+  String impactHexesUnlocked(int count) {
+    return '$count разблокированные шестиугольники';
+  }
+
+  @override
+  String impactTotalHexes(int total) {
+    return 'Общий: $total шестиугольники';
+  }
+
+  @override
+  String get impactNoHexes => 'Вы ещё не открыли ни одного шестиугольника.';
+
+  @override
+  String get impactGoldenHex => 'Золотой шестиугольник';
+
+  @override
+  String get impactNavigatorTitle => 'Ледовые навигаторы';
 }

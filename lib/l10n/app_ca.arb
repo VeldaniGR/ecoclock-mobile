@@ -219,7 +219,7 @@
   "impactTabNetwork": "Xarxa",
   "impactTabOnlyMeDesc": "El teu impacte personal",
   "impactTabMyNodeDesc": "Impacte del teu node",
-  "impactTabNetworkDesc": "Impacte de tota la xarxa"
+  "impactTabNetworkDesc": "Impacte de tota la xarxa",
   "impactHexesUnlocked": "{count} hexàgons desbloquejats",
   "@impactHexesUnlocked": {
     "placeholders": {

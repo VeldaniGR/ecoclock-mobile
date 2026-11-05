@@ -353,4 +353,82 @@ class AppLocalizationsZh extends AppLocalizations {
 
   @override
   String get completeExpeditionsForFrames => '完成遠徵以解鎖框架。';
+
+  @override
+  String get navigatorBannerReady => '您的導航員信封已準備就緒';
+
+  @override
+  String get navigatorBannerSent => '信封已發送－請完成外部活動';
+
+  @override
+  String get navigatorBannerValidated => '經認證的戶外活動－冰區領航員！';
+
+  @override
+  String get navigatorSendButton => '寄信';
+
+  @override
+  String get navigatorResendButton => '轉寄信件';
+
+  @override
+  String get navigatorSending => '正在發送…';
+
+  @override
+  String get navigatorSentSuccess => '信封已發送！請查看您的電子郵件。';
+
+  @override
+  String navigatorSendError(String error) {
+    return '發送信封時發生錯誤: $error';
+  }
+
+  @override
+  String navigatorHexTasksCounter(
+      int hexCount, int hexThreshold, int taskCount, int taskThreshold) {
+    return '$hexCount/$hexThreshold 影響圖 · $taskCount/$taskThreshold 任務';
+  }
+
+  @override
+  String get impactMapTitle => '影響圖';
+
+  @override
+  String get impactTileArctic => '北極';
+
+  @override
+  String get impactTileMediterranean => '地中海';
+
+  @override
+  String get impactTabOnlyMe => '只有我';
+
+  @override
+  String get impactTabMyNode => '我的節點';
+
+  @override
+  String get impactTabNetwork => '網路';
+
+  @override
+  String get impactTabOnlyMeDesc => '你個人的影響力';
+
+  @override
+  String get impactTabMyNodeDesc => '您的節點所產生的影響';
+
+  @override
+  String get impactTabNetworkDesc => '對整個網路的影響';
+
+  @override
+  String impactHexesUnlocked(int count) {
+    return '$count 已解鎖的六邊形';
+  }
+
+  @override
+  String impactTotalHexes(int total) {
+    return '全部的: $total 六邊形';
+  }
+
+  @override
+  String get impactNoHexes => '你尚未解鎖任何六邊形。';
+
+  @override
+  String get impactGoldenHex => '金色六邊形';
+
+  @override
+  String get impactNavigatorTitle => '冰區領航員';
 }

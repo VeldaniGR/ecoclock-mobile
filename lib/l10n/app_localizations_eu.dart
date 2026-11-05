@@ -356,4 +356,86 @@ class AppLocalizationsEu extends AppLocalizations {
   @override
   String get completeExpeditionsForFrames =>
       'Osatu espedizioak markoak desblokeatzeko.';
+
+  @override
+  String get navigatorBannerReady =>
+      'Zure nabigatzailearen gutun-azala prest dago';
+
+  @override
+  String get navigatorBannerSent =>
+      'Gutun-azala bidali da — osatu kanpoko jarduera';
+
+  @override
+  String get navigatorBannerValidated =>
+      'Kanpoko jarduera balioztatua — Izotz-nabigatzailea!';
+
+  @override
+  String get navigatorSendButton => 'Bidali gutun-azala';
+
+  @override
+  String get navigatorResendButton => 'Aurrera egin honi buruz';
+
+  @override
+  String get navigatorSending => 'Bidaltzen…';
+
+  @override
+  String get navigatorSentSuccess =>
+      'Gutun-azala bidali da! Begiratu zure posta elektronikoa.';
+
+  @override
+  String navigatorSendError(String error) {
+    return 'Gutun-azala bidaltzean errorea: $error';
+  }
+
+  @override
+  String navigatorHexTasksCounter(
+      int hexCount, int hexThreshold, int taskCount, int taskThreshold) {
+    return '$hexCount/$hexThreshold hex · $taskCount/$taskThreshold zereginak';
+  }
+
+  @override
+  String get impactMapTitle => 'Eragin-mapa';
+
+  @override
+  String get impactTileArctic => 'Artikoa';
+
+  @override
+  String get impactTileMediterranean => 'Mediterraneoa';
+
+  @override
+  String get impactTabOnlyMe => 'Ni bakarrik';
+
+  @override
+  String get impactTabMyNode => 'Nire nodoa';
+
+  @override
+  String get impactTabNetwork => 'Sarea';
+
+  @override
+  String get impactTabOnlyMeDesc => 'Zure eragin pertsonala';
+
+  @override
+  String get impactTabMyNodeDesc => 'Zure nodoaren eragina';
+
+  @override
+  String get impactTabNetworkDesc => 'Sare osoan duen eragina';
+
+  @override
+  String impactHexesUnlocked(int count) {
+    return '$count desblokeatutako hexagonoak';
+  }
+
+  @override
+  String impactTotalHexes(int total) {
+    return 'Guztira: $total hexagonoak';
+  }
+
+  @override
+  String get impactNoHexes => 'Oraindik ez duzu hexagonorik desblokeatu.';
+
+  @override
+  String get impactGoldenHex => 'Hexagono urrezkoa';
+
+  @override
+  String get impactNavigatorTitle => 'Izotz-nabigatzaileak';
 }

@@ -219,7 +219,7 @@
   "impactTabNetwork": "ネットワーク",
   "impactTabOnlyMeDesc": "あなた自身がもたらす影響",
   "impactTabMyNodeDesc": "ノードがもたらす影響",
-  "impactTabNetworkDesc": "ネットワーク全体への影響"
+  "impactTabNetworkDesc": "ネットワーク全体への影響",
   "impactHexesUnlocked": "{count} ロック解除された六角形",
   "@impactHexesUnlocked": {
     "placeholders": {

@@ -355,4 +355,84 @@ class AppLocalizationsEn extends AppLocalizations {
   @override
   String get completeExpeditionsForFrames =>
       'Complete expeditions to unlock frames.';
+
+  @override
+  String get navigatorBannerReady => 'Your navigator\'s envelope is ready';
+
+  @override
+  String get navigatorBannerSent =>
+      'Envelope sent — complete the external activity';
+
+  @override
+  String get navigatorBannerValidated =>
+      'Validated outdoor activity — Ice navigator!';
+
+  @override
+  String get navigatorSendButton => 'Send envelope';
+
+  @override
+  String get navigatorResendButton => 'Resend envelope';
+
+  @override
+  String get navigatorSending => 'Sending...';
+
+  @override
+  String get navigatorSentSuccess => 'Envelope sent! Check your email.';
+
+  @override
+  String navigatorSendError(String error) {
+    return 'Error sending the envelope: $error';
+  }
+
+  @override
+  String navigatorHexTasksCounter(
+      int hexCount, int hexThreshold, int taskCount, int taskThreshold) {
+    return '$hexCount/$hexThreshold hex · $taskCount/$taskThreshold task';
+  }
+
+  @override
+  String get impactMapTitle => 'Impact map';
+
+  @override
+  String get impactTileArctic => 'Arctic';
+
+  @override
+  String get impactTileMediterranean => 'Mediterranean';
+
+  @override
+  String get impactTabOnlyMe => 'Only me';
+
+  @override
+  String get impactTabMyNode => 'My Node';
+
+  @override
+  String get impactTabNetwork => 'Network';
+
+  @override
+  String get impactTabOnlyMeDesc => 'Your personal impact';
+
+  @override
+  String get impactTabMyNodeDesc => 'Impact of your node';
+
+  @override
+  String get impactTabNetworkDesc => 'Impact on the entire network';
+
+  @override
+  String impactHexesUnlocked(int count) {
+    return '$count unlocked hexagons';
+  }
+
+  @override
+  String impactTotalHexes(int total) {
+    return 'Total: $total hexagons';
+  }
+
+  @override
+  String get impactNoHexes => 'You haven\'t unlocked any hexagons yet.';
+
+  @override
+  String get impactGoldenHex => 'Golden hexagon';
+
+  @override
+  String get impactNavigatorTitle => 'Ice Navigators';
 }

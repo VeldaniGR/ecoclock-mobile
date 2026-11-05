@@ -219,7 +219,7 @@
   "impactTabNetwork": "Réseau",
   "impactTabOnlyMeDesc": "Votre impact personnel",
   "impactTabMyNodeDesc": "Impact de votre nœud",
-  "impactTabNetworkDesc": "Impact sur l'ensemble du réseau"
+  "impactTabNetworkDesc": "Impact sur l'ensemble du réseau",
   "impactHexesUnlocked": "{count} hexagones débloqués",
   "@impactHexesUnlocked": {
     "placeholders": {

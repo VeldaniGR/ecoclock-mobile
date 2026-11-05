@@ -353,4 +353,82 @@ class AppLocalizationsJa extends AppLocalizations {
 
   @override
   String get completeExpeditionsForFrames => '遠征を完了して、フレームをアンロックしよう。';
+
+  @override
+  String get navigatorBannerReady => 'ナビゲーターの封筒の準備ができました';
+
+  @override
+  String get navigatorBannerSent => 'エンベロープを送信しました — 外部でのアクティビティを完了してください';
+
+  @override
+  String get navigatorBannerValidated => '実証済みの野外活動 — アイス・ナビゲーター！';
+
+  @override
+  String get navigatorSendButton => '手紙を送る';
+
+  @override
+  String get navigatorResendButton => '手紙を転送する';
+
+  @override
+  String get navigatorSending => '送信中…';
+
+  @override
+  String get navigatorSentSuccess => 'エンベロープを送信しました！メールを確認してください。';
+
+  @override
+  String navigatorSendError(String error) {
+    return 'エンベロープの送信中にエラーが発生しました: $error';
+  }
+
+  @override
+  String navigatorHexTasksCounter(
+      int hexCount, int hexThreshold, int taskCount, int taskThreshold) {
+    return '$hexCount/$hexThreshold 六角形 · $taskCount/$taskThreshold タスク';
+  }
+
+  @override
+  String get impactMapTitle => 'インパクトマップ';
+
+  @override
+  String get impactTileArctic => '北極';
+
+  @override
+  String get impactTileMediterranean => '地中海';
+
+  @override
+  String get impactTabOnlyMe => '私だけ';
+
+  @override
+  String get impactTabMyNode => '自分のノード';
+
+  @override
+  String get impactTabNetwork => 'ネットワーク';
+
+  @override
+  String get impactTabOnlyMeDesc => 'あなた自身がもたらす影響';
+
+  @override
+  String get impactTabMyNodeDesc => 'ノードがもたらす影響';
+
+  @override
+  String get impactTabNetworkDesc => 'ネットワーク全体への影響';
+
+  @override
+  String impactHexesUnlocked(int count) {
+    return '$count ロック解除された六角形';
+  }
+
+  @override
+  String impactTotalHexes(int total) {
+    return '合計: $total 六角形';
+  }
+
+  @override
+  String get impactNoHexes => 'まだ六角形を一つもアンロックしていません。';
+
+  @override
+  String get impactGoldenHex => '黄金の六角形';
+
+  @override
+  String get impactNavigatorTitle => '氷海航海士';
 }

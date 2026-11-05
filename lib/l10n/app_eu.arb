@@ -219,7 +219,7 @@
   "impactTabNetwork": "Sarea",
   "impactTabOnlyMeDesc": "Zure eragin pertsonala",
   "impactTabMyNodeDesc": "Zure nodoaren eragina",
-  "impactTabNetworkDesc": "Sare osoan duen eragina"
+  "impactTabNetworkDesc": "Sare osoan duen eragina",
   "impactHexesUnlocked": "{count} desblokeatutako hexagonoak",
   "@impactHexesUnlocked": {
     "placeholders": {

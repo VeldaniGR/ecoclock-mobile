@@ -186,7 +186,7 @@
   "impactTabNetwork": "Network",
   "impactTabOnlyMeDesc": "Your personal impact",
   "impactTabMyNodeDesc": "Impact of your node",
-  "impactTabNetworkDesc": "Impact on the entire network"
+  "impactTabNetworkDesc": "Impact on the entire network",
   "impactHexesUnlocked": "{count} unlocked hexagons",
   "@impactHexesUnlocked": {
     "placeholders": {

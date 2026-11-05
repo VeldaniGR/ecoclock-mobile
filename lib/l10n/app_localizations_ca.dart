@@ -357,4 +357,84 @@ class AppLocalizationsCa extends AppLocalizations {
   @override
   String get completeExpeditionsForFrames =>
       'Completa expedicions per desbloquejar marcs.';
+
+  @override
+  String get navigatorBannerReady => 'El teu sobre de navegant està llest';
+
+  @override
+  String get navigatorBannerSent =>
+      'Sobre enviat — completa l\'activitat exterior';
+
+  @override
+  String get navigatorBannerValidated =>
+      'Activitat exterior validada — Navegant del gel!';
+
+  @override
+  String get navigatorSendButton => 'Enviar sobre';
+
+  @override
+  String get navigatorResendButton => 'Reenviar sobre';
+
+  @override
+  String get navigatorSending => 'Enviant…';
+
+  @override
+  String get navigatorSentSuccess => 'Sobre enviat! Revisa el teu correu.';
+
+  @override
+  String navigatorSendError(String error) {
+    return 'Error en enviar el sobre: $error';
+  }
+
+  @override
+  String navigatorHexTasksCounter(
+      int hexCount, int hexThreshold, int taskCount, int taskThreshold) {
+    return '$hexCount/$hexThreshold hex · $taskCount/$taskThreshold tasques';
+  }
+
+  @override
+  String get impactMapTitle => 'Mapa d\'impacte';
+
+  @override
+  String get impactTileArctic => 'Àrtic';
+
+  @override
+  String get impactTileMediterranean => 'Mediterrani';
+
+  @override
+  String get impactTabOnlyMe => 'Només jo';
+
+  @override
+  String get impactTabMyNode => 'El meu Node';
+
+  @override
+  String get impactTabNetwork => 'Xarxa';
+
+  @override
+  String get impactTabOnlyMeDesc => 'El teu impacte personal';
+
+  @override
+  String get impactTabMyNodeDesc => 'Impacte del teu node';
+
+  @override
+  String get impactTabNetworkDesc => 'Impacte de tota la xarxa';
+
+  @override
+  String impactHexesUnlocked(int count) {
+    return '$count hexàgons desbloquejats';
+  }
+
+  @override
+  String impactTotalHexes(int total) {
+    return 'Total: $total hexàgons';
+  }
+
+  @override
+  String get impactNoHexes => 'Encara no has desbloquejat hexàgons';
+
+  @override
+  String get impactGoldenHex => 'Hexàgon daurat';
+
+  @override
+  String get impactNavigatorTitle => 'Navegants del Gel';
 }

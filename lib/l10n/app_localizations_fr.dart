@@ -358,4 +358,84 @@ class AppLocalizationsFr extends AppLocalizations {
   @override
   String get completeExpeditionsForFrames =>
       'Terminez des expéditions pour débloquer des cadres.';
+
+  @override
+  String get navigatorBannerReady => 'Ton enveloppe de navigateur est prête.';
+
+  @override
+  String get navigatorBannerSent =>
+      'Enveloppe envoyée — terminez l\'activité extérieure';
+
+  @override
+  String get navigatorBannerValidated =>
+      'Activité en extérieur validée — Navigateur des glaces !';
+
+  @override
+  String get navigatorSendButton => 'Envoyer une enveloppe';
+
+  @override
+  String get navigatorResendButton => 'Transférer enveloppe';
+
+  @override
+  String get navigatorSending => 'Envoi en cours…';
+
+  @override
+  String get navigatorSentSuccess => 'Enveloppe envoyée ! Vérifie tes e-mails.';
+
+  @override
+  String navigatorSendError(String error) {
+    return 'Erreur lors de l\'envoi de l\'enveloppe: $error';
+  }
+
+  @override
+  String navigatorHexTasksCounter(
+      int hexCount, int hexThreshold, int taskCount, int taskThreshold) {
+    return '$hexCount/$hexThreshold hex · $taskCount/$taskThreshold tâches';
+  }
+
+  @override
+  String get impactMapTitle => 'Carte d\'impact';
+
+  @override
+  String get impactTileArctic => 'Arctique';
+
+  @override
+  String get impactTileMediterranean => 'Méditerranée';
+
+  @override
+  String get impactTabOnlyMe => 'Moi seul';
+
+  @override
+  String get impactTabMyNode => 'Mon nœud';
+
+  @override
+  String get impactTabNetwork => 'Réseau';
+
+  @override
+  String get impactTabOnlyMeDesc => 'Votre impact personnel';
+
+  @override
+  String get impactTabMyNodeDesc => 'Impact de votre nœud';
+
+  @override
+  String get impactTabNetworkDesc => 'Impact sur l\'ensemble du réseau';
+
+  @override
+  String impactHexesUnlocked(int count) {
+    return '$count hexagones débloqués';
+  }
+
+  @override
+  String impactTotalHexes(int total) {
+    return 'Total: $total hexagones';
+  }
+
+  @override
+  String get impactNoHexes => 'Tu n\'as pas encore débloqué d\'hexagones.';
+
+  @override
+  String get impactGoldenHex => 'Hexagone doré';
+
+  @override
+  String get impactNavigatorTitle => 'Navigateurs des glaces';
 }

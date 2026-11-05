@@ -219,7 +219,7 @@
   "impactTabNetwork": "網路",
   "impactTabOnlyMeDesc": "你個人的影響力",
   "impactTabMyNodeDesc": "您的節點所產生的影響",
-  "impactTabNetworkDesc": "對整個網路的影響"
+  "impactTabNetworkDesc": "對整個網路的影響",
   "impactHexesUnlocked": "{count} 已解鎖的六邊形",
   "@impactHexesUnlocked": {
     "placeholders": {
