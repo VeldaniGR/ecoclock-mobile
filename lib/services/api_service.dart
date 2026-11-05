@@ -349,6 +349,18 @@ class EcoClockApi {
     return NavigatorEnvelope.fromJson(data as Map<String, dynamic>);
   }
 
+  /// Marca el sobre como enviado y dispara el email
+  /// POST /me/impact/navigator-envelope/ack-sent
+  Future<void> ackNavigatorEnvelopeSent() async {
+    final response = await _authenticatedRequest(
+      () => http.post(
+        Uri.parse('$baseUrl/me/impact/navigator-envelope/ack-sent'),
+        headers: _headers,
+      ),
+    );
+    _handleResponse(response); // solo validamos que sea 2xx
+  }
+
   // ──────────────────────────────────────────────────────────────
   // Utilidades
   // ──────────────────────────────────────────────────────────────
