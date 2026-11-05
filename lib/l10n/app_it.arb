@@ -186,5 +186,53 @@
   "uploading": "Caricamento in corso...",
   "wantsToJoin": "Vuole unirsi",
   "inviteLink": "Anello di collegamento",
-  "completeExpeditionsForFrames": "Completa le spedizioni per sbloccare i telai."
+  "completeExpeditionsForFrames": "Completa le spedizioni per sbloccare i telai.",
+
+  "navigatorBannerReady": "La busta del tuo navigatore è pronta",
+  "navigatorBannerSent": "Busta inviata: completa l'attività esterna",
+  "navigatorBannerValidated": "Attività all'aperto convalidata: navigatore tra i ghiacci!",
+  "navigatorSendButton": "Inviare busta",
+  "navigatorResendButton": "Inoltrare busta",
+  "navigatorSending": "Invio in corso…",
+  "navigatorSentSuccess": "Busta inviata! Controlla la tua email.",
+  "navigatorSendError": "Errore durante l'invio della busta: {error}",
+  "@navigatorSendError": {
+    "placeholders": {
+      "error": { "type": "String" }
+    }
+  },
+  "navigatorHexTasksCounter": "{hexCount}/{hexThreshold} esa · {taskCount}/{taskThreshold} compiti",
+  "@navigatorHexTasksCounter": {
+    "placeholders": {
+      "hexCount": { "type": "int" },
+      "hexThreshold": { "type": "int" },
+      "taskCount": { "type": "int" },
+      "taskThreshold": { "type": "int" }
+    }
+  },
+
+  "impactMapTitle": "Mappa degli impatti",
+  "impactTileArctic": "artico",
+  "impactTileMediterranean": "mediterraneo",
+  "impactTabOnlyMe": "Solo io",
+  "impactTabMyNode": "Il mio nodo",
+  "impactTabNetwork": "Rete",
+  "impactTabOnlyMeDesc": "Il tuo impatto personale",
+  "impactTabMyNodeDesc": "Impatto del tuo nodo",
+  "impactTabNetworkDesc": "Impatto sull'intera rete"
+  "impactHexesUnlocked": "{count} esagoni sbloccati",
+  "@impactHexesUnlocked": {
+    "placeholders": {
+      "count": { "type": "int" }
+    }
+  },
+  "impactTotalHexes": "Totale: {total} esagoni",
+  "@impactTotalHexes": {
+    "placeholders": {
+      "total": { "type": "int" }
+    }
+  },
+  "impactNoHexes": "Non hai ancora sbloccato alcun esagono.",
+  "impactGoldenHex": "Esagono aureo",
+  "impactNavigatorTitle": "Navigatori tra i ghiacci"
 }

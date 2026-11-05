@@ -153,5 +153,53 @@
   "uploading": "Subiendo...",
   "wantsToJoin": "Quiere unirse",
   "inviteLink": "Enlace de unión",
-  "completeExpeditionsForFrames": "Complete expeditions to unlock frames."
+  "completeExpeditionsForFrames": "Complete expeditions to unlock frames.",
+
+  "navigatorBannerReady": "Your navigator's envelope is ready",
+  "navigatorBannerSent": "Envelope sent — complete the external activity",
+  "navigatorBannerValidated": "Validated outdoor activity — Ice navigator!",
+  "navigatorSendButton": "Send envelope",
+  "navigatorResendButton": "Resend envelope",
+  "navigatorSending": "Sending...",
+  "navigatorSentSuccess": "Envelope sent! Check your email.",
+  "navigatorSendError": "Error sending the envelope: {error}",
+  "@navigatorSendError": {
+    "placeholders": {
+      "error": { "type": "String" }
+    }
+  },
+  "navigatorHexTasksCounter": "{hexCount}/{hexThreshold} hex · {taskCount}/{taskThreshold} task",
+  "@navigatorHexTasksCounter": {
+    "placeholders": {
+      "hexCount": { "type": "int" },
+      "hexThreshold": { "type": "int" },
+      "taskCount": { "type": "int" },
+      "taskThreshold": { "type": "int" }
+    }
+  },
+
+  "impactMapTitle": "Impact map",
+  "impactTileArctic": "Arctic",
+  "impactTileMediterranean": "Mediterranean",
+  "impactTabOnlyMe": "Only me",
+  "impactTabMyNode": "My Node",
+  "impactTabNetwork": "Network",
+  "impactTabOnlyMeDesc": "Your personal impact",
+  "impactTabMyNodeDesc": "Impact of your node",
+  "impactTabNetworkDesc": "Impact on the entire network"
+  "impactHexesUnlocked": "{count} unlocked hexagons",
+  "@impactHexesUnlocked": {
+    "placeholders": {
+      "count": { "type": "int" }
+    }
+  },
+  "impactTotalHexes": "Total: {total} hexagons",
+  "@impactTotalHexes": {
+    "placeholders": {
+      "total": { "type": "int" }
+    }
+  },
+  "impactNoHexes": "You haven't unlocked any hexagons yet.",
+  "impactGoldenHex": "Golden hexagon",
+  "impactNavigatorTitle": "Ice Navigators"
 }

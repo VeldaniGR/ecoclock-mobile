@@ -186,5 +186,53 @@
   "uploading": "Chargement...",
   "wantsToJoin": "Il veut se joindre",
   "inviteLink": "Lien d'union",
-  "completeExpeditionsForFrames": "Terminez des expéditions pour débloquer des cadres."
+  "completeExpeditionsForFrames": "Terminez des expéditions pour débloquer des cadres.",
+
+  "navigatorBannerReady": "Ton enveloppe de navigateur est prête.",
+  "navigatorBannerSent": "Enveloppe envoyée — terminez l'activité extérieure",
+  "navigatorBannerValidated": "Activité en extérieur validée — Navigateur des glaces !",
+  "navigatorSendButton": "Envoyer une enveloppe",
+  "navigatorResendButton": "Transférer enveloppe",
+  "navigatorSending": "Envoi en cours…",
+  "navigatorSentSuccess": "Enveloppe envoyée ! Vérifie tes e-mails.",
+  "navigatorSendError": "Erreur lors de l'envoi de l'enveloppe: {error}",
+  "@navigatorSendError": {
+    "placeholders": {
+      "error": { "type": "String" }
+    }
+  },
+  "navigatorHexTasksCounter": "{hexCount}/{hexThreshold} hex · {taskCount}/{taskThreshold} tâches",
+  "@navigatorHexTasksCounter": {
+    "placeholders": {
+      "hexCount": { "type": "int" },
+      "hexThreshold": { "type": "int" },
+      "taskCount": { "type": "int" },
+      "taskThreshold": { "type": "int" }
+    }
+  },
+
+  "impactMapTitle": "Carte d'impact",
+  "impactTileArctic": "Arctique",
+  "impactTileMediterranean": "Méditerranée",
+  "impactTabOnlyMe": "Moi seul",
+  "impactTabMyNode": "Mon nœud",
+  "impactTabNetwork": "Réseau",
+  "impactTabOnlyMeDesc": "Votre impact personnel",
+  "impactTabMyNodeDesc": "Impact de votre nœud",
+  "impactTabNetworkDesc": "Impact sur l'ensemble du réseau"
+  "impactHexesUnlocked": "{count} hexagones débloqués",
+  "@impactHexesUnlocked": {
+    "placeholders": {
+      "count": { "type": "int" }
+    }
+  },
+  "impactTotalHexes": "Total: {total} hexagones",
+  "@impactTotalHexes": {
+    "placeholders": {
+      "total": { "type": "int" }
+    }
+  },
+  "impactNoHexes": "Tu n'as pas encore débloqué d'hexagones.",
+  "impactGoldenHex": "Hexagone doré",
+  "impactNavigatorTitle": "Navigateurs des glaces"
 }

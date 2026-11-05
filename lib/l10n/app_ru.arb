@@ -186,5 +186,53 @@
   "uploading": "Загрузка...",
   "wantsToJoin": "Он хочет присоединиться",
   "inviteLink": "Связующее звено",
-  "completeExpeditionsForFrames": "Завершайте экспедиции, чтобы разблокировать рамки."
+  "completeExpeditionsForFrames": "Завершайте экспедиции, чтобы разблокировать рамки.",
+
+  "navigatorBannerReady": "Конверт для вашего навигатора готов",
+  "navigatorBannerSent": "Конверт отправлен — выполните внешнее действие",
+  "navigatorBannerValidated": "Проверенный вид активности на свежем воздухе — ледовый навигатор!",
+  "navigatorSendButton": "Отправить письмо",
+  "navigatorResendButton": "Переслать письмо",
+  "navigatorSending": "Отправка…",
+  "navigatorSentSuccess": "Конверт отправлен! Проверьте электронную почту.",
+  "navigatorSendError": "Ошибка при отправке конверта: {error}",
+  "@navigatorSendError": {
+    "placeholders": {
+      "error": { "type": "String" }
+    }
+  },
+  "navigatorHexTasksCounter": "{hexCount}/{hexThreshold} шест · {taskCount}/{taskThreshold} задачи",
+  "@navigatorHexTasksCounter": {
+    "placeholders": {
+      "hexCount": { "type": "int" },
+      "hexThreshold": { "type": "int" },
+      "taskCount": { "type": "int" },
+      "taskThreshold": { "type": "int" }
+    }
+  },
+
+  "impactMapTitle": "Карта воздействия",
+  "impactTileArctic": "Арктика",
+  "impactTileMediterranean": "Средиземноморский",
+  "impactTabOnlyMe": "Только я",
+  "impactTabMyNode": "Мой узел",
+  "impactTabNetwork": "сеть",
+  "impactTabOnlyMeDesc": "Ваш личный вклад",
+  "impactTabMyNodeDesc": "Влияние вашей ноды",
+  "impactTabNetworkDesc": "Влияние на всю сеть"
+  "impactHexesUnlocked": "{count} разблокированные шестиугольники",
+  "@impactHexesUnlocked": {
+    "placeholders": {
+      "count": { "type": "int" }
+    }
+  },
+  "impactTotalHexes": "Общий: {total} шестиугольники",
+  "@impactTotalHexes": {
+    "placeholders": {
+      "total": { "type": "int" }
+    }
+  },
+  "impactNoHexes": "Вы ещё не открыли ни одного шестиугольника.",
+  "impactGoldenHex": "Золотой шестиугольник",
+  "impactNavigatorTitle": "Ледовые навигаторы"
 }

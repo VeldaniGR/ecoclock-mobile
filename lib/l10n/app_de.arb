@@ -186,5 +186,53 @@
   "uploading": "Wird hochgeladen...",
   "wantsToJoin": "Möchte sich anschließen.",
   "inviteLink": "Verbindungsglied",
-  "completeExpeditionsForFrames": "Schließe Expeditionen ab, um Rahmen freizuschalten."
+  "completeExpeditionsForFrames": "Schließe Expeditionen ab, um Rahmen freizuschalten.",
+
+  "navigatorBannerReady": "Dein Seefahrer-Umschlag ist fertig.",
+  "navigatorBannerSent": "Versandter Umschlag – schließe die externe Aktivität ab",
+  "navigatorBannerValidated": "Validierte Outdoor-Aktivität – Eis-Navigator!",
+  "navigatorSendButton": "Umschlag versenden",
+  "navigatorResendButton": "Weiterleiten über",
+  "navigatorSending": "Wird gesendet…",
+  "navigatorSentSuccess": "Umschlag verschickt! Überprüfe deine E-Mails.",
+  "navigatorSendError": "Fehler beim Senden des Umschlags: {error}",
+  "@navigatorSendError": {
+    "placeholders": {
+      "error": { "type": "String" }
+    }
+  },
+  "navigatorHexTasksCounter": "{hexCount}/{hexThreshold} hex · {taskCount}/{taskThreshold} Aufgaben",
+  "@navigatorHexTasksCounter": {
+    "placeholders": {
+      "hexCount": { "type": "int" },
+      "hexThreshold": { "type": "int" },
+      "taskCount": { "type": "int" },
+      "taskThreshold": { "type": "int" }
+    }
+  },
+
+  "impactMapTitle": "Auswirkungskarte",
+  "impactTileArctic": "Arktis",
+  "impactTileMediterranean": "Mittelmeer",
+  "impactTabOnlyMe": "Nur ich",
+  "impactTabMyNode": "Mein Knoten",
+  "impactTabNetwork": "Netzwerk",
+  "impactTabOnlyMeDesc": "Dein persönlicher Einfluss",
+  "impactTabMyNodeDesc": "Auswirkung deines Knotens",
+  "impactTabNetworkDesc": "Auswirkung auf das gesamte Netzwerk"
+  "impactHexesUnlocked": "{count} freigeschaltete Sechsecke",
+  "@impactHexesUnlocked": {
+    "placeholders": {
+      "count": { "type": "int" }
+    }
+  },
+  "impactTotalHexes": "Total: {total} Sechsecke",
+  "@impactTotalHexes": {
+    "placeholders": {
+      "total": { "type": "int" }
+    }
+  },
+  "impactNoHexes": "Du hast noch keine Sechsecke freigeschaltet.",
+  "impactGoldenHex": "Goldenes Sechseck",
+  "impactNavigatorTitle": "Eissegler"
 }

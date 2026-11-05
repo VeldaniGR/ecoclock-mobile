@@ -186,5 +186,53 @@
   "uploading": "アップロード中...",
   "wantsToJoin": "彼は参加したがっている。",
   "inviteLink": "つなぎのリンク",
-  "completeExpeditionsForFrames": "遠征を完了して、フレームをアンロックしよう。"
+  "completeExpeditionsForFrames": "遠征を完了して、フレームをアンロックしよう。",
+
+  "navigatorBannerReady": "ナビゲーターの封筒の準備ができました",
+  "navigatorBannerSent": "エンベロープを送信しました — 外部でのアクティビティを完了してください",
+  "navigatorBannerValidated": "実証済みの野外活動 — アイス・ナビゲーター！",
+  "navigatorSendButton": "手紙を送る",
+  "navigatorResendButton": "手紙を転送する",
+  "navigatorSending": "送信中…",
+  "navigatorSentSuccess": "エンベロープを送信しました！メールを確認してください。",
+  "navigatorSendError": "エンベロープの送信中にエラーが発生しました: {error}",
+  "@navigatorSendError": {
+    "placeholders": {
+      "error": { "type": "String" }
+    }
+  },
+  "navigatorHexTasksCounter": "{hexCount}/{hexThreshold} 六角形 · {taskCount}/{taskThreshold} タスク",
+  "@navigatorHexTasksCounter": {
+    "placeholders": {
+      "hexCount": { "type": "int" },
+      "hexThreshold": { "type": "int" },
+      "taskCount": { "type": "int" },
+      "taskThreshold": { "type": "int" }
+    }
+  },
+
+  "impactMapTitle": "インパクトマップ",
+  "impactTileArctic": "北極",
+  "impactTileMediterranean": "地中海",
+  "impactTabOnlyMe": "私だけ",
+  "impactTabMyNode": "自分のノード",
+  "impactTabNetwork": "ネットワーク",
+  "impactTabOnlyMeDesc": "あなた自身がもたらす影響",
+  "impactTabMyNodeDesc": "ノードがもたらす影響",
+  "impactTabNetworkDesc": "ネットワーク全体への影響"
+  "impactHexesUnlocked": "{count} ロック解除された六角形",
+  "@impactHexesUnlocked": {
+    "placeholders": {
+      "count": { "type": "int" }
+    }
+  },
+  "impactTotalHexes": "合計: {total} 六角形",
+  "@impactTotalHexes": {
+    "placeholders": {
+      "total": { "type": "int" }
+    }
+  },
+  "impactNoHexes": "まだ六角形を一つもアンロックしていません。",
+  "impactGoldenHex": "黄金の六角形",
+  "impactNavigatorTitle": "氷海航海士"
 }

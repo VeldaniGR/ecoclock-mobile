@@ -186,5 +186,53 @@
   "uploading": "جارٍ الرفع...",
   "wantsToJoin": "يريد الانضمام",
   "inviteLink": "حلقة وصل",
-  "completeExpeditionsForFrames": "أكمل البعثات لفتح الإطارات."
+  "completeExpeditionsForFrames": "أكمل البعثات لفتح الإطارات.",
+
+  "navigatorBannerReady": "ظرف الملاّح الخاص بك جاهز",
+  "navigatorBannerSent": "تم إرسال الظرف — أكمل النشاط الخارجي",
+  "navigatorBannerValidated": "نشاط خارجي مُعتمد — مُوجِّه في الجليد!",
+  "navigatorSendButton": "أرسل المظروف",
+  "navigatorResendButton": "إعادة توجيه بخصوص",
+  "navigatorSending": "إرسال…",
+  "navigatorSentSuccess": "تم إرسال المظروف! تفقد بريدك الإلكتروني.",
+  "navigatorSendError": "خطأ في إرسال المظروف: {error}",
+  "@navigatorSendError": {
+    "placeholders": {
+      "error": { "type": "String" }
+    }
+  },
+  "navigatorHexTasksCounter": "{hexCount}/{hexThreshold} مسدس · {taskCount}/{taskThreshold} مهام",
+  "@navigatorHexTasksCounter": {
+    "placeholders": {
+      "hexCount": { "type": "int" },
+      "hexThreshold": { "type": "int" },
+      "taskCount": { "type": "int" },
+      "taskThreshold": { "type": "int" }
+    }
+  },
+
+  "impactMapTitle": "خريطة الأثر",
+  "impactTileArctic": "القطب الشمالي",
+  "impactTileMediterranean": "البحر الأبيض المتوسط",
+  "impactTabOnlyMe": "أنا فقط",
+  "impactTabMyNode": "عُقدتي",
+  "impactTabNetwork": "شبكة",
+  "impactTabOnlyMeDesc": "أثرك الشخصي",
+  "impactTabMyNodeDesc": "تأثير العقدة الخاصة بك",
+  "impactTabNetworkDesc": "التأثير على الشبكة بأكملها"
+  "impactHexesUnlocked": "{count} أشكال سداسية غير مقفلة",
+  "@impactHexesUnlocked": {
+    "placeholders": {
+      "count": { "type": "int" }
+    }
+  },
+  "impactTotalHexes": "المجموع: {total} أشكال سداسية",
+  "@impactTotalHexes": {
+    "placeholders": {
+      "total": { "type": "int" }
+    }
+  },
+  "impactNoHexes": "لم تفتح أي أشكال سداسية بعد.",
+  "impactGoldenHex": "سداسي ذهبي",
+  "impactNavigatorTitle": "ملاحو الجليد"
 }

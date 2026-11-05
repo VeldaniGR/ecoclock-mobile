@@ -186,5 +186,53 @@
   "uploading": "正在上傳…",
   "wantsToJoin": "他想加入",
   "inviteLink": "連結環節",
-  "completeExpeditionsForFrames": "完成遠徵以解鎖框架。"
+  "completeExpeditionsForFrames": "完成遠徵以解鎖框架。",
+
+  "navigatorBannerReady": "您的導航員信封已準備就緒",
+  "navigatorBannerSent": "信封已發送－請完成外部活動",
+  "navigatorBannerValidated": "經認證的戶外活動－冰區領航員！",
+  "navigatorSendButton": "寄信",
+  "navigatorResendButton": "轉寄信件",
+  "navigatorSending": "正在發送…",
+  "navigatorSentSuccess": "信封已發送！請查看您的電子郵件。",
+  "navigatorSendError": "發送信封時發生錯誤: {error}",
+  "@navigatorSendError": {
+    "placeholders": {
+      "error": { "type": "String" }
+    }
+  },
+  "navigatorHexTasksCounter": "{hexCount}/{hexThreshold} 影響圖 · {taskCount}/{taskThreshold} 任務",
+  "@navigatorHexTasksCounter": {
+    "placeholders": {
+      "hexCount": { "type": "int" },
+      "hexThreshold": { "type": "int" },
+      "taskCount": { "type": "int" },
+      "taskThreshold": { "type": "int" }
+    }
+  },
+
+  "impactMapTitle": "影響圖",
+  "impactTileArctic": "北極",
+  "impactTileMediterranean": "地中海",
+  "impactTabOnlyMe": "只有我",
+  "impactTabMyNode": "我的節點",
+  "impactTabNetwork": "網路",
+  "impactTabOnlyMeDesc": "你個人的影響力",
+  "impactTabMyNodeDesc": "您的節點所產生的影響",
+  "impactTabNetworkDesc": "對整個網路的影響"
+  "impactHexesUnlocked": "{count} 已解鎖的六邊形",
+  "@impactHexesUnlocked": {
+    "placeholders": {
+      "count": { "type": "int" }
+    }
+  },
+  "impactTotalHexes": "全部的: {total} 六邊形",
+  "@impactTotalHexes": {
+    "placeholders": {
+      "total": { "type": "int" }
+    }
+  },
+  "impactNoHexes": "你尚未解鎖任何六邊形。",
+  "impactGoldenHex": "金色六邊形",
+  "impactNavigatorTitle": "冰區領航員"
 }

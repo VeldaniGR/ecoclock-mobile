@@ -186,5 +186,53 @@
   "uploading": "Igotzen...",
   "wantsToJoin": "Bat egin nahi du",
   "inviteLink": "Lotura-elementua",
-  "completeExpeditionsForFrames": "Osatu espedizioak markoak desblokeatzeko."
+  "completeExpeditionsForFrames": "Osatu espedizioak markoak desblokeatzeko.",
+
+  "navigatorBannerReady": "Zure nabigatzailearen gutun-azala prest dago",
+  "navigatorBannerSent": "Gutun-azala bidali da — osatu kanpoko jarduera",
+  "navigatorBannerValidated": "Kanpoko jarduera balioztatua — Izotz-nabigatzailea!",
+  "navigatorSendButton": "Bidali gutun-azala",
+  "navigatorResendButton": "Aurrera egin honi buruz",
+  "navigatorSending": "Bidaltzen…",
+  "navigatorSentSuccess": "Gutun-azala bidali da! Begiratu zure posta elektronikoa.",
+  "navigatorSendError": "Gutun-azala bidaltzean errorea: {error}",
+  "@navigatorSendError": {
+    "placeholders": {
+      "error": { "type": "String" }
+    }
+  },
+  "navigatorHexTasksCounter": "{hexCount}/{hexThreshold} hex · {taskCount}/{taskThreshold} zereginak",
+  "@navigatorHexTasksCounter": {
+    "placeholders": {
+      "hexCount": { "type": "int" },
+      "hexThreshold": { "type": "int" },
+      "taskCount": { "type": "int" },
+      "taskThreshold": { "type": "int" }
+    }
+  },
+
+  "impactMapTitle": "Eragin-mapa",
+  "impactTileArctic": "Artikoa",
+  "impactTileMediterranean": "Mediterraneoa",
+  "impactTabOnlyMe": "Ni bakarrik",
+  "impactTabMyNode": "Nire nodoa",
+  "impactTabNetwork": "Sarea",
+  "impactTabOnlyMeDesc": "Zure eragin pertsonala",
+  "impactTabMyNodeDesc": "Zure nodoaren eragina",
+  "impactTabNetworkDesc": "Sare osoan duen eragina"
+  "impactHexesUnlocked": "{count} desblokeatutako hexagonoak",
+  "@impactHexesUnlocked": {
+    "placeholders": {
+      "count": { "type": "int" }
+    }
+  },
+  "impactTotalHexes": "Guztira: {total} hexagonoak",
+  "@impactTotalHexes": {
+    "placeholders": {
+      "total": { "type": "int" }
+    }
+  },
+  "impactNoHexes": "Oraindik ez duzu hexagonorik desblokeatu.",
+  "impactGoldenHex": "Hexagono urrezkoa",
+  "impactNavigatorTitle": "Izotz-nabigatzaileak"
 }

@@ -186,5 +186,53 @@
   "uploading": "Subindo...",
   "wantsToJoin": "Quer se juntar",
   "inviteLink": "Elo de ligação",
-  "completeExpeditionsForFrames": "Conclua expedições para desbloquear marcos."
+  "completeExpeditionsForFrames": "Conclua expedições para desbloquear marcos.",
+
+  "navigatorBannerReady": "Seu envelope de navegante está pronto.",
+  "navigatorBannerSent": "Sobre enviado — conclua a atividade externa",
+  "navigatorBannerValidated": "Atividade ao ar livre validada — Navegante do gelo!",
+  "navigatorSendButton": "Enviar envelope",
+  "navigatorResendButton": "Encaminhar sobre",
+  "navigatorSending": "Enviando…",
+  "navigatorSentSuccess": "Envelope enviado! Verifique seu e-mail.",
+  "navigatorSendError": "Erro ao enviar o envelope: {error}",
+  "@navigatorSendError": {
+    "placeholders": {
+      "error": { "type": "String" }
+    }
+  },
+  "navigatorHexTasksCounter": "{hexCount}/{hexThreshold} hex · {taskCount}/{taskThreshold} tarefas",
+  "@navigatorHexTasksCounter": {
+    "placeholders": {
+      "hexCount": { "type": "int" },
+      "hexThreshold": { "type": "int" },
+      "taskCount": { "type": "int" },
+      "taskThreshold": { "type": "int" }
+    }
+  },
+
+  "impactMapTitle": "Mapa de impacto",
+  "impactTileArctic": "ártico",
+  "impactTileMediterranean": "Mediterrâneo",
+  "impactTabOnlyMe": "Só eu",
+  "impactTabMyNode": "Meu Nó",
+  "impactTabNetwork": "Rede",
+  "impactTabOnlyMeDesc": "Seu impacto pessoal",
+  "impactTabMyNodeDesc": "Impacto do seu nó",
+  "impactTabNetworkDesc": "Impacto de toda a rede"
+  "impactHexesUnlocked": "{count} hexágonos desbloqueados",
+  "@impactHexesUnlocked": {
+    "placeholders": {
+      "count": { "type": "int" }
+    }
+  },
+  "impactTotalHexes": "Total: {total} hexágonos",
+  "@impactTotalHexes": {
+    "placeholders": {
+      "total": { "type": "int" }
+    }
+  },
+  "impactNoHexes": "Você ainda não desbloqueou hexágonos.",
+  "impactGoldenHex": "Hexágono dourado",
+  "impactNavigatorTitle": "Navegantes do Gelo"
 }
