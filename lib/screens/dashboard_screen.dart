@@ -499,9 +499,18 @@ class _DashboardScreenState extends State<DashboardScreen> {
     final env = _envelope;
     final l10n = AppLocalizations.of(context);
 
-    if (env == null || !env.showBanner || env.message == null) {
+    if (env == null || !env.showBanner) {
       return const SizedBox.shrink();
     }
+
+    // Texto 100 % local (no depende del message del servidor)
+    final String? bannerText = switch (env.status) {
+      'ready' => l10n.navigatorBannerReady,
+      'sent' => l10n.navigatorBannerSent,
+      'validated' => l10n.navigatorBannerValidated,
+      _ => null,
+    };
+    if (bannerText == null) return const SizedBox.shrink();
 
     final bool canSend = env.status == 'ready' || env.status == 'sent';
     final String buttonLabel = env.status == 'sent'
@@ -530,15 +539,19 @@ class _DashboardScreenState extends State<DashboardScreen> {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      env.message!,
+                      bannerText,
                       style: theme.textTheme.titleSmall?.copyWith(
                         fontWeight: FontWeight.w700,
                       ),
                     ),
                     const SizedBox(height: 4),
                     Text(
-                      '${env.hexCount}/${env.hexThreshold} hex · '
-                      '${env.personalTaskCount}/${env.taskThreshold} tareas',
+                      l10n.navigatorHexTasksCounter(
+                        env.hexCount,
+                        env.hexThreshold,
+                        env.personalTaskCount,
+                        env.taskThreshold,
+                      ),
                       style: theme.textTheme.bodySmall?.copyWith(
                         color: theme.colorScheme.onSurfaceVariant,
                       ),
@@ -564,7 +577,9 @@ class _DashboardScreenState extends State<DashboardScreen> {
                         ),
                       )
                     : const Icon(Icons.send_rounded, size: 18),
-                label: Text(_isSendingEnvelope ? l10n.navigatorSending : buttonLabel),
+                label: Text(
+                  _isSendingEnvelope ? l10n.navigatorSending : buttonLabel,
+                ),
                 style: FilledButton.styleFrom(
                   backgroundColor: const Color(0xFF5B9EA6),
                   foregroundColor: Colors.white,

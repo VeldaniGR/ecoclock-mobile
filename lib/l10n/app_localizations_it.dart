@@ -361,6 +361,20 @@ class AppLocalizationsIt extends AppLocalizations {
       'Completa le spedizioni per sbloccare i telai.';
 
   @override
+  String get expeditionArcticName => 'Navigatori tra i ghiacci';
+
+  @override
+  String get expeditionArcticDescription =>
+      'Spedizione invernale: monitoraggio dello scioglimento dei ghiacci artici. Porta a termine i compiti e l\'attività all\'aperto utilizzando il quadrante per ottenere il riconoscimento e colorare gli esagoni sulla tessera dell\'Artico.';
+
+  @override
+  String get expeditionAutumnName => 'Spedizione autunnale';
+
+  @override
+  String get expeditionAutumnDescription =>
+      'Spedizione autunnale: monitoraggio della biodiversità (funghi). Porta a termine i compiti di rete per avanzare verso l\'obiettivo collettivo.';
+
+  @override
   String get navigatorBannerReady => 'La tua busta del navigatore è pronta';
 
   @override

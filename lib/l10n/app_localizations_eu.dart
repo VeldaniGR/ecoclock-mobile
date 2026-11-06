@@ -358,6 +358,20 @@ class AppLocalizationsEu extends AppLocalizations {
       'Osatu espedizioak markoak desblokeatzeko.';
 
   @override
+  String get expeditionArcticName => 'Izotz-nabigatzaileak';
+
+  @override
+  String get expeditionArcticDescription =>
+      'Neguko espedizioa: Artikoko izotz-urtzea monitorizatzea. Osatu zereginak eta kanpoko jarduera —kuadrantea erabiliz— lorpena eskuratzeko eta Artikoko fitxako hexagonoak koloreztatzeko.';
+
+  @override
+  String get expeditionAutumnName => 'Udazkeneko espedizioa';
+
+  @override
+  String get expeditionAutumnDescription =>
+      'Udazkeneko espedizioa: biodibertsitatearen jarraipena (onddoak). Osatu sareko zereginak, helburu kolektiborantz aurrera egiteko.';
+
+  @override
   String get navigatorBannerReady =>
       'Zure nabigatzailearen gutun-azala prest dago';
 

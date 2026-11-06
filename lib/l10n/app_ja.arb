@@ -188,6 +188,11 @@
   "inviteLink": "つなぎのリンク",
   "completeExpeditionsForFrames": "遠征を完了して、フレームをアンロックしよう。",
 
+  "expeditionArcticName": "氷のナビゲーター",
+  "expeditionArcticDescription": "冬の遠征：北極の氷解モニタリング。タスクと四分儀を使った屋外活動を完了して実績を獲得し、北極タイルのヘクスを色付けしましょう。",
+  "expeditionAutumnName": "秋の遠征",
+  "expeditionAutumnDescription": "秋の遠征：生物多様性（キノコ）のモニタリング。ネットワークのタスクを完了して共同目標を進めましょう。",
+
   "navigatorBannerReady": "ナビゲーターの封筒の準備ができました",
   "navigatorBannerSent": "封筒を送信しました — 屋外アクティビティを完了してください",
   "navigatorBannerValidated": "屋外アクティビティ認証済み — 氷のナビゲーター！",

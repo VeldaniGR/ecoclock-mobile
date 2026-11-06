@@ -188,6 +188,11 @@
   "inviteLink": "Lien d'union",
   "completeExpeditionsForFrames": "Terminez des expéditions pour débloquer des cadres.",
 
+  "expeditionArcticName": "Navigateurs des glaces",
+  "expeditionArcticDescription": "Expédition hivernale : suivi de la fonte des glaces arctiques. Accomplissez des tâches et l'activité extérieure à l'aide du quadrant pour débloquer le succès et colorier des hexagones sur la tuile Arctique.",
+  "expeditionAutumnName": "Expédition d'automne",
+  "expeditionAutumnDescription": "Expédition d'automne : suivi de la biodiversité (champignons). Accomplissez des tâches au sein du réseau pour faire progresser l'objectif collectif.",
+
   "navigatorBannerReady": "Votre enveloppe de navigateur est prête",
   "navigatorBannerSent": "Enveloppe envoyée — terminez l'activité en extérieur",
   "navigatorBannerValidated": "Activité en extérieur validée — Navigateur des glaces !",

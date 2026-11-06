@@ -355,6 +355,20 @@ class AppLocalizationsJa extends AppLocalizations {
   String get completeExpeditionsForFrames => '遠征を完了して、フレームをアンロックしよう。';
 
   @override
+  String get expeditionArcticName => '氷のナビゲーター';
+
+  @override
+  String get expeditionArcticDescription =>
+      '冬の遠征：北極の氷解モニタリング。タスクと四分儀を使った屋外活動を完了して実績を獲得し、北極タイルのヘクスを色付けしましょう。';
+
+  @override
+  String get expeditionAutumnName => '秋の遠征';
+
+  @override
+  String get expeditionAutumnDescription =>
+      '秋の遠征：生物多様性（キノコ）のモニタリング。ネットワークのタスクを完了して共同目標を進めましょう。';
+
+  @override
   String get navigatorBannerReady => 'ナビゲーターの封筒の準備ができました';
 
   @override

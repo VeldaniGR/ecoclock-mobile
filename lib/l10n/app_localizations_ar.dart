@@ -356,6 +356,20 @@ class AppLocalizationsAr extends AppLocalizations {
   String get completeExpeditionsForFrames => 'أكمل البعثات لفتح الإطارات.';
 
   @override
+  String get expeditionArcticName => 'ملاحو الجليد';
+
+  @override
+  String get expeditionArcticDescription =>
+      'رحلة استكشافية شتوية: مراقبة ذوبان الجليد في القطب الشمالي. أكمل المهام والنشاط الخارجي باستخدام المربع للحصول على الإنجاز وتلوين الأشكال السداسية على بلاطة القطب الشمالي.';
+
+  @override
+  String get expeditionAutumnName => 'رحلة خريفية';
+
+  @override
+  String get expeditionAutumnDescription =>
+      'رحلة استكشافية خريفية: رصد التنوع البيولوجي (الفطريات). أكمل مهام الشبكة للتقدم نحو تحقيق الهدف الجماعي.';
+
+  @override
   String get navigatorBannerReady => 'ظرف الملاح جاهز';
 
   @override

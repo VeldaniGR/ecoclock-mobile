@@ -766,6 +766,30 @@ abstract class AppLocalizations {
   /// **'Completa expediciones para desbloquear marcos.'**
   String get completeExpeditionsForFrames;
 
+  /// No description provided for @expeditionArcticName.
+  ///
+  /// In es, this message translates to:
+  /// **'Navegantes del Hielo'**
+  String get expeditionArcticName;
+
+  /// No description provided for @expeditionArcticDescription.
+  ///
+  /// In es, this message translates to:
+  /// **'Expedición de invierno: monitorización del deshielo ártico. Completa tareas y la actividad exterior con el cuadrante para ganar el logro y colorear hexágonos en la loseta Ártico.'**
+  String get expeditionArcticDescription;
+
+  /// No description provided for @expeditionAutumnName.
+  ///
+  /// In es, this message translates to:
+  /// **'Expedición de otoño'**
+  String get expeditionAutumnName;
+
+  /// No description provided for @expeditionAutumnDescription.
+  ///
+  /// In es, this message translates to:
+  /// **'Expedición de otoño: monitorización de biodiversidad (hongos). Completa tareas de la red para avanzar en la meta colectiva.'**
+  String get expeditionAutumnDescription;
+
   /// No description provided for @navigatorBannerReady.
   ///
   /// In es, this message translates to:

@@ -188,6 +188,11 @@
   "inviteLink": "Lotura-elementua",
   "completeExpeditionsForFrames": "Osatu espedizioak markoak desblokeatzeko.",
 
+  "expeditionArcticName": "Izotz-nabigatzaileak",
+  "expeditionArcticDescription": "Neguko espedizioa: Artikoko izotz-urtzea monitorizatzea. Osatu zereginak eta kanpoko jarduera —kuadrantea erabiliz— lorpena eskuratzeko eta Artikoko fitxako hexagonoak koloreztatzeko.",
+  "expeditionAutumnName": "Udazkeneko espedizioa",
+  "expeditionAutumnDescription": "Udazkeneko espedizioa: biodibertsitatearen jarraipena (onddoak). Osatu sareko zereginak, helburu kolektiborantz aurrera egiteko.",
+
   "navigatorBannerReady": "Zure nabigatzailearen gutun-azala prest dago",
   "navigatorBannerSent": "Gutun-azala bidali da — osatu kanpoko jarduera",
   "navigatorBannerValidated": "Kanpoko jarduera balioztatu da — Izotz Nabigatzailea!",

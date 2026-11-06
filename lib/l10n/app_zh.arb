@@ -188,6 +188,11 @@
   "inviteLink": "連結環節",
   "completeExpeditionsForFrames": "完成遠徵以解鎖框架。",
 
+  "expeditionArcticName": "冰區領航員",
+  "expeditionArcticDescription": "冬季探險：監測北極冰層融化情形。完成各項任務及戶外活動（需使用象限儀），即可獲得成就，並為「北極」板塊上的六角形塗色。",
+  "expeditionAutumnName": "秋季探險",
+  "expeditionAutumnDescription": "秋季考察：生物多樣性監測（真菌）。完成網路任務，朝共同目標邁進。",
+
   "navigatorBannerReady": "您的航海者信封已准备就绪",
   "navigatorBannerSent": "信封已发送 — 请完成户外活动",
   "navigatorBannerValidated": "户外活动已验证 — 冰上航海者！",

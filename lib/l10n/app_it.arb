@@ -188,6 +188,11 @@
   "inviteLink": "Anello di collegamento",
   "completeExpeditionsForFrames": "Completa le spedizioni per sbloccare i telai.",
 
+  "expeditionArcticName": "Navigatori tra i ghiacci",
+  "expeditionArcticDescription": "Spedizione invernale: monitoraggio dello scioglimento dei ghiacci artici. Porta a termine i compiti e l'attività all'aperto utilizzando il quadrante per ottenere il riconoscimento e colorare gli esagoni sulla tessera dell'Artico.",
+  "expeditionAutumnName": "Spedizione autunnale",
+  "expeditionAutumnDescription": "Spedizione autunnale: monitoraggio della biodiversità (funghi). Porta a termine i compiti di rete per avanzare verso l'obiettivo collettivo.",
+
   "navigatorBannerReady": "La tua busta del navigatore è pronta",
   "navigatorBannerSent": "Busta inviata — completa l'attività all'aperto",
   "navigatorBannerValidated": "Attività all'aperto convalidata — Navigatore del ghiaccio!",

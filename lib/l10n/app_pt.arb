@@ -188,6 +188,11 @@
   "inviteLink": "Elo de ligação",
   "completeExpeditionsForFrames": "Conclua expedições para desbloquear marcos.",
 
+  "expeditionArcticName": "Navegantes do Gelo",
+  "expeditionArcticDescription": "Expedição de inverno: monitoramento do degelo ártico. Conclua tarefas e a atividade externa usando o mostrador para ganhar a conquista e colorir hexágonos na peça Ártico.",
+  "expeditionAutumnName": "Expedição de outono",
+  "expeditionAutumnDescription": "Expedição de outono: monitoramento da biodiversidade (fungos). Conclua tarefas da rede para avançar na meta coletiva.",
+
   "navigatorBannerReady": "O teu envelope de navegador está pronto",
   "navigatorBannerSent": "Envelope enviado — completa a atividade exterior",
   "navigatorBannerValidated": "Atividade exterior validada — Navegador do gelo!",

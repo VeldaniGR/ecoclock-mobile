@@ -188,6 +188,11 @@
   "inviteLink": "Verbindungsglied",
   "completeExpeditionsForFrames": "Schließe Expeditionen ab, um Rahmen freizuschalten.",
 
+  "expeditionArcticName": "Eissegler",
+  "expeditionArcticDescription": "Winterexpedition: Überwachung der arktischen Eisschmelze. Erfülle Aufgaben und die Außenaktivität mithilfe des Quadranten, um den Erfolg zu erlangen und Sechsecke auf dem Arktis-Plättchen auszumalen.",
+  "expeditionAutumnName": "Herbstexpedition",
+  "expeditionAutumnDescription": "Herbstexpedition: Überwachung der Biodiversität (Pilze). Erledige Aufgaben im Netzwerk, um das gemeinsame Ziel voranzubringen.",
+
   "navigatorBannerReady": "Dein Navigator-Umschlag ist bereit",
   "navigatorBannerSent": "Umschlag gesendet — schließe die Outdoor-Aktivität ab",
   "navigatorBannerValidated": "Outdoor-Aktivität bestätigt — Eis-Navigator!",

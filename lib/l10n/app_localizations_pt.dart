@@ -357,6 +357,20 @@ class AppLocalizationsPt extends AppLocalizations {
       'Conclua expedições para desbloquear marcos.';
 
   @override
+  String get expeditionArcticName => 'Navegantes do Gelo';
+
+  @override
+  String get expeditionArcticDescription =>
+      'Expedição de inverno: monitoramento do degelo ártico. Conclua tarefas e a atividade externa usando o mostrador para ganhar a conquista e colorir hexágonos na peça Ártico.';
+
+  @override
+  String get expeditionAutumnName => 'Expedição de outono';
+
+  @override
+  String get expeditionAutumnDescription =>
+      'Expedição de outono: monitoramento da biodiversidade (fungos). Conclua tarefas da rede para avançar na meta coletiva.';
+
+  @override
   String get navigatorBannerReady => 'O teu envelope de navegador está pronto';
 
   @override

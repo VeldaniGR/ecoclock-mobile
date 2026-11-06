@@ -359,6 +359,20 @@ class AppLocalizationsRu extends AppLocalizations {
       'Завершайте экспедиции, чтобы разблокировать рамки.';
 
   @override
+  String get expeditionArcticName => 'Ледовые навигаторы';
+
+  @override
+  String get expeditionArcticDescription =>
+      'Зимняя экспедиция: наблюдение за таянием арктических льдов. Выполните задания и проведите исследование на свежем воздухе, используя квадрант, чтобы получить достижение и закрасить шестиугольники на фрагменте карты Арктики.';
+
+  @override
+  String get expeditionAutumnName => 'Осенняя экспедиция';
+
+  @override
+  String get expeditionAutumnDescription =>
+      'Осенняя экспедиция: мониторинг биоразнообразия (грибы). Выполняйте сетевые задачи, чтобы продвигаться к достижению общей цели.';
+
+  @override
   String get navigatorBannerReady => 'Ваш конверт штурмана готов';
 
   @override

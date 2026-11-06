@@ -155,6 +155,11 @@
   "inviteLink": "Enlace de unión",
   "completeExpeditionsForFrames": "Complete expeditions to unlock frames.",
 
+  "expeditionArcticName": "Ice Navigators",
+  "expeditionArcticDescription": "Winter expedition: monitoring Arctic ice melt. Complete tasks and the outdoor quadrant activity to earn the achievement and color hexes on the Arctic tile.",
+  "expeditionAutumnName": "Autumn expedition",
+  "expeditionAutumnDescription": "Autumn expedition: biodiversity monitoring (fungi). Complete network tasks to advance the collective goal.",
+
   "navigatorBannerReady": "Your navigator envelope is ready",
   "navigatorBannerSent": "Envelope sent — complete the outdoor activity",
   "navigatorBannerValidated": "Outdoor activity validated — Ice Navigator!",

@@ -359,6 +359,20 @@ class AppLocalizationsCa extends AppLocalizations {
       'Completa expedicions per desbloquejar marcs.';
 
   @override
+  String get expeditionArcticName => 'Navegants del Gel';
+
+  @override
+  String get expeditionArcticDescription =>
+      'Expedició d\'hivern: monitorització del desglaç àrtic. Completa tasques i l\'activitat exterior amb el quadrant per guanyar l\'èxit i pintar hexàgons a la lloseta Àrtic.';
+
+  @override
+  String get expeditionAutumnName => 'Expedició de tardor';
+
+  @override
+  String get expeditionAutumnDescription =>
+      'Expedició de tardor: monitorització de biodiversitat (fongs). Completa tasques de la xarxa per avançar a la meta col·lectiva.';
+
+  @override
   String get navigatorBannerReady => 'El teu sobre de navegant està llest';
 
   @override

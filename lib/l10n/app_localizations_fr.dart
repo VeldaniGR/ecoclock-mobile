@@ -360,6 +360,20 @@ class AppLocalizationsFr extends AppLocalizations {
       'Terminez des expéditions pour débloquer des cadres.';
 
   @override
+  String get expeditionArcticName => 'Navigateurs des glaces';
+
+  @override
+  String get expeditionArcticDescription =>
+      'Expédition hivernale : suivi de la fonte des glaces arctiques. Accomplissez des tâches et l\'activité extérieure à l\'aide du quadrant pour débloquer le succès et colorier des hexagones sur la tuile Arctique.';
+
+  @override
+  String get expeditionAutumnName => 'Expédition d\'automne';
+
+  @override
+  String get expeditionAutumnDescription =>
+      'Expédition d\'automne : suivi de la biodiversité (champignons). Accomplissez des tâches au sein du réseau pour faire progresser l\'objectif collectif.';
+
+  @override
   String get navigatorBannerReady => 'Votre enveloppe de navigateur est prête';
 
   @override

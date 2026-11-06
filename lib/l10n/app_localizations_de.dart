@@ -360,6 +360,20 @@ class AppLocalizationsDe extends AppLocalizations {
       'Schließe Expeditionen ab, um Rahmen freizuschalten.';
 
   @override
+  String get expeditionArcticName => 'Eissegler';
+
+  @override
+  String get expeditionArcticDescription =>
+      'Winterexpedition: Überwachung der arktischen Eisschmelze. Erfülle Aufgaben und die Außenaktivität mithilfe des Quadranten, um den Erfolg zu erlangen und Sechsecke auf dem Arktis-Plättchen auszumalen.';
+
+  @override
+  String get expeditionAutumnName => 'Herbstexpedition';
+
+  @override
+  String get expeditionAutumnDescription =>
+      'Herbstexpedition: Überwachung der Biodiversität (Pilze). Erledige Aufgaben im Netzwerk, um das gemeinsame Ziel voranzubringen.';
+
+  @override
   String get navigatorBannerReady => 'Dein Navigator-Umschlag ist bereit';
 
   @override

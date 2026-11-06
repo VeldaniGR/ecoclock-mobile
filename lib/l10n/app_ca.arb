@@ -188,6 +188,11 @@
   "inviteLink": "Enllaç d'unió",
   "completeExpeditionsForFrames": "Completa expedicions per desbloquejar marcs.",
 
+  "expeditionArcticName": "Navegants del Gel",
+  "expeditionArcticDescription": "Expedició d'hivern: monitorització del desglaç àrtic. Completa tasques i l'activitat exterior amb el quadrant per guanyar l'èxit i pintar hexàgons a la lloseta Àrtic.",
+  "expeditionAutumnName": "Expedició de tardor",
+  "expeditionAutumnDescription": "Expedició de tardor: monitorització de biodiversitat (fongs). Completa tasques de la xarxa per avançar a la meta col·lectiva.",
+
   "navigatorBannerReady": "El teu sobre de navegant està llest",
   "navigatorBannerSent": "Sobre enviat — completa l'activitat exterior",
   "navigatorBannerValidated": "Activitat exterior validada — ¡Navegant del gel!",

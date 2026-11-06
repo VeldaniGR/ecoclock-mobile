@@ -355,6 +355,19 @@ class AppLocalizationsZh extends AppLocalizations {
   String get completeExpeditionsForFrames => '完成遠徵以解鎖框架。';
 
   @override
+  String get expeditionArcticName => '冰區領航員';
+
+  @override
+  String get expeditionArcticDescription =>
+      '冬季探險：監測北極冰層融化情形。完成各項任務及戶外活動（需使用象限儀），即可獲得成就，並為「北極」板塊上的六角形塗色。';
+
+  @override
+  String get expeditionAutumnName => '秋季探險';
+
+  @override
+  String get expeditionAutumnDescription => '秋季考察：生物多樣性監測（真菌）。完成網路任務，朝共同目標邁進。';
+
+  @override
   String get navigatorBannerReady => '您的航海者信封已准备就绪';
 
   @override

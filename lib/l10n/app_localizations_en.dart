@@ -357,6 +357,20 @@ class AppLocalizationsEn extends AppLocalizations {
       'Complete expeditions to unlock frames.';
 
   @override
+  String get expeditionArcticName => 'Ice Navigators';
+
+  @override
+  String get expeditionArcticDescription =>
+      'Winter expedition: monitoring Arctic ice melt. Complete tasks and the outdoor quadrant activity to earn the achievement and color hexes on the Arctic tile.';
+
+  @override
+  String get expeditionAutumnName => 'Autumn expedition';
+
+  @override
+  String get expeditionAutumnDescription =>
+      'Autumn expedition: biodiversity monitoring (fungi). Complete network tasks to advance the collective goal.';
+
+  @override
   String get navigatorBannerReady => 'Your navigator envelope is ready';
 
   @override

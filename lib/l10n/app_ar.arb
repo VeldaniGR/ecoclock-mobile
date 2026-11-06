@@ -188,6 +188,11 @@
   "inviteLink": "حلقة وصل",
   "completeExpeditionsForFrames": "أكمل البعثات لفتح الإطارات.",
 
+  "expeditionArcticName": "ملاحو الجليد",
+  "expeditionArcticDescription": "رحلة استكشافية شتوية: مراقبة ذوبان الجليد في القطب الشمالي. أكمل المهام والنشاط الخارجي باستخدام المربع للحصول على الإنجاز وتلوين الأشكال السداسية على بلاطة القطب الشمالي.",
+  "expeditionAutumnName": "رحلة خريفية",
+  "expeditionAutumnDescription": "رحلة استكشافية خريفية: رصد التنوع البيولوجي (الفطريات). أكمل مهام الشبكة للتقدم نحو تحقيق الهدف الجماعي.",
+
   "navigatorBannerReady": "ظرف الملاح جاهز",
   "navigatorBannerSent": "تم إرسال الظرف — أكمل النشاط الخارجي",
   "navigatorBannerValidated": "تم التحقق من النشاط الخارجي — ملاح الجليد!",
