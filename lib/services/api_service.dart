@@ -268,6 +268,19 @@ class EcoClockApi {
     return UserResponse.fromJson(data as Map<String, dynamic>);
   }
 
+  /// Guarda el idioma preferido del usuario
+  /// PATCH /me/preferred-language
+  Future<void> updatePreferredLanguage(String languageCode) async {
+    final response = await _authenticatedRequest(
+      () => http.patch(
+        Uri.parse('$baseUrl/me/preferred-language'),
+        headers: _headers,
+        body: jsonEncode({'preferred_language': languageCode}),
+      ),
+    );
+    _handleResponse(response);
+  }
+
   // ──────────────────────────────────────────────────────────────
   // Tareas
   // ──────────────────────────────────────────────────────────────

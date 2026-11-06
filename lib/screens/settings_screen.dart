@@ -6,9 +6,12 @@ import 'package:package_info_plus/package_info_plus.dart';
 
 import '../l10n/app_localizations.dart';
 import '../main.dart'; // para EcoClockApp.setLocale
+import '../services/api_service.dart';
 
 class SettingsScreen extends StatefulWidget {
-  const SettingsScreen({super.key});
+  final EcoClockApi api;
+
+  const SettingsScreen({super.key, required this.api});
 
   @override
   State<SettingsScreen> createState() => _SettingsScreenState();
@@ -138,9 +141,23 @@ class _SettingsScreenState extends State<SettingsScreen> {
                     ),
                   );
                 }).toList(),
-                onChanged: (String? newCode) {
-                  if (newCode != null) {
-                    EcoClockApp.setLocale(context, Locale(newCode));
+                onChanged: (String? newCode) async {
+                  if (newCode == null) return;
+
+                  // 1. Cambiar idioma en la UI
+                  EcoClockApp.setLocale(context, Locale(newCode));
+
+                  // 2. Guardar en el backend
+                  try {
+                    await widget.api.updatePreferredLanguage(newCode);
+                  } catch (e) {
+                    if (!context.mounted) return;
+                    ScaffoldMessenger.of(context).showSnackBar(
+                      SnackBar(
+                        content: Text('No se pudo guardar el idioma en el servidor: $e'),
+                        duration: const Duration(seconds: 2),
+                      ),
+                    );
                   }
                 },
               ),

@@ -256,7 +256,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
           _buildCreditsTab(),
           NodoScreen(api: widget.api),
           const DonarScreen(),
-          const SettingsScreen(),
+          SettingsScreen(api: widget.api),
         ],
       ),
       bottomNavigationBar: NavigationBar(
