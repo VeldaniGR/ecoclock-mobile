@@ -188,20 +188,20 @@
   "inviteLink": "Связующее звено",
   "completeExpeditionsForFrames": "Завершайте экспедиции, чтобы разблокировать рамки.",
 
-  "navigatorBannerReady": "Конверт для вашего навигатора готов",
-  "navigatorBannerSent": "Конверт отправлен — выполните внешнее действие",
-  "navigatorBannerValidated": "Проверенный вид активности на свежем воздухе — ледовый навигатор!",
-  "navigatorSendButton": "Отправить письмо",
-  "navigatorResendButton": "Переслать письмо",
+  "navigatorBannerReady": "Ваш конверт штурмана готов",
+  "navigatorBannerSent": "Конверт отправлен — завершите активность на улице",
+  "navigatorBannerValidated": "Активность на улице подтверждена — Ледяной штурман!",
+  "navigatorSendButton": "Отправить конверт",
+  "navigatorResendButton": "Отправить снова",
   "navigatorSending": "Отправка…",
-  "navigatorSentSuccess": "Конверт отправлен! Проверьте электронную почту.",
-  "navigatorSendError": "Ошибка при отправке конверта: {error}",
+  "navigatorSentSuccess": "Конверт отправлен! Проверьте почту.",
+  "navigatorSendError": "Ошибка отправки конверта: {error}",
   "@navigatorSendError": {
     "placeholders": {
       "error": { "type": "String" }
     }
   },
-  "navigatorHexTasksCounter": "{hexCount}/{hexThreshold} шест · {taskCount}/{taskThreshold} задачи",
+  "navigatorHexTasksCounter": "{hexCount}/{hexThreshold} гекс · {taskCount}/{taskThreshold} заданий",
   "@navigatorHexTasksCounter": {
     "placeholders": {
       "hexCount": { "type": "int" },
@@ -210,29 +210,33 @@
       "taskThreshold": { "type": "int" }
     }
   },
-
-  "impactMapTitle": "Карта воздействия",
+  "impactMapTitle": "Карта влияния",
   "impactTileArctic": "Арктика",
-  "impactTileMediterranean": "Средиземноморский",
+  "impactTileMediterranean": "Средиземноморье",
   "impactTabOnlyMe": "Только я",
   "impactTabMyNode": "Мой узел",
-  "impactTabNetwork": "сеть",
-  "impactTabOnlyMeDesc": "Ваш личный вклад",
-  "impactTabMyNodeDesc": "Влияние вашей ноды",
-  "impactTabNetworkDesc": "Влияние на всю сеть",
-  "impactHexesUnlocked": "{count} разблокированные шестиугольники",
+  "impactTabNetwork": "Сеть",
+  "impactTabOnlyMeDesc": "Ваше личное влияние",
+  "impactTabMyNodeDesc": "Влияние вашего узла",
+  "impactTabNetworkDesc": "Влияние всей сети",
+  "impactHexesUnlocked": "Разблокировано гексов: {count}",
   "@impactHexesUnlocked": {
     "placeholders": {
       "count": { "type": "int" }
     }
   },
-  "impactTotalHexes": "Общий: {total} шестиугольники",
+  "impactTotalHexes": "Всего: {total} гексов",
   "@impactTotalHexes": {
     "placeholders": {
       "total": { "type": "int" }
     }
   },
-  "impactNoHexes": "Вы ещё не открыли ни одного шестиугольника.",
-  "impactGoldenHex": "Золотой шестиугольник",
-  "impactNavigatorTitle": "Ледовые навигаторы"
+  "impactNoHexes": "Вы ещё не разблокировали гексы",
+  "impactGoldenHex": "Золотой гекс",
+  "impactNavigatorTitle": "Ледяные штурманы",
+  "impactScopeNodeSoon": "Вид узла: скоро",
+  "impactScopeNetworkSoon": "Вид сети: скоро",
+  "impactCenterMap": "Центрировать",
+  "impactArcticHint": "Арктика · перетащите / масштаб",
+  "impactNoHexesHint": "Вы ещё не разблокировали гексы. Выполняйте задания в зонах влияния, чтобы раскрасить карту."
 }

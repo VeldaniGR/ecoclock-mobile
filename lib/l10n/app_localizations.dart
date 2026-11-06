@@ -904,6 +904,36 @@ abstract class AppLocalizations {
   /// In es, this message translates to:
   /// **'Navegantes del Hielo'**
   String get impactNavigatorTitle;
+
+  /// No description provided for @impactScopeNodeSoon.
+  ///
+  /// In es, this message translates to:
+  /// **'Vista de nodo: próximamente'**
+  String get impactScopeNodeSoon;
+
+  /// No description provided for @impactScopeNetworkSoon.
+  ///
+  /// In es, this message translates to:
+  /// **'Vista de red: próximamente'**
+  String get impactScopeNetworkSoon;
+
+  /// No description provided for @impactCenterMap.
+  ///
+  /// In es, this message translates to:
+  /// **'Centrar'**
+  String get impactCenterMap;
+
+  /// No description provided for @impactArcticHint.
+  ///
+  /// In es, this message translates to:
+  /// **'Ártico · arrastra / zoom'**
+  String get impactArcticHint;
+
+  /// No description provided for @impactNoHexesHint.
+  ///
+  /// In es, this message translates to:
+  /// **'Aún no has desbloqueado hexágonos. Completa tareas en zonas de impacto para colorear el mapa.'**
+  String get impactNoHexesHint;
 }
 
 class _AppLocalizationsDelegate

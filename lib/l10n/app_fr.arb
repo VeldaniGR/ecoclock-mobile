@@ -188,14 +188,14 @@
   "inviteLink": "Lien d'union",
   "completeExpeditionsForFrames": "Terminez des expéditions pour débloquer des cadres.",
 
-  "navigatorBannerReady": "Ton enveloppe de navigateur est prête.",
-  "navigatorBannerSent": "Enveloppe envoyée — terminez l'activité extérieure",
+  "navigatorBannerReady": "Votre enveloppe de navigateur est prête",
+  "navigatorBannerSent": "Enveloppe envoyée — terminez l'activité en extérieur",
   "navigatorBannerValidated": "Activité en extérieur validée — Navigateur des glaces !",
-  "navigatorSendButton": "Envoyer une enveloppe",
-  "navigatorResendButton": "Transférer enveloppe",
-  "navigatorSending": "Envoi en cours…",
-  "navigatorSentSuccess": "Enveloppe envoyée ! Vérifie tes e-mails.",
-  "navigatorSendError": "Erreur lors de l'envoi de l'enveloppe: {error}",
+  "navigatorSendButton": "Envoyer l'enveloppe",
+  "navigatorResendButton": "Renvoyer l'enveloppe",
+  "navigatorSending": "Envoi…",
+  "navigatorSentSuccess": "Enveloppe envoyée ! Vérifiez votre e-mail.",
+  "navigatorSendError": "Erreur lors de l'envoi de l'enveloppe : {error}",
   "@navigatorSendError": {
     "placeholders": {
       "error": { "type": "String" }
@@ -210,7 +210,6 @@
       "taskThreshold": { "type": "int" }
     }
   },
-
   "impactMapTitle": "Carte d'impact",
   "impactTileArctic": "Arctique",
   "impactTileMediterranean": "Méditerranée",
@@ -219,20 +218,25 @@
   "impactTabNetwork": "Réseau",
   "impactTabOnlyMeDesc": "Votre impact personnel",
   "impactTabMyNodeDesc": "Impact de votre nœud",
-  "impactTabNetworkDesc": "Impact sur l'ensemble du réseau",
+  "impactTabNetworkDesc": "Impact de tout le réseau",
   "impactHexesUnlocked": "{count} hexagones débloqués",
   "@impactHexesUnlocked": {
     "placeholders": {
       "count": { "type": "int" }
     }
   },
-  "impactTotalHexes": "Total: {total} hexagones",
+  "impactTotalHexes": "Total : {total} hexagones",
   "@impactTotalHexes": {
     "placeholders": {
       "total": { "type": "int" }
     }
   },
-  "impactNoHexes": "Tu n'as pas encore débloqué d'hexagones.",
+  "impactNoHexes": "Vous n'avez pas encore débloqué d'hexagones",
   "impactGoldenHex": "Hexagone doré",
-  "impactNavigatorTitle": "Navigateurs des glaces"
+  "impactNavigatorTitle": "Navigateurs des glaces",
+  "impactScopeNodeSoon": "Vue nœud : bientôt",
+  "impactScopeNetworkSoon": "Vue réseau : bientôt",
+  "impactCenterMap": "Centrer",
+  "impactArcticHint": "Arctique · glisser / zoom",
+  "impactNoHexesHint": "Vous n'avez pas encore débloqué d'hexagones. Terminez des tâches dans les zones d'impact pour colorer la carte."
 }

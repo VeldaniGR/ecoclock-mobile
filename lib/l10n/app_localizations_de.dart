@@ -360,28 +360,27 @@ class AppLocalizationsDe extends AppLocalizations {
       'Schließe Expeditionen ab, um Rahmen freizuschalten.';
 
   @override
-  String get navigatorBannerReady => 'Dein Seefahrer-Umschlag ist fertig.';
+  String get navigatorBannerReady => 'Dein Navigator-Umschlag ist bereit';
 
   @override
   String get navigatorBannerSent =>
-      'Versandter Umschlag – schließe die externe Aktivität ab';
+      'Umschlag gesendet — schließe die Outdoor-Aktivität ab';
 
   @override
   String get navigatorBannerValidated =>
-      'Validierte Outdoor-Aktivität – Eis-Navigator!';
+      'Outdoor-Aktivität bestätigt — Eis-Navigator!';
 
   @override
-  String get navigatorSendButton => 'Umschlag versenden';
+  String get navigatorSendButton => 'Umschlag senden';
 
   @override
-  String get navigatorResendButton => 'Weiterleiten über';
+  String get navigatorResendButton => 'Erneut senden';
 
   @override
   String get navigatorSending => 'Wird gesendet…';
 
   @override
-  String get navigatorSentSuccess =>
-      'Umschlag verschickt! Überprüfe deine E-Mails.';
+  String get navigatorSentSuccess => 'Umschlag gesendet! Prüfe deine E-Mails.';
 
   @override
   String navigatorSendError(String error) {
@@ -391,11 +390,11 @@ class AppLocalizationsDe extends AppLocalizations {
   @override
   String navigatorHexTasksCounter(
       int hexCount, int hexThreshold, int taskCount, int taskThreshold) {
-    return '$hexCount/$hexThreshold hex · $taskCount/$taskThreshold Aufgaben';
+    return '$hexCount/$hexThreshold Hex · $taskCount/$taskThreshold Aufgaben';
   }
 
   @override
-  String get impactMapTitle => 'Auswirkungskarte';
+  String get impactMapTitle => 'Wirkungskarte';
 
   @override
   String get impactTileArctic => 'Arktis';
@@ -413,30 +412,46 @@ class AppLocalizationsDe extends AppLocalizations {
   String get impactTabNetwork => 'Netzwerk';
 
   @override
-  String get impactTabOnlyMeDesc => 'Dein persönlicher Einfluss';
+  String get impactTabOnlyMeDesc => 'Dein persönlicher Impact';
 
   @override
-  String get impactTabMyNodeDesc => 'Auswirkung deines Knotens';
+  String get impactTabMyNodeDesc => 'Impact deines Knotens';
 
   @override
-  String get impactTabNetworkDesc => 'Auswirkung auf das gesamte Netzwerk';
+  String get impactTabNetworkDesc => 'Impact des gesamten Netzwerks';
 
   @override
   String impactHexesUnlocked(int count) {
-    return '$count freigeschaltete Sechsecke';
+    return '$count Hexagone freigeschaltet';
   }
 
   @override
   String impactTotalHexes(int total) {
-    return 'Total: $total Sechsecke';
+    return 'Gesamt: $total Hexagone';
   }
 
   @override
-  String get impactNoHexes => 'Du hast noch keine Sechsecke freigeschaltet.';
+  String get impactNoHexes => 'Du hast noch keine Hexagone freigeschaltet';
 
   @override
-  String get impactGoldenHex => 'Goldenes Sechseck';
+  String get impactGoldenHex => 'Goldenes Hexagon';
 
   @override
-  String get impactNavigatorTitle => 'Eissegler';
+  String get impactNavigatorTitle => 'Eis-Navigatoren';
+
+  @override
+  String get impactScopeNodeSoon => 'Knotenansicht: demnächst';
+
+  @override
+  String get impactScopeNetworkSoon => 'Netzwerkansicht: demnächst';
+
+  @override
+  String get impactCenterMap => 'Zentrieren';
+
+  @override
+  String get impactArcticHint => 'Arktis · ziehen / zoomen';
+
+  @override
+  String get impactNoHexesHint =>
+      'Du hast noch keine Hexagone freigeschaltet. Erledige Aufgaben in Impact-Zonen, um die Karte zu färben.';
 }

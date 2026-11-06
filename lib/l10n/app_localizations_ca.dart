@@ -367,7 +367,7 @@ class AppLocalizationsCa extends AppLocalizations {
 
   @override
   String get navigatorBannerValidated =>
-      'Activitat exterior validada — Navegant del gel!';
+      'Activitat exterior validada — ¡Navegant del gel!';
 
   @override
   String get navigatorSendButton => 'Enviar sobre';
@@ -379,7 +379,7 @@ class AppLocalizationsCa extends AppLocalizations {
   String get navigatorSending => 'Enviant…';
 
   @override
-  String get navigatorSentSuccess => 'Sobre enviat! Revisa el teu correu.';
+  String get navigatorSentSuccess => '¡Sobre enviat! Revisa el teu correu.';
 
   @override
   String navigatorSendError(String error) {
@@ -405,7 +405,7 @@ class AppLocalizationsCa extends AppLocalizations {
   String get impactTabOnlyMe => 'Només jo';
 
   @override
-  String get impactTabMyNode => 'El meu Node';
+  String get impactTabMyNode => 'El meu node';
 
   @override
   String get impactTabNetwork => 'Xarxa';
@@ -437,4 +437,20 @@ class AppLocalizationsCa extends AppLocalizations {
 
   @override
   String get impactNavigatorTitle => 'Navegants del Gel';
+
+  @override
+  String get impactScopeNodeSoon => 'Vista de node: properament';
+
+  @override
+  String get impactScopeNetworkSoon => 'Vista de xarxa: properament';
+
+  @override
+  String get impactCenterMap => 'Centrar';
+
+  @override
+  String get impactArcticHint => 'Àrtic · arrossega / zoom';
+
+  @override
+  String get impactNoHexesHint =>
+      'Encara no has desbloquejat hexàgons. Completa tasques en zones d\'impacte per colorar el mapa.';
 }

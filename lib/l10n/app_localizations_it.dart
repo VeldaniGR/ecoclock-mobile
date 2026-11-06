@@ -361,47 +361,47 @@ class AppLocalizationsIt extends AppLocalizations {
       'Completa le spedizioni per sbloccare i telai.';
 
   @override
-  String get navigatorBannerReady => 'La busta del tuo navigatore è pronta';
+  String get navigatorBannerReady => 'La tua busta del navigatore è pronta';
 
   @override
   String get navigatorBannerSent =>
-      'Busta inviata: completa l\'attività esterna';
+      'Busta inviata — completa l\'attività all\'aperto';
 
   @override
   String get navigatorBannerValidated =>
-      'Attività all\'aperto convalidata: navigatore tra i ghiacci!';
+      'Attività all\'aperto convalidata — Navigatore del ghiaccio!';
 
   @override
-  String get navigatorSendButton => 'Inviare busta';
+  String get navigatorSendButton => 'Invia busta';
 
   @override
-  String get navigatorResendButton => 'Inoltrare busta';
+  String get navigatorResendButton => 'Reinvia busta';
 
   @override
-  String get navigatorSending => 'Invio in corso…';
+  String get navigatorSending => 'Invio…';
 
   @override
   String get navigatorSentSuccess => 'Busta inviata! Controlla la tua email.';
 
   @override
   String navigatorSendError(String error) {
-    return 'Errore durante l\'invio della busta: $error';
+    return 'Errore nell\'invio della busta: $error';
   }
 
   @override
   String navigatorHexTasksCounter(
       int hexCount, int hexThreshold, int taskCount, int taskThreshold) {
-    return '$hexCount/$hexThreshold esa · $taskCount/$taskThreshold compiti';
+    return '$hexCount/$hexThreshold hex · $taskCount/$taskThreshold attività';
   }
 
   @override
-  String get impactMapTitle => 'Mappa degli impatti';
+  String get impactMapTitle => 'Mappa di impatto';
 
   @override
-  String get impactTileArctic => 'artico';
+  String get impactTileArctic => 'Artico';
 
   @override
-  String get impactTileMediterranean => 'mediterraneo';
+  String get impactTileMediterranean => 'Mediterraneo';
 
   @override
   String get impactTabOnlyMe => 'Solo io';
@@ -419,7 +419,7 @@ class AppLocalizationsIt extends AppLocalizations {
   String get impactTabMyNodeDesc => 'Impatto del tuo nodo';
 
   @override
-  String get impactTabNetworkDesc => 'Impatto sull\'intera rete';
+  String get impactTabNetworkDesc => 'Impatto di tutta la rete';
 
   @override
   String impactHexesUnlocked(int count) {
@@ -432,11 +432,27 @@ class AppLocalizationsIt extends AppLocalizations {
   }
 
   @override
-  String get impactNoHexes => 'Non hai ancora sbloccato alcun esagono.';
+  String get impactNoHexes => 'Non hai ancora sbloccato esagoni';
 
   @override
-  String get impactGoldenHex => 'Esagono aureo';
+  String get impactGoldenHex => 'Esagono dorato';
 
   @override
-  String get impactNavigatorTitle => 'Navigatori tra i ghiacci';
+  String get impactNavigatorTitle => 'Navigatori del ghiaccio';
+
+  @override
+  String get impactScopeNodeSoon => 'Vista nodo: prossimamente';
+
+  @override
+  String get impactScopeNetworkSoon => 'Vista rete: prossimamente';
+
+  @override
+  String get impactCenterMap => 'Centra';
+
+  @override
+  String get impactArcticHint => 'Artico · trascina / zoom';
+
+  @override
+  String get impactNoHexesHint =>
+      'Non hai ancora sbloccato esagoni. Completa attività nelle zone di impatto per colorare la mappa.';
 }

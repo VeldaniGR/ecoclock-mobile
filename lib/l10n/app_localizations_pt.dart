@@ -357,27 +357,27 @@ class AppLocalizationsPt extends AppLocalizations {
       'Conclua expedições para desbloquear marcos.';
 
   @override
-  String get navigatorBannerReady => 'Seu envelope de navegante está pronto.';
+  String get navigatorBannerReady => 'O teu envelope de navegador está pronto';
 
   @override
   String get navigatorBannerSent =>
-      'Sobre enviado — conclua a atividade externa';
+      'Envelope enviado — completa a atividade exterior';
 
   @override
   String get navigatorBannerValidated =>
-      'Atividade ao ar livre validada — Navegante do gelo!';
+      'Atividade exterior validada — Navegador do gelo!';
 
   @override
   String get navigatorSendButton => 'Enviar envelope';
 
   @override
-  String get navigatorResendButton => 'Encaminhar sobre';
+  String get navigatorResendButton => 'Reenviar envelope';
 
   @override
-  String get navigatorSending => 'Enviando…';
+  String get navigatorSending => 'A enviar…';
 
   @override
-  String get navigatorSentSuccess => 'Envelope enviado! Verifique seu e-mail.';
+  String get navigatorSentSuccess => 'Envelope enviado! Verifica o teu email.';
 
   @override
   String navigatorSendError(String error) {
@@ -394,7 +394,7 @@ class AppLocalizationsPt extends AppLocalizations {
   String get impactMapTitle => 'Mapa de impacto';
 
   @override
-  String get impactTileArctic => 'ártico';
+  String get impactTileArctic => 'Ártico';
 
   @override
   String get impactTileMediterranean => 'Mediterrâneo';
@@ -403,16 +403,16 @@ class AppLocalizationsPt extends AppLocalizations {
   String get impactTabOnlyMe => 'Só eu';
 
   @override
-  String get impactTabMyNode => 'Meu Nó';
+  String get impactTabMyNode => 'O meu nó';
 
   @override
   String get impactTabNetwork => 'Rede';
 
   @override
-  String get impactTabOnlyMeDesc => 'Seu impacto pessoal';
+  String get impactTabOnlyMeDesc => 'O teu impacto pessoal';
 
   @override
-  String get impactTabMyNodeDesc => 'Impacto do seu nó';
+  String get impactTabMyNodeDesc => 'Impacto do teu nó';
 
   @override
   String get impactTabNetworkDesc => 'Impacto de toda a rede';
@@ -428,11 +428,27 @@ class AppLocalizationsPt extends AppLocalizations {
   }
 
   @override
-  String get impactNoHexes => 'Você ainda não desbloqueou hexágonos.';
+  String get impactNoHexes => 'Ainda não desbloqueaste hexágonos';
 
   @override
   String get impactGoldenHex => 'Hexágono dourado';
 
   @override
-  String get impactNavigatorTitle => 'Navegantes do Gelo';
+  String get impactNavigatorTitle => 'Navegadores do Gelo';
+
+  @override
+  String get impactScopeNodeSoon => 'Vista de nó: em breve';
+
+  @override
+  String get impactScopeNetworkSoon => 'Vista de rede: em breve';
+
+  @override
+  String get impactCenterMap => 'Centrar';
+
+  @override
+  String get impactArcticHint => 'Ártico · arrastar / zoom';
+
+  @override
+  String get impactNoHexesHint =>
+      'Ainda não desbloqueaste hexágonos. Completa tarefas em zonas de impacto para colorir o mapa.';
 }

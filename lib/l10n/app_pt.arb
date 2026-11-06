@@ -188,13 +188,13 @@
   "inviteLink": "Elo de ligação",
   "completeExpeditionsForFrames": "Conclua expedições para desbloquear marcos.",
 
-  "navigatorBannerReady": "Seu envelope de navegante está pronto.",
-  "navigatorBannerSent": "Sobre enviado — conclua a atividade externa",
-  "navigatorBannerValidated": "Atividade ao ar livre validada — Navegante do gelo!",
+  "navigatorBannerReady": "O teu envelope de navegador está pronto",
+  "navigatorBannerSent": "Envelope enviado — completa a atividade exterior",
+  "navigatorBannerValidated": "Atividade exterior validada — Navegador do gelo!",
   "navigatorSendButton": "Enviar envelope",
-  "navigatorResendButton": "Encaminhar sobre",
-  "navigatorSending": "Enviando…",
-  "navigatorSentSuccess": "Envelope enviado! Verifique seu e-mail.",
+  "navigatorResendButton": "Reenviar envelope",
+  "navigatorSending": "A enviar…",
+  "navigatorSentSuccess": "Envelope enviado! Verifica o teu email.",
   "navigatorSendError": "Erro ao enviar o envelope: {error}",
   "@navigatorSendError": {
     "placeholders": {
@@ -210,15 +210,14 @@
       "taskThreshold": { "type": "int" }
     }
   },
-
   "impactMapTitle": "Mapa de impacto",
-  "impactTileArctic": "ártico",
+  "impactTileArctic": "Ártico",
   "impactTileMediterranean": "Mediterrâneo",
   "impactTabOnlyMe": "Só eu",
-  "impactTabMyNode": "Meu Nó",
+  "impactTabMyNode": "O meu nó",
   "impactTabNetwork": "Rede",
-  "impactTabOnlyMeDesc": "Seu impacto pessoal",
-  "impactTabMyNodeDesc": "Impacto do seu nó",
+  "impactTabOnlyMeDesc": "O teu impacto pessoal",
+  "impactTabMyNodeDesc": "Impacto do teu nó",
   "impactTabNetworkDesc": "Impacto de toda a rede",
   "impactHexesUnlocked": "{count} hexágonos desbloqueados",
   "@impactHexesUnlocked": {
@@ -232,7 +231,12 @@
       "total": { "type": "int" }
     }
   },
-  "impactNoHexes": "Você ainda não desbloqueou hexágonos.",
+  "impactNoHexes": "Ainda não desbloqueaste hexágonos",
   "impactGoldenHex": "Hexágono dourado",
-  "impactNavigatorTitle": "Navegantes do Gelo"
+  "impactNavigatorTitle": "Navegadores do Gelo",
+  "impactScopeNodeSoon": "Vista de nó: em breve",
+  "impactScopeNetworkSoon": "Vista de rede: em breve",
+  "impactCenterMap": "Centrar",
+  "impactArcticHint": "Ártico · arrastar / zoom",
+  "impactNoHexesHint": "Ainda não desbloqueaste hexágonos. Completa tarefas em zonas de impacto para colorir o mapa."
 }

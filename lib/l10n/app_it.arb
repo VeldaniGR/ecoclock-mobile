@@ -188,20 +188,20 @@
   "inviteLink": "Anello di collegamento",
   "completeExpeditionsForFrames": "Completa le spedizioni per sbloccare i telai.",
 
-  "navigatorBannerReady": "La busta del tuo navigatore è pronta",
-  "navigatorBannerSent": "Busta inviata: completa l'attività esterna",
-  "navigatorBannerValidated": "Attività all'aperto convalidata: navigatore tra i ghiacci!",
-  "navigatorSendButton": "Inviare busta",
-  "navigatorResendButton": "Inoltrare busta",
-  "navigatorSending": "Invio in corso…",
+  "navigatorBannerReady": "La tua busta del navigatore è pronta",
+  "navigatorBannerSent": "Busta inviata — completa l'attività all'aperto",
+  "navigatorBannerValidated": "Attività all'aperto convalidata — Navigatore del ghiaccio!",
+  "navigatorSendButton": "Invia busta",
+  "navigatorResendButton": "Reinvia busta",
+  "navigatorSending": "Invio…",
   "navigatorSentSuccess": "Busta inviata! Controlla la tua email.",
-  "navigatorSendError": "Errore durante l'invio della busta: {error}",
+  "navigatorSendError": "Errore nell'invio della busta: {error}",
   "@navigatorSendError": {
     "placeholders": {
       "error": { "type": "String" }
     }
   },
-  "navigatorHexTasksCounter": "{hexCount}/{hexThreshold} esa · {taskCount}/{taskThreshold} compiti",
+  "navigatorHexTasksCounter": "{hexCount}/{hexThreshold} hex · {taskCount}/{taskThreshold} attività",
   "@navigatorHexTasksCounter": {
     "placeholders": {
       "hexCount": { "type": "int" },
@@ -210,16 +210,15 @@
       "taskThreshold": { "type": "int" }
     }
   },
-
-  "impactMapTitle": "Mappa degli impatti",
-  "impactTileArctic": "artico",
-  "impactTileMediterranean": "mediterraneo",
+  "impactMapTitle": "Mappa di impatto",
+  "impactTileArctic": "Artico",
+  "impactTileMediterranean": "Mediterraneo",
   "impactTabOnlyMe": "Solo io",
   "impactTabMyNode": "Il mio nodo",
   "impactTabNetwork": "Rete",
   "impactTabOnlyMeDesc": "Il tuo impatto personale",
   "impactTabMyNodeDesc": "Impatto del tuo nodo",
-  "impactTabNetworkDesc": "Impatto sull'intera rete",
+  "impactTabNetworkDesc": "Impatto di tutta la rete",
   "impactHexesUnlocked": "{count} esagoni sbloccati",
   "@impactHexesUnlocked": {
     "placeholders": {
@@ -232,7 +231,12 @@
       "total": { "type": "int" }
     }
   },
-  "impactNoHexes": "Non hai ancora sbloccato alcun esagono.",
-  "impactGoldenHex": "Esagono aureo",
-  "impactNavigatorTitle": "Navigatori tra i ghiacci"
+  "impactNoHexes": "Non hai ancora sbloccato esagoni",
+  "impactGoldenHex": "Esagono dorato",
+  "impactNavigatorTitle": "Navigatori del ghiaccio",
+  "impactScopeNodeSoon": "Vista nodo: prossimamente",
+  "impactScopeNetworkSoon": "Vista rete: prossimamente",
+  "impactCenterMap": "Centra",
+  "impactArcticHint": "Artico · trascina / zoom",
+  "impactNoHexesHint": "Non hai ancora sbloccato esagoni. Completa attività nelle zone di impatto per colorare la mappa."
 }

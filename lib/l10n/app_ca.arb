@@ -190,11 +190,11 @@
 
   "navigatorBannerReady": "El teu sobre de navegant està llest",
   "navigatorBannerSent": "Sobre enviat — completa l'activitat exterior",
-  "navigatorBannerValidated": "Activitat exterior validada — Navegant del gel!",
+  "navigatorBannerValidated": "Activitat exterior validada — ¡Navegant del gel!",
   "navigatorSendButton": "Enviar sobre",
   "navigatorResendButton": "Reenviar sobre",
   "navigatorSending": "Enviant…",
-  "navigatorSentSuccess": "Sobre enviat! Revisa el teu correu.",
+  "navigatorSentSuccess": "¡Sobre enviat! Revisa el teu correu.",
   "navigatorSendError": "Error en enviar el sobre: {error}",
   "@navigatorSendError": {
     "placeholders": {
@@ -210,12 +210,11 @@
       "taskThreshold": { "type": "int" }
     }
   },
-
   "impactMapTitle": "Mapa d'impacte",
   "impactTileArctic": "Àrtic",
   "impactTileMediterranean": "Mediterrani",
   "impactTabOnlyMe": "Només jo",
-  "impactTabMyNode": "El meu Node",
+  "impactTabMyNode": "El meu node",
   "impactTabNetwork": "Xarxa",
   "impactTabOnlyMeDesc": "El teu impacte personal",
   "impactTabMyNodeDesc": "Impacte del teu node",
@@ -234,5 +233,10 @@
   },
   "impactNoHexes": "Encara no has desbloquejat hexàgons",
   "impactGoldenHex": "Hexàgon daurat",
-  "impactNavigatorTitle": "Navegants del Gel"
+  "impactNavigatorTitle": "Navegants del Gel",
+  "impactScopeNodeSoon": "Vista de node: properament",
+  "impactScopeNetworkSoon": "Vista de xarxa: properament",
+  "impactCenterMap": "Centrar",
+  "impactArcticHint": "Àrtic · arrossega / zoom",
+  "impactNoHexesHint": "Encara no has desbloquejat hexàgons. Completa tasques en zones d'impacte per colorar el mapa."
 }

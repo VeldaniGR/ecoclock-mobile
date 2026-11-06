@@ -188,20 +188,20 @@
   "inviteLink": "Verbindungsglied",
   "completeExpeditionsForFrames": "Schließe Expeditionen ab, um Rahmen freizuschalten.",
 
-  "navigatorBannerReady": "Dein Seefahrer-Umschlag ist fertig.",
-  "navigatorBannerSent": "Versandter Umschlag – schließe die externe Aktivität ab",
-  "navigatorBannerValidated": "Validierte Outdoor-Aktivität – Eis-Navigator!",
-  "navigatorSendButton": "Umschlag versenden",
-  "navigatorResendButton": "Weiterleiten über",
+  "navigatorBannerReady": "Dein Navigator-Umschlag ist bereit",
+  "navigatorBannerSent": "Umschlag gesendet — schließe die Outdoor-Aktivität ab",
+  "navigatorBannerValidated": "Outdoor-Aktivität bestätigt — Eis-Navigator!",
+  "navigatorSendButton": "Umschlag senden",
+  "navigatorResendButton": "Erneut senden",
   "navigatorSending": "Wird gesendet…",
-  "navigatorSentSuccess": "Umschlag verschickt! Überprüfe deine E-Mails.",
+  "navigatorSentSuccess": "Umschlag gesendet! Prüfe deine E-Mails.",
   "navigatorSendError": "Fehler beim Senden des Umschlags: {error}",
   "@navigatorSendError": {
     "placeholders": {
       "error": { "type": "String" }
     }
   },
-  "navigatorHexTasksCounter": "{hexCount}/{hexThreshold} hex · {taskCount}/{taskThreshold} Aufgaben",
+  "navigatorHexTasksCounter": "{hexCount}/{hexThreshold} Hex · {taskCount}/{taskThreshold} Aufgaben",
   "@navigatorHexTasksCounter": {
     "placeholders": {
       "hexCount": { "type": "int" },
@@ -210,29 +210,33 @@
       "taskThreshold": { "type": "int" }
     }
   },
-
-  "impactMapTitle": "Auswirkungskarte",
+  "impactMapTitle": "Wirkungskarte",
   "impactTileArctic": "Arktis",
   "impactTileMediterranean": "Mittelmeer",
   "impactTabOnlyMe": "Nur ich",
   "impactTabMyNode": "Mein Knoten",
   "impactTabNetwork": "Netzwerk",
-  "impactTabOnlyMeDesc": "Dein persönlicher Einfluss",
-  "impactTabMyNodeDesc": "Auswirkung deines Knotens",
-  "impactTabNetworkDesc": "Auswirkung auf das gesamte Netzwerk",
-  "impactHexesUnlocked": "{count} freigeschaltete Sechsecke",
+  "impactTabOnlyMeDesc": "Dein persönlicher Impact",
+  "impactTabMyNodeDesc": "Impact deines Knotens",
+  "impactTabNetworkDesc": "Impact des gesamten Netzwerks",
+  "impactHexesUnlocked": "{count} Hexagone freigeschaltet",
   "@impactHexesUnlocked": {
     "placeholders": {
       "count": { "type": "int" }
     }
   },
-  "impactTotalHexes": "Total: {total} Sechsecke",
+  "impactTotalHexes": "Gesamt: {total} Hexagone",
   "@impactTotalHexes": {
     "placeholders": {
       "total": { "type": "int" }
     }
   },
-  "impactNoHexes": "Du hast noch keine Sechsecke freigeschaltet.",
-  "impactGoldenHex": "Goldenes Sechseck",
-  "impactNavigatorTitle": "Eissegler"
+  "impactNoHexes": "Du hast noch keine Hexagone freigeschaltet",
+  "impactGoldenHex": "Goldenes Hexagon",
+  "impactNavigatorTitle": "Eis-Navigatoren",
+  "impactScopeNodeSoon": "Knotenansicht: demnächst",
+  "impactScopeNetworkSoon": "Netzwerkansicht: demnächst",
+  "impactCenterMap": "Zentrieren",
+  "impactArcticHint": "Arktis · ziehen / zoomen",
+  "impactNoHexesHint": "Du hast noch keine Hexagone freigeschaltet. Erledige Aufgaben in Impact-Zonen, um die Karte zu färben."
 }

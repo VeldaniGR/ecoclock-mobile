@@ -234,5 +234,11 @@
   },
   "impactNoHexes": "Aún no has desbloqueado hexágonos",
   "impactGoldenHex": "Hexágono dorado",
-  "impactNavigatorTitle": "Navegantes del Hielo"
+  "impactNavigatorTitle": "Navegantes del Hielo",
+
+  "impactScopeNodeSoon": "Vista de nodo: próximamente",
+  "impactScopeNetworkSoon": "Vista de red: próximamente",
+  "impactCenterMap": "Centrar",
+  "impactArcticHint": "Ártico · arrastra / zoom",
+  "impactNoHexesHint": "Aún no has desbloqueado hexágonos. Completa tareas en zonas de impacto para colorear el mapa."
 }

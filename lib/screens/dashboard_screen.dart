@@ -197,17 +197,17 @@ class _DashboardScreenState extends State<DashboardScreen> {
     if (_isSendingEnvelope) return;
 
     setState(() => _isSendingEnvelope = true);
+    final l10n = AppLocalizations.of(context);
 
     try {
       await widget.api.ackNavigatorEnvelopeSent();
-      // Recargamos para que el banner pase a "sent"
       await _loadEnvelope();
 
       if (mounted) {
         ScaffoldMessenger.of(context).showSnackBar(
-          const SnackBar(
-            content: Text('¡Sobre enviado! Revisa tu correo.'),
-            backgroundColor: Color(0xFF5B9EA6),
+          SnackBar(
+            content: Text(l10n.navigatorSentSuccess),
+            backgroundColor: const Color(0xFF5B9EA6),
           ),
         );
       }
@@ -215,7 +215,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
       if (mounted) {
         ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(
-            content: Text('Error al enviar el sobre: $e'),
+            content: Text(l10n.navigatorSendError('$e')),
             backgroundColor: Colors.red.shade700,
           ),
         );
@@ -497,14 +497,16 @@ class _DashboardScreenState extends State<DashboardScreen> {
 
   Widget _buildNavigatorBanner(ThemeData theme) {
     final env = _envelope;
+    final l10n = AppLocalizations.of(context);
 
     if (env == null || !env.showBanner || env.message == null) {
       return const SizedBox.shrink();
     }
 
     final bool canSend = env.status == 'ready' || env.status == 'sent';
-    final String buttonLabel =
-        env.status == 'sent' ? 'Reenviar sobre' : 'Enviar sobre';
+    final String buttonLabel = env.status == 'sent'
+        ? l10n.navigatorResendButton
+        : l10n.navigatorSendButton;
 
     return Container(
       width: double.infinity,
@@ -562,7 +564,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
                         ),
                       )
                     : const Icon(Icons.send_rounded, size: 18),
-                label: Text(_isSendingEnvelope ? 'Enviando…' : buttonLabel),
+                label: Text(_isSendingEnvelope ? l10n.navigatorSending : buttonLabel),
                 style: FilledButton.styleFrom(
                   backgroundColor: const Color(0xFF5B9EA6),
                   foregroundColor: Colors.white,

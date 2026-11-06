@@ -359,48 +359,47 @@ class AppLocalizationsRu extends AppLocalizations {
       'Завершайте экспедиции, чтобы разблокировать рамки.';
 
   @override
-  String get navigatorBannerReady => 'Конверт для вашего навигатора готов';
+  String get navigatorBannerReady => 'Ваш конверт штурмана готов';
 
   @override
   String get navigatorBannerSent =>
-      'Конверт отправлен — выполните внешнее действие';
+      'Конверт отправлен — завершите активность на улице';
 
   @override
   String get navigatorBannerValidated =>
-      'Проверенный вид активности на свежем воздухе — ледовый навигатор!';
+      'Активность на улице подтверждена — Ледяной штурман!';
 
   @override
-  String get navigatorSendButton => 'Отправить письмо';
+  String get navigatorSendButton => 'Отправить конверт';
 
   @override
-  String get navigatorResendButton => 'Переслать письмо';
+  String get navigatorResendButton => 'Отправить снова';
 
   @override
   String get navigatorSending => 'Отправка…';
 
   @override
-  String get navigatorSentSuccess =>
-      'Конверт отправлен! Проверьте электронную почту.';
+  String get navigatorSentSuccess => 'Конверт отправлен! Проверьте почту.';
 
   @override
   String navigatorSendError(String error) {
-    return 'Ошибка при отправке конверта: $error';
+    return 'Ошибка отправки конверта: $error';
   }
 
   @override
   String navigatorHexTasksCounter(
       int hexCount, int hexThreshold, int taskCount, int taskThreshold) {
-    return '$hexCount/$hexThreshold шест · $taskCount/$taskThreshold задачи';
+    return '$hexCount/$hexThreshold гекс · $taskCount/$taskThreshold заданий';
   }
 
   @override
-  String get impactMapTitle => 'Карта воздействия';
+  String get impactMapTitle => 'Карта влияния';
 
   @override
   String get impactTileArctic => 'Арктика';
 
   @override
-  String get impactTileMediterranean => 'Средиземноморский';
+  String get impactTileMediterranean => 'Средиземноморье';
 
   @override
   String get impactTabOnlyMe => 'Только я';
@@ -409,33 +408,49 @@ class AppLocalizationsRu extends AppLocalizations {
   String get impactTabMyNode => 'Мой узел';
 
   @override
-  String get impactTabNetwork => 'сеть';
+  String get impactTabNetwork => 'Сеть';
 
   @override
-  String get impactTabOnlyMeDesc => 'Ваш личный вклад';
+  String get impactTabOnlyMeDesc => 'Ваше личное влияние';
 
   @override
-  String get impactTabMyNodeDesc => 'Влияние вашей ноды';
+  String get impactTabMyNodeDesc => 'Влияние вашего узла';
 
   @override
-  String get impactTabNetworkDesc => 'Влияние на всю сеть';
+  String get impactTabNetworkDesc => 'Влияние всей сети';
 
   @override
   String impactHexesUnlocked(int count) {
-    return '$count разблокированные шестиугольники';
+    return 'Разблокировано гексов: $count';
   }
 
   @override
   String impactTotalHexes(int total) {
-    return 'Общий: $total шестиугольники';
+    return 'Всего: $total гексов';
   }
 
   @override
-  String get impactNoHexes => 'Вы ещё не открыли ни одного шестиугольника.';
+  String get impactNoHexes => 'Вы ещё не разблокировали гексы';
 
   @override
-  String get impactGoldenHex => 'Золотой шестиугольник';
+  String get impactGoldenHex => 'Золотой гекс';
 
   @override
-  String get impactNavigatorTitle => 'Ледовые навигаторы';
+  String get impactNavigatorTitle => 'Ледяные штурманы';
+
+  @override
+  String get impactScopeNodeSoon => 'Вид узла: скоро';
+
+  @override
+  String get impactScopeNetworkSoon => 'Вид сети: скоро';
+
+  @override
+  String get impactCenterMap => 'Центрировать';
+
+  @override
+  String get impactArcticHint => 'Арктика · перетащите / масштаб';
+
+  @override
+  String get impactNoHexesHint =>
+      'Вы ещё не разблокировали гексы. Выполняйте задания в зонах влияния, чтобы раскрасить карту.';
 }

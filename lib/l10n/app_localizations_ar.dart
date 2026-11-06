@@ -356,36 +356,36 @@ class AppLocalizationsAr extends AppLocalizations {
   String get completeExpeditionsForFrames => 'أكمل البعثات لفتح الإطارات.';
 
   @override
-  String get navigatorBannerReady => 'ظرف الملاّح الخاص بك جاهز';
+  String get navigatorBannerReady => 'ظرف الملاح جاهز';
 
   @override
   String get navigatorBannerSent => 'تم إرسال الظرف — أكمل النشاط الخارجي';
 
   @override
   String get navigatorBannerValidated =>
-      'نشاط خارجي مُعتمد — مُوجِّه في الجليد!';
+      'تم التحقق من النشاط الخارجي — ملاح الجليد!';
 
   @override
-  String get navigatorSendButton => 'أرسل المظروف';
+  String get navigatorSendButton => 'إرسال الظرف';
 
   @override
-  String get navigatorResendButton => 'إعادة توجيه بخصوص';
+  String get navigatorResendButton => 'إعادة الإرسال';
 
   @override
-  String get navigatorSending => 'إرسال…';
+  String get navigatorSending => 'جارٍ الإرسال…';
 
   @override
-  String get navigatorSentSuccess => 'تم إرسال المظروف! تفقد بريدك الإلكتروني.';
+  String get navigatorSentSuccess => 'تم إرسال الظرف! تحقق من بريدك.';
 
   @override
   String navigatorSendError(String error) {
-    return 'خطأ في إرسال المظروف: $error';
+    return 'خطأ في إرسال الظرف: $error';
   }
 
   @override
   String navigatorHexTasksCounter(
       int hexCount, int hexThreshold, int taskCount, int taskThreshold) {
-    return '$hexCount/$hexThreshold مسدس · $taskCount/$taskThreshold مهام';
+    return '$hexCount/$hexThreshold سداسي · $taskCount/$taskThreshold مهام';
   }
 
   @override
@@ -395,42 +395,58 @@ class AppLocalizationsAr extends AppLocalizations {
   String get impactTileArctic => 'القطب الشمالي';
 
   @override
-  String get impactTileMediterranean => 'البحر الأبيض المتوسط';
+  String get impactTileMediterranean => 'البحر المتوسط';
 
   @override
   String get impactTabOnlyMe => 'أنا فقط';
 
   @override
-  String get impactTabMyNode => 'عُقدتي';
+  String get impactTabMyNode => 'عقدتي';
 
   @override
-  String get impactTabNetwork => 'شبكة';
+  String get impactTabNetwork => 'الشبكة';
 
   @override
   String get impactTabOnlyMeDesc => 'أثرك الشخصي';
 
   @override
-  String get impactTabMyNodeDesc => 'تأثير العقدة الخاصة بك';
+  String get impactTabMyNodeDesc => 'أثر عقدتك';
 
   @override
-  String get impactTabNetworkDesc => 'التأثير على الشبكة بأكملها';
+  String get impactTabNetworkDesc => 'أثر الشبكة بالكامل';
 
   @override
   String impactHexesUnlocked(int count) {
-    return '$count أشكال سداسية غير مقفلة';
+    return '$count سداسيات مفتوحة';
   }
 
   @override
   String impactTotalHexes(int total) {
-    return 'المجموع: $total أشكال سداسية';
+    return 'المجموع: $total سداسي';
   }
 
   @override
-  String get impactNoHexes => 'لم تفتح أي أشكال سداسية بعد.';
+  String get impactNoHexes => 'لم تفتح أي سداسيات بعد';
 
   @override
-  String get impactGoldenHex => 'سداسي ذهبي';
+  String get impactGoldenHex => 'السداسي الذهبي';
 
   @override
   String get impactNavigatorTitle => 'ملاحو الجليد';
+
+  @override
+  String get impactScopeNodeSoon => 'عرض العقدة: قريبًا';
+
+  @override
+  String get impactScopeNetworkSoon => 'عرض الشبكة: قريبًا';
+
+  @override
+  String get impactCenterMap => 'توسيط';
+
+  @override
+  String get impactArcticHint => 'القطب الشمالي · اسحب / تكبير';
+
+  @override
+  String get impactNoHexesHint =>
+      'لم تفتح أي سداسيات بعد. أكمل المهام في مناطق الأثر لتلوين الخريطة.';
 }

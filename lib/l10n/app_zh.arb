@@ -188,20 +188,20 @@
   "inviteLink": "連結環節",
   "completeExpeditionsForFrames": "完成遠徵以解鎖框架。",
 
-  "navigatorBannerReady": "您的導航員信封已準備就緒",
-  "navigatorBannerSent": "信封已發送－請完成外部活動",
-  "navigatorBannerValidated": "經認證的戶外活動－冰區領航員！",
-  "navigatorSendButton": "寄信",
-  "navigatorResendButton": "轉寄信件",
-  "navigatorSending": "正在發送…",
-  "navigatorSentSuccess": "信封已發送！請查看您的電子郵件。",
-  "navigatorSendError": "發送信封時發生錯誤: {error}",
+  "navigatorBannerReady": "您的航海者信封已准备就绪",
+  "navigatorBannerSent": "信封已发送 — 请完成户外活动",
+  "navigatorBannerValidated": "户外活动已验证 — 冰上航海者！",
+  "navigatorSendButton": "发送信封",
+  "navigatorResendButton": "重新发送",
+  "navigatorSending": "发送中…",
+  "navigatorSentSuccess": "信封已发送！请查看您的邮箱。",
+  "navigatorSendError": "发送信封时出错：{error}",
   "@navigatorSendError": {
     "placeholders": {
       "error": { "type": "String" }
     }
   },
-  "navigatorHexTasksCounter": "{hexCount}/{hexThreshold} 影響圖 · {taskCount}/{taskThreshold} 任務",
+  "navigatorHexTasksCounter": "{hexCount}/{hexThreshold} 六边形 · {taskCount}/{taskThreshold} 任务",
   "@navigatorHexTasksCounter": {
     "placeholders": {
       "hexCount": { "type": "int" },
@@ -210,29 +210,33 @@
       "taskThreshold": { "type": "int" }
     }
   },
-
-  "impactMapTitle": "影響圖",
-  "impactTileArctic": "北極",
+  "impactMapTitle": "影响地图",
+  "impactTileArctic": "北极",
   "impactTileMediterranean": "地中海",
-  "impactTabOnlyMe": "只有我",
-  "impactTabMyNode": "我的節點",
-  "impactTabNetwork": "網路",
-  "impactTabOnlyMeDesc": "你個人的影響力",
-  "impactTabMyNodeDesc": "您的節點所產生的影響",
-  "impactTabNetworkDesc": "對整個網路的影響",
-  "impactHexesUnlocked": "{count} 已解鎖的六邊形",
+  "impactTabOnlyMe": "仅自己",
+  "impactTabMyNode": "我的节点",
+  "impactTabNetwork": "网络",
+  "impactTabOnlyMeDesc": "你的个人影响",
+  "impactTabMyNodeDesc": "你的节点影响",
+  "impactTabNetworkDesc": "整个网络的影响",
+  "impactHexesUnlocked": "已解锁 {count} 个六边形",
   "@impactHexesUnlocked": {
     "placeholders": {
       "count": { "type": "int" }
     }
   },
-  "impactTotalHexes": "全部的: {total} 六邊形",
+  "impactTotalHexes": "总计：{total} 个六边形",
   "@impactTotalHexes": {
     "placeholders": {
       "total": { "type": "int" }
     }
   },
-  "impactNoHexes": "你尚未解鎖任何六邊形。",
-  "impactGoldenHex": "金色六邊形",
-  "impactNavigatorTitle": "冰區領航員"
+  "impactNoHexes": "你尚未解锁任何六边形",
+  "impactGoldenHex": "金色六边形",
+  "impactNavigatorTitle": "冰上航海者",
+  "impactScopeNodeSoon": "节点视图：即将推出",
+  "impactScopeNetworkSoon": "网络视图：即将推出",
+  "impactCenterMap": "居中",
+  "impactArcticHint": "北极 · 拖动 / 缩放",
+  "impactNoHexesHint": "你尚未解锁任何六边形。在影响区域完成任务来为地图上色。"
 }

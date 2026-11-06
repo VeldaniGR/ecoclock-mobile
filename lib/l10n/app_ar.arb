@@ -188,20 +188,20 @@
   "inviteLink": "حلقة وصل",
   "completeExpeditionsForFrames": "أكمل البعثات لفتح الإطارات.",
 
-  "navigatorBannerReady": "ظرف الملاّح الخاص بك جاهز",
+  "navigatorBannerReady": "ظرف الملاح جاهز",
   "navigatorBannerSent": "تم إرسال الظرف — أكمل النشاط الخارجي",
-  "navigatorBannerValidated": "نشاط خارجي مُعتمد — مُوجِّه في الجليد!",
-  "navigatorSendButton": "أرسل المظروف",
-  "navigatorResendButton": "إعادة توجيه بخصوص",
-  "navigatorSending": "إرسال…",
-  "navigatorSentSuccess": "تم إرسال المظروف! تفقد بريدك الإلكتروني.",
-  "navigatorSendError": "خطأ في إرسال المظروف: {error}",
+  "navigatorBannerValidated": "تم التحقق من النشاط الخارجي — ملاح الجليد!",
+  "navigatorSendButton": "إرسال الظرف",
+  "navigatorResendButton": "إعادة الإرسال",
+  "navigatorSending": "جارٍ الإرسال…",
+  "navigatorSentSuccess": "تم إرسال الظرف! تحقق من بريدك.",
+  "navigatorSendError": "خطأ في إرسال الظرف: {error}",
   "@navigatorSendError": {
     "placeholders": {
       "error": { "type": "String" }
     }
   },
-  "navigatorHexTasksCounter": "{hexCount}/{hexThreshold} مسدس · {taskCount}/{taskThreshold} مهام",
+  "navigatorHexTasksCounter": "{hexCount}/{hexThreshold} سداسي · {taskCount}/{taskThreshold} مهام",
   "@navigatorHexTasksCounter": {
     "placeholders": {
       "hexCount": { "type": "int" },
@@ -210,29 +210,33 @@
       "taskThreshold": { "type": "int" }
     }
   },
-
   "impactMapTitle": "خريطة الأثر",
   "impactTileArctic": "القطب الشمالي",
-  "impactTileMediterranean": "البحر الأبيض المتوسط",
+  "impactTileMediterranean": "البحر المتوسط",
   "impactTabOnlyMe": "أنا فقط",
-  "impactTabMyNode": "عُقدتي",
-  "impactTabNetwork": "شبكة",
+  "impactTabMyNode": "عقدتي",
+  "impactTabNetwork": "الشبكة",
   "impactTabOnlyMeDesc": "أثرك الشخصي",
-  "impactTabMyNodeDesc": "تأثير العقدة الخاصة بك",
-  "impactTabNetworkDesc": "التأثير على الشبكة بأكملها",
-  "impactHexesUnlocked": "{count} أشكال سداسية غير مقفلة",
+  "impactTabMyNodeDesc": "أثر عقدتك",
+  "impactTabNetworkDesc": "أثر الشبكة بالكامل",
+  "impactHexesUnlocked": "{count} سداسيات مفتوحة",
   "@impactHexesUnlocked": {
     "placeholders": {
       "count": { "type": "int" }
     }
   },
-  "impactTotalHexes": "المجموع: {total} أشكال سداسية",
+  "impactTotalHexes": "المجموع: {total} سداسي",
   "@impactTotalHexes": {
     "placeholders": {
       "total": { "type": "int" }
     }
   },
-  "impactNoHexes": "لم تفتح أي أشكال سداسية بعد.",
-  "impactGoldenHex": "سداسي ذهبي",
-  "impactNavigatorTitle": "ملاحو الجليد"
+  "impactNoHexes": "لم تفتح أي سداسيات بعد",
+  "impactGoldenHex": "السداسي الذهبي",
+  "impactNavigatorTitle": "ملاحو الجليد",
+  "impactScopeNodeSoon": "عرض العقدة: قريبًا",
+  "impactScopeNetworkSoon": "عرض الشبكة: قريبًا",
+  "impactCenterMap": "توسيط",
+  "impactArcticHint": "القطب الشمالي · اسحب / تكبير",
+  "impactNoHexesHint": "لم تفتح أي سداسيات بعد. أكمل المهام في مناطق الأثر لتلوين الخريطة."
 }

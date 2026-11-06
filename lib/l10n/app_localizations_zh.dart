@@ -355,80 +355,95 @@ class AppLocalizationsZh extends AppLocalizations {
   String get completeExpeditionsForFrames => '完成遠徵以解鎖框架。';
 
   @override
-  String get navigatorBannerReady => '您的導航員信封已準備就緒';
+  String get navigatorBannerReady => '您的航海者信封已准备就绪';
 
   @override
-  String get navigatorBannerSent => '信封已發送－請完成外部活動';
+  String get navigatorBannerSent => '信封已发送 — 请完成户外活动';
 
   @override
-  String get navigatorBannerValidated => '經認證的戶外活動－冰區領航員！';
+  String get navigatorBannerValidated => '户外活动已验证 — 冰上航海者！';
 
   @override
-  String get navigatorSendButton => '寄信';
+  String get navigatorSendButton => '发送信封';
 
   @override
-  String get navigatorResendButton => '轉寄信件';
+  String get navigatorResendButton => '重新发送';
 
   @override
-  String get navigatorSending => '正在發送…';
+  String get navigatorSending => '发送中…';
 
   @override
-  String get navigatorSentSuccess => '信封已發送！請查看您的電子郵件。';
+  String get navigatorSentSuccess => '信封已发送！请查看您的邮箱。';
 
   @override
   String navigatorSendError(String error) {
-    return '發送信封時發生錯誤: $error';
+    return '发送信封时出错：$error';
   }
 
   @override
   String navigatorHexTasksCounter(
       int hexCount, int hexThreshold, int taskCount, int taskThreshold) {
-    return '$hexCount/$hexThreshold 影響圖 · $taskCount/$taskThreshold 任務';
+    return '$hexCount/$hexThreshold 六边形 · $taskCount/$taskThreshold 任务';
   }
 
   @override
-  String get impactMapTitle => '影響圖';
+  String get impactMapTitle => '影响地图';
 
   @override
-  String get impactTileArctic => '北極';
+  String get impactTileArctic => '北极';
 
   @override
   String get impactTileMediterranean => '地中海';
 
   @override
-  String get impactTabOnlyMe => '只有我';
+  String get impactTabOnlyMe => '仅自己';
 
   @override
-  String get impactTabMyNode => '我的節點';
+  String get impactTabMyNode => '我的节点';
 
   @override
-  String get impactTabNetwork => '網路';
+  String get impactTabNetwork => '网络';
 
   @override
-  String get impactTabOnlyMeDesc => '你個人的影響力';
+  String get impactTabOnlyMeDesc => '你的个人影响';
 
   @override
-  String get impactTabMyNodeDesc => '您的節點所產生的影響';
+  String get impactTabMyNodeDesc => '你的节点影响';
 
   @override
-  String get impactTabNetworkDesc => '對整個網路的影響';
+  String get impactTabNetworkDesc => '整个网络的影响';
 
   @override
   String impactHexesUnlocked(int count) {
-    return '$count 已解鎖的六邊形';
+    return '已解锁 $count 个六边形';
   }
 
   @override
   String impactTotalHexes(int total) {
-    return '全部的: $total 六邊形';
+    return '总计：$total 个六边形';
   }
 
   @override
-  String get impactNoHexes => '你尚未解鎖任何六邊形。';
+  String get impactNoHexes => '你尚未解锁任何六边形';
 
   @override
-  String get impactGoldenHex => '金色六邊形';
+  String get impactGoldenHex => '金色六边形';
 
   @override
-  String get impactNavigatorTitle => '冰區領航員';
+  String get impactNavigatorTitle => '冰上航海者';
+
+  @override
+  String get impactScopeNodeSoon => '节点视图：即将推出';
+
+  @override
+  String get impactScopeNetworkSoon => '网络视图：即将推出';
+
+  @override
+  String get impactCenterMap => '居中';
+
+  @override
+  String get impactArcticHint => '北极 · 拖动 / 缩放';
+
+  @override
+  String get impactNoHexesHint => '你尚未解锁任何六边形。在影响区域完成任务来为地图上色。';
 }

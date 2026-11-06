@@ -155,12 +155,12 @@
   "inviteLink": "Enlace de unión",
   "completeExpeditionsForFrames": "Complete expeditions to unlock frames.",
 
-  "navigatorBannerReady": "Your navigator's envelope is ready",
-  "navigatorBannerSent": "Envelope sent — complete the external activity",
-  "navigatorBannerValidated": "Validated outdoor activity — Ice navigator!",
+  "navigatorBannerReady": "Your navigator envelope is ready",
+  "navigatorBannerSent": "Envelope sent — complete the outdoor activity",
+  "navigatorBannerValidated": "Outdoor activity validated — Ice Navigator!",
   "navigatorSendButton": "Send envelope",
   "navigatorResendButton": "Resend envelope",
-  "navigatorSending": "Sending...",
+  "navigatorSending": "Sending…",
   "navigatorSentSuccess": "Envelope sent! Check your email.",
   "navigatorSendError": "Error sending the envelope: {error}",
   "@navigatorSendError": {
@@ -168,7 +168,7 @@
       "error": { "type": "String" }
     }
   },
-  "navigatorHexTasksCounter": "{hexCount}/{hexThreshold} hex · {taskCount}/{taskThreshold} task",
+  "navigatorHexTasksCounter": "{hexCount}/{hexThreshold} hex · {taskCount}/{taskThreshold} tasks",
   "@navigatorHexTasksCounter": {
     "placeholders": {
       "hexCount": { "type": "int" },
@@ -177,29 +177,33 @@
       "taskThreshold": { "type": "int" }
     }
   },
-
   "impactMapTitle": "Impact map",
   "impactTileArctic": "Arctic",
   "impactTileMediterranean": "Mediterranean",
   "impactTabOnlyMe": "Only me",
-  "impactTabMyNode": "My Node",
+  "impactTabMyNode": "My node",
   "impactTabNetwork": "Network",
   "impactTabOnlyMeDesc": "Your personal impact",
-  "impactTabMyNodeDesc": "Impact of your node",
-  "impactTabNetworkDesc": "Impact on the entire network",
-  "impactHexesUnlocked": "{count} unlocked hexagons",
+  "impactTabMyNodeDesc": "Your node's impact",
+  "impactTabNetworkDesc": "Impact of the whole network",
+  "impactHexesUnlocked": "{count} hexes unlocked",
   "@impactHexesUnlocked": {
     "placeholders": {
       "count": { "type": "int" }
     }
   },
-  "impactTotalHexes": "Total: {total} hexagons",
+  "impactTotalHexes": "Total: {total} hexes",
   "@impactTotalHexes": {
     "placeholders": {
       "total": { "type": "int" }
     }
   },
-  "impactNoHexes": "You haven't unlocked any hexagons yet.",
-  "impactGoldenHex": "Golden hexagon",
-  "impactNavigatorTitle": "Ice Navigators"
+  "impactNoHexes": "You have not unlocked any hexes yet",
+  "impactGoldenHex": "Golden hex",
+  "impactNavigatorTitle": "Ice Navigators",
+  "impactScopeNodeSoon": "Node view: coming soon",
+  "impactScopeNetworkSoon": "Network view: coming soon",
+  "impactCenterMap": "Center",
+  "impactArcticHint": "Arctic · drag / zoom",
+  "impactNoHexesHint": "You have not unlocked any hexes yet. Complete tasks in impact zones to color the map."
 }

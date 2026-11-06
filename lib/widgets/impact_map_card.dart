@@ -1,6 +1,7 @@
 import 'dart:math' as math;
 import 'package:flutter/material.dart';
 import '../models/api_models.dart';
+import '../l10n/app_localizations.dart';
 
 enum ImpactScope { me, node, network }
 
@@ -47,7 +48,6 @@ class _ImpactMapCardState extends State<ImpactMapCard> {
     }
   }
 
-  /// Código "D6" → (col 0-based, row 0-based) alineado con impact_geo (A=row0).
   static (int col, int row)? _parseHex(String code) {
     if (code.isEmpty) return null;
     final letter = code[0].toUpperCase();
@@ -101,6 +101,7 @@ class _ImpactMapCardState extends State<ImpactMapCard> {
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
+    final l10n = AppLocalizations.of(context);
     final total = widget.impact?.totalHexes ?? 0;
     final hexes = widget.impact?.allHexes ?? const <ImpactHex>[];
     final unlocked = <String, ImpactHex>{
@@ -126,7 +127,7 @@ class _ImpactMapCardState extends State<ImpactMapCard> {
               const SizedBox(width: 10),
               Expanded(
                 child: Text(
-                  'Mapa de impacto',
+                  l10n.impactMapTitle,
                   style: theme.textTheme.titleMedium?.copyWith(
                     fontWeight: FontWeight.w700,
                   ),
@@ -144,10 +145,19 @@ class _ImpactMapCardState extends State<ImpactMapCard> {
           ),
           const SizedBox(height: 12),
           SegmentedButton<ImpactScope>(
-            segments: const [
-              ButtonSegment(value: ImpactScope.me, label: Text('Solo yo')),
-              ButtonSegment(value: ImpactScope.node, label: Text('Mi nodo')),
-              ButtonSegment(value: ImpactScope.network, label: Text('Red')),
+            segments: [
+              ButtonSegment(
+                value: ImpactScope.me,
+                label: Text(l10n.impactTabOnlyMe),
+              ),
+              ButtonSegment(
+                value: ImpactScope.node,
+                label: Text(l10n.impactTabMyNode),
+              ),
+              ButtonSegment(
+                value: ImpactScope.network,
+                label: Text(l10n.impactTabNetwork),
+              ),
             ],
             selected: {widget.scope},
             onSelectionChanged: (s) {
@@ -165,8 +175,8 @@ class _ImpactMapCardState extends State<ImpactMapCard> {
               padding: const EdgeInsets.symmetric(vertical: 16),
               child: Text(
                 widget.scope == ImpactScope.node
-                    ? 'Vista de nodo: próximamente'
-                    : 'Vista de red: próximamente',
+                    ? l10n.impactScopeNodeSoon
+                    : l10n.impactScopeNetworkSoon,
                 style: theme.textTheme.bodyMedium?.copyWith(
                   color: theme.colorScheme.onSurfaceVariant,
                 ),
@@ -207,7 +217,7 @@ class _ImpactMapCardState extends State<ImpactMapCard> {
                         color: theme.colorScheme.surface.withValues(alpha: 0.9),
                         borderRadius: BorderRadius.circular(10),
                         child: IconButton(
-                          tooltip: 'Centrar',
+                          tooltip: l10n.impactCenterMap,
                           onPressed: _centerOnLatest,
                           icon: const Icon(Icons.my_location, size: 20),
                         ),
@@ -225,9 +235,12 @@ class _ImpactMapCardState extends State<ImpactMapCard> {
                           color: Colors.black54,
                           borderRadius: BorderRadius.circular(8),
                         ),
-                        child: const Text(
-                          'Ártico · arrastra / zoom',
-                          style: TextStyle(color: Colors.white70, fontSize: 11),
+                        child: Text(
+                          l10n.impactArcticHint,
+                          style: const TextStyle(
+                            color: Colors.white70,
+                            fontSize: 11,
+                          ),
                         ),
                       ),
                     ),
@@ -239,8 +252,7 @@ class _ImpactMapCardState extends State<ImpactMapCard> {
               Padding(
                 padding: const EdgeInsets.only(top: 10),
                 child: Text(
-                  'Aún no has desbloqueado hexágonos. '
-                  'Completa tareas en zonas de impacto para colorear el mapa.',
+                  l10n.impactNoHexesHint,
                   style: theme.textTheme.bodySmall?.copyWith(
                     color: theme.colorScheme.onSurfaceVariant,
                   ),

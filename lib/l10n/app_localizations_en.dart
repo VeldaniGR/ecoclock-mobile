@@ -357,15 +357,15 @@ class AppLocalizationsEn extends AppLocalizations {
       'Complete expeditions to unlock frames.';
 
   @override
-  String get navigatorBannerReady => 'Your navigator\'s envelope is ready';
+  String get navigatorBannerReady => 'Your navigator envelope is ready';
 
   @override
   String get navigatorBannerSent =>
-      'Envelope sent — complete the external activity';
+      'Envelope sent — complete the outdoor activity';
 
   @override
   String get navigatorBannerValidated =>
-      'Validated outdoor activity — Ice navigator!';
+      'Outdoor activity validated — Ice Navigator!';
 
   @override
   String get navigatorSendButton => 'Send envelope';
@@ -374,7 +374,7 @@ class AppLocalizationsEn extends AppLocalizations {
   String get navigatorResendButton => 'Resend envelope';
 
   @override
-  String get navigatorSending => 'Sending...';
+  String get navigatorSending => 'Sending…';
 
   @override
   String get navigatorSentSuccess => 'Envelope sent! Check your email.';
@@ -387,7 +387,7 @@ class AppLocalizationsEn extends AppLocalizations {
   @override
   String navigatorHexTasksCounter(
       int hexCount, int hexThreshold, int taskCount, int taskThreshold) {
-    return '$hexCount/$hexThreshold hex · $taskCount/$taskThreshold task';
+    return '$hexCount/$hexThreshold hex · $taskCount/$taskThreshold tasks';
   }
 
   @override
@@ -403,7 +403,7 @@ class AppLocalizationsEn extends AppLocalizations {
   String get impactTabOnlyMe => 'Only me';
 
   @override
-  String get impactTabMyNode => 'My Node';
+  String get impactTabMyNode => 'My node';
 
   @override
   String get impactTabNetwork => 'Network';
@@ -412,27 +412,43 @@ class AppLocalizationsEn extends AppLocalizations {
   String get impactTabOnlyMeDesc => 'Your personal impact';
 
   @override
-  String get impactTabMyNodeDesc => 'Impact of your node';
+  String get impactTabMyNodeDesc => 'Your node\'s impact';
 
   @override
-  String get impactTabNetworkDesc => 'Impact on the entire network';
+  String get impactTabNetworkDesc => 'Impact of the whole network';
 
   @override
   String impactHexesUnlocked(int count) {
-    return '$count unlocked hexagons';
+    return '$count hexes unlocked';
   }
 
   @override
   String impactTotalHexes(int total) {
-    return 'Total: $total hexagons';
+    return 'Total: $total hexes';
   }
 
   @override
-  String get impactNoHexes => 'You haven\'t unlocked any hexagons yet.';
+  String get impactNoHexes => 'You have not unlocked any hexes yet';
 
   @override
-  String get impactGoldenHex => 'Golden hexagon';
+  String get impactGoldenHex => 'Golden hex';
 
   @override
   String get impactNavigatorTitle => 'Ice Navigators';
+
+  @override
+  String get impactScopeNodeSoon => 'Node view: coming soon';
+
+  @override
+  String get impactScopeNetworkSoon => 'Network view: coming soon';
+
+  @override
+  String get impactCenterMap => 'Center';
+
+  @override
+  String get impactArcticHint => 'Arctic · drag / zoom';
+
+  @override
+  String get impactNoHexesHint =>
+      'You have not unlocked any hexes yet. Complete tasks in impact zones to color the map.';
 }

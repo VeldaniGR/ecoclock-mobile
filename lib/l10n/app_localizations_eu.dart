@@ -367,34 +367,34 @@ class AppLocalizationsEu extends AppLocalizations {
 
   @override
   String get navigatorBannerValidated =>
-      'Kanpoko jarduera balioztatua — Izotz-nabigatzailea!';
+      'Kanpoko jarduera balioztatu da — Izotz Nabigatzailea!';
 
   @override
-  String get navigatorSendButton => 'Bidali gutun-azala';
+  String get navigatorSendButton => 'Gutun-azala bidali';
 
   @override
-  String get navigatorResendButton => 'Aurrera egin honi buruz';
+  String get navigatorResendButton => 'Berriro bidali';
 
   @override
   String get navigatorSending => 'Bidaltzen…';
 
   @override
   String get navigatorSentSuccess =>
-      'Gutun-azala bidali da! Begiratu zure posta elektronikoa.';
+      'Gutun-azala bidali da! Begiratu zure posta.';
 
   @override
   String navigatorSendError(String error) {
-    return 'Gutun-azala bidaltzean errorea: $error';
+    return 'Errorea gutun-azala bidaltzean: $error';
   }
 
   @override
   String navigatorHexTasksCounter(
       int hexCount, int hexThreshold, int taskCount, int taskThreshold) {
-    return '$hexCount/$hexThreshold hex · $taskCount/$taskThreshold zereginak';
+    return '$hexCount/$hexThreshold hex · $taskCount/$taskThreshold ataza';
   }
 
   @override
-  String get impactMapTitle => 'Eragin-mapa';
+  String get impactMapTitle => 'Inpaktu mapa';
 
   @override
   String get impactTileArctic => 'Artikoa';
@@ -412,30 +412,46 @@ class AppLocalizationsEu extends AppLocalizations {
   String get impactTabNetwork => 'Sarea';
 
   @override
-  String get impactTabOnlyMeDesc => 'Zure eragin pertsonala';
+  String get impactTabOnlyMeDesc => 'Zure inpaktu pertsonala';
 
   @override
-  String get impactTabMyNodeDesc => 'Zure nodoaren eragina';
+  String get impactTabMyNodeDesc => 'Zure nodoaren inpaktua';
 
   @override
-  String get impactTabNetworkDesc => 'Sare osoan duen eragina';
+  String get impactTabNetworkDesc => 'Sare osoaren inpaktua';
 
   @override
   String impactHexesUnlocked(int count) {
-    return '$count desblokeatutako hexagonoak';
+    return '$count hexagono desblokeatuta';
   }
 
   @override
   String impactTotalHexes(int total) {
-    return 'Guztira: $total hexagonoak';
+    return 'Guztira: $total hexagono';
   }
 
   @override
-  String get impactNoHexes => 'Oraindik ez duzu hexagonorik desblokeatu.';
+  String get impactNoHexes => 'Oraindik ez duzu hexagonorik desblokeatu';
 
   @override
-  String get impactGoldenHex => 'Hexagono urrezkoa';
+  String get impactGoldenHex => 'Hexagono urrea';
 
   @override
-  String get impactNavigatorTitle => 'Izotz-nabigatzaileak';
+  String get impactNavigatorTitle => 'Izotz Nabigatzaileak';
+
+  @override
+  String get impactScopeNodeSoon => 'Nodoaren ikuspegia: laster';
+
+  @override
+  String get impactScopeNetworkSoon => 'Sarearen ikuspegia: laster';
+
+  @override
+  String get impactCenterMap => 'Zentratu';
+
+  @override
+  String get impactArcticHint => 'Artikoa · arrastatu / zoom';
+
+  @override
+  String get impactNoHexesHint =>
+      'Oraindik ez duzu hexagonorik desblokeatu. Osatu atazak inpaktu-guneetan mapa koloreztatzeko.';
 }

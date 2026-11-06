@@ -436,4 +436,20 @@ class AppLocalizationsEs extends AppLocalizations {
 
   @override
   String get impactNavigatorTitle => 'Navegantes del Hielo';
+
+  @override
+  String get impactScopeNodeSoon => 'Vista de nodo: próximamente';
+
+  @override
+  String get impactScopeNetworkSoon => 'Vista de red: próximamente';
+
+  @override
+  String get impactCenterMap => 'Centrar';
+
+  @override
+  String get impactArcticHint => 'Ártico · arrastra / zoom';
+
+  @override
+  String get impactNoHexesHint =>
+      'Aún no has desbloqueado hexágonos. Completa tareas en zonas de impacto para colorear el mapa.';
 }

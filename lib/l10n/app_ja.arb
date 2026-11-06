@@ -189,19 +189,19 @@
   "completeExpeditionsForFrames": "遠征を完了して、フレームをアンロックしよう。",
 
   "navigatorBannerReady": "ナビゲーターの封筒の準備ができました",
-  "navigatorBannerSent": "エンベロープを送信しました — 外部でのアクティビティを完了してください",
-  "navigatorBannerValidated": "実証済みの野外活動 — アイス・ナビゲーター！",
-  "navigatorSendButton": "手紙を送る",
-  "navigatorResendButton": "手紙を転送する",
+  "navigatorBannerSent": "封筒を送信しました — 屋外アクティビティを完了してください",
+  "navigatorBannerValidated": "屋外アクティビティ認証済み — 氷のナビゲーター！",
+  "navigatorSendButton": "封筒を送信",
+  "navigatorResendButton": "再送信",
   "navigatorSending": "送信中…",
-  "navigatorSentSuccess": "エンベロープを送信しました！メールを確認してください。",
-  "navigatorSendError": "エンベロープの送信中にエラーが発生しました: {error}",
+  "navigatorSentSuccess": "封筒を送信しました！メールを確認してください。",
+  "navigatorSendError": "封筒の送信エラー: {error}",
   "@navigatorSendError": {
     "placeholders": {
       "error": { "type": "String" }
     }
   },
-  "navigatorHexTasksCounter": "{hexCount}/{hexThreshold} 六角形 · {taskCount}/{taskThreshold} タスク",
+  "navigatorHexTasksCounter": "{hexCount}/{hexThreshold} ヘクス · {taskCount}/{taskThreshold} タスク",
   "@navigatorHexTasksCounter": {
     "placeholders": {
       "hexCount": { "type": "int" },
@@ -210,29 +210,33 @@
       "taskThreshold": { "type": "int" }
     }
   },
-
   "impactMapTitle": "インパクトマップ",
   "impactTileArctic": "北極",
   "impactTileMediterranean": "地中海",
-  "impactTabOnlyMe": "私だけ",
+  "impactTabOnlyMe": "自分のみ",
   "impactTabMyNode": "自分のノード",
   "impactTabNetwork": "ネットワーク",
-  "impactTabOnlyMeDesc": "あなた自身がもたらす影響",
-  "impactTabMyNodeDesc": "ノードがもたらす影響",
-  "impactTabNetworkDesc": "ネットワーク全体への影響",
-  "impactHexesUnlocked": "{count} ロック解除された六角形",
+  "impactTabOnlyMeDesc": "個人のインパクト",
+  "impactTabMyNodeDesc": "ノードのインパクト",
+  "impactTabNetworkDesc": "ネットワーク全体のインパクト",
+  "impactHexesUnlocked": "{count} 個のヘクスを解除",
   "@impactHexesUnlocked": {
     "placeholders": {
       "count": { "type": "int" }
     }
   },
-  "impactTotalHexes": "合計: {total} 六角形",
+  "impactTotalHexes": "合計: {total} ヘクス",
   "@impactTotalHexes": {
     "placeholders": {
       "total": { "type": "int" }
     }
   },
-  "impactNoHexes": "まだ六角形を一つもアンロックしていません。",
-  "impactGoldenHex": "黄金の六角形",
-  "impactNavigatorTitle": "氷海航海士"
+  "impactNoHexes": "まだヘクスを解除していません",
+  "impactGoldenHex": "黄金のヘクス",
+  "impactNavigatorTitle": "氷のナビゲーター",
+  "impactScopeNodeSoon": "ノード表示: 近日公開",
+  "impactScopeNetworkSoon": "ネットワーク表示: 近日公開",
+  "impactCenterMap": "中央に戻す",
+  "impactArcticHint": "北極 · ドラッグ / ズーム",
+  "impactNoHexesHint": "まだヘクスを解除していません。インパクトゾーンのタスクを完了してマップを色付けしましょう。"
 }

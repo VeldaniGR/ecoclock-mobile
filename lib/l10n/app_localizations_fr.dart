@@ -360,31 +360,32 @@ class AppLocalizationsFr extends AppLocalizations {
       'Terminez des expéditions pour débloquer des cadres.';
 
   @override
-  String get navigatorBannerReady => 'Ton enveloppe de navigateur est prête.';
+  String get navigatorBannerReady => 'Votre enveloppe de navigateur est prête';
 
   @override
   String get navigatorBannerSent =>
-      'Enveloppe envoyée — terminez l\'activité extérieure';
+      'Enveloppe envoyée — terminez l\'activité en extérieur';
 
   @override
   String get navigatorBannerValidated =>
       'Activité en extérieur validée — Navigateur des glaces !';
 
   @override
-  String get navigatorSendButton => 'Envoyer une enveloppe';
+  String get navigatorSendButton => 'Envoyer l\'enveloppe';
 
   @override
-  String get navigatorResendButton => 'Transférer enveloppe';
+  String get navigatorResendButton => 'Renvoyer l\'enveloppe';
 
   @override
-  String get navigatorSending => 'Envoi en cours…';
+  String get navigatorSending => 'Envoi…';
 
   @override
-  String get navigatorSentSuccess => 'Enveloppe envoyée ! Vérifie tes e-mails.';
+  String get navigatorSentSuccess =>
+      'Enveloppe envoyée ! Vérifiez votre e-mail.';
 
   @override
   String navigatorSendError(String error) {
-    return 'Erreur lors de l\'envoi de l\'enveloppe: $error';
+    return 'Erreur lors de l\'envoi de l\'enveloppe : $error';
   }
 
   @override
@@ -418,7 +419,7 @@ class AppLocalizationsFr extends AppLocalizations {
   String get impactTabMyNodeDesc => 'Impact de votre nœud';
 
   @override
-  String get impactTabNetworkDesc => 'Impact sur l\'ensemble du réseau';
+  String get impactTabNetworkDesc => 'Impact de tout le réseau';
 
   @override
   String impactHexesUnlocked(int count) {
@@ -427,15 +428,31 @@ class AppLocalizationsFr extends AppLocalizations {
 
   @override
   String impactTotalHexes(int total) {
-    return 'Total: $total hexagones';
+    return 'Total : $total hexagones';
   }
 
   @override
-  String get impactNoHexes => 'Tu n\'as pas encore débloqué d\'hexagones.';
+  String get impactNoHexes => 'Vous n\'avez pas encore débloqué d\'hexagones';
 
   @override
   String get impactGoldenHex => 'Hexagone doré';
 
   @override
   String get impactNavigatorTitle => 'Navigateurs des glaces';
+
+  @override
+  String get impactScopeNodeSoon => 'Vue nœud : bientôt';
+
+  @override
+  String get impactScopeNetworkSoon => 'Vue réseau : bientôt';
+
+  @override
+  String get impactCenterMap => 'Centrer';
+
+  @override
+  String get impactArcticHint => 'Arctique · glisser / zoom';
+
+  @override
+  String get impactNoHexesHint =>
+      'Vous n\'avez pas encore débloqué d\'hexagones. Terminez des tâches dans les zones d\'impact pour colorer la carte.';
 }

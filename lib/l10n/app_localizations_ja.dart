@@ -358,32 +358,32 @@ class AppLocalizationsJa extends AppLocalizations {
   String get navigatorBannerReady => 'ナビゲーターの封筒の準備ができました';
 
   @override
-  String get navigatorBannerSent => 'エンベロープを送信しました — 外部でのアクティビティを完了してください';
+  String get navigatorBannerSent => '封筒を送信しました — 屋外アクティビティを完了してください';
 
   @override
-  String get navigatorBannerValidated => '実証済みの野外活動 — アイス・ナビゲーター！';
+  String get navigatorBannerValidated => '屋外アクティビティ認証済み — 氷のナビゲーター！';
 
   @override
-  String get navigatorSendButton => '手紙を送る';
+  String get navigatorSendButton => '封筒を送信';
 
   @override
-  String get navigatorResendButton => '手紙を転送する';
+  String get navigatorResendButton => '再送信';
 
   @override
   String get navigatorSending => '送信中…';
 
   @override
-  String get navigatorSentSuccess => 'エンベロープを送信しました！メールを確認してください。';
+  String get navigatorSentSuccess => '封筒を送信しました！メールを確認してください。';
 
   @override
   String navigatorSendError(String error) {
-    return 'エンベロープの送信中にエラーが発生しました: $error';
+    return '封筒の送信エラー: $error';
   }
 
   @override
   String navigatorHexTasksCounter(
       int hexCount, int hexThreshold, int taskCount, int taskThreshold) {
-    return '$hexCount/$hexThreshold 六角形 · $taskCount/$taskThreshold タスク';
+    return '$hexCount/$hexThreshold ヘクス · $taskCount/$taskThreshold タスク';
   }
 
   @override
@@ -396,7 +396,7 @@ class AppLocalizationsJa extends AppLocalizations {
   String get impactTileMediterranean => '地中海';
 
   @override
-  String get impactTabOnlyMe => '私だけ';
+  String get impactTabOnlyMe => '自分のみ';
 
   @override
   String get impactTabMyNode => '自分のノード';
@@ -405,30 +405,46 @@ class AppLocalizationsJa extends AppLocalizations {
   String get impactTabNetwork => 'ネットワーク';
 
   @override
-  String get impactTabOnlyMeDesc => 'あなた自身がもたらす影響';
+  String get impactTabOnlyMeDesc => '個人のインパクト';
 
   @override
-  String get impactTabMyNodeDesc => 'ノードがもたらす影響';
+  String get impactTabMyNodeDesc => 'ノードのインパクト';
 
   @override
-  String get impactTabNetworkDesc => 'ネットワーク全体への影響';
+  String get impactTabNetworkDesc => 'ネットワーク全体のインパクト';
 
   @override
   String impactHexesUnlocked(int count) {
-    return '$count ロック解除された六角形';
+    return '$count 個のヘクスを解除';
   }
 
   @override
   String impactTotalHexes(int total) {
-    return '合計: $total 六角形';
+    return '合計: $total ヘクス';
   }
 
   @override
-  String get impactNoHexes => 'まだ六角形を一つもアンロックしていません。';
+  String get impactNoHexes => 'まだヘクスを解除していません';
 
   @override
-  String get impactGoldenHex => '黄金の六角形';
+  String get impactGoldenHex => '黄金のヘクス';
 
   @override
-  String get impactNavigatorTitle => '氷海航海士';
+  String get impactNavigatorTitle => '氷のナビゲーター';
+
+  @override
+  String get impactScopeNodeSoon => 'ノード表示: 近日公開';
+
+  @override
+  String get impactScopeNetworkSoon => 'ネットワーク表示: 近日公開';
+
+  @override
+  String get impactCenterMap => '中央に戻す';
+
+  @override
+  String get impactArcticHint => '北極 · ドラッグ / ズーム';
+
+  @override
+  String get impactNoHexesHint =>
+      'まだヘクスを解除していません。インパクトゾーンのタスクを完了してマップを色付けしましょう。';
 }
