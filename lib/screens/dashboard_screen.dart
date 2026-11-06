@@ -406,21 +406,25 @@ class _DashboardScreenState extends State<DashboardScreen> {
     return '🧭';
   }
 
-  /// Texto de cuerpo según familia de expedición (v1: ES en app).
-  /// Más adelante: 2–3 claves l10n, no una por campaña.
-  String _expeditionDescription(Map<String, dynamic> e) {
+  String _expeditionTitle(Map<String, dynamic> e, AppLocalizations l10n) {
     final slug = (e['slug'] ?? '').toString().toLowerCase();
-
     if (slug.contains('arctic') || slug.contains('winter')) {
-      return 'Expedición de invierno: monitorización del deshielo ártico. '
-          'Completa tareas y la actividad exterior con el cuadrante para '
-          'ganar el logro y colorear hexágonos en la loseta Ártico.';
+      return l10n.expeditionArcticName;
     }
     if (slug.contains('autumn') || slug.contains('fungi')) {
-      return 'Expedición de otoño: monitorización de biodiversidad (hongos). '
-          'Completa tareas de la red para avanzar en la meta colectiva.';
+      return l10n.expeditionAutumnName;
     }
-    // Fallback: lo que envíe la API
+    return e['name']?.toString() ?? l10n.expeditionFallback;
+  }
+
+  String _expeditionDescription(Map<String, dynamic> e, AppLocalizations l10n) {
+    final slug = (e['slug'] ?? '').toString().toLowerCase();
+    if (slug.contains('arctic') || slug.contains('winter')) {
+      return l10n.expeditionArcticDescription;
+    }
+    if (slug.contains('autumn') || slug.contains('fungi')) {
+      return l10n.expeditionAutumnDescription;
+    }
     return e['description']?.toString() ?? '';
   }
 
