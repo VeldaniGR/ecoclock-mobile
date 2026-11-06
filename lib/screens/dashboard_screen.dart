@@ -433,8 +433,8 @@ class _DashboardScreenState extends State<DashboardScreen> {
     final progress = ((e['progress'] as num?)?.toDouble() ??
             (goal > 0 ? current / goal : 0.0))
         .clamp(0.0, 1.0);
-    final name = e['name']?.toString() ?? l10n.expeditionFallback;
-    final desc = _expeditionDescription(e);
+    final name = _expeditionTitle(e, l10n);
+    final desc = _expeditionDescription(e, l10n);
 
     return Container(
       width: double.infinity,
