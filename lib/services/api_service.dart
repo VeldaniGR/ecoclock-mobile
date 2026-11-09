@@ -221,11 +221,22 @@ class EcoClockApi {
     await _clearTokens();
   }
 
-  Future<String> forgotPassword({required String emailOrUsername}) async {
+  Future<String> forgotPassword({
+    required String emailOrUsername,
+    String? preferredLanguage,
+  }) async {
+    final body = <String, dynamic>{
+      // el backend acepta email / username / email_or_username
+      'email_or_username': emailOrUsername,
+    };
+    if (preferredLanguage != null && preferredLanguage.isNotEmpty) {
+      body['preferred_language'] = preferredLanguage;
+    }
+
     final response = await http.post(
       Uri.parse('$baseUrl/auth/forgot-password'),
       headers: {'Content-Type': 'application/json'},
-      body: jsonEncode({'email': emailOrUsername}),
+      body: jsonEncode(body),
     );
     final data = _handleResponse(response);
     if (data is Map && data['detail'] != null) {

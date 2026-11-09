@@ -40,7 +40,11 @@ class _ForgotPasswordScreenState extends State<ForgotPasswordScreen> {
     });
 
     try {
-      final msg = await widget.api.forgotPassword(emailOrUsername: value);
+      final lang = Localizations.localeOf(context).languageCode;
+      final msg = await widget.api.forgotPassword(
+        emailOrUsername: value,
+        preferredLanguage: lang,
+      );
       if (!mounted) return;
       setState(() {
         _message = msg;
