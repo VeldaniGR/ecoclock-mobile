@@ -499,6 +499,7 @@ class _NodoScreenState extends State<NodoScreen> {
       'environmental_crime',
       'energy',
       'sea_ice',
+      'arctic_ice',
       'ozone',
       'posidonia',
     };

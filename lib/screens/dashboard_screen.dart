@@ -688,6 +688,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
       'environmental_crime',
       'energy',
       'sea_ice',
+      'arctic_ice',
       'ozone',
       'posidonia',
     };
