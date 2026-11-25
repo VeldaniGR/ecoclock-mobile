@@ -243,5 +243,18 @@
   "impactScopeNetworkSoon": "عرض الشبكة: قريبًا",
   "impactCenterMap": "توسيط",
   "impactArcticHint": "القطب الشمالي · اسحب / تكبير",
-  "impactNoHexesHint": "لم تفتح أي سداسيات بعد. أكمل المهام في مناطق الأثر لتلوين الخريطة."
+  "impactNoHexesHint": "لم تفتح أي سداسيات بعد. أكمل المهام في مناطق الأثر لتلوين الخريطة.",
+  "settingsTheme": "المظهر",
+  "themeLight": "نهار",
+  "themeDark": "ليل",
+  "themeDusk": "الغسق",
+  "impactParticipants": "المشاركون: {count}",
+  "@impactParticipants": {
+    "placeholders": {
+      "count": { "type": "int" }
+    }
+  },
+  "impactNoNode": "أنت لا تنتمي إلى أي عقدة بعد. انضم إلى عقدة لعرض خريطتها.",
+  "impactScopeError": "تعذّر تحميل الخريطة. حاول مرة أخرى.",
+  "impactRetry": "إعادة المحاولة"
 }

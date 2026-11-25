@@ -7,6 +7,7 @@ import 'dart:convert';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:http/http.dart' as http;
 import '../models/api_models.dart';
+import '../models/scope_impact.dart';
 
 /// Excepción personalizada para errores de la API
 class ApiException implements Exception {
@@ -359,6 +360,30 @@ class EcoClockApi {
     );
     final data = _handleResponse(response);
     return MeImpact.fromJson(data as Map<String, dynamic>);
+  }
+
+    /// Hexágonos agregados del nodo del usuario (GET /impact/node)
+  Future<ScopeImpact> getNodeImpact() async {
+    final response = await _authenticatedRequest(
+      () => http.get(
+        Uri.parse('$baseUrl/impact/node'),
+        headers: _headers,
+      ),
+    );
+    final data = _handleResponse(response);
+    return ScopeImpact.fromJson(data as Map<String, dynamic>);
+  }
+
+  /// Hexágonos agregados de toda la red (GET /impact/network)
+  Future<ScopeImpact> getNetworkImpact() async {
+    final response = await _authenticatedRequest(
+      () => http.get(
+        Uri.parse('$baseUrl/impact/network'),
+        headers: _headers,
+      ),
+    );
+    final data = _handleResponse(response);
+    return ScopeImpact.fromJson(data as Map<String, dynamic>);
   }
 
   /// Sobre de navegante (GET /me/impact/navigator-envelope)

@@ -463,4 +463,31 @@ class AppLocalizationsAr extends AppLocalizations {
   @override
   String get impactNoHexesHint =>
       'لم تفتح أي سداسيات بعد. أكمل المهام في مناطق الأثر لتلوين الخريطة.';
+
+  @override
+  String get settingsTheme => 'المظهر';
+
+  @override
+  String get themeLight => 'نهار';
+
+  @override
+  String get themeDark => 'ليل';
+
+  @override
+  String get themeDusk => 'الغسق';
+
+  @override
+  String impactParticipants(int count) {
+    return 'المشاركون: $count';
+  }
+
+  @override
+  String get impactNoNode =>
+      'أنت لا تنتمي إلى أي عقدة بعد. انضم إلى عقدة لعرض خريطتها.';
+
+  @override
+  String get impactScopeError => 'تعذّر تحميل الخريطة. حاول مرة أخرى.';
+
+  @override
+  String get impactRetry => 'إعادة المحاولة';
 }

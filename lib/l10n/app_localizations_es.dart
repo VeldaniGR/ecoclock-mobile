@@ -466,4 +466,32 @@ class AppLocalizationsEs extends AppLocalizations {
   @override
   String get impactNoHexesHint =>
       'Aún no has desbloqueado hexágonos. Completa tareas en zonas de impacto para colorear el mapa.';
+
+  @override
+  String get settingsTheme => 'Tema';
+
+  @override
+  String get themeLight => 'Día';
+
+  @override
+  String get themeDark => 'Noche';
+
+  @override
+  String get themeDusk => 'Crepúsculo';
+
+  @override
+  String impactParticipants(int count) {
+    return 'Participantes: $count';
+  }
+
+  @override
+  String get impactNoNode =>
+      'Aún no perteneces a ningún nodo. Únete a uno para ver su mapa.';
+
+  @override
+  String get impactScopeError =>
+      'No se pudo cargar el mapa. Inténtalo de nuevo.';
+
+  @override
+  String get impactRetry => 'Reintentar';
 }

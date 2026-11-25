@@ -210,5 +210,18 @@
   "impactScopeNetworkSoon": "Network view: coming soon",
   "impactCenterMap": "Center",
   "impactArcticHint": "Arctic · drag / zoom",
-  "impactNoHexesHint": "You have not unlocked any hexes yet. Complete tasks in impact zones to color the map."
+  "impactNoHexesHint": "You have not unlocked any hexes yet. Complete tasks in impact zones to color the map.",
+  "settingsTheme": "Theme",
+  "themeLight": "Day",
+  "themeDark": "Night",
+  "themeDusk": "Dusk",
+  "impactParticipants": "Participants: {count}",
+  "@impactParticipants": {
+    "placeholders": {
+      "count": { "type": "int" }
+    }
+  },
+  "impactNoNode": "You don't belong to a node yet. Join one to see its map.",
+  "impactScopeError": "Couldn't load the map. Try again.",
+  "impactRetry": "Retry"
 }

@@ -245,5 +245,18 @@
   "impactScopeNetworkSoon": "Vista de red: próximamente",
   "impactCenterMap": "Centrar",
   "impactArcticHint": "Ártico · arrastra / zoom",
-  "impactNoHexesHint": "Aún no has desbloqueado hexágonos. Completa tareas en zonas de impacto para colorear el mapa."
+  "impactNoHexesHint": "Aún no has desbloqueado hexágonos. Completa tareas en zonas de impacto para colorear el mapa.",
+  "settingsTheme": "Tema",
+  "themeLight": "Día",
+  "themeDark": "Noche",
+  "themeDusk": "Crepúsculo",
+  "impactParticipants": "Participantes: {count}",
+  "@impactParticipants": {
+    "placeholders": {
+      "count": { "type": "int" }
+    }
+  },
+  "impactNoNode": "Aún no perteneces a ningún nodo. Únete a uno para ver su mapa.",
+  "impactScopeError": "No se pudo cargar el mapa. Inténtalo de nuevo.",
+  "impactRetry": "Reintentar"
 }

@@ -243,5 +243,18 @@
   "impactScopeNetworkSoon": "ネットワーク表示: 近日公開",
   "impactCenterMap": "中央に戻す",
   "impactArcticHint": "北極 · ドラッグ / ズーム",
-  "impactNoHexesHint": "まだヘクスを解除していません。インパクトゾーンのタスクを完了してマップを色付けしましょう。"
+  "impactNoHexesHint": "まだヘクスを解除していません。インパクトゾーンのタスクを完了してマップを色付けしましょう。",
+  "settingsTheme": "テーマ",
+  "themeLight": "昼",
+  "themeDark": "夜",
+  "themeDusk": "夕暮れ",
+  "impactParticipants": "参加者：{count}",
+  "@impactParticipants": {
+    "placeholders": {
+      "count": { "type": "int" }
+    }
+  },
+  "impactNoNode": "まだどのノードにも所属していません。ノードに参加すると、そのマップを見られます。",
+  "impactScopeError": "マップを読み込めませんでした。もう一度お試しください。",
+  "impactRetry": "再試行"
 }

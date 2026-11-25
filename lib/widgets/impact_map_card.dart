@@ -1,9 +1,18 @@
 import 'dart:math' as math;
 import 'package:flutter/material.dart';
 import '../models/api_models.dart';
+import '../models/scope_impact.dart';
+import '../services/api_service.dart';
 import '../l10n/app_localizations.dart';
 
 enum ImpactScope { me, node, network }
+
+/// Celda lista para dibujar: color y nº de participantes que la desbloquearon.
+class _Cell {
+  final String color;
+  final int count;
+  const _Cell(this.color, this.count);
+}
 
 class ImpactMapCard extends StatefulWidget {
   final MeImpact? impact;
@@ -11,12 +20,16 @@ class ImpactMapCard extends StatefulWidget {
   final ImpactScope scope;
   final ValueChanged<ImpactScope> onScopeChanged;
 
+  /// Cliente de la API: la tarjeta lo usa para cargar "Mi nodo" y "Red".
+  final EcoClockApi api;
+
   const ImpactMapCard({
     super.key,
     required this.impact,
     required this.loading,
     required this.scope,
     required this.onScopeChanged,
+    required this.api,
   });
 
   @override
@@ -29,10 +42,62 @@ class _ImpactMapCardState extends State<ImpactMapCard> {
   static const int rows = 10;
   static const double hexR = 18;
 
+  // Datos de "Mi nodo" y "Red". Se conservan al cambiar de pestaña y se
+  // vuelven a pedir en cada visita, mostrando mientras tanto lo último que hubiera.
+  final Map<ImpactScope, ScopeImpact> _scopeData = {};
+  bool _scopeLoading = false;
+  bool _scopeError = false;
+  int _requestId = 0;
+  String? _selectedCode;
+
+  @override
+  void initState() {
+    super.initState();
+    if (widget.scope != ImpactScope.me) _loadScope(widget.scope);
+  }
+
+  @override
+  void didUpdateWidget(covariant ImpactMapCard oldWidget) {
+    super.didUpdateWidget(oldWidget);
+    if (oldWidget.scope != widget.scope) {
+      _selectedCode = null;
+      if (widget.scope != ImpactScope.me) _loadScope(widget.scope);
+    }
+  }
+
   @override
   void dispose() {
     _transform.dispose();
     super.dispose();
+  }
+
+  /// Pide los datos del ámbito. Se llama desde initState/didUpdateWidget (que
+  /// van seguidos de build, así que no hace falta setState al empezar) o dentro
+  /// de un setState (botón de reintento).
+  Future<void> _loadScope(ImpactScope scope) async {
+    final id = ++_requestId;
+    _scopeLoading = true;
+    _scopeError = false;
+    try {
+      final data = scope == ImpactScope.node
+          ? await widget.api.getNodeImpact()
+          : await widget.api.getNetworkImpact();
+      if (!mounted || id != _requestId) return;
+      setState(() {
+        _scopeData[scope] = data;
+        _scopeLoading = false;
+        _scopeError = false;
+      });
+      WidgetsBinding.instance.addPostFrameCallback((_) {
+        if (mounted && widget.scope == scope) _centerOnLatest();
+      });
+    } catch (_) {
+      if (!mounted || id != _requestId) return;
+      setState(() {
+        _scopeLoading = false;
+        _scopeError = true;
+      });
+    }
   }
 
   static Color _colorFor(String color) {
@@ -69,15 +134,46 @@ class _ImpactMapCardState extends State<ImpactMapCard> {
     return (rows - 1) * vert + 2 * hexR + 24;
   }
 
+  /// Celdas del ámbito visible, indexadas por código de hexágono.
+  Map<String, _Cell> _cells() {
+    if (widget.scope == ImpactScope.me) {
+      final hexes = widget.impact?.allHexes ?? const <ImpactHex>[];
+      return {
+        for (final h in hexes) h.hexCode.toUpperCase(): _Cell(h.color, 1),
+      };
+    }
+    final data = _scopeData[widget.scope];
+    if (data == null) return const <String, _Cell>{};
+    return {
+      for (final h in data.hexes) h.hexCode.toUpperCase(): _Cell(h.color, h.count),
+    };
+  }
+
   void _centerOnLatest() {
-    final hexes = widget.impact?.allHexes ?? [];
-    if (hexes.isEmpty) {
+    // Hexágono desbloqueado más recientemente en el ámbito visible
+    String? latestCode;
+    var latestAt = '';
+    if (widget.scope == ImpactScope.me) {
+      for (final h in widget.impact?.allHexes ?? const <ImpactHex>[]) {
+        final at = h.unlockedAt.toString();
+        if (latestCode == null || at.compareTo(latestAt) > 0) {
+          latestCode = h.hexCode;
+          latestAt = at;
+        }
+      }
+    } else {
+      for (final h in _scopeData[widget.scope]?.hexes ?? const <ScopeHex>[]) {
+        if (latestCode == null || h.unlockedAt.compareTo(latestAt) > 0) {
+          latestCode = h.hexCode;
+          latestAt = h.unlockedAt;
+        }
+      }
+    }
+    if (latestCode == null) {
       _transform.value = Matrix4.identity();
       return;
     }
-    final sorted = [...hexes]
-      ..sort((a, b) => b.unlockedAt.compareTo(a.unlockedAt));
-    final parsed = _parseHex(sorted.first.hexCode);
+    final parsed = _parseHex(latestCode);
     if (parsed == null) return;
     final (col, row) = parsed;
     final horiz = hexR * math.sqrt(3);
@@ -98,15 +194,68 @@ class _ImpactMapCardState extends State<ImpactMapCard> {
     _transform.value = m;
   }
 
+  /// Código del hexágono bajo un punto (coordenadas de la rejilla), o null.
+  String? _hexAt(Offset p) {
+    final horiz = hexR * math.sqrt(3);
+    final vert = hexR * 1.5;
+    final ox = 12.0 + hexR;
+    final oy = 12.0 + hexR;
+    String? best;
+    var bestD = math.pow(hexR * 0.9, 2).toDouble();
+    for (var row = 0; row < rows; row++) {
+      for (var col = 0; col < cols; col++) {
+        final cx = ox + col * horiz + (row.isOdd ? horiz / 2 : 0.0);
+        final cy = oy + row * vert;
+        final dx = p.dx - cx;
+        final dy = p.dy - cy;
+        final d = dx * dx + dy * dy;
+        if (d < bestD) {
+          bestD = d;
+          best = '${String.fromCharCode('A'.codeUnitAt(0) + row)}${col + 1}';
+        }
+      }
+    }
+    return best;
+  }
+
+  Widget _errorRow(AppLocalizations l10n, ThemeData theme) {
+    return Row(
+      children: [
+        Expanded(
+          child: Text(
+            l10n.impactScopeError,
+            style: theme.textTheme.bodySmall?.copyWith(
+              color: theme.colorScheme.error,
+            ),
+          ),
+        ),
+        TextButton(
+          onPressed: () => setState(() {
+            _loadScope(widget.scope);
+          }),
+          child: Text(l10n.impactRetry),
+        ),
+      ],
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
     final l10n = AppLocalizations.of(context);
-    final total = widget.impact?.totalHexes ?? 0;
-    final hexes = widget.impact?.allHexes ?? const <ImpactHex>[];
-    final unlocked = <String, ImpactHex>{
-      for (final h in hexes) h.hexCode.toUpperCase(): h,
-    };
+    final isMe = widget.scope == ImpactScope.me;
+    final scopeData = isMe ? null : _scopeData[widget.scope];
+    final cells = _cells();
+    final maxCount =
+        cells.values.fold<int>(1, (m, c) => c.count > m ? c.count : m);
+    final total =
+        isMe ? (widget.impact?.totalHexes ?? 0) : (scopeData?.totalHexes ?? 0);
+    final showSpinner =
+        isMe ? widget.loading : (_scopeLoading && scopeData == null);
+    final noNode = widget.scope == ImpactScope.node &&
+        scopeData != null &&
+        scopeData.nodeId == null;
+    final selected = _selectedCode != null ? cells[_selectedCode] : null;
 
     return Container(
       width: double.infinity,
@@ -133,7 +282,7 @@ class _ImpactMapCardState extends State<ImpactMapCard> {
                   ),
                 ),
               ),
-              if (!widget.loading)
+              if (!showSpinner)
                 Text(
                   '$total',
                   style: theme.textTheme.titleMedium?.copyWith(
@@ -165,24 +314,43 @@ class _ImpactMapCardState extends State<ImpactMapCard> {
             },
           ),
           const SizedBox(height: 12),
-          if (widget.loading)
+          if (showSpinner)
             const Padding(
               padding: EdgeInsets.symmetric(vertical: 24),
               child: Center(child: CircularProgressIndicator()),
             )
-          else if (widget.scope != ImpactScope.me)
+          else if (!isMe && scopeData == null && _scopeError)
+            Padding(
+              padding: const EdgeInsets.symmetric(vertical: 8),
+              child: _errorRow(l10n, theme),
+            )
+          else if (noNode)
             Padding(
               padding: const EdgeInsets.symmetric(vertical: 16),
               child: Text(
-                widget.scope == ImpactScope.node
-                    ? l10n.impactScopeNodeSoon
-                    : l10n.impactScopeNetworkSoon,
+                l10n.impactNoNode,
                 style: theme.textTheme.bodyMedium?.copyWith(
                   color: theme.colorScheme.onSurfaceVariant,
                 ),
               ),
             )
           else ...[
+            if (scopeData != null)
+              Padding(
+                padding: const EdgeInsets.only(bottom: 8),
+                child: Text(
+                  [
+                    if (widget.scope == ImpactScope.node &&
+                        (scopeData.nodeName ?? '').isNotEmpty)
+                      scopeData.nodeName!,
+                    l10n.impactParticipants(scopeData.participants),
+                  ].join(' · '),
+                  style: theme.textTheme.bodySmall?.copyWith(
+                    color: theme.colorScheme.onSurfaceVariant,
+                  ),
+                ),
+              ),
+            if (!isMe && _scopeError) _errorRow(l10n, theme),
             ClipRRect(
               borderRadius: BorderRadius.circular(12),
               child: Container(
@@ -199,13 +367,30 @@ class _ImpactMapCardState extends State<ImpactMapCard> {
                       child: SizedBox(
                         width: _gridW,
                         height: _gridH,
-                        child: CustomPaint(
-                          painter: _ArcticHexPainter(
-                            unlocked: unlocked,
-                            cols: cols,
-                            rows: rows,
-                            hexR: hexR,
-                            colorFor: _colorFor,
+                        child: GestureDetector(
+                          // Pulsar un hexágono de nodo o red muestra cuántos participantes lo tienen
+                          onTapUp: isMe
+                              ? null
+                              : (details) {
+                                  final code = _hexAt(details.localPosition);
+                                  setState(() {
+                                    _selectedCode =
+                                        (code != null && cells.containsKey(code))
+                                            ? code
+                                            : null;
+                                  });
+                                },
+                          child: CustomPaint(
+                            painter: _ArcticHexPainter(
+                              unlocked: cells,
+                              cols: cols,
+                              rows: rows,
+                              hexR: hexR,
+                              colorFor: _colorFor,
+                              showCounts: !isMe,
+                              maxCount: maxCount,
+                              selected: isMe ? null : _selectedCode,
+                            ),
                           ),
                         ),
                       ),
@@ -244,11 +429,34 @@ class _ImpactMapCardState extends State<ImpactMapCard> {
                         ),
                       ),
                     ),
+                    if (selected != null)
+                      Positioned(
+                        left: 8,
+                        bottom: 8,
+                        child: Container(
+                          padding: const EdgeInsets.symmetric(
+                            horizontal: 8,
+                            vertical: 4,
+                          ),
+                          decoration: BoxDecoration(
+                            color: Colors.black87,
+                            borderRadius: BorderRadius.circular(8),
+                          ),
+                          child: Text(
+                            '$_selectedCode · ${l10n.impactParticipants(selected.count)}',
+                            style: const TextStyle(
+                              color: Colors.white,
+                              fontSize: 12,
+                              fontWeight: FontWeight.w600,
+                            ),
+                          ),
+                        ),
+                      ),
                   ],
                 ),
               ),
             ),
-            if (hexes.isEmpty)
+            if (isMe && cells.isEmpty)
               Padding(
                 padding: const EdgeInsets.only(top: 10),
                 child: Text(
@@ -266,11 +474,16 @@ class _ImpactMapCardState extends State<ImpactMapCard> {
 }
 
 class _ArcticHexPainter extends CustomPainter {
-  final Map<String, ImpactHex> unlocked;
+  final Map<String, _Cell> unlocked;
   final int cols;
   final int rows;
   final double hexR;
   final Color Function(String) colorFor;
+
+  /// En nodo y red, la intensidad del color crece con el nº de participantes.
+  final bool showCounts;
+  final int maxCount;
+  final String? selected;
 
   _ArcticHexPainter({
     required this.unlocked,
@@ -278,6 +491,9 @@ class _ArcticHexPainter extends CustomPainter {
     required this.rows,
     required this.hexR,
     required this.colorFor,
+    required this.showCounts,
+    required this.maxCount,
+    required this.selected,
   });
 
   @override
@@ -307,9 +523,13 @@ class _ArcticHexPainter extends CustomPainter {
 
         final hit = unlocked[code];
         if (hit != null) {
+          // De 0,40 a 0,85 de opacidad según los participantes (0,85 fijo en "Solo yo")
+          final alpha = (showCounts && maxCount > 1)
+              ? 0.40 + 0.45 * hit.count / maxCount
+              : 0.85;
           final fill = Paint()
             ..style = PaintingStyle.fill
-            ..color = colorFor(hit.color).withValues(alpha: 0.85);
+            ..color = colorFor(hit.color).withValues(alpha: alpha);
           canvas.drawPath(path, fill);
           canvas.drawPath(
             path,
@@ -321,6 +541,16 @@ class _ArcticHexPainter extends CustomPainter {
         } else {
           canvas.drawPath(path, emptyFill);
           canvas.drawPath(path, border);
+        }
+
+        if (code == selected) {
+          canvas.drawPath(
+            path,
+            Paint()
+              ..style = PaintingStyle.stroke
+              ..strokeWidth = 2.4
+              ..color = Colors.white,
+          );
         }
 
         final tp = TextPainter(
@@ -357,5 +587,8 @@ class _ArcticHexPainter extends CustomPainter {
 
   @override
   bool shouldRepaint(covariant _ArcticHexPainter oldDelegate) =>
-      oldDelegate.unlocked != unlocked;
+      oldDelegate.unlocked != unlocked ||
+      oldDelegate.showCounts != showCounts ||
+      oldDelegate.maxCount != maxCount ||
+      oldDelegate.selected != selected;
 }

@@ -958,6 +958,54 @@ abstract class AppLocalizations {
   /// In es, this message translates to:
   /// **'Aún no has desbloqueado hexágonos. Completa tareas en zonas de impacto para colorear el mapa.'**
   String get impactNoHexesHint;
+
+  /// No description provided for @settingsTheme.
+  ///
+  /// In es, this message translates to:
+  /// **'Tema'**
+  String get settingsTheme;
+
+  /// No description provided for @themeLight.
+  ///
+  /// In es, this message translates to:
+  /// **'Día'**
+  String get themeLight;
+
+  /// No description provided for @themeDark.
+  ///
+  /// In es, this message translates to:
+  /// **'Noche'**
+  String get themeDark;
+
+  /// No description provided for @themeDusk.
+  ///
+  /// In es, this message translates to:
+  /// **'Crepúsculo'**
+  String get themeDusk;
+
+  /// No description provided for @impactParticipants.
+  ///
+  /// In es, this message translates to:
+  /// **'Participantes: {count}'**
+  String impactParticipants(int count);
+
+  /// No description provided for @impactNoNode.
+  ///
+  /// In es, this message translates to:
+  /// **'Aún no perteneces a ningún nodo. Únete a uno para ver su mapa.'**
+  String get impactNoNode;
+
+  /// No description provided for @impactScopeError.
+  ///
+  /// In es, this message translates to:
+  /// **'No se pudo cargar el mapa. Inténtalo de nuevo.'**
+  String get impactScopeError;
+
+  /// No description provided for @impactRetry.
+  ///
+  /// In es, this message translates to:
+  /// **'Reintentar'**
+  String get impactRetry;
 }
 
 class _AppLocalizationsDelegate

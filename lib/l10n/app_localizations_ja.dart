@@ -461,4 +461,30 @@ class AppLocalizationsJa extends AppLocalizations {
   @override
   String get impactNoHexesHint =>
       'まだヘクスを解除していません。インパクトゾーンのタスクを完了してマップを色付けしましょう。';
+
+  @override
+  String get settingsTheme => 'テーマ';
+
+  @override
+  String get themeLight => '昼';
+
+  @override
+  String get themeDark => '夜';
+
+  @override
+  String get themeDusk => '夕暮れ';
+
+  @override
+  String impactParticipants(int count) {
+    return '参加者：$count';
+  }
+
+  @override
+  String get impactNoNode => 'まだどのノードにも所属していません。ノードに参加すると、そのマップを見られます。';
+
+  @override
+  String get impactScopeError => 'マップを読み込めませんでした。もう一度お試しください。';
+
+  @override
+  String get impactRetry => '再試行';
 }

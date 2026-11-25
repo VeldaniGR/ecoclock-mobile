@@ -243,5 +243,18 @@
   "impactScopeNetworkSoon": "Vista de xarxa: properament",
   "impactCenterMap": "Centrar",
   "impactArcticHint": "Àrtic · arrossega / zoom",
-  "impactNoHexesHint": "Encara no has desbloquejat hexàgons. Completa tasques en zones d'impacte per colorar el mapa."
+  "impactNoHexesHint": "Encara no has desbloquejat hexàgons. Completa tasques en zones d'impacte per colorar el mapa.",
+  "settingsTheme": "Tema",
+  "themeLight": "Dia",
+  "themeDark": "Nit",
+  "themeDusk": "Crepuscle",
+  "impactParticipants": "Participants: {count}",
+  "@impactParticipants": {
+    "placeholders": {
+      "count": { "type": "int" }
+    }
+  },
+  "impactNoNode": "Encara no pertanys a cap node. Uneix-te a un per veure'n el mapa.",
+  "impactScopeError": "No s'ha pogut carregar el mapa. Torna-ho a provar.",
+  "impactRetry": "Reintenta"
 }

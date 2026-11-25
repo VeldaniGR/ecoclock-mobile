@@ -465,4 +465,31 @@ class AppLocalizationsEn extends AppLocalizations {
   @override
   String get impactNoHexesHint =>
       'You have not unlocked any hexes yet. Complete tasks in impact zones to color the map.';
+
+  @override
+  String get settingsTheme => 'Theme';
+
+  @override
+  String get themeLight => 'Day';
+
+  @override
+  String get themeDark => 'Night';
+
+  @override
+  String get themeDusk => 'Dusk';
+
+  @override
+  String impactParticipants(int count) {
+    return 'Participants: $count';
+  }
+
+  @override
+  String get impactNoNode =>
+      'You don\'t belong to a node yet. Join one to see its map.';
+
+  @override
+  String get impactScopeError => 'Couldn\'t load the map. Try again.';
+
+  @override
+  String get impactRetry => 'Retry';
 }

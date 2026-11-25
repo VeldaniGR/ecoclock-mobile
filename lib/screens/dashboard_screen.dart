@@ -351,6 +351,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
               loading: _loadingImpact,
               scope: _impactScope,
               onScopeChanged: (s) => setState(() => _impactScope = s),
+              api: widget.api,   // el mismo EcoClockApi que ya usa esa pantalla
             ),
             const SizedBox(height: 16),
 

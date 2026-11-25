@@ -243,5 +243,18 @@
   "impactScopeNetworkSoon": "Sarearen ikuspegia: laster",
   "impactCenterMap": "Zentratu",
   "impactArcticHint": "Artikoa · arrastatu / zoom",
-  "impactNoHexesHint": "Oraindik ez duzu hexagonorik desblokeatu. Osatu atazak inpaktu-guneetan mapa koloreztatzeko."
+  "impactNoHexesHint": "Oraindik ez duzu hexagonorik desblokeatu. Osatu atazak inpaktu-guneetan mapa koloreztatzeko.",
+  "settingsTheme": "Gaia",
+  "themeLight": "Eguna",
+  "themeDark": "Gaua",
+  "themeDusk": "Ilunabarra",
+  "impactParticipants": "Parte-hartzaileak: {count}",
+  "@impactParticipants": {
+    "placeholders": {
+      "count": { "type": "int" }
+    }
+  },
+  "impactNoNode": "Oraindik ez zara inongo nodotakoa. Batu nodo batera bere mapa ikusteko.",
+  "impactScopeError": "Ezin izan da mapa kargatu. Saiatu berriro.",
+  "impactRetry": "Saiatu berriro"
 }

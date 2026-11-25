@@ -243,5 +243,18 @@
   "impactScopeNetworkSoon": "网络视图：即将推出",
   "impactCenterMap": "居中",
   "impactArcticHint": "北极 · 拖动 / 缩放",
-  "impactNoHexesHint": "你尚未解锁任何六边形。在影响区域完成任务来为地图上色。"
+  "impactNoHexesHint": "你尚未解锁任何六边形。在影响区域完成任务来为地图上色。",
+  "settingsTheme": "主题",
+  "themeLight": "白天",
+  "themeDark": "夜晚",
+  "themeDusk": "黄昏",
+  "impactParticipants": "参与者：{count}",
+  "@impactParticipants": {
+    "placeholders": {
+      "count": { "type": "int" }
+    }
+  },
+  "impactNoNode": "你还没有加入任何节点。加入一个节点即可查看它的地图。",
+  "impactScopeError": "无法加载地图，请重试。",
+  "impactRetry": "重试"
 }

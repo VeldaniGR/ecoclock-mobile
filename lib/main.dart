@@ -12,7 +12,27 @@ import 'screens/auth_screen.dart';
 import 'screens/dashboard_screen.dart';
 import 'services/api_service.dart';
 
-void main() => runApp(const EcoClockApp());
+/// Tema elegido por el usuario (se guarda en SharedPreferences con la clave 'theme').
+enum AppThemeChoice {
+  light,
+  dark,
+  dusk;
+
+  static AppThemeChoice fromName(String? name) {
+    return AppThemeChoice.values.firstWhere(
+      (c) => c.name == name,
+      orElse: () => AppThemeChoice.dark,
+    );
+  }
+}
+
+Future<void> main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  final prefs = await SharedPreferences.getInstance();
+  runApp(
+    EcoClockApp(initialTheme: AppThemeChoice.fromName(prefs.getString('theme'))),
+  );
+}
 
 /// Tema claro (día) - basado en el design system de ecoclock.org
 final ThemeData lightTheme = ThemeData(
@@ -383,7 +403,10 @@ class EcoClockThemeExtension extends ThemeExtension<EcoClockThemeExtension> {
 }
 
 class EcoClockApp extends StatefulWidget {
-  const EcoClockApp({super.key});
+  /// Tema con el que arranca la app (el guardado, o noche por defecto)
+  final AppThemeChoice initialTheme;
+
+  const EcoClockApp({super.key, this.initialTheme = AppThemeChoice.dark});
 
   @override
   State<EcoClockApp> createState() => _EcoClockAppState();
@@ -393,14 +416,28 @@ class EcoClockApp extends StatefulWidget {
     final state = context.findAncestorStateOfType<_EcoClockAppState>();
     state?.setLocale(newLocale);
   }
+
+  /// Cambia el tema desde cualquier sitio de la app
+  static void setTheme(BuildContext context, AppThemeChoice choice) {
+    final state = context.findAncestorStateOfType<_EcoClockAppState>();
+    state?.setTheme(choice);
+  }
+
+  /// Tema activo (para marcarlo en el selector de Ajustes)
+  static AppThemeChoice themeChoiceOf(BuildContext context) {
+    final state = context.findAncestorStateOfType<_EcoClockAppState>();
+    return state?._themeChoice ?? AppThemeChoice.dark;
+  }
 }
 
 class _EcoClockAppState extends State<EcoClockApp> {
   Locale? _locale;
+  late AppThemeChoice _themeChoice;
 
   @override
   void initState() {
     super.initState();
+    _themeChoice = widget.initialTheme;
     _loadSavedLocale();
   }
 
@@ -418,14 +455,22 @@ class _EcoClockAppState extends State<EcoClockApp> {
     setState(() => _locale = locale);
   }
 
+  Future<void> setTheme(AppThemeChoice choice) async {
+    setState(() => _themeChoice = choice);
+    final prefs = await SharedPreferences.getInstance();
+    await prefs.setString('theme', choice.name);
+  }
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Eco\'clock Network',
       debugShowCheckedModeBanner: false,
       theme: lightTheme,
-      darkTheme: darkTheme,
-      themeMode: ThemeMode.dark,
+      darkTheme: _themeChoice == AppThemeChoice.dusk ? duskTheme : darkTheme,
+      themeMode: _themeChoice == AppThemeChoice.light
+          ? ThemeMode.light
+          : ThemeMode.dark,
 
       // ─── Localización ─────────────────────────────────────────
       locale: _locale,

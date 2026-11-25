@@ -468,4 +468,32 @@ class AppLocalizationsDe extends AppLocalizations {
   @override
   String get impactNoHexesHint =>
       'Du hast noch keine Hexagone freigeschaltet. Erledige Aufgaben in Impact-Zonen, um die Karte zu färben.';
+
+  @override
+  String get settingsTheme => 'Design';
+
+  @override
+  String get themeLight => 'Tag';
+
+  @override
+  String get themeDark => 'Nacht';
+
+  @override
+  String get themeDusk => 'Dämmerung';
+
+  @override
+  String impactParticipants(int count) {
+    return 'Teilnehmende: $count';
+  }
+
+  @override
+  String get impactNoNode =>
+      'Du gehörst noch keinem Knoten an. Tritt einem bei, um seine Karte zu sehen.';
+
+  @override
+  String get impactScopeError =>
+      'Die Karte konnte nicht geladen werden. Versuche es erneut.';
+
+  @override
+  String get impactRetry => 'Erneut versuchen';
 }

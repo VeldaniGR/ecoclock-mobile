@@ -468,4 +468,31 @@ class AppLocalizationsEu extends AppLocalizations {
   @override
   String get impactNoHexesHint =>
       'Oraindik ez duzu hexagonorik desblokeatu. Osatu atazak inpaktu-guneetan mapa koloreztatzeko.';
+
+  @override
+  String get settingsTheme => 'Gaia';
+
+  @override
+  String get themeLight => 'Eguna';
+
+  @override
+  String get themeDark => 'Gaua';
+
+  @override
+  String get themeDusk => 'Ilunabarra';
+
+  @override
+  String impactParticipants(int count) {
+    return 'Parte-hartzaileak: $count';
+  }
+
+  @override
+  String get impactNoNode =>
+      'Oraindik ez zara inongo nodotakoa. Batu nodo batera bere mapa ikusteko.';
+
+  @override
+  String get impactScopeError => 'Ezin izan da mapa kargatu. Saiatu berriro.';
+
+  @override
+  String get impactRetry => 'Saiatu berriro';
 }

@@ -243,5 +243,18 @@
   "impactScopeNetworkSoon": "Vue réseau : bientôt",
   "impactCenterMap": "Centrer",
   "impactArcticHint": "Arctique · glisser / zoom",
-  "impactNoHexesHint": "Vous n'avez pas encore débloqué d'hexagones. Terminez des tâches dans les zones d'impact pour colorer la carte."
+  "impactNoHexesHint": "Vous n'avez pas encore débloqué d'hexagones. Terminez des tâches dans les zones d'impact pour colorer la carte.",
+  "settingsTheme": "Thème",
+  "themeLight": "Jour",
+  "themeDark": "Nuit",
+  "themeDusk": "Crépuscule",
+  "impactParticipants": "Participants : {count}",
+  "@impactParticipants": {
+    "placeholders": {
+      "count": { "type": "int" }
+    }
+  },
+  "impactNoNode": "Vous n'appartenez à aucun nœud pour le moment. Rejoignez-en un pour voir sa carte.",
+  "impactScopeError": "Impossible de charger la carte. Réessayez.",
+  "impactRetry": "Réessayer"
 }

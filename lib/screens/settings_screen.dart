@@ -20,6 +20,7 @@ class SettingsScreen extends StatefulWidget {
 class _SettingsScreenState extends State<SettingsScreen> {
   String _version = '…';
   String _buildNumber = '';
+  AppThemeChoice _themeChoice = AppThemeChoice.dark;
 
   // Lista de idiomas (mismo orden que la landing)
   static const List<Map<String, String>> _languages = [
@@ -40,7 +41,30 @@ class _SettingsScreenState extends State<SettingsScreen> {
   @override
   void initState() {
     super.initState();
+    _themeChoice = EcoClockApp.themeChoiceOf(context);
     _loadVersion();
+  }
+
+  String _themeLabel(AppLocalizations l10n, AppThemeChoice choice) {
+    switch (choice) {
+      case AppThemeChoice.light:
+        return l10n.themeLight;
+      case AppThemeChoice.dark:
+        return l10n.themeDark;
+      case AppThemeChoice.dusk:
+        return l10n.themeDusk;
+    }
+  }
+
+  IconData _themeIcon(AppThemeChoice choice) {
+    switch (choice) {
+      case AppThemeChoice.light:
+        return Icons.light_mode_rounded;
+      case AppThemeChoice.dark:
+        return Icons.dark_mode_rounded;
+      case AppThemeChoice.dusk:
+        return Icons.wb_twilight_rounded;
+    }
   }
 
   Future<void> _loadVersion() async {
@@ -159,6 +183,60 @@ class _SettingsScreenState extends State<SettingsScreen> {
                       ),
                     );
                   }
+                },
+              ),
+            ),
+          ),
+
+          const SizedBox(height: 28),
+
+          // ─── Selector de tema (día / noche / crepúsculo) ───────
+          Text(
+            l10n.settingsTheme,
+            style: theme.textTheme.titleMedium?.copyWith(
+              fontWeight: FontWeight.w600,
+            ),
+          ),
+          const SizedBox(height: 12),
+
+          Container(
+            padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 4),
+            decoration: BoxDecoration(
+              color: theme.colorScheme.surfaceContainerHighest.withValues(alpha: 0.55),
+              borderRadius: BorderRadius.circular(14),
+              border: Border.all(
+                color: theme.colorScheme.outline.withValues(alpha: 0.3),
+              ),
+            ),
+            child: DropdownButtonHideUnderline(
+              child: DropdownButton<AppThemeChoice>(
+                value: _themeChoice,
+                isExpanded: true,
+                icon: Icon(
+                  Icons.arrow_drop_down_rounded,
+                  color: theme.colorScheme.onSurfaceVariant,
+                ),
+                dropdownColor: theme.colorScheme.surfaceContainerHighest,
+                borderRadius: BorderRadius.circular(14),
+                items: AppThemeChoice.values.map((choice) {
+                  return DropdownMenuItem<AppThemeChoice>(
+                    value: choice,
+                    child: Row(
+                      children: [
+                        Icon(_themeIcon(choice), size: 20),
+                        const SizedBox(width: 12),
+                        Text(
+                          _themeLabel(l10n, choice),
+                          style: theme.textTheme.bodyLarge,
+                        ),
+                      ],
+                    ),
+                  );
+                }).toList(),
+                onChanged: (AppThemeChoice? choice) {
+                  if (choice == null) return;
+                  setState(() => _themeChoice = choice);
+                  EcoClockApp.setTheme(context, choice);
                 },
               ),
             ),

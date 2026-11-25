@@ -243,5 +243,18 @@
   "impactScopeNetworkSoon": "Netzwerkansicht: demnächst",
   "impactCenterMap": "Zentrieren",
   "impactArcticHint": "Arktis · ziehen / zoomen",
-  "impactNoHexesHint": "Du hast noch keine Hexagone freigeschaltet. Erledige Aufgaben in Impact-Zonen, um die Karte zu färben."
+  "impactNoHexesHint": "Du hast noch keine Hexagone freigeschaltet. Erledige Aufgaben in Impact-Zonen, um die Karte zu färben.",
+  "settingsTheme": "Design",
+  "themeLight": "Tag",
+  "themeDark": "Nacht",
+  "themeDusk": "Dämmerung",
+  "impactParticipants": "Teilnehmende: {count}",
+  "@impactParticipants": {
+    "placeholders": {
+      "count": { "type": "int" }
+    }
+  },
+  "impactNoNode": "Du gehörst noch keinem Knoten an. Tritt einem bei, um seine Karte zu sehen.",
+  "impactScopeError": "Die Karte konnte nicht geladen werden. Versuche es erneut.",
+  "impactRetry": "Erneut versuchen"
 }

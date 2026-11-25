@@ -467,4 +467,32 @@ class AppLocalizationsRu extends AppLocalizations {
   @override
   String get impactNoHexesHint =>
       'Вы ещё не разблокировали гексы. Выполняйте задания в зонах влияния, чтобы раскрасить карту.';
+
+  @override
+  String get settingsTheme => 'Тема';
+
+  @override
+  String get themeLight => 'День';
+
+  @override
+  String get themeDark => 'Ночь';
+
+  @override
+  String get themeDusk => 'Сумерки';
+
+  @override
+  String impactParticipants(int count) {
+    return 'Участники: $count';
+  }
+
+  @override
+  String get impactNoNode =>
+      'Вы пока не состоите ни в одном узле. Присоединяйтесь к узлу, чтобы увидеть его карту.';
+
+  @override
+  String get impactScopeError =>
+      'Не удалось загрузить карту. Попробуйте снова.';
+
+  @override
+  String get impactRetry => 'Повторить';
 }

@@ -459,4 +459,30 @@ class AppLocalizationsZh extends AppLocalizations {
 
   @override
   String get impactNoHexesHint => '你尚未解锁任何六边形。在影响区域完成任务来为地图上色。';
+
+  @override
+  String get settingsTheme => '主题';
+
+  @override
+  String get themeLight => '白天';
+
+  @override
+  String get themeDark => '夜晚';
+
+  @override
+  String get themeDusk => '黄昏';
+
+  @override
+  String impactParticipants(int count) {
+    return '参与者：$count';
+  }
+
+  @override
+  String get impactNoNode => '你还没有加入任何节点。加入一个节点即可查看它的地图。';
+
+  @override
+  String get impactScopeError => '无法加载地图，请重试。';
+
+  @override
+  String get impactRetry => '重试';
 }
